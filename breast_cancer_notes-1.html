@@ -1,0 +1,2170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Breast Cancer — Complete Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f7fa; --surface: #ffffff; --surface2: #f0f4ff;
+  --border: #e2e8f0; --border2: #c8d4e8;
+  --rose: #be185d; --rose-dim: #fce7f3;
+  --blue: #2563eb; --blue-dim: #dbeafe;
+  --green: #16a34a; --green-dim: #dcfce7;
+  --red: #dc2626; --red-dim: #fee2e2;
+  --orange: #ea580c; --orange-dim: #ffedd5;
+  --purple: #7c3aed; --purple-dim: #ede9fe;
+  --gold: #d97706; --gold-dim: #fef3c7;
+  --teal: #0891b2; --teal-dim: #cffafe;
+  --navy: #1e3a8a; --navy-dim: #e0e7ff;
+  --text: #1e293b; --muted: #64748b; --muted2: #94a3b8;
+  --r: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'IBM Plex Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; font-size: 14px; padding: 16px; }
+
+/* ── HEADER / COVER ── */
+.cover { text-align: center; padding: 48px 24px 40px; background: linear-gradient(135deg, #3b0a24, #831843 45%, #be185d 70%, #9d174d); border-radius: 16px; margin-bottom: 20px; position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(190,24,93,.3); }
+.cover::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 50%, rgba(255,180,210,.15) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(255,200,230,.1) 0%, transparent 60%); pointer-events: none; }
+.cover-tag { font-size: .72em; font-weight: 600; letter-spacing: .12em; color: #f9a8c4; text-transform: uppercase; margin-bottom: 12px; position: relative; }
+.cover h1 { font-size: 2em; font-weight: 700; color: #fff; margin-bottom: 16px; line-height: 1.2; position: relative; }
+.cover h1 em { color: #f9a8c4; font-style: normal; }
+.cover-chips { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; position: relative; }
+.chip { background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.35); padding: 4px 12px; border-radius: 20px; font-size: .72em; font-weight: 600; color: #fff; }
+
+/* ── TOC (was sidebar) ── */
+.sidebar { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+.nav { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 3px 16px; }
+.sg { grid-column: 1 / -1; font-size: .68em; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--rose); margin: 10px 0 4px; }
+.sg:first-child { margin-top: 0; }
+.nr { display: none; }
+.nav a { font-size: .82em; color: var(--rose); text-decoration: none; padding: 3px 0; display: block; transition: color .15s; border-left: none; }
+.nav a:hover, .nav a.active { color: #831843; font-weight: 600; }
+
+/* ── LAYOUT ── */
+.layout { display: block; }
+.main { max-width: 100%; padding: 0; }
+
+/* ── SECTION ── */
+section { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 16px; overflow: hidden; padding: 0 18px 18px; }
+.sec-header { display: flex; align-items: center; gap: 10px; padding: 14px 0 12px; margin: 0 -18px 16px; padding-left: 18px; padding-right: 18px; background: var(--rose-dim); border-bottom: 1px solid var(--border); }
+.sec-num { font-size: 1.1em; font-weight: 700; color: var(--rose); }
+.sec-title { font-size: .95em; font-weight: 700; color: var(--rose); line-height: 1.2; }
+.sec-sub { font-size: .72em; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 14px 0 8px; }
+
+/* ── CARDS ── */
+.card { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin-bottom: 12px; border-top: 3px solid var(--rose); }
+.card.teal, .card.t  { border-top-color: var(--teal); }
+.card.gold           { border-top-color: var(--gold); }
+.card.amber          { border-top-color: var(--gold); }
+.card.navy, .card.n  { border-top-color: var(--navy); }
+.card.plum, .card.p  { border-top-color: var(--purple); }
+.card.green, .card.gr, .card.g { border-top-color: var(--green); }
+.card.rose           { border-top-color: var(--rose); }
+.card h4 { font-size: .78em; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border); color: var(--rose); }
+.card.teal h4, .card.t h4  { color: var(--teal); }
+.card.gold h4, .card.amber h4 { color: var(--gold); }
+.card.navy h4, .card.n h4  { color: var(--navy); }
+.card.plum h4, .card.p h4  { color: var(--purple); }
+.card.green h4, .card.gr h4, .card.g h4 { color: var(--green); }
+.card.rose h4 { color: var(--rose); }
+
+/* ── GRIDS ── */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+@media(max-width:700px) { .g2, .g3 { grid-template-columns: 1fr; } }
+
+/* ── LISTS ── */
+ul.dot { list-style: none; padding: 0; }
+ul.dot li { font-size: .87em; padding: 3px 0 3px 16px; position: relative; color: #334155; }
+ul.dot li::before { content: "›"; position: absolute; left: 0; color: var(--muted2); font-weight: 700; }
+ul.dot li strong { color: var(--text); }
+
+/* ── HIGHLIGHT BOXES ── */
+.box { border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; font-size: .85em; border-left: 3px solid; }
+.box.rose  { background: var(--rose-dim);  border-color: var(--rose);  color: #831843; }
+.box.teal  { background: var(--teal-dim);  border-color: var(--teal);  color: #164e63; }
+.box.gold, .box.amber { background: var(--gold-dim); border-color: var(--gold); color: #78350f; }
+.box.navy  { background: var(--navy-dim);  border-color: var(--navy);  color: #1e3a8a; }
+.box.plum  { background: var(--purple-dim);border-color: var(--purple);color: #4c1d95; }
+.box.green { background: var(--green-dim); border-color: var(--green); color: #14532d; }
+
+/* ── PEARL / KEY FACT ── */
+.pearl { background: linear-gradient(135deg, #831843, #be185d); color: #fff; border-radius: 10px; padding: 16px 20px; margin-bottom: 12px; font-size: .87em; position: relative; }
+.pearl strong { color: #fbcfe8; }
+
+/* ── BADGES ── */
+.b { display: inline-block; padding: 2px 9px; border-radius: 10px; font-size: .75em; font-weight: 600; vertical-align: middle; }
+.b-rose, .b-r { background: var(--rose-dim); color: var(--rose); }
+.b-teal, .b-t { background: var(--teal-dim); color: var(--teal); }
+.b-gold       { background: var(--gold-dim); color: var(--gold); }
+.b-navy, .b-n { background: var(--navy-dim); color: var(--navy); }
+.b-plum, .b-p { background: var(--purple-dim); color: var(--purple); }
+.b-green, .b-g { background: var(--green-dim); color: var(--green); }
+
+/* ── STEP FLOW ── */
+.flow { display: flex; flex-direction: column; gap: 0; margin-bottom: 12px; }
+.fstep { display: flex; gap: 12px; position: relative; }
+.fstep:not(:last-child)::after { content: ''; position: absolute; left: 15px; top: 34px; width: 2px; height: calc(100% - 8px); background: linear-gradient(to bottom, var(--rose), var(--rose-dim)); }
+.fnum { width: 30px; height: 30px; border-radius: 50%; background: var(--rose); color: #fff; font-weight: 700; font-size: .8em; flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin-top: 3px; }
+.fbody { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 11px 14px; margin-bottom: 10px; flex: 1; font-size: .87em; }
+.fbody strong { display: block; margin-bottom: 4px; color: var(--navy); }
+
+/* ── STAT BOX ── */
+.sa-stat { background: var(--surface2); border: 1px solid var(--border2); border-radius: 10px; padding: 16px; text-align: center; margin-bottom: 12px; }
+.sa-stat .big { font-size: 1.9em; font-weight: 700; line-height: 1; color: var(--rose); }
+.sa-stat .label { font-size: .72em; color: var(--muted); margin-top: 4px; }
+
+/* ── TABLES ── */
+.tw { overflow-x: auto; border-radius: 8px; margin-bottom: 12px; }
+table { width: 100%; border-collapse: collapse; background: #fff; font-size: .83em; margin: 8px 0; }
+thead tr { background: #831843; color: #fff; }
+thead th { padding: 8px 10px; text-align: left; font-weight: 700; font-size: .8em; letter-spacing: .04em; text-transform: uppercase; }
+th { background: #831843; color: #fff; padding: 8px 10px; text-align: left; font-weight: 700; }
+tbody tr:nth-child(even) { background: #fafaf8; }
+tbody tr:hover td { background: var(--rose-dim); }
+td { padding: 7px 10px; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--text); }
+
+/* ── CALLOUT TAGS (match carcinogenesis theme) ── */
+.brain { background: var(--green-dim); border-left: 3px solid var(--green); padding: 8px 12px; border-radius: 0 8px 8px 0; font-size: .83em; color: #14532d; margin: 8px 0; font-weight: 600; }
+.exam  { background: var(--purple-dim); border-left: 3px solid var(--purple); padding: 8px 12px; border-radius: 0 8px 8px 0; font-size: .83em; color: #4c1d95; margin: 8px 0; font-weight: 600; }
+.warn  { background: var(--red-dim); border-left: 3px solid var(--red); padding: 8px 12px; border-radius: 0 8px 8px 0; font-size: .83em; color: #7f1d1d; margin: 8px 0; font-weight: 600; }
+.stars { color: var(--gold); font-size: .8em; margin-left: 6px; letter-spacing: -1px; }
+.sec-title .hy { display:inline-block; background: var(--gold-dim); color: var(--gold); font-size: .6em; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 2px 8px; border-radius: 10px; margin-left: 8px; vertical-align: middle; }
+
+/* ── MISC ── */
+.ruled { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+hr { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
+h5 { font-size: .72em; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--teal); margin: 12px 0 6px; }
+small { font-size: .8em; color: #888; }
+.footer { text-align: center; padding: 24px; color: var(--muted2); font-size: .78em; margin-top: 10px; border-top: 1px solid var(--border); }
+
+/* ── HIGHLIGHT COLORS ── */
+.hl-yellow { background: #fef08a; border-radius: 3px; cursor: pointer; padding: 0 2px; }
+.hl-green  { background: #bbf7d0; border-radius: 3px; cursor: pointer; padding: 0 2px; }
+.hl-pink   { background: #fecdd3; border-radius: 3px; cursor: pointer; padding: 0 2px; }
+.hl-blue   { background: #bae6fd; border-radius: 3px; cursor: pointer; padding: 0 2px; }
+.hl-has-note { border-bottom: 2px dashed #f59e0b; }
+
+/* ── HIGHLIGHT TOOLBAR ── */
+#hl-toolbar {
+  position: fixed; z-index: 9999; background: #1e293b; border-radius: 10px;
+  padding: 6px 10px; display: none; gap: 6px; align-items: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3); top: 0; left: 0;
+}
+#hl-toolbar button {
+  width: 26px; height: 26px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3);
+  cursor: pointer; font-size: 0; transition: transform .15s;
+}
+#hl-toolbar button:hover { transform: scale(1.2); border-color: #fff; }
+#hl-toolbar .hl-btn-yellow { background: #fef08a; }
+#hl-toolbar .hl-btn-green  { background: #bbf7d0; }
+#hl-toolbar .hl-btn-pink   { background: #fecdd3; }
+#hl-toolbar .hl-btn-blue   { background: #bae6fd; }
+#hl-toolbar .hl-btn-note   { background: #f59e0b; font-size: 13px !important; color: #fff; font-weight: 700; }
+#hl-toolbar .hl-btn-erase  { background: #ef4444; font-size: 13px !important; color: #fff; font-weight: 700; }
+
+/* ── NOTE POPUP ── */
+#note-popup {
+  position: fixed; z-index: 9999; background: #fff; border-radius: 12px;
+  padding: 14px; width: 280px; box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  border: 1px solid #e2e8f0; display: none;
+}
+#note-popup textarea {
+  width: 100%; height: 80px; border: 1px solid #e2e8f0; border-radius: 8px;
+  padding: 8px; font-family: 'IBM Plex Sans', sans-serif; font-size: 13px;
+  resize: none; outline: none; color: #1e293b;
+  direction: rtl;
+}
+#note-popup textarea:focus { border-color: #be185d; }
+#note-popup .np-actions { display: flex; gap: 8px; margin-top: 8px; justify-content: flex-end; }
+#note-popup .np-save { background: #be185d; color: #fff; border: none; border-radius: 8px; padding: 6px 16px; font-size: 13px; font-weight: 600; cursor: pointer; }
+#note-popup .np-cancel { background: #f1f5f9; color: #64748b; border: none; border-radius: 8px; padding: 6px 12px; font-size: 13px; cursor: pointer; }
+#note-popup .np-delete { background: #fee2e2; color: #dc2626; border: none; border-radius: 8px; padding: 6px 12px; font-size: 13px; cursor: pointer; margin-right: auto; }
+#note-popup h6 { font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px; }
+
+/* ── NOTE TOOLTIP ── */
+.hl-tooltip {
+  position: absolute; background: #1e293b; color: #fff; border-radius: 8px;
+  padding: 6px 10px; font-size: 12px; max-width: 220px; z-index: 8888;
+  pointer-events: none; white-space: pre-wrap; line-height: 1.5;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25); direction: rtl; text-align: right;
+}
+.hl-tooltip::after {
+  content: ''; position: absolute; bottom: -6px; left: 14px;
+  border: 6px solid transparent; border-bottom: none; border-top-color: #1e293b;
+}
+
+/* ── SECTION NOTES BOX ── */
+.sec-notes-wrap {
+  margin-top: 16px; border-top: 1px dashed #e2e8f0; padding-top: 12px;
+}
+.sec-notes-label {
+  font-size: .72em; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: #be185d; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
+}
+.sec-notes-label span { font-size: 14px; }
+.sec-notes-box {
+  width: 100%; min-height: 48px; border: 1.5px dashed #f9a8c4; border-radius: 10px;
+  padding: 10px 14px; font-family: 'IBM Plex Sans', sans-serif; font-size: 13.5px;
+  color: #1e293b; background: #fff9fb; outline: none; resize: vertical;
+  line-height: 1.7; direction: rtl; text-align: right;
+  transition: border-color .2s, background .2s;
+}
+.sec-notes-box:focus { border-color: #be185d; background: #fff; }
+.sec-notes-box:empty::before {
+  content: attr(data-placeholder); color: #f9a8c4; pointer-events: none;
+}
+.sec-notes-saved { font-size: .75em; color: #16a34a; margin-top: 4px; display: none; }
+
+
+/* ── DRAWING OVERLAY ── */
+#draw-toggle {
+  position: fixed; bottom: 24px; left: 24px; z-index: 10000;
+  background: #be185d; color: #fff; border: none; border-radius: 50px;
+  padding: 12px 20px; font-size: 14px; font-weight: 700; cursor: pointer;
+  box-shadow: 0 4px 16px rgba(190,24,93,.4); display: flex; align-items: center; gap: 8px;
+  transition: background .2s;
+}
+#draw-toggle.active { background: #16a34a; }
+
+#draw-toolbar {
+  position: fixed; bottom: 76px; left: 16px; z-index: 10000;
+  background: #1e293b; border-radius: 14px; padding: 10px;
+  display: none; flex-direction: column; gap: 8px; align-items: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,.35);
+}
+#draw-toolbar.visible { display: flex; }
+
+.dt-color { width: 28px; height: 28px; border-radius: 50%; border: 3px solid transparent; cursor: pointer; transition: transform .15s, border-color .15s; }
+.dt-color.selected { border-color: #fff; transform: scale(1.2); }
+.dt-sep { width: 24px; height: 1px; background: rgba(255,255,255,.2); }
+.dt-size { background: rgba(255,255,255,.12); color: #fff; border: none; border-radius: 8px; padding: 4px 8px; font-size: 12px; cursor: pointer; width: 44px; text-align: center; }
+.dt-size.selected { background: #be185d; }
+.dt-btn { background: rgba(255,255,255,.12); color: #fff; border: none; border-radius: 8px; padding: 6px 8px; font-size: 16px; cursor: pointer; width: 44px; transition: background .15s; }
+.dt-btn:hover { background: rgba(255,255,255,.25); }
+
+#draw-canvas {
+  position: fixed; inset: 0; z-index: 9990;
+  pointer-events: none; touch-action: none;
+  display: none;
+}
+#draw-canvas.active { pointer-events: all; display: block; }
+
+#draw-hint {
+  position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+  background: rgba(30,41,59,.9); color: #fff; border-radius: 10px;
+  padding: 8px 18px; font-size: 13px; z-index: 10001; display: none;
+  pointer-events: none;
+}
+
+</style>
+</head>
+<body>
+
+
+<!-- Drawing UI -->
+<canvas id="draw-canvas"></canvas>
+<div id="draw-hint">🖊️ وضع الرسم — المس أو اسحب للخط</div>
+<button id="draw-toggle">🖊️ رسم</button>
+<div id="draw-toolbar">
+  <div class="dt-color selected" style="background:#ef4444" data-color="#ef4444"></div>
+  <div class="dt-color" style="background:#f59e0b" data-color="#f59e0b"></div>
+  <div class="dt-color" style="background:#3b82f6" data-color="#3b82f6"></div>
+  <div class="dt-color" style="background:#16a34a" data-color="#16a34a"></div>
+  <div class="dt-color" style="background:#a855f7" data-color="#a855f7"></div>
+  <div class="dt-color" style="background:#000000" data-color="#000000"></div>
+  <div class="dt-sep"></div>
+  <button class="dt-size selected" data-size="3">S</button>
+  <button class="dt-size" data-size="6">M</button>
+  <button class="dt-size" data-size="12">L</button>
+  <div class="dt-sep"></div>
+  <button class="dt-btn" id="dt-eraser" title="ممحاة">◻</button>
+  <button class="dt-btn" id="dt-undo" title="تراجع">↩</button>
+  <button class="dt-btn" id="dt-clear" title="مسح الكل">🗑</button>
+</div>
+
+<!-- Highlight Toolbar -->
+<div id="hl-toolbar">
+  <button class="hl-btn-yellow" title="أصفر">Y</button>
+  <button class="hl-btn-green"  title="أخضر">G</button>
+  <button class="hl-btn-pink"   title="وردي">P</button>
+  <button class="hl-btn-blue"   title="أزرق">B</button>
+  <button class="hl-btn-note"   title="هايلايت + ملاحظة" style="font-size:14px">✏️</button>
+  <button class="hl-btn-erase"  title="إلغاء" style="font-size:14px">✕</button>
+</div>
+
+<!-- Note Popup -->
+<div id="note-popup">
+  <h6>✏️ ملاحظتك</h6>
+  <textarea placeholder="اكتب ملاحظتك هنا..."></textarea>
+  <div class="np-actions">
+    <button class="np-delete">🗑️ حذف</button>
+    <button class="np-cancel">إلغاء</button>
+    <button class="np-save">حفظ</button>
+  </div>
+</div>
+
+
+
+<div class="cover">
+  <div class="cover-tag">Oncology Nursing · Complete Study Guide</div>
+  <h1><em style="color:#e8849a;font-style:normal">Breast</em> Cancer</h1>
+  <div class="cover-chips">
+    <span class="chip">Core Curriculum 6th Ed — Ch. 13</span>
+    <span class="chip">Cancer Nursing 8th Ed — Ch. 47 &amp; 48</span>
+    <span class="chip">🇸🇦 Saudi Cancer Registry 2022</span>
+    <span class="chip">Study PDF + DOCX Material</span>
+  </div>
+</div>
+
+<div class="layout">
+<nav class="sidebar">
+  <div class="nav">
+    <div class="sg">Overview</div>
+    <a href="#s1">1 · Epidemiology</a>
+    <a href="#s2">2 · Anatomy &amp; Physiology</a>
+    <div class="nr"></div>
+    <div class="sg">Etiology &amp; Prevention</div>
+    <a href="#s3">3 · Risk Factors</a>
+    <a href="#s4">4 · Genetics &amp; Hereditary ⭐⭐⭐</a>
+    <a href="#s5">5 · Risk Models</a>
+    <a href="#s6">6 · Prevention</a>
+    <a href="#s7">7 · Screening</a>
+    <div class="nr"></div>
+    <div class="sg">Disease Classification</div>
+    <a href="#s8">8 · Pathogenesis &amp; Premalignant</a>
+    <a href="#s9">9 · DCIS &amp; LCIS ⭐⭐⭐</a>
+    <a href="#s10">10 · Invasive Breast Cancer</a>
+    <a href="#s11">11 · Special Histologic Types</a>
+    <a href="#s12">12 · Molecular Classification ⭐⭐⭐</a>
+    <div class="nr"></div>
+    <div class="sg">Diagnosis &amp; Staging</div>
+    <a href="#s13">13 · Clinical Manifestations</a>
+    <a href="#s14">14 · Diagnostic Workup</a>
+    <a href="#s15">15 · Histologic Grade</a>
+    <a href="#s16">16 · TNM Staging ⭐⭐⭐</a>
+    <a href="#s17">17 · Prognostic Factors ⭐⭐⭐</a>
+    <div class="nr"></div>
+    <div class="sg">Treatment</div>
+    <a href="#s18">18 · Treatment ⭐⭐⭐</a>
+    <div class="nr"></div>
+    <div class="sg">Metastatic &amp; Nursing</div>
+    <a href="#s19">19 · Metastatic BC</a>
+    <a href="#s20">20 · Nursing Care</a>
+    <div class="nr"></div>
+    <div class="sg">Exam</div>
+    <a href="#s21">⭐ Exam Tips &amp; MCQ Guide</a>
+  </div>
+</nav>
+<main class="main">
+
+<section id="s1">
+<div class="sec-header"><span class="sec-num">01</span><h2 class="sec-title">Epidemiology</h2></div>
+<div class="g3">
+    <div class="sa-stat">
+      <div class="big">17.3%</div>
+      <div class="label">of all cancers in Saudi Arabia</div>
+    </div>
+    <div class="sa-stat">
+      <div class="big">3,334</div>
+      <div class="label">total cases in 2022 (3,280 female · 54 male)</div>
+    </div>
+    <div class="sa-stat">
+      <div class="big">#1</div>
+      <div class="label">most common cancer in Saudi Arabia 2022</div>
+    </div>
+  </div>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Cancer</th><th>Female</th><th>Male</th><th>Total</th><th>%</th></tr></thead>
+      <tbody>
+        <tr><td><strong>🔴 Breast</strong></td><td>3,280</td><td>54</td><td><strong>3,334</strong></td><td><strong>17.3%</strong></td></tr>
+        <tr><td>Colorectal</td><td>1,065</td><td>1,470</td><td>2,535</td><td>13.2%</td></tr>
+        <tr><td>Thyroid</td><td>1,288</td><td>389</td><td>1,677</td><td>8.7%</td></tr>
+        <tr><td>Non-Hodgkin Lymphoma</td><td>471</td><td>627</td><td>1,098</td><td>5.7%</td></tr>
+        <tr><td>Leukaemia</td><td>375</td><td>517</td><td>892</td><td>4.6%</td></tr>
+        <tr><td>Prostate</td><td>—</td><td>661</td><td>661</td><td>3.4%</td></tr>
+        <tr><td>Corpus Uteri</td><td>647</td><td>—</td><td>647</td><td>3.4%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card teal">
+    <h4>Global &amp; US Statistics</h4>
+    <ul class="dot tl">
+      <li>Globally: most common cancer in women — 1.7 million new cases in 2012</li>
+      <li>Second leading cause of cancer deaths in women (after lung cancer) in developed countries; <strong>number one</strong> in developing countries</li>
+      <li>US 2018: ~268,670 new cases · ~41,400 deaths (40,920 female + 480 male)</li>
+      <li>30% of all new cancer cases in women</li>
+      <li>Death rate peaked at 33.2/100,000 in <strong>1989</strong> → declined <strong>39% by 2015</strong> (322,600 fewer deaths)</li>
+      <li>Between 2002–2003: 7% drop in incidence due to ↓ HRT use</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h4>Male Breast Cancer</h4>
+    <ul class="dot">
+      <li>100× less common than female BC</li>
+      <li>US 2018: 2,550 men diagnosed; 480 deaths</li>
+      <li>Black men: 2.7/100,000 vs. white men: 1.9/100,000</li>
+      <li>Average age at diagnosis: 65 years</li>
+      <li>5-year survival (all stages): <strong>84%</strong> — Stage 0&amp;I: 100% · Stage II: 91% · Stage III: 72% · Stage IV: 20%</li>
+      <li>All men diagnosed with BC should undergo multigene genetic testing (NCCN)</li>
+    </ul>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s1" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</section>
+<section id="s2">
+<div class="sec-header"><span class="sec-num">02</span><h2 class="sec-title">Anatomy &amp; Physiology</h2></div>
+<div class="g2">
+    <div class="card teal">
+      <h4>Breast Structure</h4>
+      <ul class="dot tl">
+        <li>Overlies chest (pectoral) muscles; lies between sternum and midaxillary line, 2nd–6th ribs, below clavicle</li>
+        <li>Connective tissue (collagen + elastin)</li>
+        <li>Nerves: T4 thoracic spinal nerve → innervates nipple and areola</li>
+        <li>Blood vessels, lymphatic vessels, fat, lobules, ducts</li>
+        <li>Suspensory Cooper's ligaments</li>
+        <li>Nipple and areola complex</li>
+      </ul>
+    </div>
+    <div class="card teal">
+      <h4>Functional vs. Anatomic Breast</h4>
+      <ul class="dot tl">
+        <li><strong>Glandular tissue:</strong> 14–18 lactiferous lobes → TDLUs (2.0–4.55mm ducts) → produce fatty breast milk</li>
+        <li><strong>Adipose ratio:</strong> 2:1 (glands:fat) in lactating; 1:1 in non-lactating; fat ↑ post-menopause</li>
+        <li>Size and shape vary woman to woman; change throughout life</li>
+        <li>Men may develop breast tissue = <em>gynecomastia</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h4>Lymphatic Drainage — Clinically Critical</h4>
+    <ul class="dot">
+      <li><strong>75%</strong> of lymph fluid → axilla (pectoral, subscapular, humeral nodes — Levels I, II, III)</li>
+      <li><strong>25%</strong> → parasternal nodes, contralateral breast, or abdomen</li>
+      <li>Also: infraclavicular and supraclavicular nodes</li>
+      <li>Internal mammary nodes involved in ~25% of upper inner quadrant tumors; 15% of outer quadrant</li>
+      <li><strong>Axillary node status = single most important prognostic indicator</strong></li>
+      <li><div class="exam">⚠️ Exam Favorite: السؤال المتكرر — "أهم عامل تنبؤي (prognostic) في سرطان الثدي؟" الجواب: <strong>Axillary lymph node status</strong>.</div></li>
+    </ul>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s2" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</section>
+<section id="s3">
+<div class="sec-header"><span class="sec-num">03</span><h2 class="sec-title">Risk Factors</h2></div>
+<div class="box gold">
+    <strong>Key Concept:</strong> 90–95% of breast cancers have NO single identifiable cause. Only 5–10% are directly linked to BRCA1/2. Female gender and increasing age are the two most important overall risk factors. A person can have multiple risk factors and never develop BC — or develop it with no known risk factors.
+  </div>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Risk Factor</th><th>Type</th><th>Relative Risk</th></tr></thead>
+      <tbody>
+        <tr><td>Female gender</td><td><span class="b b-rose">Non-modifiable</span></td><td>High · 100× more common than males</td></tr>
+        <tr><td>Increasing age (≥65)</td><td><span class="b b-rose">Non-modifiable</span></td><td>High · only 5% before age 40; 60% at age ≥60</td></tr>
+        <tr><td>BRCA1/2 gene mutations</td><td><span class="b b-rose">Non-modifiable</span></td><td>High · 5–10% of all BC</td></tr>
+        <tr><td>Family history ≥2 FDR &lt;50 at diagnosis</td><td><span class="b b-rose">Non-modifiable</span></td><td>High · 2 FDR → 3× risk (~40%); 3 FDR → 4× risk (~50%)</td></tr>
+        <tr><td>Race/ethnicity (African American / non-Hispanic white)</td><td><span class="b b-rose">Non-modifiable</span></td><td>High · especially for TNBC</td></tr>
+        <tr><td>High breast density (persistent after menopause)</td><td><span class="b b-rose">Non-modifiable</span></td><td>High</td></tr>
+        <tr><td>Abnormal biopsy (atypia or LCIS)</td><td><span class="b b-rose">Non-modifiable</span></td><td>High · 4× ↑ relative risk</td></tr>
+        <tr><td>History of chest radiation (e.g., for Hodgkin/NHL)</td><td><span class="b b-rose">Non-modifiable</span></td><td>Moderate</td></tr>
+        <tr><td>Personal history of breast cancer</td><td><span class="b b-rose">Non-modifiable</span></td><td>Moderate</td></tr>
+        <tr><td>High endogenous estrogen or testosterone</td><td><span class="b b-rose">Non-modifiable</span></td><td>Moderate</td></tr>
+        <tr><td>DES exposure (mother's use)</td><td><span class="b b-rose">Non-modifiable</span></td><td>Low</td></tr>
+        <tr><td>Personal history of other cancers (endometrial, ovarian, colon)</td><td><span class="b b-rose">Non-modifiable</span></td><td>Low</td></tr>
+        <tr><td>Exogenous hormones (HRT, OCP)</td><td><span class="b b-teal">Modifiable</span></td><td>Low</td></tr>
+        <tr><td>Age at menarche &lt;12 / menopause &gt;55</td><td><span class="b b-teal">Modifiable</span></td><td>Low · 2.9% ↑ risk per year older at menopause</td></tr>
+        <tr><td>First full-term pregnancy &gt;30, or nulliparity</td><td><span class="b b-teal">Modifiable</span></td><td>Low · less risk if first pregnancy &lt;20</td></tr>
+        <tr><td>Absence of breastfeeding</td><td><span class="b b-teal">Modifiable</span></td><td>Low · breastfeeding is protective</td></tr>
+        <tr><td>Alcohol intake (3–4 drinks/day)</td><td><span class="b b-teal">Modifiable</span></td><td>Low–Moderate · 30% ↑ risk</td></tr>
+        <tr><td>Obesity/weight gain (postmenopausal)</td><td><span class="b b-teal">Modifiable</span></td><td>Low · premenopausal: ↓ risk</td></tr>
+        <tr><td>Lack of physical activity</td><td><span class="b b-teal">Modifiable</span></td><td>Low · exercise reduces risk 20–80%</td></tr>
+        <tr><td>Smoking (&gt;20 years)</td><td><span class="b b-teal">Modifiable</span></td><td>Low</td></tr>
+        <tr><td>High-fat diet (polyunsaturated fats)</td><td><span class="b b-teal">Modifiable</span></td><td>Low</td></tr>
+        <tr><td>High socioeconomic status / Ashkenazi Jewish descent</td><td><span class="b b-rose">Non-modifiable</span></td><td>Low · SES: possibly due to delayed childbirth, lower breastfeeding, higher HRT use. Ashkenazi Jewish: related to higher BRCA mutation prevalence</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="box teal"><strong>Protective Factors:</strong> Breastfeeding (long duration), first pregnancy before age 20, higher number of births, monounsaturated fats (olive oil), regular physical exercise, healthy body weight.</div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s3" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</section>
+<section id="s4">
+<div class="sec-header"><span class="sec-num">04</span><h2 class="sec-title">Genetics &amp; Hereditary Syndromes<span class="stars">⭐⭐⭐</span></h2></div>
+<div class="g2">
+    <div class="card plum">
+      <h4>BRCA1 &amp; BRCA2 Basics</h4>
+      <ul class="dot pl">
+        <li><strong>BRCA1:</strong> chromosome 17q21</li>
+        <li><strong>BRCA2:</strong> chromosome 13q12.3</li>
+        <li>Both: tumor suppressor genes — mutation → DNA damage not repaired → cancer</li>
+        <li>Autosomal dominant; more common in Ashkenazi Jewish women</li>
+        <li>BRCA1 lifetime breast risk: <strong>55–85%</strong></li>
+        <li>BRCA2 lifetime breast risk: <strong>45–85%</strong></li>
+        <li>BRCA1 ovarian risk: 39–46%; BRCA2: 11–17%</li>
+        <li>BRCA1 → often TNBC (basal-like); BRCA2 → often ER+ adenocarcinoma</li>
+        <li>Bilateral prophylactic oophorectomy → ~80% ↓ ovarian/fallopian/peritoneal cancer</li>
+      </ul>
+    </div>
+    <div class="card plum">
+      <h4>Male BC Genetics</h4>
+      <ul class="dot pl">
+        <li>4–40% of male BC have a genetic abnormality</li>
+        <li>1 in 5 men with BC has a family history</li>
+        <li>BRCA1: 1/100 risk; BRCA2: 6/100 risk</li>
+        <li>Klinefelter syndrome (extra X chromosome) → ↑ estrogen → ↑ BC risk</li>
+        <li>All men diagnosed with BC must undergo multigene genetic testing</li>
+      </ul>
+      <h5 style="margin-top:12px">Indications for Genetic Testing Referral</h5>
+      <ul class="dot pl">
+        <li>BC before age 50 · TNBC any age · Ovarian cancer any age</li>
+        <li>Male BC · ≥2 primary BCs · BC + ovarian cancer in same person</li>
+        <li>Pancreatic or high-grade prostate cancer</li>
+        <li>Ashkenazi Jewish ancestry</li>
+        <li>FDR with BC before age 45</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Gene</th><th>Syndrome</th><th>BC Risk</th><th>Other Cancers</th></tr></thead>
+      <tbody>
+        <tr><td><strong>BRCA1</strong></td><td>HBOC</td><td>55–85%</td><td>Ovarian 39–46%; fallopian tube; peritoneal</td></tr>
+        <tr><td><strong>BRCA2</strong></td><td>HBOC</td><td>45–85%</td><td>Ovarian 11–17%; pancreatic; prostate; male BC 6/100</td></tr>
+        <tr><td><strong>TP53</strong></td><td>Li-Fraumeni Syndrome</td><td>65–90%</td><td>Leukemia, brain tumors, sarcomas</td></tr>
+        <tr><td><strong>PTEN</strong></td><td>Cowden Disease</td><td>85%</td><td>Thyroid, endometrial</td></tr>
+        <tr><td><strong>STK11/LKB</strong></td><td>Peutz-Jeghers Syndrome</td><td>32%</td><td>GI polyps, pigmented lip spots</td></tr>
+        <tr><td><strong>CDH1</strong></td><td>Hereditary Gastric Cancer</td><td>45% (lobular)</td><td>Gastric adenocarcinoma</td></tr>
+        <tr><td><strong>CHEK2</strong></td><td>—</td><td>2× risk</td><td>Cell cycle checkpoint gene</td></tr>
+        <tr><td><strong>ATM</strong></td><td>Ataxia-telangiectasia</td><td>↑</td><td>Neurological disease</td></tr>
+        <tr><td><strong>PALB2</strong></td><td>—</td><td>↑ (14–58% lifetime risk depending on family history)</td><td>Partner and localizer of BRCA2 protein. Increasingly important in hereditary BC risk assessment. Recommended for testing in all suspected HBOC families. Risk approaches BRCA2 in families with multiple BC cases</td></tr>
+        <tr><td><strong>BRIP1</strong></td><td>—</td><td>↑</td><td>BRCA1-interacting protein</td></tr>
+        <tr><td><strong>Lynch Syndrome</strong></td><td>HNPCC</td><td>↑</td><td>Colorectal, endometrial</td></tr>
+        <tr><td><strong>RAD51C/D, NBN, NF1, BARD1</strong></td><td>—</td><td>↑</td><td>Emerging susceptibility genes</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card teal">
+    <h4>Risk Management for BRCA Carriers</h4>
+    <div class="g2" style="margin-top:10px">
+      <div>
+        <h5>Surveillance</h5>
+        <ul class="dot tl">
+          <li>Monthly self-breast awareness from age 18</li>
+          <li>Clinical exam every 6 months from age 30</li>
+          <li>Annual mammography from age 30</li>
+          <li>Annual MRI days 7–15 of cycle (premenopausal)</li>
+          <li>MRI sensitivity: <strong>94%</strong> vs. mammography <strong>9%</strong> in BRCA carriers</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Risk-Reducing Surgery</h5>
+        <ul class="dot tl">
+          <li>RRBM (Risk-Reducing Bilateral Mastectomy) → ↓ breast risk ~80–90%</li>
+          <li>RRSO (Risk-Reducing Salpingo-Oophorectomy) → ↓ ovarian risk 80–85%; also ↓ breast risk ~50%</li>
+          <li>RRSO recommended: age 35–40 or after childbearing</li>
+          <li>Residual risk: 1–4% Primary Peritoneal Carcinoma (PPC)</li>
+          <li>Tamoxifen: 44–50% ↓ contralateral BC in BRCA carriers</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s4" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</section>
+<section id="s5">
+<div class="sec-header"><span class="sec-num">05</span><h2 class="sec-title">Risk Assessment Models</h2></div>
+<div class="tw">
+    <table>
+      <thead><tr><th>Model</th><th>Assesses</th><th>Key Limitation</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Gail / BCRAT</strong></td><td>Age, menarche, biopsy history, family history, race — 5-year and lifetime risk</td><td>Does not adequately assess paternal family history or BRCA mutations</td></tr>
+        <tr><td><strong>Claus Model</strong></td><td>First and second degree relatives with BC</td><td>Does not include all risk factors; does not include non-carriers</td></tr>
+        <tr><td><strong>Tyrer-Cuzick / IBIS</strong></td><td>Combines personal, family, genetic, and hormonal risk factors</td><td>Can overestimate risk in some populations</td></tr>
+        <tr><td><strong>Ford / BRCAPRO</strong></td><td>Probability of being a BRCA1/2 carrier based on family history</td><td>Limited to hereditary mutations; requires detailed family history</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="box gold"><strong>Limitation:</strong> No model perfectly predicts individual risk. All have inherent biases. Future models should incorporate environmental, genomic, and epigenetic factors.</div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s5" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</section>
+<section id="s6">
+<div class="sec-header"><span class="sec-num">06</span><h2 class="sec-title">Prevention</h2></div>
+<p class="sec-sub">Primary · Chemoprevention · Surgical</p>
+<div class="card gr">
+  <h4>Primary Prevention — Lifestyle Modifications</h4>
+  <div class="g2">
+    <ul class="dot gr">
+      <li><strong>Healthy weight:</strong> obesity after menopause → ↑ estrogen in fat tissue → ↑ risk. Weight loss + healthy BMI ↓ risk</li>
+      <li><strong>Physical activity:</strong> ≥150 min/week moderate-vigorous exercise → ↓ hormone levels + ↑ immune function → ↓ risk 20–80%</li>
+      <li><strong>Alcohol:</strong> &lt;1 drink/day. Strongest modifiable risk factor. 3–4 drinks/day = 30% ↑ risk</li>
+      <li><strong>Smoking cessation:</strong> especially important in premenopausal women</li>
+    </ul>
+    <ul class="dot gr">
+      <li><strong>Diet:</strong> ↑ fruits, vegetables, fiber, low-fat dairy. Limit red meat, processed foods, high sugar. Monounsaturated fats (olive oil) may be protective</li>
+      <li><strong>Stress reduction:</strong> mindfulness and psychological support (indirect link to risk)</li>
+    </ul>
+  </div>
+  <div class="box green">
+    <strong>Protective Factors:</strong> Breastfeeding (long duration) · First pregnancy before age 20 · Higher number of births · Regular physical exercise · Healthy body weight throughout life
+  </div>
+</div>
+
+<div class="tw">
+    <table>
+      <thead><tr><th>Agent</th><th>Dose / Approved</th><th>Benefit</th><th>Side Effects</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Tamoxifen</strong> (SERM)</td><td>20 mg/day ×5 yrs · FDA-approved · men &amp; women</td><td>34% ↓ ER+ invasive BC; 35% ↓ DCIS; 44% ↓ contralateral BC in BRCA carriers; prevents fractures; ↓ hyperlipidemia</td><td>Endometrial cancer ↑ 3–4/1000; DVT risk (↑ with smoking); hot flashes; vaginal dryness. Annual gyne visit required. AVOID CYP2D6 inhibitors (venlafaxine, citalopram)</td></tr>
+        <tr><td><strong>Raloxifene</strong> (SERM)</td><td>60 mg/day ×5 yrs · FDA-approved · postmenopausal women</td><td>76% as effective as tamoxifen (STAR trial); fewer SE; does NOT protect against DCIS</td><td>Fewer thromboembolic events than tamoxifen; does not ↑ endometrial cancer risk</td></tr>
+        <tr><td><strong>Exemestane</strong> (AI)</td><td>25 mg/day ×5 yrs · postmenopausal women at moderate risk</td><td>↓ ER+ invasive BC incidence</td><td>Arthralgia, bone loss, hot flashes, vaginal dryness</td></tr>
+        <tr><td><strong>Anastrozole</strong> (AI)</td><td>IBIS-II trial · high-risk postmenopausal</td><td>↓ BC incidence</td><td>Musculoskeletal SE, bone density ↓</td></tr>
+        <tr><td><strong>Metformin</strong></td><td>Investigational · obese postmenopausal</td><td>Targets AMP-activated protein kinase; ↓ Ki-67 proliferation</td><td>GI effects</td></tr>
+        <tr><td><strong>Bisphosphonate Clodronates</strong></td><td>Investigational</td><td>Preliminary: 30% ↓ BC recurrence</td><td>Jaw osteonecrosis (long-term)</td></tr>
+        <tr><td><strong>Omega-3 Fatty Acids</strong></td><td>Investigational</td><td>Animal studies: ↓ HER2/neu mammary carcinogenesis</td><td>Generally safe</td></tr>
+        <tr><td><strong>PARP Inhibitors</strong></td><td>Investigational · TNBC + BRCA mutations</td><td>Exploit DNA repair defect in BRCA-mutated cells</td><td>Under study</td></tr>
+        <tr><td><strong>Retinoids</strong></td><td>Investigational</td><td>Regulate cell growth, differentiation, apoptosis in ER+ and ER− tumors</td><td>Under study</td></tr>
+        <tr><td><strong>COX-2 Inhibitors</strong></td><td>Investigational</td><td>Anti-inflammatory pathway</td><td>Cardiovascular risks</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="box rose"><strong>FDA Approved ONLY:</strong> Tamoxifen and Raloxifene. Despite strong data, uptake remains much lower than expected — nurses must educate patients that the risk of endometrial cancer with tamoxifen is only ~3–4 per 1000 women (less than 1%).</div>
+
+<div class="g2">
+    <div class="card p"><h4>Bilateral Prophylactic Mastectomy (RRBM)</h4>
+      <ul class="dot p"><li>↓ BC risk <strong>&gt;90%</strong> — indicated for BRCA mutations or very strong family history</li>
+      <li>Removes most breast tissue</li><li>Psychological impact, loss of sensation, body image changes must be addressed</li>
+      <li>Studies show women chose it for risk reduction and peace of mind — not necessarily for improved survival</li></ul>
+    </div>
+    <div class="card p"><h4>Bilateral Salpingo-Oophorectomy (RRSO)</h4>
+      <ul class="dot p"><li>Recommended for women with BRCA mutations</li>
+      <li>↓ ovarian cancer risk ~80–85% · ↓ breast cancer risk ~50%</li>
+      <li>Recommended age: 35–40 or after childbearing completed</li>
+      <li>Causes immediate menopause → cardiovascular and osteoporosis risk must be managed carefully</li>
+      <li>Residual risk: 1–4% Primary Peritoneal Carcinoma (PPC)</li></ul>
+    </div>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s6" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</section>
+<section id="s7">
+<div class="sec-header"><span class="sec-num">07</span><h2 class="sec-title">Screening &amp; Early Detection<span class="stars">⭐⭐</span></h2></div>
+<p class="sec-sub">ACS · NCCN · USPSTF Guidelines · Screening Modalities</p>
+
+<div class="tw">
+    <table>
+      <thead><tr><th>Organization</th><th>Population</th><th>Recommendation</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="4"><strong>ACS 2017</strong></td><td>Women 40–44, average risk</td><td>Option to start annual mammogram</td></tr>
+        <tr><td>Women 45–54, average risk</td><td>Annual mammogram</td></tr>
+        <tr><td>Women ≥55, average risk</td><td>Biennial OR continue annual</td></tr>
+        <tr><td>High-risk (&gt;20–25% lifetime / BRCA+)</td><td>Annual mammogram from age 30 + Annual MRI</td></tr>
+        <tr><td rowspan="4"><strong>NCCN 2017</strong></td><td>Average-risk women 25–39</td><td>CBE every 1–3 years</td></tr>
+        <tr><td>Average-risk women ≥40</td><td>Annual CBE + Annual mammography (± tomosynthesis)</td></tr>
+        <tr><td>Prior breast cancer history</td><td>CBE every 6–12 months + Annual mammography</td></tr>
+        <tr><td>Known genetic predisposition (HBOC)</td><td>CBE every 6–12 months + Annual mammogram + MRI from age 25</td></tr>
+        <tr><td rowspan="2"><strong>USPSTF 2016</strong></td><td>Women 40–49 with FDR with BC</td><td>Mammography every 2 years</td></tr>
+        <tr><td>Women 50–74</td><td>Mammography every 2 years</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="g3">
+    <div class="card teal">
+      <h4>Mammography</h4>
+      <ul class="dot tl">
+        <li>Standard primary screening tool</li>
+        <li>3D Tomosynthesis → ↓ false positives, ↓ recall rates</li>
+        <li>Digital mammography: NOT shown superior in RCTs over traditional</li>
+      </ul>
+    </div>
+    <div class="card teal">
+      <h4>Ultrasonography</h4>
+      <ul class="dot tl">
+        <li>Supplement for dense breasts</li>
+        <li>Differentiates solid vs. cystic</li>
+        <li>Does NOT replace mammography</li>
+      </ul>
+    </div>
+    <div class="card teal">
+      <h4>MRI Breast</h4>
+      <ul class="dot tl">
+        <li>Sensitivity: ~<strong>94%</strong></li>
+        <li>BRCA+ surveillance; staging; response assessment</li>
+        <li>Best days 7–15 of cycle (premenopausal)</li>
+      </ul>
+    </div>
+  </div>
+  
+
+<div class="box rose"><strong>Breast Self-Awareness (BSA):</strong> BSE as a formal monthly exam is <strong>no longer officially recommended</strong> by major guidelines due to lack of evidence in mortality reduction and high false-positive rates. However, women should be familiar with how their breasts normally feel and <strong>report any changes promptly</strong>. CBE: every 3 years (age 20–39), then annually from age 40. High-risk women: twice-yearly CBE. Symptoms requiring immediate evaluation: new lump, nipple discharge (especially bloody), skin changes (peau d'orange), nipple inversion, unexplained pain.</div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s7" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</section>
+<section id="s8">
+<div class="sec-header"><span class="sec-num">08</span><h2 class="sec-title">Pathogenesis &amp; Premalignant Lesions</h2></div>
+<p class="sec-sub">Mutation Accumulation · Tumor Heterogeneity · ADH · ALH</p>
+
+
+<div class="card">
+  <h4>How Breast Cancer Develops</h4>
+  <ul class="dot">
+    <li>Starts with a <strong>single cell</strong> that accumulates multiple genetic mutations → learns to proliferate rapidly without normal controls</li>
+    <li>Each tumor = <strong>heterogeneous cell population</strong> — each cell has different proliferation rate, metastatic potential, and treatment sensitivity</li>
+    <li>"Fittest" cells survive therapy → drives treatment resistance and recurrence</li>
+    <li>Benign lesions: <strong>Nonproliferative</strong> (simple cysts) = NOT a BC risk factor. <strong>Proliferative lesions with atypia</strong> = significantly ↑ risk of future invasive BC</li>
+  </ul>
+</div>
+
+<div class="tw">
+    <table>
+      <thead><tr><th>Feature</th><th>ADH (Atypical Ductal Hyperplasia)</th><th>ALH (Atypical Lobular Hyperplasia)</th></tr></thead>
+      <tbody>
+        <tr><td>Location</td><td>Breast ducts</td><td>Breast lobules</td></tr>
+        <tr><td>Risk increase</td><td colspan="2"><strong>4-fold ↑ relative risk</strong> of BC development</td></tr>
+        <tr><td>Ipsilateral risk</td><td colspan="2">2× higher ipsilateral risk for 5 years; then both breasts assume equal risk</td></tr>
+        <tr><td>Cancer type</td><td>Epithelial ductal cancer (moderate-high grade; usually ER+)</td><td>Lobular cancer pattern</td></tr>
+        <tr><td>Management</td><td colspan="2">Complete removal → confirm absence of malignancy → close follow-up + chemoprevention (tamoxifen, raloxifene, or AIs) + stop exogenous estrogens</td></tr>
+        <tr><td>Important caveat</td><td colspan="2">Removing atypical tissue ≠ removing risk — biopsy bed may contain embedded occult BC cells</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s8" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</section>
+<section id="s9">
+<div class="sec-header"><span class="sec-num">09</span><h2 class="sec-title">Non-Invasive Disease — DCIS &amp; LCIS<span class="stars">⭐⭐⭐</span></h2></div>
+<div class="tw">
+    <table>
+      <thead><tr><th>Feature</th><th>DCIS</th><th>LCIS</th></tr></thead>
+      <tbody>
+        <tr><td>Definition</td><td>Noninvasive cancer in ductal epithelium — does NOT invade through basement membrane</td><td>Abnormal cell proliferation in lobules — NOT a true cancer; a high-risk MARKER</td></tr>
+        <tr><td>Stage</td><td><strong>Stage 0</strong> breast cancer</td><td>Not staged as cancer</td></tr>
+        <tr><td>Frequency</td><td><strong>Most common</strong> premalignant condition; 85% of in situ cases</td><td>Less common; usually incidental finding</td></tr>
+        <tr><td>Detection</td><td>Mammogram (microcalcifications — pleomorphic "broken glass" pattern)</td><td>Usually NOT on mammogram; incidental biopsy finding. Can be seen on MRI</td></tr>
+        <tr><td>Distribution</td><td>Primarily ipsilateral</td><td>Multicentric (50%) and bilateral (30%)</td></tr>
+        <tr><td>Invasive risk</td><td>TRUE precursor → invasive ductal carcinoma if untreated. Core biopsy predicts 25–31% co-existing DCIS/invasive cancer</td><td>Risk marker: postmenopausal: 25% risk; premenopausal: 8.3% risk. Pleomorphic LCIS = more likely to progress</td></tr>
+        <tr><td>Architectural patterns</td><td>Micropapillary, solid, comedo, papillary, cribriform. <strong>Comedonecrosis = most aggressive pattern</strong></td><td>Often multicentric and multifocal</td></tr>
+      </tbody></table></div>
+      <div class="exam">⚠️ Exam Favorite: <strong>DCIS = سرطان حقيقي (Stage 0) ومُقدِّمة للغزو</strong>، بينما <strong>LCIS = مؤشر خطر فقط (risk marker)</strong> وغالباً يُكتشف صدفة في الخزعة (لا يظهر بالماموغرام). و Comedonecrosis = أشرس نمط.</div>
+      <div class="tw" style="display:none"><table><tbody>
+        <tr><td>Surgery</td><td>Lumpectomy with clear margins + adjuvant RT; OR total mastectomy (→ 90% risk reduction). SLNB controversial (standard with mastectomy)</td><td>Needle-localization biopsy to confirm no malignancy; NO need for clear margins (multicentricity). <strong>Unilateral mastectomy NO longer appropriate</strong></td></tr>
+        <tr><td>Non-surgical</td><td>Adjuvant hormonal therapy (ER+)</td><td>Close follow-up; chemoprevention (tamoxifen, raloxifene, AIs); bilateral mastectomy in selected cases</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s9" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</section>
+<section id="s10">
+<div class="sec-header"><span class="sec-num">10</span><h2 class="sec-title">Invasive Breast Cancer</h2></div>
+<p class="sec-sub">IDC · ILC · IBC</p>
+<div class="tw">
+    <table>
+      <thead><tr><th></th><th>IDC (Invasive Ductal)</th><th>ILC (Invasive Lobular)</th><th>IBC (Inflammatory)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Frequency</strong></td><td>70–80%</td><td>10–15%</td><td>1% · T4d classification</td></tr>
+        <tr><td><strong>Presentation</strong></td><td>Hard, irregular palpable mass</td><td>No distinct mass; breast feels thicker. Radial spread pattern → NOT easily detected on mammography; usually non-palpable</td><td>Rapid onset: diffuse erythema, edema, warmth, peau d'orange, pain. Palpable axillary nodes. May mimic acute cellulitis or mastitis — antibiotic partial response = diagnostic trap</td></tr>
+        <tr><td><strong>Metastasis</strong></td><td>Axillary nodes → lung, bone, liver, brain</td><td>Both breasts; pericardium, peritoneum, abdomen, ovary, uterus, stomach, eye (unusual sites)</td><td>Rapid systemic spread. Brain and liver common</td></tr>
+        <tr><td><strong>Molecular</strong></td><td>All subtypes</td><td>Usually ER/PR+; rarely HER2+. Metastasizes to unusual surfaces</td><td>Usually ER/PR−; HER2+; EGFR overexpressed; high grade; high angiogenesis; p53, MUC1, RhoC overexpression</td></tr>
+        <tr><td><strong>Prognosis</strong></td><td>Good if early stage</td><td>Slightly worse (detected later); similar to IDC when stage-matched</td><td>Poorest. 10-year DFS: 20–25%. Stage IV IBC: median survival 26 months; 28% alive at 5 yrs; 18% at 10 yrs</td></tr>
+        <tr><td><strong>Treatment</strong></td><td>Surgery ± RT ± systemic therapy</td><td>Often mastectomy; hormonal therapy critical</td><td><strong>Neoadjuvant chemo FIRST</strong> → modified radical mastectomy (BCT contraindicated) → radiation ± targeted/hormonal therapy</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s10" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</section>
+<section id="s11">
+<div class="sec-header"><span class="sec-num">11</span><h2 class="sec-title">Special Histologic Types</h2></div>
+<div class="tw">
+    <table>
+      <thead><tr><th>Type</th><th>Frequency</th><th>Key Features</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Special favorable subtypes</strong> (papillary, tubular, mucinous, pure medullary, metaplastic)</td><td>&lt;10%</td><td>FAVORABLE prognosis compared to IDC/ILC</td></tr>
+        <tr><td><strong>Paget Disease of Breast</strong></td><td>Rare</td><td>Unilateral eczematous changes of the nipple; frequently associated with underlying DCIS; may be mistaken for dermatitis</td></tr>
+        <tr><td><strong>Cystosarcoma Phyllodes</strong></td><td>&lt;1%</td><td>90% benign, 10% malignant; rarely metastasizes but may recur locally after excision</td></tr>
+        <tr><td><strong>Rare tumors</strong></td><td>Very rare</td><td>Squamous cell carcinoma, lymphoma, angiosarcoma (can arise in chronic lymphedema — Stewart-Treves syndrome)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s11" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</section>
+<section id="s12">
+<div class="sec-header"><span class="sec-num">12</span><h2 class="sec-title">Molecular Classification &amp; Biomarkers<span class="stars">⭐⭐⭐</span><span class="hy">High-Yield</span></h2></div>
+<p class="sec-sub">Luminal A · Luminal B · HER2 · TNBC · ER · PR · Ki-67</p>
+<div class="tw">
+    <table>
+      <thead><tr><th>Subtype</th><th>Markers</th><th>Grade / Ki-67</th><th>Prognosis</th><th>Treatment Key Points</th></tr></thead>
+      <tbody>
+        <tr><td><span class="b b-teal">Luminal A</span></td><td>ER/PR+ (high), HER2−</td><td>Low grade, low Ki-67</td><td>Best</td><td>Endocrine therapy ONLY (tamoxifen or AI); usually NO chemo. Least responsive to chemo</td></tr>
+        <tr><td><span class="b b-gold">Luminal B (HER2−)</span></td><td>ER+, HER2−, PR low or Ki-67 high</td><td>High grade, high Ki-67</td><td>Moderate</td><td>Endocrine therapy + chemotherapy</td></tr>
+        <tr><td><span class="b b-gold">Luminal B (HER2+)</span></td><td>ER+, HER2+</td><td>Any</td><td>Moderate</td><td>Endocrine + HER2-targeted (trastuzumab) + chemo. May be tamoxifen-resistant → AI or fulvestrant</td></tr>
+        <tr><td><span class="b b-navy">Normal-like</span></td><td>Gene profile similar to normal breast epithelium</td><td>—</td><td>Similar to Luminal B</td><td>Similar to Luminal B approach</td></tr>
+        <tr><td><span class="b b-plum">HER2-positive (non-luminal)</span></td><td>HER2+ (chromosome 17q), ER/PR−; ↑ VEGF</td><td>High grade</td><td>Poor without targeted therapy → greatly improved with trastuzumab</td><td>HER2-targeted (trastuzumab ± pertuzumab) + chemo</td></tr>
+        <tr><td><span class="b b-rose">Triple-Negative / Basal-like</span></td><td>ER−, PR−, HER2−; express cytokeratins 5/6 &amp; 17, vimentin, p63, EGFR</td><td>High grade, high Ki-67</td><td>Worst. Brain and lung metastases. BRCA1-associated</td><td>Platinum-based chemo; immunotherapy (pembrolizumab). NO hormonal or HER2 options. More common in premenopausal African American women</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <h4>ER/PR Receptors</h4>
+      <ul class="dot">
+        <li>73% of invasive BC are ER+; 70% are PR+</li>
+        <li>Receptors: proteins inside cells that bind estrogen/progesterone → stimulate cell proliferation and DNA replication → mutations → cancer</li>
+        <li>Receptor status: determined from biopsy — largest piece of tumor dictates final result</li>
+        <li><div class="exam">⚠️ Exam Favorite: <strong>Luminal A = أفضل إنذار (best prognosis)</strong> · <strong>Triple-Negative (TNBC) = أسوأ إنذار</strong> ولا خيارات علاج موجّه. و<strong>BRCA1 → عادةً TNBC</strong>.</div></li>
+      </ul>
+    </div>
+    <div class="card plum">
+      <h4>HER2/neu Receptor</h4>
+      <ul class="dot pl">
+        <li>Tyrosine kinase family; chromosome 17</li>
+        <li>20–30% of invasive BC are HER2+; 70% are HER2−</li>
+        <li>HER2+ → ↑ recurrence risk, poorer prognosis</li>
+        <li>Testing: IHC → if equivocal (2+) → FISH (more sensitive; FISH result is final)</li>
+        <li>Targeted therapy: trastuzumab and/or pertuzumab</li>
+      </ul>
+    </div>
+  </div>
+<div class="box navy" style="margin-bottom:14px">
+  <strong>Approximate Prevalence of Molecular Subtypes:</strong>
+  <div class="g2" style="margin-top:10px;gap:8px">
+    <div style="background:#fff;border-radius:10px;padding:12px 16px;text-align:center">
+      <div style="font-size:1.6rem;font-weight:700;color:var(--teal);font-family:Cormorant Garamond,serif">40–50%</div>
+      <div style="font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--teal);margin-top:2px">Luminal A</div>
+      <div style="font-size:11.5px;color:#666;margin-top:3px">Most common subtype</div>
+    </div>
+    <div style="background:#fff;border-radius:10px;padding:12px 16px;text-align:center">
+      <div style="font-size:1.6rem;font-weight:700;color:var(--gold);font-family:Cormorant Garamond,serif">20–30%</div>
+      <div style="font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--gold);margin-top:2px">Luminal B</div>
+      <div style="font-size:11.5px;color:#666;margin-top:3px">HER2− and HER2+</div>
+    </div>
+    <div style="background:#fff;border-radius:10px;padding:12px 16px;text-align:center">
+      <div style="font-size:1.6rem;font-weight:700;color:var(--plum);font-family:Cormorant Garamond,serif">10–15%</div>
+      <div style="font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--plum);margin-top:2px">HER2-enriched</div>
+      <div style="font-size:11.5px;color:#666;margin-top:3px">ER/PR negative</div>
+    </div>
+    <div style="background:#fff;border-radius:10px;padding:12px 16px;text-align:center">
+      <div style="font-size:1.6rem;font-weight:700;color:var(--rose);font-family:Cormorant Garamond,serif">10–15%</div>
+      <div style="font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--rose);margin-top:2px">Triple-Negative</div>
+      <div style="font-size:11.5px;color:#666;margin-top:3px">Worst prognosis</div>
+    </div>
+  </div>
+</div>
+
+<div class="box amber" style="margin-bottom:14px">
+  <strong>⚠️ HER2-Positivity vs HER2-Enriched — Don't Confuse:</strong><br>
+  <strong>HER2-positivity</strong> (rate ~20–30% of all BC) ≠ <strong>HER2-enriched molecular subtype</strong> (prevalence ~10–15%).<br>
+  • <strong>HER2-enriched subtype</strong> = HER2+ AND ER/PR <em>negative</em><br>
+  • <strong>Luminal B (HER2+) subtype</strong> = HER2+ AND ER/PR <em>positive</em><br>
+  Both are HER2-positive tumors but classified as different molecular subtypes.
+</div>
+
+<div class="pearl"><strong>💎 Quick Memory Aid</strong><br>
+<span class="b b-t">Luminal A</span> = ER+/PR+, HER2−, Ki-67 low → <strong>Best prognosis</strong> → Endocrine only<br>
+<span class="b b-g">Luminal B</span> = ER+, Ki-67 high or HER2+ → <strong>More aggressive</strong> → Endocrine + Chemo<br>
+<span class="b b-p">HER2-positive</span> = HER2+, ER/PR− → <strong>Poor without targeted Rx → Great response to Trastuzumab</strong><br>
+<span class="b b-r">TNBC</span> = ER−/PR−/HER2− → <strong>Worst prognosis</strong> → Chemo + Immunotherapy only
+</div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s12" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</section>
+<section id="s13">
+<div class="sec-header"><span class="sec-num">13</span><h2 class="sec-title">Clinical Manifestations</h2></div>
+<p class="sec-sub">Symptoms · Physical Examination Findings</p>
+
+<div class="g2">
+  <div class="card">
+    <h4>Symptoms (Patient-Reported)</h4>
+    <ul class="dot">
+      <li>Painless lump or thickening in breast or axilla — <strong>most common first symptom</strong></li>
+      <li>Change in breast size, shape, or contour</li>
+      <li>Nipple discharge (especially bloody or unilateral)</li>
+      <li>Nipple inversion or retraction</li>
+      <li>Breast warmth and diffuse swelling (IBC hallmark)</li>
+      <li>Unexplained breast or nipple pain</li>
+      <li>Most BC = <strong>palpable mass WITHOUT other findings</strong></li>
+      <li>Malignant lesions are <strong>rarely tender</strong></li>
+    </ul>
+  </div>
+  <div class="card rose">
+    <h4>Physical Examination Findings</h4>
+    <ul class="dot">
+      <li><strong>Skin dimpling / retraction</strong> — invasion of Cooper suspensory ligaments + fixation to chest wall</li>
+      <li><strong>Peau d'orange</strong> ("skin of the orange") — dermal lymphatic blockage; characteristic of malignant/IBC disease</li>
+      <li><strong>Nipple retraction or elevation</strong> — tumor fixation or infiltration into underlying tissues</li>
+      <li><strong>Nipple discharge or erosion</strong></li>
+      <li><strong>Heat and erythema</strong> — inflammation OR sign of IBC</li>
+      <li><strong>Axillary / supraclavicular lymphadenopathy</strong> — palpable nodes</li>
+      <li>Most common location: <strong>upper outer quadrant</strong> (adenocarcinoma)</li>
+    </ul>
+  </div>
+</div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s13" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</section>
+<section id="s14">
+<div class="sec-header"><span class="sec-num">14</span><h2 class="sec-title">Diagnostic Workup</h2></div>
+<p class="sec-sub">History · Imaging · Biopsy · Molecular Tests · Staging Workup</p>
+<div class="card g">
+  <h4>Patient History — Key Elements</h4>
+  <div class="g2">
+    <ul class="dot gl">
+      <li>Previous BC, biopsies, surgeries, radiation exposure, other cancers</li>
+      <li>Age at menarche, menopause, pregnancies, breastfeeding</li>
+      <li>HRT or OCP use (type, route, frequency)</li>
+      <li>Surgery to ovaries or uterus</li>
+    </ul>
+    <ul class="dot gl">
+      <li>Family history: type, age at onset, lineage (min. 1st and 2nd degree — updated annually)</li>
+      <li>Known BRCA mutation status</li>
+      <li>Lifestyle: smoking, alcohol, diet, exercise, occupational exposures</li>
+      <li>Prior mammographic screening results</li>
+    </ul>
+  </div>
+</div>
+
+<div class="tw">
+  <table>
+    <thead><tr><th>Imaging Study</th><th>Description</th><th>Indications &amp; Key Details</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Mammography</strong></td><td>X-ray · Standard imaging · Detects calcifications, masses, architectural distortions</td><td>
+        Screening: asymptomatic, women ≥40. <strong>BI-RADS classification</strong> used for reporting.<br>
+        • Digital mammography: digital format → computer storage<br>
+        • Scintimammography: radioisotopes → scans axilla + supraclavicular<br>
+        • <strong>3D Tomosynthesis:</strong> ↓ false positives; ↑ detection in dense breasts
+      </td></tr>
+      <tr><td><strong>Ultrasound (US)</strong></td><td>Sound waves — no radiation</td><td>Solid vs. cystic lesions. Useful &lt;30 yrs or dense breasts. Guides FNA, CNB, cyst aspiration, abscess drainage</td></tr>
+      <tr><td><strong>MRI (Contrast-enhanced)</strong></td><td>Sensitivity ~94%</td><td>BRCA+ surveillance; multifocal/multicentric disease; implant integrity; staging. Best: days 7–15 of cycle</td></tr>
+      <tr><td><strong>PET Scan (18F-FDG)</strong></td><td>Detects high glucose uptake</td><td>Staging, recurrence detection, therapy monitoring</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="tw">
+  <table>
+    <thead><tr><th>Biopsy Type</th><th>Description</th><th>Key Points</th></tr></thead>
+    <tbody>
+      <tr><td><strong>FNA</strong> (Fine-Needle Aspiration)</td><td>21–23 gauge · cytology only · minimally invasive</td><td>For palpable mass. <strong>CANNOT distinguish in situ from invasive.</strong> High sensitivity/specificity. Cystic fluid NOT sent to cytology unless bloody</td></tr>
+      <tr><td><strong>Core-Needle Biopsy (CNB)</strong></td><td>14–16 gauge · Gold standard · histology + IHC</td><td>Provides ER/PR/HER2 status. Distinguishes in situ from invasive. US-guided for small/deep lesions. Some micro-invasion may be missed</td></tr>
+      <tr><td><strong>Stereotactic Biopsy</strong></td><td>Mammogram-guided · patient prone</td><td>Non-palpable or microcalcified lesions. <strong>Contraindicated:</strong> obesity, anticoagulants, inability to be prone</td></tr>
+      <tr><td><strong>Wire Localization Biopsy</strong></td><td>Wire inserted near lesion · surgeon follows wire</td><td>Non-palpable lesions; suspicious microcalcifications; clip-marked areas</td></tr>
+      <tr><td><strong>Excisional Biopsy</strong></td><td>Surgical removal of whole lesion · most invasive</td><td>If CNB inconclusive or discordant with imaging. Removes lesion + small margin of normal tissue</td></tr>
+      <tr><td><strong>Incisional Biopsy</strong></td><td>Removes only part of large mass</td><td>For large/bloody/draining masses. Intent: verify malignancy before chemotherapy</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card t">
+  <h4>Cytology, Pathology &amp; Molecular Tests</h4>
+  <div class="tw" style="margin-top:8px">
+    <table>
+      <thead><tr><th>Test</th><th>Purpose</th><th>Key Details</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Histopathology</strong></td><td>Benign vs malignant; type and grade</td><td>From excisional or incisional biopsy specimen</td></tr>
+        <tr><td><strong>IHC (Immunohistochemistry)</strong></td><td>Detects specific proteins using antibody color-change reaction</td><td>Detects ER, PR, HER2 status → guides therapy selection</td></tr>
+        <tr><td><strong>FISH</strong></td><td>Gene copy number measurement</td><td>Used when IHC for HER2 is equivocal (2+). FISH result = final HER2 determination</td></tr>
+        <tr><td><strong>Ki-67 Index</strong></td><td>Cell proliferation rate and aggressiveness</td><td>High Ki-67 = aggressive tumor, poorer prognosis</td></tr>
+        <tr><td><strong>DNA Ploidy / S-phase</strong></td><td>DNA content by flow cytometry</td><td>Aneuploid = poorer prognosis. High S-phase = ↑ recurrence risk</td></tr>
+        <tr><td><strong>Oncotype DX</strong></td><td>21-gene RT-PCR · recurrence risk</td><td>RS 0–17: endocrine only · RS 18–31: intermediate · RS ≥32: chemo + endocrine</td></tr>
+        <tr><td><strong>MammaPrint</strong></td><td>70-gene array · recurrence risk</td><td>Low risk OR High risk (no intermediate group)</td></tr>
+        <tr><td><strong>Tumor Markers</strong> (CA15-3, CA27.29, CEA)</td><td>Monitor treatment response or detect recurrence</td><td><strong>NOT for screening</strong> — lack sensitivity/specificity for early-stage diagnosis</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card navy">
+  <h4>Staging / Metastatic Work-up (if cancer confirmed)</h4>
+  <ul class="dot">
+    <li>Chest X-ray / CT chest → lung metastases</li>
+    <li>Abdominal ultrasound → liver metastases</li>
+    <li>Bone scan / PET-scan → bone or distant metastases</li>
+    <li>CT or MRI abdomen/pelvis: if ↑ alkaline phosphatase, abnormal LFTs, GI symptoms, or stage ≥IIA</li>
+    <li>CBC, LFTs, renal function, alkaline phosphatase</li>
+    <li>BRCA1/BRCA2 mutation testing if indicated</li>
+  </ul>
+</div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s14" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</section>
+<section id="s15">
+<div class="sec-header"><span class="sec-num">15</span><h2 class="sec-title">Histologic Grade</h2></div>
+<p class="sec-sub">Bloom-Richardson / Nottingham Grading System</p>
+
+<div class="card">
+  <h4>How Grade is Calculated — Nottingham Score</h4>
+  <p style="font-size:13px;margin-bottom:10px">Each of three features is scored 1–3. Total score = sum of all three:</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Feature</th><th>Score 1</th><th>Score 2</th><th>Score 3</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Tubule Formation</strong><br><small>% of tumor with tubule/gland formation</small></td><td>&gt;75% of tumor forms tubules</td><td>10–75% tubule formation</td><td>&lt;10% tubule formation</td></tr>
+        <tr><td><strong>Nuclear Pleomorphism</strong><br><small>Size &amp; shape variation of nuclei</small></td><td>Nuclei small, uniform, similar to normal breast epithelium</td><td>Moderate variation in nuclear size and shape</td><td>Marked nuclear variation — large, prominent nucleoli, irregular</td></tr>
+        <tr><td><strong>Mitotic Count</strong><br><small>Number of mitoses per high-power field</small></td><td>Low mitotic rate (0–1/HPF depending on field diameter)</td><td>Moderate mitotic rate</td><td>High mitotic rate (numerous cells actively dividing)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="tw">
+  <table>
+    <thead><tr><th>Total Score</th><th>Grade</th><th>Differentiation</th><th>Prognosis</th><th>Features</th></tr></thead>
+    <tbody>
+      <tr><td><strong>3–5</strong></td><td><span class="b b-t">Grade 1</span></td><td>Well differentiated</td><td>Best — lowest rate of distant metastases</td><td>Little/no mitotic activity; uniform nuclei; arranged in small tubules. Cells similar to normal breast epithelium</td></tr>
+      <tr><td><strong>6–7</strong></td><td><span class="b b-g">Grade 2</span></td><td>Moderately differentiated</td><td>Intermediate</td><td>More variation in nuclear size/shape; moderate mitotic activity; less tubule formation</td></tr>
+      <tr><td><strong>8–9</strong></td><td><span class="b b-r">Grade 3</span></td><td>Poorly differentiated</td><td>Worst — most aggressive spread</td><td>Marked nuclear pleomorphism; considerable mitotic activity; little tubule formation. High Ki-67</td></tr>
+      <tr><td><strong>—</strong></td><td><span class="b b-n">Grade 4</span></td><td>Undifferentiated</td><td>—</td><td>Rare — cells do not resemble breast tissue. Typically indicates metastasis from another primary cancer</td></tr>
+    </tbody>
+  </table>
+</div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s15" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</section>
+<section id="s16">
+<div class="sec-header"><span class="sec-num">16</span><h2 class="sec-title">Classification &amp; Staging (TNM)<span class="stars">⭐⭐⭐</span></h2></div>
+<div class="g2">
+    <div class="card navy">
+      <h4>T — Tumor Size</h4>
+      <ul class="dot">
+        <li>T0: No primary tumor</li>
+        <li>Tis: In situ / Paget disease (no associated tumor)</li>
+        <li>T1a/b/c: 0.1–2 cm</li>
+        <li>T2: 2.1–5 cm</li>
+        <li>T3: &gt;5 cm</li>
+        <li>T4a: invades chest wall (not just pectoralis)</li>
+        <li>T4b: skin ulceration/edema/peau d'orange/satellite nodules</li>
+        <li>T4c: T4a + T4b combined</li>
+        <li>T4d: Any IBC presentation</li>
+      </ul>
+    </div>
+    <div class="card navy">
+      <h4>N — Lymph Node Status</h4>
+      <ul class="dot">
+        <li>N0: No cancer</li>
+        <li>N0(i+): Minute (&lt;2mm) by special stains</li>
+        <li>N1mi: Micrometastasis only</li>
+        <li>N1a/b/c: 1–3 positive axillary nodes</li>
+        <li>N2a/b: 4–9 positive axillary nodes</li>
+        <li>N3a/b/c: ≥10 nodes or infra/supraclavicular involvement</li>
+      </ul>
+      <h4 style="margin-top:12px">M — Metastasis</h4>
+      <ul class="dot">
+        <li>MX: Cannot be assessed</li>
+        <li>M0: No distant metastasis</li>
+        <li>M1: Distant metastasis</li>
+        <li>cM0(i+): CTCs in blood/bone marrow (AJCC 7th Ed addition)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Stage</th><th>T</th><th>N</th><th>M</th><th>5-Yr Survival</th></tr></thead>
+      <tbody>
+        <tr><td><strong>0</strong></td><td>Tis</td><td>N0</td><td>M0</td><td>100% (in situ only)</td></tr>
+        <tr><td><strong>IA</strong></td><td>T1</td><td>N0</td><td>M0</td><td>100%</td></tr>
+        <tr><td><strong>IB</strong></td><td>T0–T1</td><td>N1mi</td><td>M0</td><td>100%</td></tr>
+        <tr><td><strong>IIA</strong></td><td>T0–T2</td><td>N0–N1</td><td>M0</td><td rowspan="2">93%</td></tr>
+        <tr><td><strong>IIB</strong></td><td>T2–T3</td><td>N0–N1</td><td>M0</td></tr>
+        <tr><td><strong>IIIA</strong></td><td>T0–T3</td><td>N1–N2</td><td>M0</td><td rowspan="3">72%</td></tr>
+        <tr><td><strong>IIIB</strong></td><td>T4</td><td>N0–N2</td><td>M0</td></tr>
+        <tr><td><strong>IIIC</strong></td><td>Any T</td><td>N3</td><td>M0</td></tr>
+        <tr><td><strong>IV</strong></td><td>Any T</td><td>Any N</td><td>M1</td><td>22% · <em>once Stage IV — no down-staging, ever</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h4>Staging Workup (Core Curriculum Ch. 13)</h4>
+    <ul class="dot">
+      <li>CT chest: if pulmonary symptoms</li>
+      <li>CT or MRI abdomen/pelvis: if ↑ alkaline phosphatase, abnormal LFTs, GI symptoms, or stage ≥IIA</li>
+      <li>Bone scan: if bone pain or ↑ alkaline phosphatase</li>
+      <li>PET/CT (optional): not for all women</li>
+      <li>Bilateral breast MRI (stages I–III): optional, not for all</li>
+      <li>Blood work: CBC, platelets, liver function, alkaline phosphatase</li>
+    </ul>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s16" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</section>
+<section id="s17">
+<div class="sec-header"><span class="sec-num">17</span><h2 class="sec-title">Prognostic &amp; Predictive Factors<span class="stars">⭐⭐⭐</span></h2></div>
+<p class="sec-sub">Tumor Size · Node Status · Grade · ER/PR/HER2 · Ki-67 · Age</p>
+
+<div class="g2">
+  <div class="card rose">
+    <h4>Goals of Prognostic Assessment</h4>
+    <ul class="dot">
+      <li>Identify patients at substantial risk of recurrence</li>
+      <li>Design the most appropriate treatment based on biological aggressiveness</li>
+      <li>Identify who may be cured by local therapy alone vs. who needs adjuvant systemic therapy</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h4>Key Prognostic Parameters (7)</h4>
+    <ul class="dot">
+      <li>1. Axillary lymph node status <strong>(#1 most important)</strong></li>
+      <li>2. Tumor size</li>
+      <li>3. Histologic grade</li>
+      <li>4. Hormone receptor status (ER/PR)</li>
+      <li>5. HER2/neu overexpression</li>
+      <li>6. Ki-67 (cell proliferation index)</li>
+      <li>7. Histological type</li>
+    </ul>
+  </div>
+</div>
+
+<div class="tw">
+  <table>
+    <thead><tr><th>Factor</th><th>Details</th><th>Better Prognosis</th><th>Worse Prognosis</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Axillary LN Status</strong></td><td><strong>Single most important factor.</strong> Clinical exam: 30% false-positive AND 30% false-negative. Assess: number of nodes, level of involvement, capsular invasion</td><td>Node-negative</td><td>&gt;5 positive nodes</td></tr>
+      <tr><td><strong>Tumor Size</strong></td><td>Node-neg + &lt;1cm → 5-yr survival ~99%. 1–3cm → 91%. &gt;3cm → 85%</td><td>Smaller tumor</td><td>Larger tumor</td></tr>
+      <tr><td><strong>Histologic Grade</strong></td><td>Nottingham score based on tubule formation, nuclear pleomorphism, mitotic count</td><td>Grade 1 (3–5)</td><td>Grade 3 (8–9)</td></tr>
+      <tr><td><strong>ER/PR Status</strong></td><td>73% of invasive BC are ER+; 70% PR+. ER/PR+ → better prognosis + responsive to endocrine therapy</td><td>ER+ / PR+</td><td>ER− / PR−</td></tr>
+      <tr><td><strong>HER2 Status</strong></td><td>20–30% of invasive BC are HER2+. HER2+ overexpression → more aggressive + worse DFS/OS especially node-positive. Test: IHC → if 2+ → FISH (FISH is final)</td><td>HER2− or HER2+ receiving trastuzumab</td><td>HER2+ without targeted therapy</td></tr>
+      <tr><td><strong>Ki-67</strong></td><td>Measures cell proliferation rate. High Ki-67 = ↑ aggressiveness. Especially poor prognosis in TNBC and IBC</td><td>Low Ki-67</td><td>High Ki-67</td></tr>
+      <tr><td><strong>Age</strong></td><td>Young age (&lt;40) at diagnosis = worse prognosis. Younger women have more aggressive tumor biology</td><td>&gt;50 years</td><td>&lt;40 years</td></tr>
+      <tr><td><strong>Lymphovascular Invasion (LVI)</strong></td><td>Presence of tumor cells in lymphatic channels or blood vessels within the tumor → ↑ recurrence risk, ↑ metastasis risk</td><td>LVI absent</td><td>LVI present</td></tr>
+      <tr><td><strong>Molecular Subtype</strong></td><td>Based on ER/PR/HER2/Ki-67 combination</td><td>Luminal A</td><td>TNBC → worst prognosis</td></tr>
+      <tr><td><strong>p53 mutation</strong></td><td>Tumor suppressor gene — loss of p53 → ↑ aggressiveness + early relapse. Important for node-negative patients who would benefit from adjuvant systemic therapy</td><td>p53 wild-type</td><td>p53 mutated</td></tr>
+      <tr><td><strong>VEGF overexpression</strong></td><td>↑ VEGF → ↑ angiogenesis → ↑ metastasis. Associated with ↓ overall survival in both node-negative and node-positive BC</td><td>Low VEGF</td><td>High VEGF</td></tr>
+      <tr><td><strong>Oncotype DX (RS)</strong></td><td>21-gene assay for ER+, HER2−, node-negative BC. RS 0–17: endocrine only. RS 18–31: intermediate. RS ≥32: chemo + endocrine</td><td>Low RS (0–17)</td><td>High RS (≥32)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s17" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</section>
+<section id="s18">
+<div class="sec-header"><span class="sec-num">18</span><h2 class="sec-title">Treatment<span class="stars">⭐⭐⭐</span><span class="hy">High-Yield</span></h2></div>
+<p class="sec-sub">Surgery · Radiation · Endocrine Therapy · Chemotherapy · HER2-Targeted · Immunotherapy · Bone-Modifying Agents</p>
+
+<div class="box navy">Treatment is individualized based on: <strong>Receptor status (ER/PR/HER2)</strong> · <strong>Stage</strong> · <strong>Molecular subtype</strong> · <strong>Patient factors</strong>. Multidisciplinary team approach is essential.</div>
+
+<!-- A. SURGERY -->
+<div class="card n">
+  <h4>A — Surgery</h4>
+  <div class="tw" style="margin-top:8px">
+    <table>
+      <thead><tr><th>Procedure</th><th>Indication</th><th>Key Points &amp; Nursing</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Lumpectomy (BCT)</strong></td><td>Early-stage; small-moderate tumor; adequate breast size</td><td>CLEAR MARGINS + mandatory adjuvant RT. Equivalent to mastectomy in 30 yrs of RCTs. ~40% need 2nd lumpectomy. <strong>Contraindicated:</strong> tumor &gt;5cm; nipple-areola involvement; extensive intraductal disease; multicentric; scleroderma/lupus. <em>Nursing:</em> Arm adducted post-op. No ball squeezing. Flex fingers/wrist only</td></tr>
+        <tr><td><strong>Simple Mastectomy</strong></td><td>Multicentric disease; DCIS; unclearable margins; tumor under nipple; large tumor relative to breast</td><td>Removes entire breast. Immediate or delayed reconstruction possible. <em>Nursing:</em> Wound care + functioning drains. Post-mastectomy exercises from 24 hrs post-op</td></tr>
+        <tr><td><strong>Modified Radical Mastectomy</strong></td><td>Most common mastectomy for invasive BC</td><td>Removes entire breast + axillary lymph nodes (levels I &amp; II)</td></tr>
+        <tr><td><strong>Skin-Sparing / Nipple-Sparing Mastectomy</strong></td><td>When reconstruction is planned; prophylactic candidates</td><td>Preserves skin envelope ± nipple-areola complex for better cosmetic outcomes</td></tr>
+        <tr><td><strong>SLNB</strong></td><td>Standard axillary evaluation — clinically node-negative patients. First-line before ALND</td><td>Blue dye + radioactive technetium tracer. Negative → no further nodes. ↓ lymphedema vs ALND. Complications: less invasive, lower lymphedema risk, faster recovery</td></tr>
+        <tr><td><strong>ALND</strong></td><td>Larger tumors; positive sentinel nodes; unable to perform SLNB</td><td>Removes levels I–II nodes. Complications: lymphedema, pain, numbness, stiffness, ↓ QoL</td></tr>
+        <tr><td><strong>Reconstruction</strong></td><td>After mastectomy — immediate or delayed</td><td><strong>Implant-based (most common):</strong> saline expanders → permanent implant. <strong>Autologous:</strong> TRAM / DIEP / latissimus dorsi flap (12–15 hrs). Monitor tissue perfusion post-autologous → prevent flap pedicle thrombosis</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- B. RADIATION -->
+<div class="card amber" style="margin-top:14px">
+  <h4>B — Radiation Therapy</h4>
+  <div class="tw" style="margin-top:8px">
+    <table>
+      <thead><tr><th>Type</th><th>Indication</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Whole-Breast RT (WBRT)</strong></td><td><strong>Mandatory after ANY lumpectomy/BCT</strong></td><td>25 fractionated + 5–10 boost treatments to lumpectomy site</td></tr>
+        <tr><td><strong>Post-Mastectomy RT (PMRT)</strong></td><td>Tumor &gt;5cm; positive/close margins; ≥4 positive nodes; axillary node involvement</td><td>↓ local recurrence + ↑ overall survival</td></tr>
+        <tr><td><strong>APBI / Brachytherapy</strong></td><td>Selected early-stage with low recurrence risk</td><td>Shorter course (1–2 wks); targeted to tumor bed only</td></tr>
+        <tr><td><strong>Palliative RT</strong></td><td>Bone pain; brain metastases; symptom control</td><td>SBRT for oligometastatic sites: ~80% disease control (lung)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="g2" style="margin-top:10px">
+    <div>
+      <h5>Side Effects — Acute</h5>
+      <ul class="dot">
+        <li>Skin redness, dryness, peeling</li>
+        <li>Breast swelling and tenderness</li>
+        <li>Fatigue; mild pain</li>
+        <li>Hair loss in armpit region</li>
+      </ul>
+    </div>
+    <div>
+      <h5>Side Effects — Late</h5>
+      <ul class="dot">
+        <li>Skin fibrosis; telangiectasia</li>
+        <li>Lymphedema (arm swelling)</li>
+        <li>Lung/heart damage (rare); left-sided BC: ↑ fatal MI risk</li>
+        <li>Secondary malignancy (rare, long-term)</li>
+        <li><strong>Radiation Recall:</strong> acute inflammatory skin reaction triggered by doxorubicin, paclitaxel, gemcitabine, capecitabine in previously radiated areas</li>
+      </ul>
+    </div>
+  </div>
+  <div class="box teal" style="margin-top:10px"><strong>Nursing Care:</strong> Cleanse skin twice daily with prescribed wipes. Apply moisture-rich adherent lotion within radiation field. No perfumes/harsh soaps. Loose cotton clothing. Protect from sun. Report severe pain, fever, or skin breakdown. Skin care aims to prevent grade 3–4 reactions (painful moist/wet desquamation)</div>
+</div>
+
+<!-- C. ENDOCRINE THERAPY -->
+<div class="card rose" style="margin-top:14px">
+  <h4>C — Endocrine / Hormonal Therapy <small style="font-weight:400;text-transform:none;letter-spacing:0">(For ER+ and/or PR+ tumors)</small></h4>
+  <div class="tw" style="margin-top:8px">
+    <table>
+      <thead><tr><th>Drug</th><th>Used In</th><th>Mechanism</th><th>Side Effects</th><th>Key Points</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Tamoxifen</strong><br><small>20mg/day ×5–10 yrs · SERM</small></td><td>Pre &amp; postmenopausal ER+</td><td>Blocks estrogen receptors in breast tissue</td><td>↑ endometrial cancer (3–4/1000); DVT (↑ with smoking); cataracts; hot flashes; amenorrhea. <strong>Beneficial:</strong> ↓ fractures; ↓ hyperlipidemia</td><td>Annual gyne visit required. Avoid STRONG CYP2D6 inhibitors: <strong>Paroxetine, Fluoxetine</strong> (↓ tamoxifen efficacy). Venlafaxine and citalopram are weak inhibitors — often used for hot flash management in tamoxifen patients. Contraindicated: clotting disorder, uterine dysplasia, psychiatric disorder</td></tr>
+        <tr><td><strong>Aromatase Inhibitors</strong><br><small>Anastrozole, Letrozole (non-steroidal); Exemestane (steroidal)</small></td><td>Postmenopausal ONLY (or premenopausal + GnRH agonist)</td><td>Inhibit aromatase enzyme → ↓ androgen-to-estrogen conversion</td><td>Arthralgias; myalgias; hot flashes; vaginal dryness; sexual dysfunction; ↓ bone density. Less DVT and endometrial cancer than tamoxifen. <strong>Does NOT protect bone</strong></td><td>Start Ca2+ + Vit D. Musculoskeletal symptoms most common. ↑ DFS vs tamoxifen in postmenopausal. Switch AIs if intolerable — no loss of efficacy</td></tr>
+        <tr><td><strong>Fulvestrant</strong><br><small>SERD</small></td><td>Advanced/metastatic HR+ BC — post-tamoxifen or AI failure</td><td>Selective estrogen receptor degrader — completely blocks and degrades ER</td><td>Hot flashes; injection site reactions; nausea; bone pain</td><td>Combined with CDK4/6 inhibitors (palbociclib, abemaciclib, ribociclib)</td></tr>
+        <tr><td><strong>GnRH Agonists (Ovarian Suppression)</strong><br><small>Goserelin, Leuprolide</small></td><td>Premenopausal ER+ — combined with AI or tamoxifen</td><td>Suppresses pituitary → ↓ ovarian estrogen production</td><td>Menopausal symptoms; bone loss; hot flashes</td><td>Essential for premenopausal women on AIs. Can also be combined with fulvestrant</td></tr>
+        <tr><td><strong>Progestin (Megestrol Acetate)</strong></td><td>Advanced/metastatic HR+ after tamoxifen/AI failure. Also: cancer-related cachexia</td><td>Inhibits ER + ↓ estrogen synthesis</td><td>Weight gain; fluid retention; hypertension; dyspnea; vaginal hemorrhage</td><td>Appetite stimulation = unique benefit. Second-line or later therapy</td></tr>
+        <tr><td><strong>Androgen (Danazol)</strong></td><td>Advanced metastatic ER+ — no response to other endocrine therapy</td><td>Competes with estrogen at receptor; suppresses gonadotropins. May cause tumor flare</td><td>Virilization: deep voice; hirsutism; acne; hair loss</td><td>Rarely used. Important for exams</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- D. CHEMOTHERAPY -->
+<div class="card navy" style="margin-top:14px">
+  <h4>D — Chemotherapy</h4>
+  <div class="g3" style="margin-top:8px">
+    <div class="box teal">
+      <strong>Neoadjuvant (before surgery)</strong><br>
+      Shrink tumor → enable BCT. Assess tumor response in vivo. Goal: pCR. If pCR → maintain therapy. If non-pCR → escalate
+    </div>
+    <div class="box gold">
+      <strong>Adjuvant (after surgery)</strong><br>
+      Treats micrometastatic residual disease. Indicated: node-positive or high-risk node-negative. Anthracycline + taxane based
+    </div>
+    <div class="box rose">
+      <strong>Metastatic / Palliative</strong><br>
+      Prolong survival + ↓ symptoms without severe toxicity. ASCO: single-agent preferred in HER2− (↓ toxicity, ↑ QoL)
+    </div>
+  </div>
+  <div class="tw" style="margin-top:10px">
+    <table>
+      <thead><tr><th>Regimen</th><th>Agents</th><th>Setting</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Dose-Dense AC→T</strong></td><td>Doxorubicin + Cyclophosphamide ×4 → Paclitaxel ×4 (q2wks + G-CSF)</td><td>Node-positive / high-risk adjuvant</td></tr>
+        <tr><td><strong>TAC</strong></td><td>Docetaxel + Doxorubicin + Cyclophosphamide</td><td>Adjuvant / neoadjuvant (more intensive)</td></tr>
+        <tr><td><strong>TC</strong></td><td>Docetaxel + Cyclophosphamide</td><td>Node-negative early-stage; avoids anthracycline cardiotoxicity</td></tr>
+        <tr><td><strong>TCHP</strong></td><td>Docetaxel + Carboplatin + Trastuzumab + Pertuzumab</td><td>HER2+ neoadjuvant and metastatic (FDA-approved)</td></tr>
+        <tr><td><strong>KEYNOTE-522</strong></td><td>Pembrolizumab + Paclitaxel + Carboplatin → AC; then adjuvant Pembrolizumab</td><td>Early/locally advanced TNBC — current standard of care</td></tr>
+        <tr><td><strong>Capecitabine</strong></td><td>Capecitabine (CREATE-X)</td><td>Residual disease (non-pCR) after neoadjuvant in TNBC/HER2−</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tw" style="margin-top:8px">
+    <table>
+      <thead><tr><th>Class</th><th>Agents</th><th>Key Toxicities</th></tr></thead>
+      <tbody>
+        <tr><td>Anthracyclines</td><td>Doxorubicin, Epirubicin, Liposomal Doxorubicin</td><td>Myelosuppression; N/V; alopecia; <strong>cardiotoxicity</strong></td></tr>
+        <tr><td>Taxanes</td><td>Paclitaxel, Docetaxel, Nab-Paclitaxel</td><td>Peripheral neuropathy; alopecia; hypersensitivity; myelosuppression</td></tr>
+        <tr><td>Alkylating agents</td><td>Cyclophosphamide</td><td>Myelosuppression; hemorrhagic cystitis</td></tr>
+        <tr><td>Antimetabolites</td><td>Capecitabine, Gemcitabine, 5-FU, Methotrexate</td><td>Hand-foot syndrome; GI upset; mucositis</td></tr>
+        <tr><td>Platinum compounds</td><td>Carboplatin, Cisplatin</td><td>Nephrotoxicity; ototoxicity; neuropathy — especially in TNBC/BRCA-mutated</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- E. HER2 TARGETED THERAPY -->
+<div class="card p" style="margin-top:14px">
+  <h4>E — HER2-Targeted Therapy</h4>
+  <div class="tw" style="margin-top:8px">
+    <table>
+      <thead><tr><th>Drug</th><th>Mechanism</th><th>Side Effects &amp; Key Points</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Trastuzumab</strong> (Herceptin)</td><td>Monoclonal antibody — binds HER2 extracellular domain → blocks proliferation signaling</td><td><strong>Cardiac toxicity (LVEF ↓).</strong> CONTRAINDICATED with anthracyclines → start AFTER completing anthracycline chemo. Monitor: ECHO/MUGA every 3 months. Report SOB or chest pain</td></tr>
+        <tr><td><strong>Pertuzumab</strong> (Perjeta)</td><td>Binds DIFFERENT HER2 domain from trastuzumab → enhances effect. ONLY used in COMBINATION with trastuzumab ("Dual therapy"). NOT used alone</td><td>Diarrhea; cardiotoxicity; hypersensitivity. First-line HER2+ metastatic: TCHP regimen</td></tr>
+        <tr><td><strong>T-DM1</strong> (Kadcyla)</td><td>Antibody-drug conjugate: trastuzumab + maytansine (antimicrotubule cytotoxic)</td><td>Thrombocytopenia; hypokalemia; fatigue; ↑ LFTs. Used: HER2+ non-pCR after neoadjuvant OR previously treated metastatic HER2+</td></tr>
+        <tr><td><strong>Lapatinib</strong> (Tykerb)</td><td>Oral tyrosine kinase inhibitor — inhibits HER1/EGFR and HER2 signaling</td><td>Acne-like rash (face, chest, back); diarrhea; cardiomyopathy. <strong>Take ≥1 hour BEFORE or AFTER a meal</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="warn">⚠️ Exam Favorite: <strong>Trastuzumab + Anthracycline = ممنوع معاً (CONTRAINDICATED)</strong> → سمية قلبية شديدة. ابدئي trastuzumab بعد انتهاء anthracyclines، وراقبي LVEF بـ ECHO/MUGA كل ٣ أشهر.</div>
+  <div class="pearl"><strong>💡 Critical Drug Interaction:</strong> Trastuzumab + Anthracycline (doxorubicin/epirubicin) = <strong>CONTRAINDICATED</strong> together → dramatically ↑ cardiotoxicity. Always start trastuzumab <em>after</em> completing anthracyclines. Monitor LVEF with ECHO or MUGA scan every 3 months.</div>
+</div>
+
+<!-- F. IMMUNOTHERAPY -->
+<div class="card gr" style="margin-top:14px">
+  <h4>F — Immunotherapy</h4>
+  <div class="g2" style="margin-top:8px">
+    <div>
+      <h5>Pembrolizumab (Keytruda)</h5>
+      <ul class="dot gr">
+        <li>PD-1 inhibitor — blocks immune checkpoint → allows T-cells to attack cancer</li>
+        <li><strong>KEYNOTE-522:</strong> Early/locally advanced TNBC — current standard of care (neoadjuvant + adjuvant)</li>
+        <li>Also: metastatic TNBC if PD-L1 positive</li>
+        <li><strong>SE:</strong> Immune-related adverse events: colitis, pneumonitis, hepatitis, endocrinopathies, skin reactions, fatigue, infusion reactions</li>
+      </ul>
+    </div>
+    <div>
+      <h5>Bevacizumab (Avastin)</h5>
+      <ul class="dot gr">
+        <li>Anti-VEGF monoclonal antibody → prevents angiogenesis</li>
+        <li>Historically used for metastatic HER2− BC with paclitaxel or capecitabine</li>
+        <li><strong>SE:</strong> Hypertension; proteinuria; cerebrovascular ischemia; impaired wound healing; bleeding</li>
+        <li><strong>Contraindicated:</strong> within 28 days of surgery; uncontrolled hypertension; metastatic brain lesions</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- G. BONE-MODIFYING AGENTS -->
+<div class="card t" style="margin-top:14px">
+  <h4>G — Bone-Modifying Agents</h4>
+  <div class="g2" style="margin-top:8px">
+    <div>
+      <h5>Zoledronic Acid (Bisphosphonate)</h5>
+      <ul class="dot t">
+        <li>Inhibits osteoclast activity → ↓ bone resorption → ↓ bone pain, fractures, hypercalcemia</li>
+        <li>IV infusion over <strong>15–30 minutes, once a month</strong></li>
+        <li>Used: bone metastases; adjuvant in postmenopausal women (↓ bone recurrence); prevention of bone loss on AIs</li>
+        <li>Therapy continues for LIFE regardless of other therapy changes</li>
+        <li><strong>SE:</strong> Acute phase reaction (fever + bone pain after 1st dose); hypocalcemia; renal toxicity; <strong>Osteonecrosis of Jaw (ONJ)</strong> — rare but serious</li>
+        <li><strong>Nursing:</strong> Dental check BEFORE starting. Monitor renal function. Start Ca2+ + Vit D</li>
+      </ul>
+    </div>
+    <div>
+      <h5>Denosumab (Xgeva)</h5>
+      <ul class="dot t">
+        <li>RANK-ligand (RANKL) inhibitor — prevents osteoclast maturation</li>
+        <li>Subcutaneous injection; used for bone metastases prevention and treatment</li>
+        <li><strong>SE:</strong> Hypocalcemia; ONJ; atypical femur fractures</li>
+        <li>Does not require dose adjustment for renal impairment (unlike bisphosphonates)</li>
+        <li>Monitor serum calcium during therapy</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s18" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</section>
+<section id="s19">
+<div class="sec-header"><span class="sec-num">19</span><h2 class="sec-title">Metastatic Breast Cancer</h2></div>
+<p class="sec-sub">Sites of Spread · Assessment · Treatment · Symptom Management · Ch. 48</p>
+<div class="box rose">
+    <strong>Definition:</strong> Stage IV breast cancer — incurable, but increasingly managed as a chronic disease. Goal: live well, maintain QoL, control tumor growth. 6% present with metastatic disease at diagnosis; 20–30% of early-stage BC will eventually develop distant metastases. 5-year survival: 22%.
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Site</th><th>Frequency / Subtype</th><th>Symptoms</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Bone</strong></td><td>MOST COMMON — 65–70%; 20% "bone-only". HR+ predilection</td><td>Pain, hypercalcemia, pathologic fracture (mostly spine + femur). Spinal cord compression = oncologic emergency</td></tr>
+        <tr><td><strong>Lung</strong></td><td>2nd most common. TNBC predilection</td><td>Dyspnea, cough, hemoptysis, pleural effusion, chest pain</td></tr>
+        <tr><td><strong>Liver</strong></td><td>3rd most common</td><td>Pain, N/V, diarrhea, early satiety, anorexia, jaundice, ascites</td></tr>
+        <tr><td><strong>CNS / Brain</strong></td><td>4th. HER2+ and TNBC: &gt;50% of HER2+ recurrences. CNS = "protective sanctuary"</td><td>Headache (unrelieved by OTC), confusion, weakness, seizures, cranial nerve palsies, altered gait, speech impairment</td></tr>
+        <tr><td><strong>Skin / Lymph Nodes</strong></td><td>Any subtype</td><td>Ulceration, infection, bleeding; brachial plexopathies</td></tr>
+        <tr><td><strong>Peritoneum / GI</strong></td><td>ILC characteristic spread</td><td>Pain, bowel obstruction, ascites, dyspnea</td></tr>
+        <tr><td><strong>Unusual sites (ILC)</strong></td><td>Eye, bladder, ovary, peritoneum</td><td>Varied symptoms</td></tr>
+        <tr><td><strong>General</strong></td><td>All metastatic patients</td><td>Fatigue, insomnia, depression, weight loss, anorexia</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pearl"><strong>Re-biopsy at recurrence is recommended:</strong> Receptor status may change from primary tumor to metastasis. Always re-confirm ER, PR, HER2, Ki-67 — this may change the treatment strategy entirely.</div>
+<div class="g2">
+    <div class="card gold">
+      <h4>History</h4>
+      <ul class="dot gl">
+        <li>Onset and duration of ALL symptoms</li>
+        <li>Breast/axillary pain, swelling, skin changes, nipple discharge or distortion</li>
+        <li>Bone pain, fractures, vertebral compression symptoms</li>
+        <li>Prior mammographic screenings; reproductive history; hormone use; family history</li>
+      </ul>
+    </div>
+    <div class="card gold">
+      <h4>Physical Examination</h4>
+      <ul class="dot gl">
+        <li>Head-to-toe; palpate all potential metastatic sites</li>
+        <li>General appearance, posture, gait</li>
+        <li>Scalp + full neurologic exam (cranial nerves, mini-mental status, motor tone/power/reflexes)</li>
+        <li>New headaches unrelieved by OTC analgesics → CNS workup</li>
+        <li>Gait change or unsteadiness → further testing</li>
+        <li>Neck, axilla, torso: lymph nodes, skin discoloration, ulceration</li>
+      </ul>
+    </div>
+  </div>
+<div class="flow">
+    <div class="fstep">
+      <div class="fnum">1</div>
+      <div class="fbody">
+        <strong>HR+ HER2− Metastatic</strong>
+        First-line: AI + CDK4/6 inhibitor (palbociclib, ribociclib, or abemaciclib). Bone-only: add bisphosphonate (zoledronic acid IV) or denosumab SC. Premenopausal: ovarian suppression (goserelin/leuprolide) or oophorectomy + AI. Non-adherence rates: 25–96%; up to 50% by year 3.
+      </div>
+    </div>
+    <div class="fstep">
+      <div class="fnum">2</div>
+      <div class="fbody">
+        <strong>HER2+ Metastatic</strong>
+        First-line: Trastuzumab + Pertuzumab + Docetaxel (TCHP). Second-line (progression): T-DM1. Third-line: Lapatinib (oral; take ≥1hr before/after food) ± capecitabine. CNS involvement: WBRT or SRS.
+      </div>
+    </div>
+    <div class="fstep">
+      <div class="fnum">3</div>
+      <div class="fbody">
+        <strong>TNBC Metastatic</strong>
+        Chemo + pembrolizumab (if PD-L1+). Platinum-based especially if BRCA-mutated. PARP inhibitors (olaparib, talazoparib) for BRCA1/2 germline mutations. Median survival endocrine-resistant metastatic BC: 18–24 months; 5-yr survival &lt;5%.
+      </div>
+    </div>
+    <div class="fstep">
+      <div class="fnum">4</div>
+      <div class="fbody">
+        <strong>Surgery in Metastatic Setting</strong>
+        Tailored to individual needs. Guidelines: systemic therapy FIRST. Bone: fixation/stabilization for pending or actual fracture. CNS: craniotomy/laminectomy → survival benefit vs. RT alone in selected patients. Lung/liver resection: best outcomes with single lesion + long DFI + HR+ status.
+      </div>
+    </div>
+  </div>
+  <div class="box navy"><strong>Chemotherapy Principle (Metastatic):</strong> ASCO recommends single-agent therapy over doublet/triplet in HER2− women (↓ toxicity, ↑ QoL). Anthracycline first, then taxane (sequential). Goal: prolong survival + reduce symptoms without severely compromising QoL.</div>
+<div class="tw">
+    <table>
+      <thead><tr><th>Symptom / Complication</th><th>Nursing Management</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Lymphedema</strong></td><td>No BP cuffs or injections in affected arm. Compression therapy, manual lymphatic drainage. Teach circumference measurement; notify provider if ↑. Monitor for cellulitis</td></tr>
+        <tr><td><strong>Pain (bone disease)</strong></td><td>Multimodal: opioids, NSAIDs, adjuvants; RT for bone pain; bisphosphonates/denosumab</td></tr>
+        <tr><td><strong>Fatigue</strong></td><td>Energy conservation; screen for anemia, depression, hypothyroidism, sleep disturbance; gentle exercise</td></tr>
+        <tr><td><strong>Depression &amp; Anxiety</strong></td><td>Screen PHQ-9, GAD-7. Up to 30% of cancer patients affected. CNS disease = especially difficult. Refer to psycho-oncology</td></tr>
+        <tr><td><strong>Nausea / Vomiting</strong></td><td>Antiemetics; small frequent meals; dietary modifications</td></tr>
+        <tr><td><strong>Pleural Effusion / Ascites</strong></td><td>Thoracentesis/paracentesis; drainage catheter for ongoing accumulation; dyspnea management</td></tr>
+        <tr><td><strong>Cardiotoxicity</strong></td><td>Monitor LVEF; echo surveillance (especially trastuzumab); report chest pain/swelling</td></tr>
+        <tr><td><strong>Sexual Dysfunction</strong></td><td>Vaginal lubricants/moisturizers; address body image; refer to sexual health specialist</td></tr>
+        <tr><td><strong>Altered Sensation (post-surgery)</strong></td><td>Teach: numbness, tingling, chest wall lack of sensation, phantom breast sensation — may persist indefinitely</td></tr>
+        <tr><td><strong>Medication Non-Adherence</strong></td><td>33% non-adherent. Follow up on prescription filling; assess mood + financial burden; pharmaceutical patient assistance programs; insurance navigation</td></tr>
+        <tr><td><strong>Geriatric Comorbidities</strong></td><td>~50% of patients ≥65. Address cardiac (doxorubicin/trastuzumab), musculoskeletal (AIs), GI (chemo), sleep. Avoid polypharmacy; bridge between oncology and geriatric provider</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pearl"><strong>Palliative Care:</strong> Integrate from point of metastatic diagnosis — NOT only end of life. Patients with metastatic BC as a chronic disease have ongoing complex needs requiring consistent multidisciplinary support throughout a potentially long trajectory.</div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s19" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</section>
+<section id="s20">
+<div class="sec-header"><span class="sec-num">20</span><h2 class="sec-title">Nursing Care</h2></div>
+<p class="sec-sub">Pre-op · Post-op · Lymphedema · Radiation · Chemo · Psychosocial · Survivorship</p>
+<div class="card t">
+  <h4>Pre-Operative &amp; Post-Operative Care</h4>
+  <div class="g2">
+    <div>
+      <h5>Pre-Op</h5>
+      <ul class="dot t">
+        <li>Assess anxiety level — pre-surgical anxiety ↑ biophysical stress → may impede healing</li>
+        <li>Educate about procedure, expected outcomes, reconstruction options</li>
+        <li>Discuss body image concerns before surgery</li>
+        <li>Ensure informed consent and patient participation in decision-making</li>
+      </ul>
+    </div>
+    <div>
+      <h5>Post-Mastectomy</h5>
+      <ul class="dot t">
+        <li>Wound care + maintain functioning wound drains</li>
+        <li>Blocked drains → seroma/hematoma → infection → flap necrosis</li>
+        <li>Exercises begin as early as <strong>24 hours</strong> post-op</li>
+        <li>Affected arm in <strong>adducted position</strong>; limited wrist and elbow exercises</li>
+        <li>Flex fingers; touch hand to shoulder; <strong>NO ball squeezing</strong> — ↑ blood flow → ↑ swelling</li>
+        <li>Educate about altered sensations: numbness, tingling, phantom breast sensation — may persist indefinitely</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h4>Lymphedema Care</h4>
+  <ul class="dot">
+    <li>No BP cuffs, blood draws, or injections in affected arm</li>
+    <li>Teach arm circumference measurement — notify provider if increases</li>
+    <li>Compression therapy and manual lymphatic drainage</li>
+    <li>Protect arm from injury and infection</li>
+    <li>Monitor for cellulitis</li>
+    <li>Refer to lymphedema therapist</li>
+  </ul>
+</div>
+
+<div class="card amber">
+  <h4>Chemotherapy Nursing Care</h4>
+  <ul class="dot">
+    <li>Monitor CBC and vital signs before each cycle</li>
+    <li>Manage nausea/vomiting with antiemetics</li>
+    <li>Encourage adequate hydration and nutrition</li>
+    <li>Educate about infection prevention (hand hygiene, avoid crowds)</li>
+    <li>Provide psychological support for hair loss and fatigue</li>
+    <li>Monitor for peripheral neuropathy (taxanes) and cardiotoxicity (anthracyclines)</li>
+    <li><strong>Trastuzumab:</strong> monitor cardiac function (ECHO or MUGA) every 3 months. Educate to report SOB or chest pain</li>
+  </ul>
+</div>
+
+<div class="g2">
+    <div class="card rose">
+      <h4>Distress Management</h4>
+      <ul class="dot">
+        <li>Patients report: vulnerability, loss of control, uncertainty, stress, loss of energy</li>
+        <li>Family support may be inadequate — family also experiencing emotional distress</li>
+        <li>Anxiety affects up to <strong>30%</strong> of cancer patients</li>
+        <li>Pre-surgical anxiety → ↑ biophysical stress → may impede healing and recovery</li>
+        <li>Anxiety does NOT resolve quickly after surgery</li>
+        <li>Screen: PHQ-9 (depression), GAD-7 (anxiety), Distress Thermometer</li>
+        <li>Provide interventions, referrals; help patients regain sense of control</li>
+        <li>Comprehensive survivorship care + episodic psychosocial needs assessment throughout</li>
+      </ul>
+    </div>
+    <div class="card plum">
+      <h4>Body Image &amp; Self-Image</h4>
+      <ul class="dot pl">
+        <li>Multiple self-image challenges before AND after surgery</li>
+        <li>Issues: breast loss/defect, tissue damage, lymphedema, seromas, altered muscle definition, changed ROM, breast tenderness</li>
+        <li>Chemo adds: alopecia, weight changes, fatigue</li>
+        <li>Discuss myths and concerns openly with patient and family</li>
+        <li>Refer to psychology if issues persist beyond early diagnostic period</li>
+        <li>Discuss reconstruction options and external prostheses</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card green">
+    <h4>Patient Education (Core Curriculum Ch. 13)</h4>
+    <div class="g2" style="margin-top:8px">
+      <ul class="dot gn">
+        <li>Explain disease and treatment at patient's level — nonjudgmental</li>
+        <li>Encourage discussion of physical AND emotional changes</li>
+        <li>Explore personal values and beliefs related to treatment choices</li>
+        <li>Facilitate patient's involvement in decision-making to extent desired</li>
+        <li>Educate about lymphedema risk; teach arm circumference measurement</li>
+        <li>Arm precautions: prevent trauma and infection</li>
+      </ul>
+      <ul class="dot gn">
+        <li>Inform about altered sensations: numbness, tingling, phantom breast — may persist indefinitely</li>
+        <li>Assess for menopausal symptoms from endocrine therapy or chemo-induced ovarian failure</li>
+        <li>Monitor and manage all treatment side effects</li>
+        <li>Teach self-breast awareness and axillary self-examination</li>
+        <li>Address fertility and pregnancy after treatment (younger patients)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card teal">
+    <h4>Survivorship Care Plan</h4>
+    <ul class="dot tl">
+      <li>Create survivorship care plans — tertiary prevention focus</li>
+      <li>Address: smoking cessation, weight control, diet, exercise, stress management (Healthy People 2020)</li>
+      <li>These topics are rarely discussed in daily oncology practice but are critical tertiary prevention strategies</li>
+      <li>Assess: coping, support system, body image, sexual identity, role relationships</li>
+      <li>Provide information on community resources, support groups, rehabilitation, breast prostheses</li>
+      <li>Annual surveillance schedule: gynecology (tamoxifen users), mammography, bone density (AI users), cardiac monitoring (HER2-targeted therapy users)</li>
+    </ul>
+  </div>
+  <div class="box navy" style="margin-top:20px">
+    <strong>📚 Sources:</strong> Cancer Nursing: Principles and Practice 8th Ed — Ch. 47 (Joanne Lester PhD CNP AOCN) &amp; Ch. 48 (Sheryl Redlin-Frazier MSN RN CN-BN) · Core Curriculum for Oncology Nursing 6th Ed — Ch. 13 (Jan Petree) · Saudi Cancer Registry Annual Report 2022
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s20" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</section>
+
+
+<section id="s21">
+<div class="sec-header"><span class="sec-num">⭐</span><h2 class="sec-title">Exam Tips — High-Yield MCQ Guide</h2></div>
+<p class="sec-sub">SCFHS Oncology Nursing · Common Traps · Must-Know Facts</p>
+
+<div class="box rose">
+  <strong>How to use this section:</strong> هذي أكثر النقاط اللي تجي في الاختبارات كـ MCQ. كل نقطة فيها السؤال الشائع + الإجابة الصحيحة + السبب.
+</div>
+
+<!-- BLOCK 1: Biopsy -->
+<div class="card n">
+  <h4>🔬 Biopsy &amp; Diagnosis</h4>
+  <div class="tw" style="margin-top:8px">
+    <table>
+      <thead><tr><th>السؤال الشائع</th><th>الإجابة الصحيحة</th><th>السبب</th></tr></thead>
+      <tbody>
+        <tr><td>Which biopsy CANNOT distinguish in situ from invasive cancer?</td><td><strong>FNA</strong></td><td>FNA = cytology only. Needs CNB for histology</td></tr>
+        <tr><td>Gold standard biopsy for BC diagnosis?</td><td><strong>Core-Needle Biopsy (CNB)</strong></td><td>Provides histology + IHC (ER/PR/HER2)</td></tr>
+        <tr><td>Stereotactic biopsy is contraindicated in?</td><td><strong>Obese patients; anticoagulated patients; unable to lie prone</strong></td><td>Requires prone positioning + pressure on biopsy site</td></tr>
+        <tr><td>Wire localization biopsy is used for?</td><td><strong>Non-palpable lesions</strong></td><td>Radiologist places wire to guide surgeon to exact site</td></tr>
+        <tr><td>HER2 result is equivocal (2+) on IHC → next step?</td><td><strong>FISH testing</strong></td><td>FISH is more sensitive and specific — FISH result is FINAL</td></tr>
+        <tr><td>Tumor marker used to MONITOR treatment response (NOT diagnose)?</td><td><strong>CA15-3, CA27.29, CEA</strong></td><td>Lack sensitivity/specificity for early diagnosis</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- BLOCK 2: Surgery -->
+<div class="card" style="margin-top:12px">
+  <h4>✂️ Surgery</h4>
+  <div class="tw" style="margin-top:8px">
+    <table>
+      <thead><tr><th>السؤال الشائع</th><th>الإجابة الصحيحة</th><th>السبب</th></tr></thead>
+      <tbody>
+        <tr><td>Lumpectomy ALWAYS requires what after surgery?</td><td><strong>Adjuvant whole-breast radiation (mandatory)</strong></td><td>RT is part of BCT protocol — not optional</td></tr>
+        <tr><td>Lumpectomy is CONTRAINDICATED in which connective tissue disease?</td><td><strong>Scleroderma / Lupus</strong></td><td>Cannot tolerate radiotherapy → BCT not possible</td></tr>
+        <tr><td>Post-mastectomy: which exercise is DISCOURAGED?</td><td><strong>Squeezing a ball</strong></td><td>↑ blood flow → ↑ swelling after 24 hrs</td></tr>
+        <tr><td>Post-mastectomy exercises begin how soon?</td><td><strong>Within 24 hours</strong></td><td>Maintain shoulder and arm mobility</td></tr>
+        <tr><td>SLNB vs ALND — which has LOWER lymphedema risk?</td><td><strong>SLNB</strong></td><td>Less invasive; removes fewer nodes</td></tr>
+        <tr><td>BCT (lumpectomy) is CONTRAINDICATED in IBC. What surgery is used instead?</td><td><strong>Modified Radical Mastectomy (after neoadjuvant chemo)</strong></td><td>IBC = diffuse involvement → cannot achieve clear margins with lumpectomy</td></tr>
+        <tr><td>Critical nursing concern post-autologous flap reconstruction?</td><td><strong>Monitor tissue perfusion / prevent flap pedicle thrombosis</strong></td><td>Excessive platelets → occlude pedicle vessels → loss of flap</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- BLOCK 3: Pathology & Classification -->
+<div class="card p" style="margin-top:12px">
+  <h4>🧬 Pathology &amp; Classification</h4>
+  <div class="tw" style="margin-top:8px">
+    <table>
+      <thead><tr><th>السؤال الشائع</th><th>الإجابة الصحيحة</th><th>السبب</th></tr></thead>
+      <tbody>
+        <tr><td>DCIS vs LCIS — which is a TRUE cancer precursor?</td><td><strong>DCIS</strong></td><td>LCIS = risk marker only. DCIS = Stage 0 actual cancer</td></tr>
+        <tr><td>LCIS is most commonly found how?</td><td><strong>Incidentally on biopsy</strong> (not on mammogram)</td><td>LCIS not visible on mammography</td></tr>
+        <tr><td>Most aggressive DCIS architectural pattern?</td><td><strong>Comedonecrosis (comedo pattern)</strong></td><td>Highest risk of recurrence and progression to invasive</td></tr>
+        <tr><td>IBC first treatment step?</td><td><strong>Neoadjuvant chemotherapy</strong></td><td>Surgery is NOT first — must shrink tumor first. BCT is contraindicated</td></tr>
+        <tr><td>ILC metastasizes to which UNUSUAL sites?</td><td><strong>Peritoneum, GI tract, ovaries, eye, bladder</strong></td><td>ILC = unusual spread pattern (unlike IDC)</td></tr>
+        <tr><td>Molecular subtype most associated with BRCA1 mutations?</td><td><strong>Triple-Negative (TNBC / Basal-like)</strong></td><td>BRCA1 cancers are typically ER/PR/HER2 negative</td></tr>
+        <tr><td>Which molecular subtype has the BEST prognosis?</td><td><strong>Luminal A</strong></td><td>ER/PR+, HER2−, low Ki-67 → slowest growing</td></tr>
+        <tr><td>Which molecular subtype has the WORST prognosis?</td><td><strong>Triple-Negative (TNBC)</strong></td><td>No targeted therapy options; most aggressive</td></tr>
+        <tr><td>Nottingham Grade 3 score range?</td><td><strong>8–9</strong></td><td>Score 3–5 = G1, 6–7 = G2, 8–9 = G3</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- BLOCK 4: Treatment Drugs -->
+<div class="card rose" style="margin-top:12px">
+  <h4>💊 Treatment — Drug Traps</h4>
+  <div class="tw" style="margin-top:8px">
+    <table>
+      <thead><tr><th>السؤال الشائع</th><th>الإجابة الصحيحة</th><th>السبب</th></tr></thead>
+      <tbody>
+        <tr><td>Trastuzumab + Anthracycline: when is this combination used?</td><td><strong>NEVER — CONTRAINDICATED</strong></td><td>Dramatically ↑ cardiotoxicity. Start trastuzumab AFTER anthracyclines complete</td></tr>
+        <tr><td>When to start monitoring cardiac function during trastuzumab?</td><td><strong>ECHO or MUGA every 3 months</strong></td><td>Trastuzumab → ↓ LVEF; must monitor throughout therapy</td></tr>
+        <tr><td>Tamoxifen: which CYP2D6 inhibitors are CONTRAINDICATED?</td><td><strong>Paroxetine, Fluoxetine (STRONG inhibitors)</strong></td><td>↓ conversion to active metabolite → ↓ efficacy. Venlafaxine = weak inhibitor → safe for hot flashes</td></tr>
+        <tr><td>Tamoxifen is contraindicated in which conditions?</td><td><strong>Clotting disorder / immobility; history of uterine dysplasia; severe depression</strong></td><td>Risk of DVT, endometrial cancer</td></tr>
+        <tr><td>Aromatase inhibitors are used in which patient group ONLY?</td><td><strong>Postmenopausal women</strong> (or premenopausal + GnRH agonist)</td><td>Need post-menopausal estrogen levels to work</td></tr>
+        <tr><td>AI most common side effect?</td><td><strong>Musculoskeletal symptoms (arthralgias, bone pain)</strong></td><td>Most frequent reason for non-adherence</td></tr>
+        <tr><td>Lapatinib must be taken when relative to food?</td><td><strong>≥1 hour BEFORE or AFTER a meal</strong></td><td>Food significantly ↑ absorption unpredictably</td></tr>
+        <tr><td>Bevacizumab is contraindicated when?</td><td><strong>Within 28 days of surgery; uncontrolled hypertension; brain metastases</strong></td><td>↑ bleeding risk; impairs wound healing</td></tr>
+        <tr><td>Zoledronic acid: what MUST be checked before starting?</td><td><strong>Renal function + dental health</strong></td><td>Renal toxicity + Osteonecrosis of Jaw (ONJ) risk</td></tr>
+        <tr><td>Raloxifene vs Tamoxifen: which does NOT protect against DCIS?</td><td><strong>Raloxifene</strong></td><td>STAR trial: 76% as effective as tamoxifen for invasive BC but no DCIS protection</td></tr>
+        <tr><td>TNBC current standard neoadjuvant regimen?</td><td><strong>KEYNOTE-522 (Pembrolizumab + Paclitaxel + Carboplatin → AC)</strong></td><td>pCR: continue pembrolizumab. Non-pCR: add capecitabine</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- BLOCK 5: Genetics & Risk -->
+<div class="card t" style="margin-top:12px">
+  <h4>🧪 Genetics &amp; Risk</h4>
+  <div class="tw" style="margin-top:8px">
+    <table>
+      <thead><tr><th>السؤال الشائع</th><th>الإجابة الصحيحة</th><th>السبب</th></tr></thead>
+      <tbody>
+        <tr><td>BRCA1 cancers are typically which molecular subtype?</td><td><strong>Triple-Negative (TNBC)</strong></td><td>BRCA1 → ER/PR/HER2 negative pattern</td></tr>
+        <tr><td>BRCA2 cancers are typically which molecular subtype?</td><td><strong>Luminal (ER+ adenocarcinoma)</strong></td><td>BRCA2 → ER/PR+, HER2− pattern</td></tr>
+        <tr><td>BRCA2 confers higher risk of which male cancers?</td><td><strong>Male BC, Prostate cancer (23× risk &lt;55 yrs), Pancreatic cancer</strong></td><td>BRCA2 spectrum is broader than BRCA1</td></tr>
+        <tr><td>Which syndrome: pigmented lip spots + GI polyps + ↑ BC risk?</td><td><strong>Peutz-Jeghers (STK11/LKB mutation)</strong></td><td>32% lifetime BC risk</td></tr>
+        <tr><td>Which syndrome: 85% lifetime BC risk + thyroid + endometrial?</td><td><strong>Cowden Disease (PTEN mutation)</strong></td><td>PTEN = tumor suppressor gene</td></tr>
+        <tr><td>Li-Fraumeni syndrome gene?</td><td><strong>TP53</strong></td><td>65–90% BC risk + leukemia + sarcomas + brain tumors</td></tr>
+        <tr><td>Most important single risk factor for BC?</td><td><strong>Female gender</strong></td><td>100× more common than males</td></tr>
+        <tr><td>Single most important PROGNOSTIC factor in BC?</td><td><strong>Axillary lymph node status</strong></td><td>Number, level, and capsular invasion all matter</td></tr>
+        <tr><td>Oncotype DX Low risk score → treatment?</td><td><strong>Endocrine therapy ONLY (no chemo)</strong></td><td>RS 0–17 = low recurrence risk</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- BLOCK 6: Nursing -->
+<div class="card gr" style="margin-top:12px">
+  <h4>🏥 Nursing Care Traps</h4>
+  <div class="tw" style="margin-top:8px">
+    <table>
+      <thead><tr><th>السؤال الشائع</th><th>الإجابة الصحيحة</th><th>السبب</th></tr></thead>
+      <tbody>
+        <tr><td>Post-mastectomy: affected arm position?</td><td><strong>Adducted position</strong></td><td>Reduces stress on surgical site</td></tr>
+        <tr><td>Lymphedema prevention: what to AVOID on affected arm?</td><td><strong>BP cuffs, injections, blood draws</strong></td><td>↑ pressure → ↑ lymphedema risk</td></tr>
+        <tr><td>Radiation skin care: what cleanser to use?</td><td><strong>Prescribed wipes + moisture-rich adherent lotion</strong></td><td>Prevent grade 3–4 skin reactions (wet desquamation)</td></tr>
+        <tr><td>Radiation Recall: triggered by which chemo agents?</td><td><strong>Doxorubicin, Paclitaxel, Gemcitabine, Capecitabine</strong></td><td>Acute inflammatory reaction in previously irradiated skin</td></tr>
+        <tr><td>Anxiety affects what % of cancer patients?</td><td><strong>Up to 30%</strong></td><td>Core Curriculum — screen with PHQ-9, GAD-7, Distress Thermometer</td></tr>
+        <tr><td>Tamoxifen users need annual visit with which specialist?</td><td><strong>Gynecologist</strong></td><td>Monitor for endometrial hyperplasia/cancer</td></tr>
+        <tr><td>Zoledronic acid infusion duration?</td><td><strong>15–30 minutes IV, once a month</strong></td><td>Infusing too fast → ↑ renal toxicity</td></tr>
+        <tr><td>Palliative care should be integrated when?</td><td><strong>At point of metastatic diagnosis</strong> — NOT only end-of-life</td><td>Ch. 48: chronic disease management approach</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- QUICK REFERENCE BOX -->
+<div class="pearl" style="margin-top:16px">
+  <strong>💎 Must Memorize — Numbers for the Exam</strong><br><br>
+  <strong>17.3%</strong> — BC prevalence among all Saudi cancers (2022) &nbsp;|&nbsp;
+  <strong>3,334</strong> — total BC cases Saudi 2022<br>
+  <strong>30%</strong> — anxiety prevalence in cancer patients<br>
+  <strong>4×</strong> — relative risk increase with atypical hyperplasia (ADH/ALH)<br>
+  <strong>94%</strong> — MRI sensitivity in BRCA carriers vs <strong>9%</strong> for mammography alone<br>
+  <strong>99%</strong> — 5-year survival with node-negative BC + tumor &lt;1cm<br>
+  <strong>22%</strong> — 5-year survival Stage IV<br>
+  <strong>90%</strong> — risk reduction with bilateral prophylactic mastectomy<br>
+  <strong>15–30 min</strong> — zoledronic acid infusion time (once monthly)<br>
+  <strong>24 hrs</strong> — when to start post-mastectomy exercises<br>
+  <strong>3 months</strong> — ECHO/MUGA monitoring interval during trastuzumab
+</div>
+
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s21" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</section>
+
+<div style="margin-top:40px;padding:16px 20px;background:var(--navy-l);border-radius:var(--r);font-size:12.5px;border-left:4px solid var(--navy)">
+  <strong>📚 Sources:</strong> Cancer Nursing: Principles and Practice 8th Ed — Ch. 47 (Joanne Lester PhD CNP AOCN) &amp; Ch. 48 (Sheryl Redlin-Frazier MSN RN CN-BN) · Core Curriculum for Oncology Nursing 6th Ed — Ch. 13 (Jan Petree) · Study PDF Material (33 pages) · Saudi Cancer Registry Annual Report 2022
+</div>
+
+</main>
+</div>
+
+
+
+<script>
+const secs = document.querySelectorAll('section[id]');
+const links = document.querySelectorAll('.nav a[href^="#"]');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = document.querySelector('.nav a[href="#' + e.target.id + '"]');
+      if(a) a.classList.add('active');
+    }
+  });
+},{threshold:0.05, rootMargin:'-5% 0px -75% 0px'});
+secs.forEach(s => obs.observe(s));
+</script>
+
+<script>
+// ── STORAGE HELPERS ──
+const STORE = 'bc_notes_v1';
+let store = {};
+try { store = JSON.parse(localStorage.getItem(STORE) || '{}'); } catch(e){}
+function save() { try { localStorage.setItem(STORE, JSON.stringify(store)); } catch(e){} }
+
+// ── RESTORE SECTION NOTES ──
+document.querySelectorAll('.sec-notes-box').forEach(box => {
+  const id = box.dataset.id;
+  if(store['note_' + id]) box.textContent = store['note_' + id];
+  box.addEventListener('input', () => {
+    store['note_' + id] = box.textContent;
+    save();
+    const s = box.nextElementSibling;
+    if(s && s.classList.contains('sec-notes-saved')) {
+      s.style.display = 'block';
+      clearTimeout(s._t);
+      s._t = setTimeout(() => s.style.display = 'none', 1800);
+    }
+  });
+});
+
+// ── HIGHLIGHT SYSTEM ──
+const toolbar = document.getElementById('hl-toolbar');
+const notePopup = document.getElementById('note-popup');
+let currentRange = null, currentHlEl = null;
+let hlCounter = (store._hlCounter || 0);
+
+function showToolbar(x, y) {
+  toolbar.style.display = 'flex';
+  toolbar.style.left = Math.min(x, window.innerWidth - 260) + 'px';
+  toolbar.style.top  = (y - 52) + 'px';
+}
+
+document.addEventListener('mouseup', e => {
+  if(toolbar.contains(e.target) || notePopup.contains(e.target)) return;
+  const sel = window.getSelection();
+  if(!sel || sel.isCollapsed || !sel.toString().trim()) {
+    if(!toolbar.contains(e.target)) toolbar.style.display = 'none';
+    return;
+  }
+  const range = sel.getRangeAt(0);
+  // only inside .main
+  if(!document.querySelector('.main').contains(range.commonAncestorContainer)) {
+    toolbar.style.display = 'none'; return;
+  }
+  currentRange = range.cloneRange();
+  const rect = range.getBoundingClientRect();
+  showToolbar(rect.left + window.scrollX, rect.top + window.scrollY);
+});
+
+function applyHighlight(color) {
+  if(!currentRange) return;
+  const id = 'hl' + (++hlCounter);
+  store._hlCounter = hlCounter;
+  const span = document.createElement('span');
+  span.className = 'hl-' + color;
+  span.dataset.hlId = id;
+  span.dataset.hlColor = color;
+  try {
+    currentRange.surroundContents(span);
+    store['hl_' + id] = { color, text: span.textContent, note: '' };
+    save();
+    bindHlEvents(span);
+  } catch(e) {
+    // partial selection across elements - wrap differently
+    const frag = currentRange.extractContents();
+    span.appendChild(frag);
+    currentRange.insertNode(span);
+    store['hl_' + id] = { color, text: span.textContent, note: '' };
+    save();
+    bindHlEvents(span);
+  }
+  window.getSelection().removeAllRanges();
+  toolbar.style.display = 'none';
+  currentRange = null;
+}
+
+function bindHlEvents(span) {
+  let tooltip = null;
+  span.addEventListener('mouseenter', e => {
+    const d = store['hl_' + span.dataset.hlId];
+    if(d && d.note) {
+      tooltip = document.createElement('div');
+      tooltip.className = 'hl-tooltip';
+      tooltip.textContent = d.note;
+      document.body.appendChild(tooltip);
+      const r = span.getBoundingClientRect();
+      tooltip.style.left = (r.left + window.scrollX) + 'px';
+      tooltip.style.top  = (r.top + window.scrollY - tooltip.offsetHeight - 10) + 'px';
+    }
+  });
+  span.addEventListener('mouseleave', () => { if(tooltip) { tooltip.remove(); tooltip = null; } });
+  span.addEventListener('click', e => {
+    e.stopPropagation();
+    currentHlEl = span;
+    openNotePopup(e.clientX, e.clientY);
+  });
+}
+
+function openNotePopup(x, y) {
+  const d = store['hl_' + currentHlEl.dataset.hlId] || {};
+  notePopup.querySelector('textarea').value = d.note || '';
+  notePopup.style.display = 'block';
+  const px = Math.min(x + 10, window.innerWidth - 300);
+  const py = Math.min(y + 10, window.innerHeight - 160);
+  notePopup.style.left = px + 'px';
+  notePopup.style.top  = py + 'px';
+  notePopup.querySelector('textarea').focus();
+}
+
+// toolbar buttons
+toolbar.querySelector('.hl-btn-yellow').addEventListener('click', () => applyHighlight('yellow'));
+toolbar.querySelector('.hl-btn-green').addEventListener('click',  () => applyHighlight('green'));
+toolbar.querySelector('.hl-btn-pink').addEventListener('click',   () => applyHighlight('pink'));
+toolbar.querySelector('.hl-btn-blue').addEventListener('click',   () => applyHighlight('blue'));
+toolbar.querySelector('.hl-btn-note').addEventListener('click',   () => {
+  if(!currentRange) return;
+  applyHighlight('yellow');
+  // find newly created span and open note
+  const sel = document.querySelector('[data-hl-id="hl' + hlCounter + '"]');
+  if(sel) { currentHlEl = sel; const r = sel.getBoundingClientRect(); openNotePopup(r.left, r.bottom + window.scrollY); }
+});
+toolbar.querySelector('.hl-btn-erase').addEventListener('click',  () => {
+  window.getSelection().removeAllRanges();
+  toolbar.style.display = 'none';
+  currentRange = null;
+});
+
+// note popup actions
+notePopup.querySelector('.np-save').addEventListener('click', () => {
+  if(!currentHlEl) return;
+  const id = currentHlEl.dataset.hlId;
+  const txt = notePopup.querySelector('textarea').value.trim();
+  if(!store['hl_' + id]) store['hl_' + id] = { color: currentHlEl.dataset.hlColor, text: currentHlEl.textContent };
+  store['hl_' + id].note = txt;
+  save();
+  if(txt) currentHlEl.classList.add('hl-has-note');
+  else currentHlEl.classList.remove('hl-has-note');
+  notePopup.style.display = 'none';
+});
+notePopup.querySelector('.np-cancel').addEventListener('click', () => { notePopup.style.display = 'none'; });
+notePopup.querySelector('.np-delete').addEventListener('click', () => {
+  if(!currentHlEl) return;
+  const id = currentHlEl.dataset.hlId;
+  delete store['hl_' + id]; save();
+  const parent = currentHlEl.parentNode;
+  while(currentHlEl.firstChild) parent.insertBefore(currentHlEl.firstChild, currentHlEl);
+  parent.removeChild(currentHlEl);
+  notePopup.style.display = 'none';
+  parent.normalize();
+});
+
+document.addEventListener('click', e => {
+  if(!notePopup.contains(e.target) && e.target !== notePopup) notePopup.style.display = 'none';
+});
+
+// ── RESTORE HIGHLIGHTS ── (future: could serialize DOM positions, skipped for simplicity)
+// Highlights are session-based only (DOM positions are hard to serialize reliably)
+// Section notes persist via localStorage
+</script>
+
+
+<script>
+// ── DRAWING ENGINE ──
+const canvas = document.getElementById('draw-canvas');
+const ctx = canvas.getContext('2d');
+const toggle = document.getElementById('draw-toggle');
+const dtoolbar = document.getElementById('draw-toolbar');
+const hint = document.getElementById('draw-hint');
+
+let drawMode = false;
+let painting = false;
+let eraserMode = false;
+let currentColor = '#ef4444';
+let currentSize = 3;
+let strokes = []; // for undo
+let currentStroke = [];
+
+function resizeCanvas() {
+  const dpr = window.devicePixelRatio || 1;
+  const W = window.innerWidth, H = window.innerHeight;
+  // Save current drawing
+  const img = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  canvas.style.width = W + 'px';
+  canvas.style.height = H + 'px';
+  ctx.scale(dpr, dpr);
+  // Restore
+  redrawAll();
+}
+
+function redrawAll() {
+  const dpr = window.devicePixelRatio || 1;
+  ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
+  strokes.forEach(stroke => drawStroke(stroke));
+}
+
+function drawStroke(stroke) {
+  if(stroke.points.length < 2) return;
+  ctx.save();
+  ctx.globalCompositeOperation = stroke.eraser ? 'destination-out' : 'source-over';
+  ctx.strokeStyle = stroke.color;
+  ctx.lineWidth = stroke.size;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.beginPath();
+  ctx.moveTo(stroke.points[0].x, stroke.points[0].y);
+  for(let i = 1; i < stroke.points.length; i++) {
+    const p = stroke.points[i];
+    ctx.lineTo(p.x, p.y);
+  }
+  ctx.stroke();
+  ctx.restore();
+}
+
+function getPos(e) {
+  const rect = canvas.getBoundingClientRect();
+  if(e.touches) {
+    return { x: e.touches[0].clientX - rect.left, y: e.touches[0].clientY - rect.top };
+  }
+  return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+}
+
+function startDraw(e) {
+  if(!drawMode) return;
+  e.preventDefault();
+  painting = true;
+  const pos = getPos(e);
+  currentStroke = [pos];
+}
+
+function draw(e) {
+  if(!painting || !drawMode) return;
+  e.preventDefault();
+  const pos = getPos(e);
+  currentStroke.push(pos);
+  // Live draw
+  ctx.save();
+  ctx.globalCompositeOperation = eraserMode ? 'destination-out' : 'source-over';
+  ctx.strokeStyle = currentColor;
+  ctx.lineWidth = currentSize;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  if(currentStroke.length >= 2) {
+    ctx.beginPath();
+    const p1 = currentStroke[currentStroke.length - 2];
+    const p2 = currentStroke[currentStroke.length - 1];
+    ctx.moveTo(p1.x, p1.y);
+    ctx.lineTo(p2.x, p2.y);
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function endDraw(e) {
+  if(!painting) return;
+  painting = false;
+  if(currentStroke.length > 0) {
+    strokes.push({ points: currentStroke, color: currentColor, size: currentSize, eraser: eraserMode });
+    currentStroke = [];
+    // Save to localStorage
+    try { localStorage.setItem('bc_drawing_v1', JSON.stringify(strokes)); } catch(e){}
+  }
+}
+
+// Touch events
+canvas.addEventListener('touchstart', startDraw, { passive: false });
+canvas.addEventListener('touchmove', draw, { passive: false });
+canvas.addEventListener('touchend', endDraw);
+// Mouse events
+canvas.addEventListener('mousedown', startDraw);
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mouseup', endDraw);
+window.addEventListener('resize', () => { resizeCanvas(); });
+
+// Toggle draw mode
+toggle.addEventListener('click', () => {
+  drawMode = !drawMode;
+  canvas.classList.toggle('active', drawMode);
+  toggle.classList.toggle('active', drawMode);
+  toggle.innerHTML = drawMode ? '✋ إيقاف' : '🖊️ رسم';
+  dtoolbar.classList.toggle('visible', drawMode);
+  hint.style.display = drawMode ? 'block' : 'none';
+  if(drawMode) setTimeout(() => hint.style.display = 'none', 2500);
+  // Disable page scroll when drawing
+  document.body.style.overflow = drawMode ? 'hidden' : '';
+});
+
+// Color buttons
+document.querySelectorAll('.dt-color').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.dt-color').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    currentColor = btn.dataset.color;
+    eraserMode = false;
+    document.getElementById('dt-eraser').style.background = 'rgba(255,255,255,.12)';
+  });
+});
+
+// Size buttons
+document.querySelectorAll('.dt-size').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.dt-size').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    currentSize = parseInt(btn.dataset.size);
+  });
+});
+
+// Eraser
+document.getElementById('dt-eraser').addEventListener('click', function() {
+  eraserMode = !eraserMode;
+  this.style.background = eraserMode ? '#be185d' : 'rgba(255,255,255,.12)';
+});
+
+// Undo
+document.getElementById('dt-undo').addEventListener('click', () => {
+  strokes.pop();
+  redrawAll();
+  try { localStorage.setItem('bc_drawing_v1', JSON.stringify(strokes)); } catch(e){}
+});
+
+// Clear
+document.getElementById('dt-clear').addEventListener('click', () => {
+  if(confirm('تمسح كل الرسومات؟')) {
+    strokes = [];
+    redrawAll();
+    try { localStorage.removeItem('bc_drawing_v1'); } catch(e){}
+  }
+});
+
+// Restore saved drawing
+try {
+  const saved = localStorage.getItem('bc_drawing_v1');
+  if(saved) { strokes = JSON.parse(saved); }
+} catch(e){}
+
+// Init
+resizeCanvas();
+</script>
+
+</body>
+</html>
