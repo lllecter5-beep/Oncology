@@ -1,0 +1,1956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Genetic Risk & Hereditary Cancer Syndromes</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f7fa;
+  --surface: #ffffff;
+  --surface2: #f0f4ff;
+  --border: #e2e8f0;
+  --border2: #c8d4e8;
+  --blue: #2563eb;
+  --blue-dim: #dbeafe;
+  --green: #16a34a;
+  --green-dim: #dcfce7;
+  --red: #dc2626;
+  --red-dim: #fee2e2;
+  --orange: #ea580c;
+  --orange-dim: #ffedd5;
+  --purple: #7c3aed;
+  --purple-dim: #ede9fe;
+  --yellow: #d97706;
+  --yellow-dim: #fef3c7;
+  --teal: #0891b2;
+  --teal-dim: #cffafe;
+  --text: #1e293b;
+  --muted: #64748b;
+  --muted2: #94a3b8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 14px;
+  padding: 16px;
+}
+
+/* ── HEADER ── */
+.hdr {
+  text-align: center;
+  padding: 48px 24px 40px;
+  background: linear-gradient(135deg, #0f172a, #1e3a8a 45%, #2563eb 70%, #1e40af);
+  border: none;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(37,99,235,.3);
+}
+.hdr::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 20% 50%, rgba(99,179,255,.15) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 50%, rgba(61,214,140,.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hdr-tag { font-size: .72em; font-weight: 600; letter-spacing: .12em; color: #93c5fd; text-transform: uppercase; margin-bottom: 12px; }
+.hdr h1 { font-size: 2em; font-weight: 700; color: #fff; margin-bottom: 8px; line-height: 1.2; }
+.hdr p { color: rgba(255,255,255,.8); font-size: .88em; margin-bottom: 16px; }
+.badges { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.badge { background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.35); padding: 4px 12px; border-radius: 20px; font-size: .72em; font-weight: 600; color: #fff; }
+.badge.hi { border-color: var(--blue); color: var(--blue); }
+
+/* ── TOC ── */
+.toc { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+.toc-title { font-size: .75em; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #2563eb; margin-bottom: 12px; }
+.toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 3px 16px; }
+.toc a { font-size: .82em; color: #2563eb; text-decoration: none; padding: 3px 0; display: flex; align-items: center; gap: 6px; transition: color .15s; }
+.toc a:hover { color: #1d4ed8; }
+.toc a span { font-size: .7em; color: #94a3b8; }
+
+/* ── SECTION ── */
+.sec { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 16px; overflow: hidden; }
+.sec-head {
+  padding: 12px 18px;
+  display: flex; align-items: center; gap: 10px;
+  font-weight: 700; font-size: .88em;
+  border-bottom: 1px solid var(--border);
+}
+.sec-head.blue   { background: var(--blue-dim);   color: var(--blue); }
+.sec-head.green  { background: var(--green-dim);  color: var(--green); }
+.sec-head.red    { background: var(--red-dim);    color: var(--red); }
+.sec-head.purple { background: var(--purple-dim); color: var(--purple); }
+.sec-head.orange { background: var(--orange-dim); color: var(--orange); }
+.sec-head.yellow { background: var(--yellow-dim); color: var(--yellow); }
+.sec-head.teal   { background: var(--teal-dim);   color: var(--teal); }
+.sec-body { padding: 18px; }
+
+/* ── GRID ── */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+@media(max-width:700px) { .g2, .g3 { grid-template-columns: 1fr; } }
+
+/* ── CARD ── */
+.card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+}
+.card-title {
+  font-size: .8em; font-weight: 700;
+  margin-bottom: 10px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.card-title.blue   { color: #2563eb; }
+.card-title.green  { color: #16a34a; }
+.card-title.red    { color: #dc2626; }
+.card-title.purple { color: #7c3aed; }
+.card-title.orange { color: #ea580c; }
+.card-title.yellow { color: #d97706; }
+.card-title.teal   { color: #0891b2; }
+
+/* ── LISTS ── */
+ul { list-style: none; padding: 0; }
+ul li { font-size: .87em; padding: 3px 0 3px 16px; position: relative; color: #334155; }
+ul li::before { content: "›"; position: absolute; left: 0; color: #94a3b8; font-weight: 700; }
+ul li strong { color: #1e293b; }
+ol { padding-left: 18px; }
+ol li { font-size: .87em; padding: 3px 0; }
+
+/* ── CALLOUTS ── */
+.note {
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 10px 0;
+  font-size: .85em;
+  border-left: 3px solid;
+}
+.note.blue   { background: var(--blue-dim);   border-color: var(--blue);   color: #1e40af; }
+.note.green  { background: var(--green-dim);  border-color: var(--green);  color: #14532d; }
+.note.red    { background: var(--red-dim);    border-color: var(--red);    color: #7f1d1d; }
+.note.orange { background: var(--orange-dim); border-color: var(--orange); color: #7c2d12; }
+.note.purple { background: var(--purple-dim); border-color: var(--purple); color: #4c1d95; }
+.note.yellow { background: var(--yellow-dim); border-color: var(--yellow); color: #78350f; }
+.note.teal   { background: var(--teal-dim);   border-color: var(--teal);   color: #164e63; }
+
+.brain { background: #dcfce7; border-left: 3px solid var(--green); padding: 8px 12px; border-radius: 0 8px 8px 0; font-size: .83em; color: #14532d; margin: 8px 0; font-weight: 600; }
+.exam  { background: #ede9fe; border-left: 3px solid var(--purple); padding: 8px 12px; border-radius: 0 8px 8px 0; font-size: .83em; color: #4c1d95; margin: 8px 0; font-weight: 600; }
+.warn  { background: var(--red-dim); border-left: 3px solid var(--red); padding: 8px 12px; border-radius: 0 8px 8px 0; font-size: .83em; color: #7f1d1d; margin: 8px 0; font-weight: 600; }
+
+/* ── TABLES ── */
+table { width: 100%; border-collapse: collapse; font-size: .83em; margin: 8px 0; }
+th { background: #1e3a8a; color: #ffffff; padding: 8px 10px; text-align: left; font-weight: 700; font-size: .8em; letter-spacing: .04em; }
+td { padding: 7px 10px; border-bottom: 1px solid var(--border); vertical-align: top; color: #1e293b; }
+tr:hover td { background: rgba(79,142,247,.05); }
+
+/* ── TAGS ── */
+.gene { display: inline-block; background: #dbeafe; color: #1e40af; padding: 1px 6px; border-radius: 4px; font-family: 'IBM Plex Mono', monospace; font-size: .75em; font-weight: 500; border: 1px solid var(--blue-dim); }
+.tag { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: .72em; font-weight: 700; }
+.tag.ad  { background: var(--green-dim); color: var(--green); border: 1px solid #1a4030; }
+.tag.ar  { background: var(--red-dim);   color: var(--red);   border: 1px solid #401818; }
+.tag.ex  { background: var(--purple-dim); color: var(--purple); border: 1px solid #3a1860; }
+
+/* ── STAT BOXES ── */
+.stats { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0; }
+.stat { flex: 1; min-width: 100px; background: var(--surface2); border: 1px solid var(--border2); border-radius: 10px; padding: 12px; text-align: center; }
+.stat .n { font-size: 1.6em; font-weight: 700; display: block; }
+.stat .l { font-size: .72em; color: #64748b; margin-top: 2px; }
+.stat.blue   .n { color: var(--blue); }
+.stat.green  .n { color: var(--green); }
+.stat.red    .n { color: var(--red); }
+.stat.orange .n { color: var(--orange); }
+.stat.purple .n { color: var(--purple); }
+
+/* ── RISK BARS ── */
+.rbar { margin: 5px 0; }
+.rbar-top { display: flex; justify-content: space-between; font-size: .78em; margin-bottom: 3px; color: var(--muted); }
+.rbar-top strong { color: var(--text); }
+.rbar-track { background: var(--border); border-radius: 4px; height: 7px; overflow: hidden; }
+.rbar-fill  { height: 7px; border-radius: 4px; }
+
+/* ── VS SPLIT ── */
+.vs { display: flex; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin: 10px 0; }
+.vs-half { flex: 1; padding: 14px; }
+.vs-half:first-child { background: rgba(79,142,247,.06); border-right: 1px solid var(--border); }
+.vs-half:last-child  { background: rgba(247,99,92,.06); }
+.vs-half h5 { font-size: .82em; font-weight: 700; margin-bottom: 8px; color: #1e293b; }
+
+/* ── SYNDROME CARD ── */
+.syn-banner {
+  padding: 14px 18px;
+  display: flex; align-items: center; gap: 14px;
+  border-radius: 10px; margin-bottom: 14px;
+}
+.syn-icon { font-size: 2em; width: 48px; height: 48px; background: rgba(255,255,255,.08); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.syn-info h3 { font-size: .95em; font-weight: 700; color: #1e293b; margin-bottom: 3px; }
+.syn-info p  { font-size: .78em; color: #475569; }
+
+/* ── STEPS ── */
+.step { display: flex; gap: 10px; margin: 8px 0; align-items: flex-start; }
+.step-n { background: var(--blue); color: #fff; font-weight: 700; font-size: .78em; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.step-body { font-size: .86em; flex: 1; padding-top: 2px; color: #1e293b; }
+
+/* ── TIMELINE ── */
+.tl-item { display: flex; gap: 10px; margin-bottom: 8px; align-items: flex-start; }
+.tl-dot  { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+.tl-text { font-size: .85em; color: #334155; }
+
+/* ── DIVIDER ── */
+hr { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
+.sub-head { font-size: .78em; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #64748b; margin: 14px 0 8px; }
+
+/* ── MEMORY TRICK CARDS ── */
+.mem-card { background: #f8faff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 13px; border-left: 3px solid; color: #1e293b; }
+
+/* ── FOOTER ── */
+.footer { text-align: center; padding: 24px; color: #94a3b8; font-size: .78em; margin-top: 10px; border-top: 1px solid #e2e8f0; }
+
+/* ── QUICK ICONS ── */
+.qi-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.qi { background: #f8faff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px 12px; font-size: .8em; flex: 1; min-width: 110px; text-align: center; color: #1e293b; }
+.qi .icon { font-size: 1.4em; display: block; margin-bottom: 3px; }
+.qi strong { color: var(--blue); display: block; font-size: .88em; }
+
+.hl-yellow{background:#fef08a;border-radius:3px;cursor:pointer;padding:0 2px}
+.hl-green{background:#bbf7d0;border-radius:3px;cursor:pointer;padding:0 2px}
+.hl-pink{background:#fecdd3;border-radius:3px;cursor:pointer;padding:0 2px}
+.hl-blue{background:#bae6fd;border-radius:3px;cursor:pointer;padding:0 2px}
+.hl-has-note{border-bottom:2px dashed #f59e0b}
+#hl-mode-bar{position:fixed;top:0;left:0;right:0;z-index:10000;background:#1e293b;padding:8px 12px;display:none;gap:8px;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.4);flex-wrap:wrap}
+#hl-mode-bar.visible{display:flex}
+#hl-mode-bar .hl-label{color:#94a3b8;font-size:12px;font-weight:600}
+.hl-color-btn{width:32px;height:32px;border-radius:50%;border:3px solid transparent;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.hl-color-btn.selected{border-color:#fff;transform:scale(1.2)}
+.hl-color-btn.eraser{background:#fff;font-size:16px;display:flex;align-items:center;justify-content:center;border:2px solid #cbd5e1}
+#hl-mode-toggle{position:fixed;bottom:80px;right:24px;z-index:10000;background:#f59e0b;color:#fff;border:none;border-radius:50px;padding:10px 16px;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(245,158,11,.4);-webkit-tap-highlight-color:transparent}
+#hl-mode-toggle.active{background:#16a34a}
+#hl-hint{position:fixed;top:56px;left:50%;transform:translateX(-50%);background:rgba(30,41,59,.9);color:#fff;border-radius:10px;padding:6px 16px;font-size:12px;z-index:10001;display:none;pointer-events:none;white-space:nowrap}
+#note-popup{position:fixed;z-index:10001;background:#fff;border-radius:12px;padding:14px;width:280px;box-shadow:0 8px 32px rgba(0,0,0,.2);border:1px solid #e2e8f0;display:none;left:50%;transform:translateX(-50%);top:60px}
+#note-popup textarea{width:100%;height:80px;border:1px solid #e2e8f0;border-radius:8px;padding:8px;font-size:13px;resize:none;outline:none;color:#1e293b;direction:rtl;box-sizing:border-box}
+#note-popup textarea:focus{border-color:#be185d}
+#note-popup .np-actions{display:flex;gap:8px;margin-top:8px;justify-content:flex-end}
+#note-popup .np-save{background:#be185d;color:#fff;border:none;border-radius:8px;padding:6px 16px;font-size:13px;font-weight:600;cursor:pointer}
+#note-popup .np-cancel{background:#f1f5f9;color:#64748b;border:none;border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer}
+#note-popup .np-delete{background:#fee2e2;color:#dc2626;border:none;border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer;margin-right:auto}
+#note-popup h6{font-size:12px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+#draw-toggle{position:fixed;bottom:24px;right:24px;z-index:10000;background:#be185d;color:#fff;border:none;border-radius:50px;padding:10px 16px;font-size:13px;font-weight:700;cursor:pointer;-webkit-tap-highlight-color:transparent}
+#draw-toggle.active{background:#16a34a}
+#draw-toolbar{position:fixed;bottom:76px;right:16px;z-index:10000;background:#1e293b;border-radius:14px;padding:10px;display:none;flex-direction:row;flex-wrap:wrap;gap:6px;align-items:center;max-width:280px;justify-content:center;box-shadow:0 8px 32px rgba(0,0,0,.35)}
+#draw-toolbar.visible{display:flex}
+.dt-color{width:28px;height:28px;border-radius:50%;border:3px solid transparent;cursor:pointer}
+.dt-color.selected{border-color:#fff;transform:scale(1.2)}
+.dt-size{background:rgba(255,255,255,.12);color:#fff;border:none;border-radius:8px;padding:4px 8px;font-size:12px;cursor:pointer;width:36px;text-align:center}
+.dt-size.selected{background:#be185d}
+.dt-btn{background:rgba(255,255,255,.12);color:#fff;border:none;border-radius:8px;padding:6px 8px;font-size:15px;cursor:pointer}
+#draw-canvas{position:fixed;inset:0;z-index:9990;pointer-events:none;touch-action:none;display:none}
+#draw-canvas.active{pointer-events:all;display:block}
+#draw-hint{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:rgba(30,41,59,.9);color:#fff;border-radius:10px;padding:8px 18px;font-size:13px;z-index:10001;display:none;pointer-events:none}
+.sec-notes-wrap{margin-top:16px;border-top:1px dashed #e2e8f0;padding-top:12px}
+.sec-notes-label{font-size:.72em;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#be185d;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.sec-notes-box{width:100%;min-height:48px;border:1.5px dashed #f9a8c4;border-radius:10px;padding:10px 14px;font-size:13.5px;color:#1e293b;background:#fff9fb;outline:none;resize:vertical;line-height:1.7;direction:rtl;text-align:right;transition:border-color .2s;box-sizing:border-box}
+.sec-notes-box:focus{border-color:#be185d;background:#fff}
+.sec-notes-box:empty::before{content:attr(data-placeholder);color:#f9a8c4;pointer-events:none}
+.sec-notes-saved{font-size:.75em;color:#16a34a;margin-top:4px;display:none}
+
+</style>
+</head>
+<body>
+
+<canvas id="draw-canvas"></canvas>
+<div id="draw-hint">🖊️ وضع الرسم</div>
+<div id="hl-mode-bar">
+  <span class="hl-label">🖊️ اختر لون:</span>
+  <div class="hl-color-btn selected" style="background:#fef08a" data-color="yellow"></div>
+  <div class="hl-color-btn" style="background:#bbf7d0" data-color="green"></div>
+  <div class="hl-color-btn" style="background:#fecdd3" data-color="pink"></div>
+  <div class="hl-color-btn" style="background:#bae6fd" data-color="blue"></div>
+  <div class="hl-color-btn eraser" data-color="erase">✕</div>
+</div>
+<div id="hl-hint">حدد النص وسيتلوّن تلقائياً</div>
+<button id="hl-mode-toggle">🖊️ هايلايت</button>
+<button id="draw-toggle">✏️ رسم</button>
+<div id="draw-toolbar">
+  <div class="dt-color selected" style="background:#ef4444" data-color="#ef4444"></div>
+  <div class="dt-color" style="background:#f59e0b" data-color="#f59e0b"></div>
+  <div class="dt-color" style="background:#3b82f6" data-color="#3b82f6"></div>
+  <div class="dt-color" style="background:#16a34a" data-color="#16a34a"></div>
+  <div class="dt-color" style="background:#000" data-color="#000000"></div>
+  <button class="dt-size selected" data-size="3">S</button>
+  <button class="dt-size" data-size="6">M</button>
+  <button class="dt-size" data-size="12">L</button>
+  <button class="dt-btn" id="dt-eraser">◻</button>
+  <button class="dt-btn" id="dt-undo">↩</button>
+  <button class="dt-btn" id="dt-clear">🗑</button>
+</div>
+<div id="note-popup">
+  <h6>✏️ ملاحظتك</h6>
+  <textarea placeholder="اكتب ملاحظتك هنا..."></textarea>
+  <div class="np-actions">
+    <button class="np-delete">🗑️ حذف</button>
+    <button class="np-cancel">إلغاء</button>
+    <button class="np-save">حفظ</button>
+  </div>
+</div>
+
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-tag">Oncology Nursing · Exam Preparation</div>
+  <div style="display:flex;gap:8px;justify-content:center;margin-bottom:14px;flex-wrap:wrap;">
+    <span style="background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);padding:5px 16px;border-radius:20px;font-size:.8em;font-weight:700;color:#fff;">📗 Chapter 6 — Yarbro, Wujcik &amp; Gobel</span>
+    <span style="background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);padding:5px 16px;border-radius:20px;font-size:.8em;font-weight:700;color:#fff;">📘 Chapter 10 — Julie Eggert</span>
+  </div>
+  <h1>Genetic Risk &amp; Hereditary Cancer Syndromes</h1>
+  <p>Cancer Nursing: Principles &amp; Practice, 8th Edition · Complete Unified Notes</p>
+  <div class="badges">
+    <span class="badge hi">⭐ High-Yield</span>
+    <span class="badge">Complete &amp; Organized</span>
+    <span class="badge">Both Books Merged</span>
+    <span class="badge">White Theme</span>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <div class="toc-title">Contents</div>
+  <div class="toc-grid">
+    <a href="#s1"><span>01</span> What Is Hereditary Cancer?</a>
+    <a href="#s2"><span>02</span> DNA, RNA &amp; Molecular Biology</a>
+    <a href="#s3"><span>03</span> Epigenetics &amp; Gene Regulation</a>
+    <a href="#s4"><span>04</span> Mutation Types</a>
+    <a href="#s5"><span>05</span> Inheritance Patterns</a>
+    <a href="#s6"><span>06</span> Key Vocabulary</a>
+    <a href="#s7"><span>07</span> Pedigree &amp; Family History</a>
+    <a href="#s8"><span>08</span> Genetic Counseling &amp; Nurse Role</a>
+    <a href="#s9"><span>09</span> Test Results Interpretation</a>
+    <a href="#s10"><span>10</span> Risk Assessment Models</a>
+    <a href="#s11"><span>11</span> BRCA / HBOC ⭐⭐⭐</a>
+    <a href="#s12"><span>12</span> Lynch Syndrome ⭐⭐⭐</a>
+    <a href="#s13"><span>13</span> FAP &amp; Colorectal Syndromes ⭐⭐⭐</a>
+    <a href="#s14"><span>14</span> MEN Syndromes ⭐⭐⭐</a>
+    <a href="#s15"><span>15</span> Cowden Syndrome</a>
+    <a href="#s16"><span>16</span> VHL Syndrome</a>
+    <a href="#s17"><span>17</span> Li-Fraumeni Syndrome ⭐⭐⭐</a>
+    <a href="#s18"><span>18</span> Additional Syndromes</a>
+    <a href="#s19"><span>19</span> Ethics, GINA &amp; Legal</a>
+    <a href="#s20"><span>20</span> Informed Consent</a>
+    <a href="#s21"><span>21</span> Testing in Minors</a>
+    <a href="#s22"><span>22</span> Psychological &amp; Social Issues</a>
+    <a href="#s23"><span>23</span> NGS &amp; Testing Methods</a>
+    <a href="#s24"><span>24</span> Master Table + Memory Tricks</a>
+  </div>
+</div>
+
+<!-- BIG PICTURE -->
+<div class="sec">
+  <div class="sec-head blue">⚡ The Big Picture</div>
+  <div class="sec-body">
+    <div class="stats">
+      <div class="stat blue"><span class="n">5–10%</span><span class="l">of all cancers are hereditary</span></div>
+      <div class="stat red"><span class="n">75%</span><span class="l">sporadic (random)</span></div>
+      <div class="stat orange"><span class="n">15–20%</span><span class="l">familial clustering</span></div>
+      <div class="stat green"><span class="n">50+</span><span class="l">hereditary syndromes identified</span></div>
+      <div class="stat purple"><span class="n">1/400</span><span class="l">BRCA carrier frequency</span></div>
+    </div>
+    <div class="qi-row">
+      <div class="qi"><span class="icon">🎗️</span><strong>BRCA</strong>Breast &amp; Ovary</div>
+      <div class="qi"><span class="icon">🫁</span><strong>Lynch</strong>Colon &amp; Uterus</div>
+      <div class="qi"><span class="icon">🟣</span><strong>FAP</strong>100% Colon Risk</div>
+      <div class="qi"><span class="icon">🦋</span><strong>MEN1</strong>3 P's</div>
+      <div class="qi"><span class="icon">🦋</span><strong>MEN2</strong>Thyroid Always</div>
+      <div class="qi"><span class="icon">🌿</span><strong>Cowden</strong>PTEN + Breast 85%</div>
+      <div class="qi"><span class="icon">🫘</span><strong>VHL</strong>Kidney + Pheo</div>
+      <div class="qi"><span class="icon">⚠️</span><strong>LFS</strong>p53 → Early Cancers</div>
+    </div>
+  </div>
+</div>
+
+<!-- S1: HEREDITARY CANCER -->
+<div class="sec" id="s1">
+  <div class="sec-head blue">📌 01 · What Is Hereditary Cancer? <span style="color:var(--yellow);font-size:.8em;">⭐⭐⭐</span></div>
+  <div class="sec-body">
+    <div class="g2">
+      <div class="card">
+        <div class="card-title blue">Core Concept</div>
+        <ul>
+          <li>Person <strong>inherits a damaged gene</strong> from a parent</li>
+          <li>Does <em>NOT</em> mean born with cancer</li>
+          <li>Means born with a <strong>significantly higher lifetime risk</strong></li>
+          <li>Germline mutation is present in <strong>every cell</strong> from birth</li>
+          <li>Clinical testing available for <strong>over 50 syndromes</strong></li>
+        </ul>
+        <div class="brain">🧠 High risk ≠ certainty. Not all carriers develop cancer.</div>
+      </div>
+      <div class="card">
+        <div class="card-title blue">Three Cancer Pattern Types</div>
+        <ul>
+          <li><strong>Sporadic (~75%)</strong> — random; aging + environment; no family pattern</li>
+          <li><strong>Familial (~15–20%)</strong> — clusters in families; no clear single gene; genetic testing usually uninformative</li>
+          <li><strong>Hereditary (5–10%)</strong> — identifiable germline mutation; vertical pedigree; early onset; multiple relatives</li>
+        </ul>
+        <div class="note blue"><strong>Key:</strong> Familial clustering ≠ Hereditary syndrome. Always distinguish between them!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s1" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</div>
+
+<!-- S2: DNA / RNA -->
+<div class="sec" id="s2">
+  <div class="sec-head teal">🧬 02 · DNA, RNA &amp; Molecular Biology <span style="color:var(--yellow);font-size:.8em;">⭐⭐</span></div>
+  <div class="sec-body">
+    <div class="note teal" style="margin-bottom:12px;"><strong>Central Dogma:</strong> "DNA makes RNA and RNA makes protein" — guides production of protein for ALL body functions.</div>
+    <div class="g2">
+      <div class="card">
+        <div class="card-title teal">DNA Structure</div>
+        <ul>
+          <li>46 chromosomes = <strong>23 pairs</strong>, one from each parent</li>
+          <li>Short arm = <strong>"p" arm</strong> | Long arm = <strong>"q" arm</strong></li>
+          <li>DNA = double helix of two nucleotide chains held by hydrogen bonds</li>
+          <li>Purines: <strong>Adenine (A)</strong> + <strong>Guanine (G)</strong></li>
+          <li>Pyridines: <strong>Thymine (T)</strong> + <strong>Cytosine (C)</strong></li>
+          <li>Complementary pairs: <strong>A–T</strong> and <strong>G–C</strong></li>
+          <li>RNA = single chain; <strong>Uracil (U) replaces Thymine</strong></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title teal">Transcription &amp; Translation</div>
+        <ul>
+          <li><strong>Transcription</strong> = DNA → RNA</li>
+          <li>→ Loosening histone = allows transcription</li>
+          <li>→ Tightening histone = prevents transcription</li>
+          <li><strong>Translation</strong> = RNA → Protein (amino acids)</li>
+          <li>A <strong>codon</strong> = 3 mRNA nucleotides (e.g., ACG = threonine)</li>
+          <li>Change in <strong>1st codon position</strong> → usually different amino acid</li>
+          <li>Change in <strong>3rd codon position</strong> → rarely causes amino acid change</li>
+          <li>Multiple codons can code for the same amino acid</li>
+        </ul>
+        <div class="brain">🧠 Transcription = DNA→RNA | Translation = RNA→Protein</div>
+      </div>
+    </div>
+    <div class="g2" style="margin-top:12px;">
+      <div class="card">
+        <div class="card-title teal">Genes</div>
+        <ul>
+          <li>Individual units of hereditary information at specific chromosome positions</li>
+          <li><strong>Exons</strong> = protein-coding segments of a gene</li>
+          <li><strong>Introns</strong> = non-protein-coding segments (interrupting pieces)</li>
+          <li><strong>SNP</strong> — Single Nucleotide Polymorphism: change in one nucleotide; occurs at variable frequency in the population; NOT always disease-causing</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title teal">Types of Regulatory Genes</div>
+        <ul>
+          <li><strong>Proto-oncogenes</strong>: normal genes for cell growth (e.g., HER2). Mutations → oncogene activation → uncontrolled division</li>
+          <li><strong>Tumor suppressor genes</strong>: regulate cell growth (e.g., p53, RB1). Mutation → uncontrolled growth</li>
+          <li><strong>DNA repair genes</strong>: keep DNA free of errors. MMR genes = Lynch syndrome</li>
+          <li><strong>Mutator gene phenotype</strong>: poor proofreading → thousands of mutations vs normal cells</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s2" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</div>
+
+<!-- S3: EPIGENETICS -->
+<div class="sec" id="s3">
+  <div class="sec-head teal">🔄 03 · Epigenetics &amp; Gene Regulation <span style="color:var(--yellow);font-size:.8em;">⭐</span></div>
+  <div class="sec-body">
+    <div class="g2">
+      <div class="card">
+        <div class="card-title teal">What Is Epigenetics?</div>
+        <ul>
+          <li>Switching genes on/off with <strong>"chemical tails"</strong> attached to DNA <strong>without changing the DNA sequence itself</strong></li>
+          <li>Opening histone structure = allows transcription (gene ON)</li>
+          <li>Closing histone structure = prevents transcription (gene OFF)</li>
+          <li>Result: alters "DNA → RNA → protein" outcome</li>
+        </ul>
+        <div class="brain">🧠 Epigenetics = expression change WITHOUT DNA sequence change</div>
+      </div>
+      <div class="card">
+        <div class="card-title teal">Factors &amp; Clinical Relevance</div>
+        <ul>
+          <li>Factors that affect epigenetics: <strong>diet, exercise, aging, drugs, addiction, parenting, environment</strong></li>
+          <li>Epigenetic changes can <strong>cause OR prevent cancer</strong></li>
+          <li>Explains why identical twins with the same DNA can have different cancer outcomes</li>
+          <li>Target for cancer treatment (e.g., histone deacetylase inhibitors)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s3" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</div>
+
+<!-- S4: MUTATION TYPES -->
+<div class="sec" id="s4">
+  <div class="sec-head red">⚡ 04 · Mutation Types <span style="color:var(--yellow);font-size:.8em;">⭐⭐⭐</span></div>
+  <div class="sec-body">
+    <div class="vs">
+      <div class="vs-half">
+        <h5 style="color:var(--blue);">Germline Mutation</h5>
+        <ul>
+          <li>In egg or sperm (germ cell)</li>
+          <li>Present in <strong>every cell</strong> of the body</li>
+          <li>Can be <strong>passed to children</strong> (50% if AD)</li>
+          <li>Causes hereditary cancer syndromes</li>
+        </ul>
+        <div class="brain">🧠 "Born with it"</div>
+      </div>
+      <div class="vs-half">
+        <h5 style="color:var(--red);">Somatic Mutation</h5>
+        <ul>
+          <li>In body cells — occurs during life</li>
+          <li>Only in the <strong>cancer cell and descendants</strong></li>
+          <li><strong>Cannot be passed</strong> to children</li>
+          <li>Cause: tobacco, radiation, aging, random errors</li>
+          <li>Responsible for ~<strong>90–95%</strong> of all cancers</li>
+        </ul>
+        <div class="brain">🧠 "Developed later"</div>
+      </div>
+    </div>
+    <table style="margin-top:12px;">
+      <tr><th>Mutation Type</th><th>What Happens</th><th>Key Point</th></tr>
+      <tr><td><strong>Frameshift</strong></td><td>Insertion or deletion shifts the reading frame of all downstream codons</td><td>Major effect on protein</td></tr>
+      <tr><td><strong>Missense</strong></td><td>Single nucleotide change → different amino acid incorporated</td><td>Altered protein function</td></tr>
+      <tr><td><strong>Nonsense</strong></td><td>Single nucleotide change → premature stop codon → truncated protein</td><td>Shorter, often non-functional protein</td></tr>
+      <tr><td><strong>Silent/Synonymous</strong></td><td>Nucleotide changes but same amino acid produced</td><td>No protein change</td></tr>
+      <tr><td><strong>Splicing change</strong></td><td>Affects how introns/exons are removed from pre-mRNA</td><td>Abnormal mRNA produced</td></tr>
+      <tr><td><strong>De Novo</strong></td><td>New germline mutation appearing for the first time in a family</td><td>No family history! Parents unaffected. Example: 25% of FAP</td></tr>
+      <tr><td><strong>Founder Mutation</strong></td><td>High frequency in specific population due to common ancestor</td><td>AJ population: 3 BRCA founder mutations = 80–90% of AJ BRCA cases</td></tr>
+      <tr><td><strong>Driver Mutation</strong></td><td>Promotes cancer growth; offers selective advantage</td><td>Increases oncogene mutation chance</td></tr>
+      <tr><td><strong>Passenger Mutation</strong></td><td>Nucleotide change that does NOT provide a growth advantage</td><td>Along for the ride; not cancer-causing</td></tr>
+    </table>
+    <div class="g2" style="margin-top:12px;">
+      <div class="note blue"><strong>Translocations:</strong> Segments break off one chromosome and attach to another → altered protein production</div>
+      <div class="note orange"><strong>MSI (Microsatellite Instability):</strong> Change in tumor cell DNA where short repeated sequences differ from inherited DNA. Identifies germline abnormality in MMR genes → Lynch syndrome</div>
+    </div>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s4" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</div>
+
+<!-- S5: INHERITANCE -->
+<div class="sec" id="s5">
+  <div class="sec-head orange">🧩 05 · Inheritance Patterns <span style="color:var(--yellow);font-size:.8em;">⭐⭐⭐</span></div>
+  <div class="sec-body">
+    <div class="g2">
+      <div class="card">
+        <div class="card-title green">Autosomal Dominant (AD) <span class="tag ad">AD</span></div>
+        <ul>
+          <li>Only <strong>ONE</strong> abnormal copy needed to express disease</li>
+          <li>Heterozygous: one mutant + one normal allele</li>
+          <li><strong>50% chance</strong> of passing to each child</li>
+          <li>Appears in <strong>every generation</strong> — vertical pedigree pattern</li>
+          <li>Men and women equally affected</li>
+          <li>No skipping of generations (incomplete penetrance can mimic this)</li>
+        </ul>
+        <div class="brain">🧠 ALL major hereditary cancer syndromes are AD except MUTYH (AR)</div>
+      </div>
+      <div class="card">
+        <div class="card-title red">Autosomal Recessive (AR) <span class="tag ar">AR</span></div>
+        <ul>
+          <li><strong>TWO</strong> abnormal copies required (one from each parent)</li>
+          <li>Parents are usually unaffected <strong>carriers</strong></li>
+          <li><strong>25% chance</strong> of affected child when both parents are carriers</li>
+          <li>Horizontal pedigree — siblings affected, parents often not</li>
+          <li>Family history may be <strong>less obvious</strong></li>
+          <li>Very rare in hereditary cancer</li>
+        </ul>
+        <div class="brain">🧠 Only AR colorectal cancer syndrome: MUTYH (MAP)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s5" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</div>
+
+<!-- S6: VOCABULARY -->
+<div class="sec" id="s6">
+  <div class="sec-head purple">📖 06 · Key Vocabulary <span style="color:var(--yellow);font-size:.8em;">⭐⭐</span></div>
+  <div class="sec-body">
+    <table>
+      <tr><th>Term</th><th>Definition</th><th>Clinical Relevance</th></tr>
+      <tr><td><strong>Penetrance</strong></td><td>Proportion of mutation carriers who actually develop the disease</td><td>BRCA1 breast penetrance ≈ 55–65% by age 70</td></tr>
+      <tr><td><strong>Incomplete Penetrance</strong></td><td>Carrier has the mutation but NEVER develops disease</td><td>Can look like mutation "skipped" a generation</td></tr>
+      <tr><td><strong>Variable Expressivity</strong></td><td>Same mutation → different severity, age, or cancer type between family members</td><td>One sister: breast 32 yrs; other sister: ovarian 58 yrs — same BRCA mutation</td></tr>
+      <tr><td><strong>VUS</strong></td><td>Variant of Unknown Significance — mutation found but pathogenicity unknown</td><td><span class="tag ex">⭐ EXAM</span> Do NOT base surgical decisions on VUS alone</td></tr>
+      <tr><td><strong>Phenocopy</strong></td><td>Same disease phenotype due to environmental/somatic causes — NOT the family germline mutation</td><td>Person in BRCA family gets sporadic breast cancer from somatic events</td></tr>
+      <tr><td><strong>Heterogeneity</strong></td><td>Multiple different genes can cause the same disease</td><td>Both BRCA1 AND BRCA2 cause breast/ovarian cancer</td></tr>
+      <tr><td><strong>Carrier</strong></td><td>Has one recessive disease-causing allele — does NOT manifest disease</td><td>Both MUTYH parents are carriers → 25% chance child gets both copies</td></tr>
+      <tr><td><strong>Incidental Finding</strong></td><td>Sequencing result unrelated to original indication but may have clinical utility</td><td>Increases with NGS — must discuss PRE-test</td></tr>
+      <tr><td><strong>Loss of Heterozygosity</strong></td><td>Loss of the second segment (allele) of both copies of a chromosome</td><td>Key mechanism in tumor suppressor gene inactivation</td></tr>
+      <tr><td><strong>Aneuploidy</strong></td><td>Abnormal number of chromosomes</td><td>Common chromosomal abnormality in cancer cells</td></tr>
+    </table>
+    <div class="exam">⭐ EXAM ALERT: VUS + Uninformative Negative are the most commonly tested concepts. Know the difference and appropriate nursing response!</div>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s6" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</div>
+
+<!-- S7: PEDIGREE -->
+<div class="sec" id="s7">
+  <div class="sec-head blue">👨‍👩‍👧‍👦 07 · Pedigree &amp; Family History <span style="color:var(--yellow);font-size:.8em;">⭐⭐</span></div>
+  <div class="sec-body">
+    <div class="g2">
+      <div class="card">
+        <div class="card-title blue">Pedigree Symbols</div>
+        <table style="font-size:.82em;">
+          <tr><td>⭕ Circle</td><td>Female</td></tr>
+          <tr><td>⬜ Square</td><td>Male</td></tr>
+          <tr><td>⬛ / ⬤ Filled</td><td>Affected with disease</td></tr>
+          <tr><td>➡️ Arrow</td><td>Proband (index patient)</td></tr>
+          <tr><td>⊙ Dot inside</td><td>Mutation carrier (unaffected)</td></tr>
+          <tr><td>⊘ Slash</td><td>Deceased individual</td></tr>
+          <tr><td>Paternal side</td><td>LEFT side of pedigree</td></tr>
+          <tr><td>Maternal side</td><td>RIGHT side of pedigree</td></tr>
+        </table>
+        <div class="note blue" style="margin-top:8px;">A <strong>3-generation pedigree</strong> from BOTH maternal AND paternal lineages is required.</div>
+      </div>
+      <div class="card">
+        <div class="card-title blue">Family History Data to Collect</div>
+        <ul>
+          <li><strong>Degree of relatives:</strong></li>
+          <li>→ FDR (1st degree): parents, siblings, children</li>
+          <li>→ SDR (2nd degree): grandparents, aunts/uncles</li>
+          <li>→ 3rd degree: cousins, great-aunts/uncles</li>
+          <li><strong>Cancer history:</strong> type, bilateral/unilateral, age at diagnosis, treatment</li>
+          <li><strong>Reproductive history (female):</strong> menarche, menopause, OCP use, pregnancies</li>
+          <li><strong>Gynecologic:</strong> oophorectomy, hysterectomy, abnormal Pap</li>
+          <li><strong>Screening:</strong> mammogram, colonoscopy, PSA — age and frequency</li>
+          <li><strong>Race/ethnicity:</strong> ALL grandparents — AJ ancestry is key risk flag</li>
+          <li>Pathology reports should confirm patient-reported cancer diagnoses</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s7" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</div>
+
+<!-- S8: COUNSELING -->
+<div class="sec" id="s8">
+  <div class="sec-head green">🤝 08 · Genetic Counseling &amp; The Oncology Nurse <span style="color:var(--yellow);font-size:.8em;">⭐⭐⭐</span></div>
+  <div class="sec-body">
+    <div class="note green" style="margin-bottom:14px;"><strong>Definition:</strong> A communication process dealing with human problems associated with the occurrence or risk of a genetic disorder in a family.</div>
+    <div class="g3">
+      <div class="card">
+        <div class="card-title green">General Oncology Nurse</div>
+        <ul>
+          <li>Construct and evaluate pedigrees</li>
+          <li>Educate patients and families about genetic risks and cancer prevention</li>
+          <li>Integrate new genetic info into practice</li>
+          <li>Continue personal education in genetics</li>
+          <li>Collaborate with specialists for comprehensive, culturally sensitive care</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title green">Advanced Practice Nurse (Genetics)</div>
+        <ul>
+          <li>Comprehensive cancer genetic risk assessment</li>
+          <li>Education, facilitation, and interpretation of genetic testing</li>
+          <li>Pre- and post-test counseling + follow-up</li>
+          <li>Tailored cancer risk management options</li>
+          <li>Psychosocial counseling and support services</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title green">Nursing Credentials</div>
+        <ul>
+          <li><strong>APNG</strong> — Advanced Practice Nurse in Genetics (Master's degree)</li>
+          <li><strong>GCN</strong> — Genetics Clinical Nurse (Baccalaureate)</li>
+          <li>Administered by <strong>ANCC</strong> since 2014</li>
+          <li>Organizations: <strong>ONS, ISONG, ANA</strong></li>
+        </ul>
+        <div class="brain">🧠 ANCC = American Nurses Credentialing Center</div>
+      </div>
+    </div>
+    <hr>
+    <div class="sub-head">Pre-test vs. Post-test Counseling</div>
+    <div class="g2">
+      <div class="card">
+        <div class="card-title blue">Pre-test Topics</div>
+        <ul>
+          <li>Natural history of the disorder</li>
+          <li>Benefits, risks, and limitations of testing</li>
+          <li>How heredity contributes; recurrence risk in relatives</li>
+          <li>Alternatives for dealing with the risk</li>
+          <li>Financial implications and discrimination concerns (GINA)</li>
+          <li>Implications of sharing results with relatives</li>
+          <li>Optimal psychological adjustment for family</li>
+          <li><strong>Informed Consent obtained before any testing</strong></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title blue">Post-test Topics</div>
+        <ul>
+          <li>Full explanation of result: positive, negative, VUS, or uninformative</li>
+          <li>Individualized surveillance and screening schedule</li>
+          <li>Risk-reduction options: prophylactic surgery, chemoprevention</li>
+          <li>Implications for biological relatives</li>
+          <li>Psychosocial support and referrals</li>
+          <li>Plans for ongoing follow-up care</li>
+          <li>Update counseling as new evidence emerges</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s8" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</div>
+
+<!-- S9: TEST RESULTS -->
+<div class="sec" id="s9">
+  <div class="sec-head red">🧪 09 · Interpretation of Genetic Test Results <span style="color:var(--yellow);font-size:.8em;">⭐⭐⭐</span></div>
+  <div class="sec-body">
+    <div class="g2">
+      <div class="card">
+        <div class="card-title green">✅ True Positive</div>
+        <ul>
+          <li>A known <strong>deleterious mutation IS found</strong></li>
+          <li>Initiates individualized surveillance and screening program</li>
+          <li>Risk-reduction options discussed in detail</li>
+          <li>Biological relatives offered targeted testing for that <em>specific</em> mutation</li>
+          <li>Relatives who test negative = <strong>True Negative</strong> → relieved of intensive screening</li>
+        </ul>
+        <div class="brain">🧠 Best practice: Test the AFFECTED family member FIRST!</div>
+      </div>
+      <div class="card">
+        <div class="card-title red">⚠️ Uninformative Negative <span class="tag ex">⭐ EXAM</span></div>
+        <ul>
+          <li>No mutation detected — does <strong>NOT rule out</strong> a hereditary syndrome</li>
+          <li>Occurs when first person tested does <strong>NOT have a cancer diagnosis</strong></li>
+          <li><strong>Possible reasons:</strong></li>
+          <li>→ Technology limitation: mutation present but undetectable</li>
+          <li>→ Unknown gene: causative gene not yet discovered</li>
+          <li>→ Phenocopy: tested person's cancer was sporadic</li>
+        </ul>
+        <div class="warn">⚠️ Negative ≠ Safe. Always interpret in full clinical context!</div>
+      </div>
+    </div>
+    <div class="note purple" style="margin-top:12px;">
+      <strong>VUS — Variant of Unknown Significance:</strong> A sequence variation whose association with disease risk is unknown. Do NOT make surveillance or surgical decisions based on VUS alone. VUS classifications are regularly updated — patients need re-contact as reclassification occurs.
+    </div>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s9" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</div>
+
+<!-- S10: RISK MODELS -->
+<div class="sec" id="s10">
+  <div class="sec-head blue">📐 10 · Risk Assessment Models &amp; Tools <span style="color:var(--yellow);font-size:.8em;">⭐⭐</span></div>
+  <div class="sec-body">
+    <div class="note yellow" style="margin-bottom:12px;"><strong>Important:</strong> Risk models are <em>guides, NOT standards</em> of care. Use multiple models. Do not replace clinical judgment.</div>
+    <table>
+      <tr><th>Tool</th><th>Focus</th><th>Key Variables</th><th>Notes</th></tr>
+      <tr><td><strong>Gail (BCRAT)</strong></td><td>Breast cancer — 5-yr &amp; lifetime risk</td><td>Age, race, prior biopsies, atypical hyperplasia, FDR BC, reproductive history</td><td>Most widely used; does NOT include paternal history or SDR; cancer.gov/bcrisktool</td></tr>
+      <tr><td><strong>BRCAPRO</strong></td><td>BRCA1/2 carrier probability</td><td>Breast/ovarian cancer in proband + FDR + SDR</td><td>Bayesian computer model; sensitivity 76%, specificity 70%; misses ~15% of mutations</td></tr>
+      <tr><td><strong>Tyrer-Cuzick (IBIS)</strong></td><td>Breast cancer + BRCA1/2</td><td>Maternal + paternal history, FDR + SDR, breast density, AJ ancestry, hormones, BMI</td><td>Most comprehensive; if lifetime risk &gt;20% → add annual breast MRI (ACS guideline)</td></tr>
+      <tr><td><strong>PAT</strong></td><td>Breast/Ovarian (BRCA)</td><td>3–8 points per family member with breast or ovarian cancer</td><td>Pedigree Assessment Tool</td></tr>
+      <tr><td><strong>BRisk App</strong></td><td>Breast/Ovarian</td><td>Age-adjusted; family history of breast/ovarian</td><td>Previously Claus tables</td></tr>
+      <tr><td><strong>MRAT</strong></td><td>Invasive Melanoma</td><td>Age, gender, race, tanning, complexion, moles, freckling</td><td>Melanoma Risk Assessment Tool; cancer.gov/melanomarisktool</td></tr>
+      <tr><td><strong>NCI Colorectal</strong></td><td>Colorectal cancer</td><td>Ages 50–85; multiple ethnicities</td><td>Cannot be used for Lynch, FAP, HNPCC, Crohn's, UC patients</td></tr>
+    </table>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s10" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</div>
+
+<!-- S11: BRCA -->
+<div class="sec" id="s11">
+  <div class="sec-head red">🎗️ 11 · BRCA / HBOC Syndrome <span style="color:var(--yellow);font-size:.8em;">⭐⭐⭐</span></div>
+  <div class="sec-body">
+    <div class="syn-banner" style="background:linear-gradient(135deg,rgba(180,30,30,.3),rgba(100,20,20,.2));">
+      <div class="syn-icon">🎗️</div>
+      <div class="syn-info">
+        <h3>Hereditary Breast &amp; Ovarian Cancer (HBOC)</h3>
+        <p>Genes: BRCA1 (17q21) + BRCA2 (13q12.3) · Autosomal Dominant · Carrier: ~1/400 · Both are Tumor Suppressor Genes</p>
+      </div>
+    </div>
+    <div class="g2">
+      <div class="card">
+        <div class="card-title red">Core Biology</div>
+        <ul>
+          <li>10% of breast cancers + 14% of ovarian cancers linked to a susceptibility gene</li>
+          <li>BRCA1: chr <strong>17q21</strong> — 1,064 known pathogenic mutations</li>
+          <li>BRCA2: chr <strong>13q12.3</strong> — 1,120 known pathogenic mutations</li>
+          <li>Normal function: respond to DNA damage → slow cell cycle → recruit repair proteins</li>
+          <li>Mutated: DNA damage accumulates → cancer</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title red">🌟 Ashkenazi Jewish (AJ) Founder Mutations</div>
+        <ul>
+          <li>① <strong>BRCA1 185delAG</strong></li>
+          <li>② <strong>BRCA1 5382insC</strong></li>
+          <li>③ <strong>BRCA2 6174delT</strong></li>
+          <li>→ Account for <strong>80–90%</strong> of all BRCA mutations in AJ hereditary families</li>
+          <li>AJ ancestry = HIGH-RISK FLAG for referral</li>
+          <li>Other founder populations: Dutch, French Canadian, Icelandic (BRCA2 999del5)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sub-head" style="margin-top:14px;">Cancer Risk Comparison</div>
+    <table>
+      <tr><th>Cancer</th><th>BRCA1</th><th>BRCA2</th><th>Notes</th></tr>
+      <tr><td>Breast (to age 70)</td><td><strong>55–65%</strong></td><td><strong>45%</strong></td><td>EMBRACE meta-analysis: BRCA1=57%, BRCA2=49%</td></tr>
+      <tr><td>Ovarian (to age 70)</td><td><strong>39–46%</strong></td><td><strong>11–17%</strong></td><td>BRCA1 significantly higher</td></tr>
+      <tr><td>Male breast cancer</td><td>—</td><td><strong>6–6.8%</strong></td><td>More common in BRCA2 carriers</td></tr>
+      <tr><td>Prostate cancer</td><td>3.7× risk</td><td><strong>8.6× risk</strong></td><td>BRCA2: 23× risk for early-onset (&lt;55 yrs)</td></tr>
+      <tr><td>Pancreatic cancer</td><td>Modest ↑</td><td>Modest ↑</td><td>Part of BRCA2 spectrum</td></tr>
+    </table>
+    <div class="note orange" style="margin-top:10px;">
+      <strong>BRCA1 breast cancer:</strong> Triple-negative (ER−, PR−, HER2−) — TNBC is a hallmark of BRCA1.<br>
+      <strong>BRCA2 breast cancer:</strong> ER+ adenocarcinoma — similar to postmenopausal sporadic BC.
+    </div>
+    <hr>
+    <div class="sub-head">Referral Clues (Affected Individual)</div>
+    <div class="g2">
+      <div class="card">
+        <div class="card-title orange">Red Flags</div>
+        <ul>
+          <li>Breast cancer <strong>before age 50</strong></li>
+          <li><strong>Triple-negative</strong> breast cancer at any age</li>
+          <li><strong>Ovarian cancer</strong> at any age</li>
+          <li><strong>Male breast cancer</strong></li>
+          <li>Two or more primary breast cancers in one individual</li>
+          <li>Breast AND ovarian cancer in the same person</li>
+          <li>Pancreatic or prostate cancer (Gleason &gt;7)</li>
+          <li><strong>AJ ancestry</strong></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title orange">Family Risk Clues (Unaffected)</div>
+        <ul>
+          <li>&gt;2 individuals on SAME side with breast cancer</li>
+          <li>At least one ovarian cancer on same side</li>
+          <li>FDR with breast cancer <strong>before age 45</strong></li>
+          <li>Known susceptibility gene mutation in family</li>
+          <li>Family member with breast + ovarian combination</li>
+          <li>Male breast cancer in family</li>
+          <li>AJ ancestry in family</li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+    <div class="sub-head">Risk Management</div>
+    <div class="g3">
+      <div class="card">
+        <div class="card-title blue">🔍 Breast Surveillance (Female)</div>
+        <ul>
+          <li>Monthly BSE from <strong>age 18</strong></li>
+          <li>Clinical exam every <strong>6 months</strong> from age 30</li>
+          <li>Annual <strong>mammogram</strong> from age 30</li>
+          <li>Annual <strong>MRI</strong> — days 7–15 of cycle in premenopausal</li>
+          <li>MRI sensitivity: <strong>94% vs mammogram 9%</strong></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title red">🔪 Risk-Reducing Surgery</div>
+        <ul>
+          <li><strong>RRBM</strong> → ↓ breast risk by <strong>~90%</strong></li>
+          <li><strong>RRSO</strong> → ↓ ovarian risk <strong>85–95%</strong></li>
+          <li>RRSO ALSO → ↓ breast risk by <strong>~50%</strong></li>
+          <li>RRSO at <strong>age 35–40</strong> or after childbearing</li>
+          <li>Fallopian tubes MUST also be removed</li>
+          <li>1–4% residual risk of peritoneal carcinoma (PPC)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title green">💊 Chemoprevention</div>
+        <ul>
+          <li><strong>Tamoxifen:</strong> ~50% ↓ contralateral BC risk</li>
+          <li><strong>OCP:</strong> ↓ ovarian risk ~50%; slight ↑ BRCA1 breast risk before age 40</li>
+          <li>Ovarian surveillance (not ready for RRSO): TVS + CA-125 q6–12mo from age 35</li>
+          <li>Note: surveillance does NOT reliably detect early ovarian cancer</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note orange"><strong>🚹 Male BRCA Carriers:</strong> Monthly BSE + clinical exam. BRCA2: targeted PSA screening. BRCA2 = 8.6× prostate risk + 23× risk for early-onset prostate cancer (&lt;55 yrs).</div>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s11" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</div>
+
+<!-- S12: LYNCH -->
+<div class="sec" id="s12">
+  <div class="sec-head orange">🔵 12 · Lynch Syndrome (HNPCC) <span style="color:var(--yellow);font-size:.8em;">⭐⭐⭐</span></div>
+  <div class="sec-body">
+    <div class="syn-banner" style="background:linear-gradient(135deg,rgba(180,90,20,.3),rgba(100,50,10,.2));">
+      <div class="syn-icon">🫁</div>
+      <div class="syn-info">
+        <h3>Lynch Syndrome — HNPCC</h3>
+        <p>Genes: MLH1, MSH2, MSH6, PMS2 · Autosomal Dominant · MLH1+MSH2 = &gt;90% of cases · DNA Mismatch Repair</p>
+      </div>
+    </div>
+    <div class="g2">
+      <div class="card">
+        <div class="card-title orange">Genes</div>
+        <ul>
+          <li><span class="gene">MLH1</span> chr 3p21.3 &nbsp; <span class="gene">MSH2</span> chr 2p21</li>
+          <li><span class="gene">MSH6</span> chr 2p16 &nbsp; <span class="gene">PMS2</span> chr 7p22</li>
+          <li>MLH1 + MSH2 = <strong>&gt;90%</strong> of Lynch mutations; MSH6 = ~7%</li>
+          <li>EPCAM deletions → MSH2 silencing (20–25% of MSH2-absent cases)</li>
+          <li>Function: <strong>DNA Mismatch Repair (MMR)</strong></li>
+          <li>Characterized by <strong>MSI</strong> due to defective MMR</li>
+        </ul>
+        <div class="note orange">Lynch variants: <strong>Turcot</strong> = Lynch + glioblastoma | <strong>Muir-Torre</strong> = Lynch + sebaceous skin lesions</div>
+      </div>
+      <div class="card">
+        <div class="card-title orange">Lifetime Cancer Risks</div>
+        <div class="rbar"><div class="rbar-top"><span>Colorectal Cancer</span><strong>50–80%</strong></div><div class="rbar-track"><div class="rbar-fill" style="width:65%;background:var(--red);"></div></div></div>
+        <div class="rbar"><div class="rbar-top"><span>Endometrial Cancer</span><strong>40–60%</strong></div><div class="rbar-track"><div class="rbar-fill" style="width:50%;background:var(--orange);"></div></div></div>
+        <div class="rbar"><div class="rbar-top"><span>Gastric Cancer</span><strong>11–19%</strong></div><div class="rbar-track"><div class="rbar-fill" style="width:15%;background:var(--yellow);"></div></div></div>
+        <div class="rbar"><div class="rbar-top"><span>Ovarian Cancer</span><strong>9–12%</strong></div><div class="rbar-track"><div class="rbar-fill" style="width:10%;background:var(--blue);"></div></div></div>
+        <div class="note orange" style="margin-top:8px;">CRC in Lynch = typically <strong>right-sided</strong>; diagnosed <strong>10 yrs earlier</strong> than sporadic CRC.</div>
+      </div>
+    </div>
+    <div class="g2" style="margin-top:12px;">
+      <div class="card">
+        <div class="card-title orange">Amsterdam Criteria II <span class="tag ex">⭐ EXAM</span></div>
+        <p style="font-size:.8em;color:var(--muted);margin-bottom:8px;">Research classification — many Lynch families do NOT meet this. Do not rely on it alone.</p>
+        <ol>
+          <li>At least <strong>2 relatives</strong> with HNPCC-associated cancer</li>
+          <li>One must be a <strong>FDR</strong> of the other two</li>
+          <li>At least <strong>2 successive generations</strong> affected</li>
+          <li>At least one tumor diagnosed <strong>before age 50</strong></li>
+          <li><strong>FAP excluded</strong>; tumors histologically verified</li>
+        </ol>
+      </div>
+      <div class="card">
+        <div class="card-title orange">Bethesda Guidelines <span class="tag ex">⭐ EXAM</span></div>
+        <p style="font-size:.8em;color:var(--muted);margin-bottom:8px;">Identifies patients for MSI/IHC testing on already-diagnosed tumors.</p>
+        <ol>
+          <li>CRC patient <strong>younger than age 50</strong></li>
+          <li>Patient has <strong>multiple HNPCC tumors</strong></li>
+          <li>FDR with HNPCC tumor <strong>before age 50</strong></li>
+          <li>At least <strong>2 FDRs or SDRs</strong> with HNPCC tumors at any age</li>
+          <li>Patient <strong>&lt;60 yrs</strong> with CRC showing MSI features microscopically</li>
+        </ol>
+      </div>
+    </div>
+    <table style="margin-top:12px;">
+      <tr><th>Mutation</th><th>Surveillance</th><th>Start Age</th><th>Frequency</th></tr>
+      <tr><td>MLH1 / MSH2 / EPCAM</td><td>Colonoscopy</td><td>Age 20–25 or 2–5 yrs before earliest CRC</td><td>Every 1–2 years</td></tr>
+      <tr><td>MSH6 / PMS2</td><td>Colonoscopy</td><td>Age 25–30 or 2–5 yrs before earliest CRC</td><td>Every 1–2 years</td></tr>
+      <tr><td>All Lynch (female)</td><td>Pelvic exam + Pap + TVS + endometrial biopsy ± CA-125</td><td>Age 25–30</td><td>Annual</td></tr>
+      <tr><td>All Lynch</td><td>Urinalysis</td><td>Age 25–30</td><td>Annual</td></tr>
+    </table>
+    <div class="note green" style="margin-top:8px;"><strong>Prophylactic surgery (women):</strong> Hysterectomy + bilateral oophorectomy after childbearing almost completely eliminates ovarian AND endometrial cancer risk.</div>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s12" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</div>
+
+<!-- S13: FAP -->
+<div class="sec" id="s13">
+  <div class="sec-head yellow">🟡 13 · FAP &amp; Colorectal Syndromes <span style="color:var(--yellow);font-size:.8em;">⭐⭐⭐</span></div>
+  <div class="sec-body">
+    <div class="g2">
+      <div class="card">
+        <div class="card-title yellow">Classic FAP</div>
+        <ul>
+          <li>Gene: <span class="gene">APC</span> — chr 5q21-q22</li>
+          <li>Inheritance: AD; <strong>~25% de novo</strong> (no family history!)</li>
+          <li>Incidence: 1 in 8,000–15,000</li>
+          <li><strong>Hundreds to THOUSANDS</strong> of colorectal adenomas</li>
+          <li>Polyps begin in <strong>teenage years</strong></li>
+          <li>Without colectomy: <strong>~100% colon cancer</strong> by 4th–5th decade</li>
+          <li>Left-sided CRC (vs Lynch = right-sided)</li>
+          <li>Extra-colonic: <strong>CHRPE</strong> (eye), osteomas, desmoids, hepatoblastoma, medulloblastoma, papillary thyroid cancer</li>
+        </ul>
+        <div class="brain">🧠 "Full of Polyps" → Colectomy is life-saving!</div>
+      </div>
+      <div class="card">
+        <div class="card-title orange">AFAP &amp; MUTYH (MAP)</div>
+        <div class="sub-head" style="margin-top:0;">AFAP — Attenuated FAP</div>
+        <ul>
+          <li><strong>&lt;100 adenomas</strong> (10–100); smaller and flatter</li>
+          <li>Right-sided colon; mean cancer age <strong>50–52 yrs</strong></li>
+          <li>If APC negative → test for <strong>MYH mutations</strong></li>
+        </ul>
+        <hr>
+        <div class="sub-head">MUTYH-Associated Polyposis (MAP)</div>
+        <ul>
+          <li>Gene: <span class="gene">MYH</span> — chr 1p32 · Base-excision repair</li>
+          <li>Inheritance: <strong>Autosomal Recessive — ONLY AR colon syndrome!</strong></li>
+          <li>Biallelic mutations: 7–17% of FAP-phenotype patients with no APC mutation</li>
+          <li>Biallelic MYH: cancer risk up to <strong>28× greater</strong> than monoallelic</li>
+          <li>Family history often less obvious (recessive)</li>
+          <li>Colonoscopy from age 25–30, every 3–5 years</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s13" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</div>
+
+<!-- S14: MEN -->
+<div class="sec" id="s14">
+  <div class="sec-head purple">⚡ 14 · Multiple Endocrine Neoplasia (MEN) <span style="color:var(--yellow);font-size:.8em;">⭐⭐⭐</span></div>
+  <div class="sec-body">
+    <div class="g2">
+      <div class="card">
+        <div class="card-title purple">MEN1</div>
+        <ul>
+          <li>Gene: <span class="gene">MEN1</span> — chr 11q13</li>
+          <li>Incidence: 1 in 5,000–50,000 | Penetrance: <strong>~80% by age 50</strong></li>
+          <li>~10% de novo mutations</li>
+          <li><strong>"3 P's" Tumors:</strong></li>
+          <li>→ 🧠 <strong>Pituitary</strong> tumors</li>
+          <li>→ 🦴 <strong>Parathyroid</strong> tumors → hyperparathyroidism = presenting symptom</li>
+          <li>→ 🫁 <strong>Pancreatic</strong> islet cell tumors (gastrinomas, insulinomas)</li>
+          <li>Also: adrenal, carcinoid, angiofibromas, lipomas</li>
+        </ul>
+        <div class="brain">🧠 "3 P's" = Pituitary + Parathyroid + Pancreas. Hyperparathyroidism is first sign!</div>
+      </div>
+      <div class="card">
+        <div class="card-title purple">MEN2 — Three Subtypes</div>
+        <ul><li>Gene: <span class="gene">RET</span> proto-oncogene — chr 10q11.2 | Incidence: 1:30,000</li></ul>
+        <table style="font-size:.82em;margin-top:8px;">
+          <tr><th>Subtype</th><th>Features</th></tr>
+          <tr style="background:rgba(37,99,235,.04);"><td><strong>MEN2A</strong><br><em>(most common)</em></td><td>Medullary thyroid (100%) + Pheochromocytoma (50%) + Hyperparathyroidism (15–30%)</td></tr>
+          <tr style="background:rgba(220,38,38,.04);"><td><strong>MEN2B</strong><br><em>(most aggressive)</em></td><td>Medullary thyroid &lt;age 10 + Pheo + Mucosal neuromas (eyelids/lips/tongue) + Marfanoid habitus. Thyroidectomy in <strong>1st year of life!</strong></td></tr>
+          <tr style="background:rgba(61,214,140,.05);"><td><strong>FMTC</strong><br><em>(mildest)</em></td><td>Medullary thyroid ONLY. Older onset. 50% penetrance by age 36.</td></tr>
+        </table>
+        <div class="brain">🧠 MEN2B = Youngest + Most aggressive + Marfanoid + Neuromas. Thyroidectomy YEAR 1!</div>
+      </div>
+    </div>
+    <div class="warn">🚩 Red Flags: Pheochromocytoma, paraganglioma, medullary thyroid cancer, parathyroid carcinoma — even WITHOUT family history — warrant comprehensive genetic assessment.</div>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s14" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</div>
+
+<!-- S15: COWDEN -->
+<div class="sec" id="s15">
+  <div class="sec-head teal">🌿 15 · Cowden Syndrome <span style="color:var(--yellow);font-size:.8em;">⭐⭐</span></div>
+  <div class="sec-body">
+    <div class="g2">
+      <div class="card">
+        <div class="card-title teal">Basics</div>
+        <ul>
+          <li>Gene: <span class="gene">PTEN</span> — chr 10q23.3 (tumor suppressor)</li>
+          <li>Inheritance: AD | Incidence: ~1 in 200,000</li>
+          <li>Classic signs: <strong>trichilemmomas</strong> (benign skin) + <strong>intestinal hamartomas</strong> + macrocephaly</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title teal">Cancer Risks</div>
+        <div class="rbar"><div class="rbar-top"><span>Female Breast Cancer (lifetime)</span><strong style="color:var(--red);">85%</strong></div><div class="rbar-track"><div class="rbar-fill" style="width:85%;background:var(--red);"></div></div></div>
+        <div class="rbar"><div class="rbar-top"><span>Renal Cell Carcinoma</span><strong style="color:var(--orange);">~34%</strong></div><div class="rbar-track"><div class="rbar-fill" style="width:34%;background:var(--orange);"></div></div></div>
+        <ul style="margin-top:8px;">
+          <li>Breast: <strong>85%</strong> lifetime — ~10 years earlier than general population</li>
+          <li>Thyroid: primarily <strong>FOLLICULAR</strong> type</li>
+          <li>Endometrial, Colorectal, Melanoma also associated</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s15" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</div>
+
+<!-- S16: VHL -->
+<div class="sec" id="s16">
+  <div class="sec-head blue">🫘 16 · Von Hippel-Lindau (VHL) <span style="color:var(--yellow);font-size:.8em;">⭐⭐</span></div>
+  <div class="sec-body">
+    <div class="g2">
+      <div class="card">
+        <div class="card-title blue">Basics</div>
+        <ul>
+          <li>Gene: <span class="gene">VHL</span> — chr 3p25-p26 (tumor suppressor)</li>
+          <li>Inheritance: AD | Penetrance: <strong>~100% by age 65</strong></li>
+          <li>Renal cell carcinoma (<strong>clear-cell</strong>) — 34% lifetime</li>
+          <li>Pheochromocytoma</li>
+          <li>CNS hemangioblastomas (brain, spinal cord, retina)</li>
+          <li>Pancreatic islet cell carcinomas, endolymphatic sac tumors</li>
+        </ul>
+        <div class="brain">🧠 VHL = Kidney (clear-cell) + Pheo + CNS hemangioblastoma + Retinal tumors</div>
+      </div>
+      <div class="card">
+        <div class="card-title blue">VHL Subtypes</div>
+        <table style="font-size:.83em;">
+          <tr><th>Type</th><th>Pheochromocytoma</th><th>Renal Cancer</th></tr>
+          <tr><td>Type 1 (80–93%)</td><td>Absent</td><td>Present</td></tr>
+          <tr><td>Type 2A</td><td>Present</td><td>Absent</td></tr>
+          <tr><td>Type 2B</td><td>Present</td><td>Present</td></tr>
+          <tr><td>Type 2C (7–20%)</td><td>Present only</td><td>Absent</td></tr>
+        </table>
+        <div class="note blue" style="margin-top:8px;">Surveillance begins in childhood if VHL mutation confirmed. See vhl.org for updated guidelines.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s16" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</div>
+
+<!-- S17: LFS -->
+<div class="sec" id="s17">
+  <div class="sec-head red">⚠️ 17 · Li-Fraumeni Syndrome (LFS) <span style="color:var(--yellow);font-size:.8em;">⭐⭐⭐</span></div>
+  <div class="sec-body">
+    <div class="g2">
+      <div class="card">
+        <div class="card-title red">Basics</div>
+        <ul>
+          <li>Gene: <span class="gene">TP53</span> (p53) — chr 17p13.1 — "guardian of the genome"</li>
+          <li>Inheritance: AD | Very rare: ~<strong>400 families</strong> worldwide</li>
+          <li>Penetrance: ~<strong>50% by age 30</strong>; ~<strong>100% by age 70</strong></li>
+          <li>Breast risk = <strong>100× greater</strong> than general population</li>
+          <li>Cancer starts in <strong>childhood or very young adulthood</strong></li>
+          <li>Multiple primary cancers common in one individual</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title red">Cancer Spectrum &amp; Surveillance</div>
+        <ul>
+          <li>🦴 Sarcomas (osteo-, chondro-, rhabdomyo-)</li>
+          <li>🎗️ Breast cancer (very early onset)</li>
+          <li>🧠 Brain — glioblastoma</li>
+          <li>🩸 Leukemia + Lymphoma</li>
+          <li>🫁 Adrenocortical carcinoma</li>
+          <li>These = ~80% of cancers in LFS families</li>
+        </ul>
+        <hr>
+        <ul>
+          <li>Annual exams from <strong>childhood</strong></li>
+          <li>Breast: BSE + CBE q6mo + mammogram + MRI from age 20–25</li>
+          <li>MRI preferred for young patients (avoids radiation)</li>
+          <li>Colonoscopy from age 25, every 2–5 years</li>
+        </ul>
+        <div class="brain">🧠 p53 lost = many cancers at VERY early age</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s17" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</div>
+
+<!-- S18: ADDITIONAL SYNDROMES -->
+<div class="sec" id="s18">
+  <div class="sec-head purple">➕ 18 · Additional Hereditary Syndromes — Table 10.1 <span style="color:var(--yellow);font-size:.8em;">⭐⭐</span></div>
+  <div class="sec-body">
+    <table>
+      <tr><th>Syndrome</th><th>Gene</th><th>Mode</th><th>Key Features</th></tr>
+      <tr><td><strong>Birt-Hogg-Dubé (BHD)</strong></td><td><span class="gene">FLCN</span></td><td><span class="tag ad">AD</span></td><td>Noncancerous skin lesions (30–40 yr); bilateral multifocal renal tumors; bilateral lung cysts with spontaneous pneumothorax</td></tr>
+      <tr><td><strong>Familial GIST</strong></td><td><span class="gene">KIT</span> <span class="gene">PDGFRA</span> <span class="gene">SDHB/C/A</span></td><td>AD or AR</td><td>KIT = hyperpigmentation, mast cell tumors. PDGFRA = large hands. Wild-type GISTs = no detectable KIT, PDGFRA, or BRAF mutations</td></tr>
+      <tr><td><strong>Hereditary Diffuse Gastric Cancer</strong></td><td><span class="gene">CDH1</span></td><td><span class="tag ad">AD</span></td><td>Diffuse gastric cancer; lobular breast cancer; adenocarcinoma; signet ring colon cancer</td></tr>
+      <tr><td><strong>Hereditary Papillary RCC</strong></td><td><span class="gene">MET</span></td><td><span class="tag ad">AD</span></td><td>Papillary type 1 renal cell cancer; bilateral disease; history of MET mutation</td></tr>
+      <tr><td><strong>Hereditary Retinoblastoma</strong></td><td><span class="gene">RB1</span></td><td><span class="tag ad">AD</span></td><td>Retinal malignant tumor before age 5; bilateral tumors = most likely hereditary; also: pinealoblastoma, osteosarcoma, melanoma</td></tr>
+      <tr><td><strong>Neurofibromatosis Type 1 (NF1)</strong></td><td><span class="gene">NF1</span></td><td><span class="tag ad">AD</span></td><td>Peripheral neural sheath tumors, neurofibromas, benign pheo, optic gliomas, café-au-lait macules, axillary/inguinal freckles, iris hamartomas</td></tr>
+      <tr><td><strong>Neurofibromatosis Type 2 (NF2)</strong></td><td><span class="gene">NF2</span></td><td><span class="tag ad">AD</span></td><td>Vestibular schwannomas, neurofibromas, gliomas, meningiomas, ependymomas, astrocytoma</td></tr>
+      <tr><td><strong>Gorlin Syndrome (Nevoid BCC)</strong></td><td><span class="gene">PTCH</span></td><td><span class="tag ad">AD</span></td><td>Jaw keratocysts (teens); multiple basal-cell carcinomas (20s); macrocephaly; bossing of forehead; skeletal anomalies</td></tr>
+      <tr><td><strong>Hereditary Pancreatic Cancer</strong></td><td><span class="gene">BRCA2</span> <span class="gene">CDKN2A</span> <span class="gene">PALB2</span> <span class="gene">ATM</span></td><td><span class="tag ad">AD</span></td><td>Common in Lynch, Peutz-Jeghers, FAP, hereditary melanoma, and HBOC syndrome families</td></tr>
+      <tr><td><strong>Xeroderma Pigmentosum</strong></td><td><span class="gene">XPA ERCC3 XPC ERCC2 DDB2 ERCC4 ERCC5 POLH</span></td><td><span class="tag ar">AR</span></td><td>Skin cancers (basal, squamous, melanoma), sarcoma, brain, lung, breast, uterus, kidney, testis cancers, leukemia</td></tr>
+      <tr><td><strong>Muir-Torre Syndrome</strong></td><td><span class="gene">MSH2 MLH1 MSH6</span></td><td><span class="tag ad">AD</span></td><td>Variant of Lynch syndrome + cutaneous sebaceous adenomas, epitheliomas, carcinomas, keratoacanthomas</td></tr>
+    </table>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s18" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</div>
+
+<!-- S19: ETHICS & LEGAL -->
+<div class="sec" id="s19">
+  <div class="sec-head green">⚖️ 19 · Ethics, GINA &amp; Legal Issues <span style="color:var(--yellow);font-size:.8em;">⭐⭐</span></div>
+  <div class="sec-body">
+    <div class="sub-head">The Four Ethical Principles</div>
+    <div class="g2">
+      <div>
+        <div class="card" style="margin-bottom:10px;">
+          <div class="card-title blue">1. Autonomy</div>
+          <p style="font-size:.85em;">Right to self-determination. Includes <strong>right to KNOW</strong> AND <strong>right NOT to know</strong> genetic status. Patient's informed decision must be respected even if provider disagrees.</p>
+        </div>
+        <div class="card">
+          <div class="card-title red">2. Nonmaleficence — "First, Do No Harm"</div>
+          <p style="font-size:.85em;"><em>Primum non nocere.</em> Threat example: uninformative negative result creating false sense of security.</p>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:10px;">
+          <div class="card-title green">3. Beneficence</div>
+          <p style="font-size:.85em;">Testing is beneficent IF enhanced surveillance/prevention decreases morbidity and mortality. Needs evidence-based management strategies.</p>
+        </div>
+        <div class="card">
+          <div class="card-title orange">4. Justice / Equity</div>
+          <p style="font-size:.85em;">All patients should have <strong>equal access</strong> to genetic services regardless of financial means. Nurses must be advocates.</p>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="sub-head">Legal Framework</div>
+    <div class="g3">
+      <div class="card">
+        <div class="card-title orange">HIPAA (1996)</div>
+        <ul>
+          <li>Genetic info cannot be used as a preexisting condition or to determine insurance eligibility</li>
+          <li>Applies only to <strong>group and self-funded plans</strong></li>
+          <li>Does NOT protect against rate hikes or individual genetic data access</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title orange">GINA 2008 <span class="tag ex">⭐ EXAM</span></div>
+        <ul>
+          <li><strong>✅ Protects:</strong> Health insurance + Employment</li>
+          <li>Health: prohibits using genetic info for medical underwriting</li>
+          <li>Employment: prohibits denying jobs or benefits based on genetic info</li>
+          <li><strong>❌ Does NOT cover:</strong> Life insurance, Disability insurance, Long-term care, Active-duty military</li>
+          <li>Does NOT supersede state laws that are more protective</li>
+        </ul>
+        <div class="brain">🧠 GINA = Health insurance + Employment ONLY!</div>
+      </div>
+      <div class="card">
+        <div class="card-title orange">ADA (1995 Guidelines)</div>
+        <ul>
+          <li>Definition of "disability" extended to include discrimination based on genetic information</li>
+          <li>These guidelines are <strong>NOT law</strong> — interpretation of ADA language</li>
+          <li>May be overturned in court</li>
+          <li>Self-insured employers may be exempt from state health insurance laws due to <strong>ERISA</strong></li>
+        </ul>
+      </div>
+    </div>
+    <div class="note orange" style="margin-top:10px;"><strong>Duty to Warn:</strong> Clinician informs the proband AND encourages sharing with biological relatives. NOT legally required to directly contact relatives. Right to know may <strong>supersede</strong> right NOT to know when early intervention can save lives.</div>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s19" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</div>
+
+<!-- S20: INFORMED CONSENT -->
+<div class="sec" id="s20">
+  <div class="sec-head blue">📋 20 · Informed Consent for Genetic Testing <span style="color:var(--yellow);font-size:.8em;">⭐⭐⭐</span></div>
+  <div class="sec-body">
+    <div class="note blue" style="margin-bottom:12px;">Informed consent PRECEDES genetic testing. Two versions: Chapter 6 (5 elements) and Chapter 10 (15 elements). Both are testable!</div>
+    <div class="g2">
+      <div class="card">
+        <div class="card-title blue">5 Core Elements (Ch. 6)</div>
+        <div class="step"><div class="step-n">1</div><div class="step-body"><strong>Competence</strong> — comprehend implications of all results; use of DNA; plans for follow-up and family sharing</div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-body"><strong>Disclosure</strong> — procedures, risks, benefits; fees; emotional impact; discrimination potential</div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-body"><strong>Understanding</strong> — risk management options with AND without testing; heritability; test limitations</div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-body"><strong>Voluntariness</strong> — voluntary, no coercion. Right to informed refusal = equal to informed consent</div></div>
+        <div class="step"><div class="step-n">5</div><div class="step-body"><strong>Consent</strong> — by the individual or appropriate surrogate decision-maker</div></div>
+      </div>
+      <div class="card">
+        <div class="card-title blue">15 Elements (Ch. 10)</div>
+        <ul>
+          <li>A. Purpose of the genetic test</li>
+          <li>B. Motivation for testing</li>
+          <li>C. Risks and benefits</li>
+          <li>D. Limitations of genetic testing</li>
+          <li>E. Inheritance pattern of the gene(s) tested</li>
+          <li>F. Risk of misidentified paternity</li>
+          <li>G. Accuracy and sensitivity of the test method</li>
+          <li>H. Outcomes of genetic testing</li>
+          <li>I. Confidentiality of results</li>
+          <li>J. Possibility of discrimination</li>
+          <li>K. Alternatives to genetic testing</li>
+          <li>L. How testing impacts healthcare decisions</li>
+          <li>M. Cost of testing</li>
+          <li>N. Right to refuse</li>
+          <li>O. Testing in children — only when clinical utility established</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s20" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</div>
+
+<!-- S21: MINORS -->
+<div class="sec" id="s21">
+  <div class="sec-head orange">👶 21 · Genetic Testing in Minors <span style="color:var(--yellow);font-size:.8em;">⭐⭐</span></div>
+  <div class="sec-body">
+    <div class="note orange" style="margin-bottom:12px;"><strong>General rule:</strong> Minors are NOT typically offered genetic testing for adult-onset syndromes. Wait until adulthood for autonomous decision.</div>
+    <div class="g2">
+      <div class="card">
+        <div class="card-title orange">When Testing IS Appropriate in Childhood</div>
+        <ul>
+          <li>Increased risk of cancer developing <strong>in childhood itself</strong></li>
+          <li>Clear benefits of early screening/prevention in minors</li>
+          <li>Once mutation confirmed → surveillance begins immediately</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title orange">Childhood Testing by Syndrome</div>
+        <table style="font-size:.82em;">
+          <tr><th>Syndrome</th><th>Earliest Age</th><th>Childhood Risk</th></tr>
+          <tr style="background:rgba(220,38,38,.06);"><td><strong>FAP</strong></td><td>First year</td><td><strong>80%</strong></td></tr>
+          <tr><td>Neurofibromatosis</td><td>First year</td><td>30%</td></tr>
+          <tr><td>Li-Fraumeni</td><td>First year</td><td>30%</td></tr>
+          <tr style="background:rgba(220,38,38,.06);"><td><strong>MEN2B</strong></td><td><strong>1 year</strong></td><td>&lt;50%</td></tr>
+          <tr><td>VHL</td><td>1–2 years (retinal)</td><td>15%</td></tr>
+          <tr><td>MEN2A</td><td>3 years</td><td>2.5%</td></tr>
+          <tr><td>MEN1</td><td>5 years</td><td>5%</td></tr>
+          <tr style="background:rgba(22,163,74,.05);"><td>HBOC (BRCA)</td><td>&gt;16 years</td><td>&lt;0.1%</td></tr>
+          <tr style="background:rgba(22,163,74,.05);"><td>Lynch (HNPCC)</td><td>&gt;16 years</td><td>&lt;0.1%</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s21" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</div>
+
+<!-- S22: PSYCHOLOGICAL -->
+<div class="sec" id="s22">
+  <div class="sec-head green">🧠 22 · Psychological &amp; Social Issues <span style="color:var(--yellow);font-size:.8em;">⭐⭐</span></div>
+  <div class="sec-body">
+    <div class="g2">
+      <div class="card">
+        <div class="card-title green">Psychological Consequences</div>
+        <ul>
+          <li><strong>Survivor guilt</strong>: observed in those who did NOT inherit the family mutation</li>
+          <li><strong>Transmitter guilt</strong>: when family members pass the mutation to their offspring</li>
+          <li><strong>Heightened anxiety</strong>: learning about substantially increased cancer risk</li>
+          <li><strong>Depression and anger</strong>: may occur regardless of genetic status</li>
+          <li><strong>Personal identity issues</strong>: genetic information involves the essence of an individual</li>
+          <li><strong>Regret</strong>: for past decisions inconsistent with test results</li>
+          <li><strong>Uncertainty</strong>: testing does NOT tell if or when cancer develops; no proven strategy in many cases</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title green">Social &amp; Financial Issues</div>
+        <ul>
+          <li>Predisposition testing may be expensive; not all insurers cover it</li>
+          <li>Insurers may not cover enhanced surveillance unless efficacy proven</li>
+          <li>Insurers may not cover prophylactic surgery unless benefit proven</li>
+          <li>Small number of trained genetic providers — availability varies</li>
+          <li><strong>Stigmatization</strong>: within family and social network</li>
+          <li><strong>Intrafamilial issues:</strong></li>
+          <li>→ Coercion regarding testing decisions</li>
+          <li>→ Disclosure tensions within families</li>
+          <li>→ Effect on partner (not at genetic risk but children may be impacted)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s22" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</div>
+
+<!-- S23: NGS & TESTING METHODS -->
+<div class="sec" id="s23">
+  <div class="sec-head teal">💻 23 · Testing Methods &amp; NGS <span style="color:var(--yellow);font-size:.8em;">⭐</span></div>
+  <div class="sec-body">
+    <div class="g2">
+      <div class="card">
+        <div class="card-title teal">Types of Genetic Testing</div>
+        <ul>
+          <li><strong>Sanger sequencing (direct)</strong>: determines gene sequence; may miss mutations outside coding region or large genomic rearrangements</li>
+          <li><strong>GWAS</strong>: surveys entire genome for small nucleotide alterations (SNPs); association studies</li>
+          <li><strong>Microarray</strong>: hundreds to thousands of DNA/RNA/protein segments on slides; brighter dot = greater expression</li>
+          <li><strong>LGRs</strong>: detect large genomic rearrangements, deletions, duplications</li>
+          <li><strong>WES</strong> — Whole Exome Sequencing: sequences protein-coding regions (exons) only</li>
+          <li><strong>WGS</strong> — Whole Genome Sequencing: entire genome</li>
+          <li><strong>Direct-to-consumer (23andMe)</strong>: FDA approved for BRCA1/2 BUT only includes 3 AJ founder mutations — NOT for clinical decision making</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title teal">NGS Clinical Implications</div>
+        <ul>
+          <li>Faster and less costly than traditional Sanger sequencing</li>
+          <li>Enables multi-gene panel testing simultaneously</li>
+          <li>Detects somatic cancer genome alterations (substitutions, insertions, deletions, copy number variations)</li>
+          <li>Increases <strong>secondary findings</strong> and <strong>incidental findings</strong></li>
+          <li>Leads to more <strong>VUS</strong> classifications requiring follow-up</li>
+          <li>Must discuss incidental findings with patients <strong>BEFORE</strong> testing</li>
+          <li>As costs decrease → more full genome sequencing → more unexpected results</li>
+        </ul>
+        <div class="brain">🧠 More NGS = More VUS + More incidental findings = More pre-test counseling needed!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s23" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</div>
+
+<!-- S24: MASTER TABLE + MEMORY TRICKS -->
+<div class="sec" id="s24">
+  <div class="sec-head yellow">🏆 24 · Master Table + Memory Tricks <span style="color:var(--yellow);font-size:.8em;">⭐⭐⭐</span></div>
+  <div class="sec-body">
+    <table>
+      <tr><th>Syndrome</th><th>Gene</th><th>Chr.</th><th>Mode</th><th>Main Cancers</th><th>Other / Features</th><th>Key Clues</th></tr>
+      <tr><td><strong>HBOC (BRCA1)</strong></td><td><span class="gene">BRCA1</span></td><td>17q21</td><td><span class="tag ad">AD</span></td><td>Breast 55–65%, Ovarian 39–46%</td><td>TNBC, Fallopian tube, Pancreatic</td><td>BC &lt;50; TNBC; ovarian; AJ; 1/400 carrier</td></tr>
+      <tr><td><strong>HBOC (BRCA2)</strong></td><td><span class="gene">BRCA2</span></td><td>13q12</td><td><span class="tag ad">AD</span></td><td>Breast 45%, Ovarian 11–17%</td><td>Prostate ×8.6, Male BC 6–6.8%</td><td>Male BC; prostate ×8.6; AJ; ER+ BC</td></tr>
+      <tr><td><strong>Lynch (HNPCC)</strong></td><td><span class="gene">MLH1 MSH2 MSH6 PMS2</span></td><td>3p/2p/2p/7p</td><td><span class="tag ad">AD</span></td><td>CRC 50–80%, Endometrial 40–60%</td><td>Ovarian 9–12%, Gastric 11–19%, Brain, Urinary</td><td>Right-sided CRC; &lt;50 yrs; Amsterdam + Bethesda</td></tr>
+      <tr><td><strong>FAP</strong></td><td><span class="gene">APC</span></td><td>5q21</td><td><span class="tag ad">AD</span></td><td>CRC ~100% without colectomy</td><td>CHRPE, Osteomas, Desmoids, Medulloblastoma</td><td>100s–1000s polyps; teens onset; 25% de novo; CHRPE</td></tr>
+      <tr><td><strong>AFAP</strong></td><td><span class="gene">APC</span></td><td>5q21</td><td><span class="tag ad">AD</span></td><td>CRC (later onset)</td><td>&lt;100 polyps; mean cancer age 50–52; right-sided</td><td>Milder than FAP; fewer polyps; later onset</td></tr>
+      <tr><td><strong>MUTYH/MAP</strong></td><td><span class="gene">MYH</span></td><td>1p32</td><td><span class="tag ar">AR ← ONLY!</span></td><td>Colorectal cancer</td><td>10–100s adenomas; base-excision repair</td><td>Biallelic required; 28× risk; less obvious FH</td></tr>
+      <tr><td><strong>MEN1</strong></td><td><span class="gene">MEN1</span></td><td>11q13</td><td><span class="tag ad">AD</span></td><td>Pituitary + Parathyroid + Pancreatic</td><td>Adrenal, carcinoid, angiofibromas, lipomas</td><td>"3 P's"; hyperparathyroidism first; 80% by 50</td></tr>
+      <tr><td><strong>MEN2A</strong></td><td><span class="gene">RET</span></td><td>10q11</td><td><span class="tag ad">AD</span></td><td>Medullary thyroid 100%</td><td>Pheochromocytoma 50%, Hyperparathyroidism 15–30%</td><td>Thyroid always; most common MEN2 subtype</td></tr>
+      <tr><td><strong>MEN2B</strong></td><td><span class="gene">RET</span></td><td>10q11</td><td><span class="tag ad">AD</span></td><td>Medullary thyroid (&lt;age 10)</td><td>Pheochromocytoma, Mucosal neuromas, Marfanoid</td><td>Youngest + most aggressive; thyroidectomy YEAR 1</td></tr>
+      <tr><td><strong>Cowden</strong></td><td><span class="gene">PTEN</span></td><td>10q23</td><td><span class="tag ad">AD</span></td><td>Breast 85%, Thyroid (follicular), Endometrial</td><td>Renal 34%, Hamartomas, trichilemmomas, macrocephaly</td><td>Skin lesions + hamartomas; breast 85%; follicular thyroid</td></tr>
+      <tr><td><strong>VHL</strong></td><td><span class="gene">VHL</span></td><td>3p25</td><td><span class="tag ad">AD</span></td><td>Renal cell (clear-cell, 34%)</td><td>Pheochromocytoma, CNS hemangioblastoma, Retinal tumors</td><td>Kidney + Pheo + CNS hemangio; 100% by 65; 4 subtypes</td></tr>
+      <tr><td><strong>LFS</strong></td><td><span class="gene">TP53</span></td><td>17p13</td><td><span class="tag ad">AD</span></td><td>Sarcoma, Breast, Brain (glioblastoma)</td><td>Leukemia, Lymphoma, Adrenocortical; very early-onset cancers</td><td>Cancer &lt;30–35; multiple primaries; breast ×100; ~400 families</td></tr>
+    </table>
+    <hr>
+    <div class="sub-head">Memory Tricks</div>
+    <div class="g3">
+      <div class="mem-card" style="border-color:var(--red);"><strong style="color:var(--red);">🎗️ BRCA</strong><br><small>Breast + Ovary<br>RRBM → ↓90% breast | RRSO → ↓90% ovarian + ↓50% breast<br>AJ = 3 founder mutations | MRI 94% vs mammo 9%<br>Test AFFECTED member FIRST!</small></div>
+      <div class="mem-card" style="border-color:var(--orange);"><strong style="color:var(--orange);">🫁 Lynch</strong><br><small>Colon + Uterus (RIGHT-sided CRC)<br>MLH1+MSH2 = 90% of cases<br>Amsterdam = research | Bethesda = MSI testing<br>Turcot = Lynch + Glioblastoma</small></div>
+      <div class="mem-card" style="border-color:var(--yellow);"><strong style="color:var(--yellow);">🟣 FAP</strong><br><small>"Full of Polyps" — APC gene chr 5<br>100s–1000s polyps in TEENS<br>100% cancer without colectomy!<br>25% de novo | CHRPE eye finding</small></div>
+      <div class="mem-card" style="border-color:var(--purple);"><strong style="color:var(--purple);">🦋 MEN1</strong><br><small>"3 P's" = Pituitary + Parathyroid + Pancreas<br>MEN1 gene, chromosome 11<br>Hyperparathyroidism = FIRST sign<br>Penetrance 80% by age 50</small></div>
+      <div class="mem-card" style="border-color:var(--purple);"><strong style="color:var(--purple);">🦋 MEN2</strong><br><small>RET gene — Thyroid ALWAYS (100%)!<br>2A = Thyroid + Pheo + Parathyroid<br>2B = YOUNGEST + Marfanoid + Neuromas<br>2B: thyroidectomy in YEAR 1!</small></div>
+      <div class="mem-card" style="border-color:var(--teal);"><strong style="color:var(--teal);">🌿 Cowden</strong><br><small>PTEN gene, chr 10<br>Trichilemmomas + hamartomas (SKIN)<br>Breast 85% (10 yrs earlier)<br>Thyroid = FOLLICULAR | Renal 34%</small></div>
+      <div class="mem-card" style="border-color:var(--blue);"><strong style="color:var(--blue);">🫘 VHL</strong><br><small>VHL gene, chr 3<br>Kidney (clear-cell) + Pheo + CNS hemangio<br>100% penetrance by age 65<br>4 subtypes based on Pheo ± Renal</small></div>
+      <div class="mem-card" style="border-color:var(--red);"><strong style="color:var(--red);">⚠️ Li-Fraumeni</strong><br><small>TP53 = "guardian of the genome"<br>Sarcoma + Breast + Brain + Leukemia<br>Breast = 100× general population<br>Cancer starts VERY young | ~400 families</small></div>
+      <div class="mem-card" style="border-color:var(--red);"><strong style="color:var(--red);">🧬 MUTYH</strong><br><small>MYH gene — ONLY AR syndrome!<br>Base-excision repair<br>Biallelic = 28× cancer risk<br>Both parents must carry one copy</small></div>
+    </div>
+    <hr>
+    <div class="note yellow" style="margin-top:14px;">
+      <strong>🚨 TOP 5 EXAM POINTS — Never Forget!</strong><br><br>
+      1️⃣ <strong>VUS</strong> = Found something unknown → do NOT make surgical decisions on VUS alone<br>
+      2️⃣ <strong>Uninformative Negative ≠ True Negative ≠ Safe</strong> — always interpret in context<br>
+      3️⃣ <strong>MUTYH</strong> = The ONLY Autosomal Recessive colorectal cancer syndrome<br>
+      4️⃣ <strong>GINA 2008</strong> = Health insurance + Employment ONLY (NOT life/disability/military)<br>
+      5️⃣ <strong>Test AFFECTED member FIRST</strong> — most informative; then relatives for that specific mutation
+    </div>
+    <div class="sub-head" style="margin-top:16px;">Age of Onset — Quick Reference</div>
+    <div class="g2">
+      <div>
+        <div class="tl-item"><div class="tl-dot" style="background:var(--red);color:var(--red);"></div><div class="tl-text"><strong>MEN2B:</strong> Thyroid cancer before age 10 — earliest of all syndromes</div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:var(--red);"></div><div class="tl-text"><strong>LFS:</strong> Cancers in childhood to &lt;35 years</div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:var(--yellow);"></div><div class="tl-text"><strong>FAP:</strong> Polyps in teens; colon cancer risk from 20s–30s</div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:var(--purple);"></div><div class="tl-text"><strong>MEN:</strong> Tumors usually in teens–30s; hyperparathyroidism often first</div></div>
+      </div>
+      <div>
+        <div class="tl-item"><div class="tl-dot" style="background:var(--orange);"></div><div class="tl-text"><strong>Lynch:</strong> CRC typically 20s–40s — 10 yrs EARLIER than sporadic CRC</div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:var(--blue);"></div><div class="tl-text"><strong>VHL:</strong> Often teens–30s; renal cancer ~age 40</div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:var(--red);"></div><div class="tl-text"><strong>HBOC:</strong> Breast/ovarian cancer often 30s–50s (before menopause)</div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:var(--teal);"></div><div class="tl-text"><strong>Cowden:</strong> Breast cancer 20s–40s (10 yrs earlier than general population)</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- =========================================================== -->
+<!-- SCREENING & EARLY DETECTION — Chapter 2                     -->
+<!-- =========================================================== -->
+
+<div class="sec">
+  <div class="sec-head blue">📋 SCREENING &amp; EARLY DETECTION GUIDELINES — Chapter 2 <span style="color:#fbbf24;font-size:.8em;">⭐⭐⭐</span></div>
+  <div class="sec-body">
+    <div class="note blue" style="margin-bottom:14px;">
+      <strong>Key Organizations:</strong> ACS = American Cancer Society | NCCN = National Comprehensive Cancer Network | USPSTF = U.S. Preventive Services Task Force
+    </div>
+
+    <!-- LEVELS OF PREVENTION -->
+    <div class="sub-head">Levels of Prevention</div>
+    <div class="g3">
+      <div class="card">
+        <div class="card-title green">Primary Prevention</div>
+        <ul>
+          <li>Reduce risk factors OR increase individual's resistance</li>
+          <li>Most effective method</li>
+          <li>Goal: limit the <strong>incidence</strong> of cancer</li>
+          <li>Examples: vaccination (HPV), smoking cessation, diet modification</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title blue">Secondary Prevention</div>
+        <ul>
+          <li>Early detection and treatment of asymptomatic individuals through screening</li>
+          <li>Goal: prevent disease <strong>progression</strong></li>
+          <li>Examples: mammography, colonoscopy, Pap smear, PSA</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title orange">Tertiary Prevention</div>
+        <ul>
+          <li>Application of effective therapy to improve outcomes</li>
+          <li>Decrease morbidity and mortality in <strong>affected</strong> individuals</li>
+          <li>Clinical problem-solving in symptomatic patients</li>
+        </ul>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- BREAST CANCER SCREENING -->
+    <div class="sub-head">🎗️ TABLE 2.1 — Breast Cancer Screening Recommendations</div>
+    <table>
+      <tr><th>Organization</th><th>Population</th><th>Test &amp; Schedule</th></tr>
+      <tr>
+        <td rowspan="5"><strong>ACS, 2017</strong></td>
+        <td>Women age 40–44 with <strong>average risk</strong><br><em>(Average risk = no personal history, no strong family history, no known genetic mutation)</em></td>
+        <td>Option to start annual mammogram</td>
+      </tr>
+      <tr>
+        <td>Women age <strong>45–54</strong> with average risk</td>
+        <td>Annual mammogram</td>
+      </tr>
+      <tr>
+        <td>Women age <strong>≥55</strong> with average risk</td>
+        <td>Option to switch to mammogram every other year OR continue yearly</td>
+      </tr>
+      <tr>
+        <td><strong>High-risk women</strong> (lifetime risk &gt;20–25%, BRCA1/2, or first-degree relative with BRCA)</td>
+        <td>Annual mammography at age 30 + <strong>Annual MRI screening</strong></td>
+      </tr>
+      <tr>
+        <td>Women who received <strong>thoracic radiation therapy (RT) between ages 10–30</strong></td>
+        <td>Age &lt;25: CBE every 12 mo (beginning 8–10 yr after RT)<br>Age ≥25: CBE every 6–12 mo + Annual mammogram + Annual breast MRI (beginning 8–10 yr after RT, not before age 25)</td>
+      </tr>
+      <tr>
+        <td rowspan="5"><strong>NCCN, 2017</strong></td>
+        <td>Average-risk women age <strong>25–39</strong></td>
+        <td>CBE every 1–3 years</td>
+      </tr>
+      <tr>
+        <td>Average-risk women age <strong>≥40</strong></td>
+        <td>Annual CBE + Annual mammography (consider tomosynthesis)</td>
+      </tr>
+      <tr>
+        <td><strong>Increased risk</strong>: prior history of breast cancer</td>
+        <td>CBE every 6–12 mo + Annual mammography + consider risk reduction strategies (prophylactic surgery, tamoxifen, raloxifene, exemestane)</td>
+      </tr>
+      <tr>
+        <td><strong>Increased risk</strong>: lifetime risk &gt;20% (family history dependent)</td>
+        <td>CBE every 6–12 mo + Annual mammography (begin 10 yr before youngest family member, not before age 30) + Annual breast MRI (not before age 25) + consider tomosynthesis + genetic counseling referral</td>
+      </tr>
+      <tr>
+        <td>Women with <strong>known genetic predisposition</strong> (hereditary breast/ovarian)</td>
+        <td>CBE every 6–12 mo + Annual mammogram + Breast MRI starting at age 25 (or individualized by earliest age onset in family) + consider risk reduction strategies</td>
+      </tr>
+      <tr>
+        <td rowspan="2"><strong>USPSTF, 2016</strong></td>
+        <td>Women <strong>40–49</strong> with a first-degree relative with breast cancer</td>
+        <td>Mammography every 2 years</td>
+      </tr>
+      <tr>
+        <td>Women <strong>50–74</strong></td>
+        <td>Mammography every 2 years</td>
+      </tr>
+    </table>
+    <div class="note orange">⚠️ BSE (Breast Self-Exam) was recommended routinely in the past but is NO LONGER endorsed because of mixed efficacy results and high false-positive rates. Digital mammography is widely available but has NOT shown superior effectiveness over traditional mammography in RCTs.</div>
+
+    <hr>
+
+    <!-- COLORECTAL CANCER SCREENING -->
+    <div class="sub-head">🫁 TABLE 2.2 — Colorectal Cancer (CRC) Screening Recommendations</div>
+    <div class="note green" style="margin-bottom:8px;"><strong>gFOBT (Guaiac-based Fecal Occult Blood Test)</strong> remains the only CRC screening method proven consistently effective in RCTs. Colonoscopy is the preferred screening method — identifies 60–83% of polyps/cancers and reduces CRC mortality by 31%.</div>
+    <table>
+      <tr><th>Organization</th><th>Population</th><th>Test &amp; Schedule</th></tr>
+      <tr>
+        <td rowspan="2"><strong>ACS, 2017</strong></td>
+        <td>Age <strong>≥50</strong> — men and women with <strong>average risk</strong></td>
+        <td>ONE of: Colonoscopy every 10 yr | CT colonography every 5 yr | Flexible sigmoidoscopy every 5 yr | FIT every yr | gFOBT every yr | Stool DNA every 3 yr<br><em>*If any test positive → colonoscopy must be done</em></td>
+      </tr>
+      <tr>
+        <td>CRC or adenomatous polyps in FDR <strong>before age 60</strong>, OR in ≥2 FDRs/SDRs at any age</td>
+        <td>Colonoscopy starting age <strong>40</strong>, or 10 yr before youngest case in family; every 5 yr</td>
+      </tr>
+      <tr>
+        <td rowspan="2"><strong>NCCN, 2017</strong></td>
+        <td>Age <strong>≥50</strong> — average risk (no adenoma, no CRC, no IBD, no family history)</td>
+        <td>Colonoscopy every 10 yr | Stool-based high-sensitivity tests annually | Stool DNA every 3 yr | Flexible sigmoidoscopy every 5 or 10 yr | CT colonography every 5 yr</td>
+      </tr>
+      <tr>
+        <td>&gt;1 <strong>FDR with CRC</strong> at any age</td>
+        <td>Colonoscopy beginning at age <strong>40</strong> or 10 yr before earliest CRC diagnosis; repeat every 5–10 yr</td>
+      </tr>
+      <tr>
+        <td><strong>USPSTF, 2016</strong></td>
+        <td>Age <strong>50–75</strong> with average risk</td>
+        <td>gFOBT annually | FIT annually | FIT-DNA every 1 or 3 yr | Colonoscopy every 10 yr | CT colonography every 5 yr | Flexible sigmoidoscopy every 5 yr | Flexible sigmoidoscopy + FIT every 10 yr</td>
+      </tr>
+    </table>
+
+    <hr>
+
+    <!-- CERVICAL CANCER SCREENING -->
+    <div class="sub-head">🔴 TABLE 2.3 — Cervical Cancer Screening Recommendations</div>
+    <div class="note blue" style="margin-bottom:8px;"><strong>Pap smear</strong> = principal screening tool for cervical cancer. Testing to begin at age 21 and performed every 3–5 years. Yearly Pap is no longer recommended (takes 10–20 years for cervical cancer to develop).</div>
+    <table>
+      <tr><th>Organization</th><th>Population</th><th>Test &amp; Schedule</th></tr>
+      <tr>
+        <td rowspan="4"><strong>ACS / NCCN, 2012–2013</strong></td>
+        <td>Ages <strong>21–29</strong></td>
+        <td>Cytology (Pap test) every <strong>3 years</strong>. HPV testing only if abnormal Pap — NOT routine in this age group</td>
+      </tr>
+      <tr>
+        <td>Ages <strong>30–65</strong></td>
+        <td>HPV with Pap test every <strong>5 years</strong> (preferred) OR Pap alone every 3 years (acceptable)</td>
+      </tr>
+      <tr>
+        <td>Age <strong>&gt;65</strong></td>
+        <td>Women with prior regular normal results should <strong>no longer be screened</strong></td>
+      </tr>
+      <tr>
+        <td>Women after <strong>hysterectomy</strong></td>
+        <td>Screening not needed unless surgery removed cervical cancer or precancerous lesion</td>
+      </tr>
+      <tr>
+        <td rowspan="2"><strong>USPSTF, 2012</strong></td>
+        <td>Ages <strong>21–65</strong></td>
+        <td>Pap test every 3 yr OR for ages 30–65: Pap + HPV every 5 yr</td>
+      </tr>
+      <tr>
+        <td>Age <strong>&lt;21</strong></td>
+        <td><strong>Screening NOT recommended</strong> regardless of sexual history</td>
+      </tr>
+    </table>
+    <div class="note orange">Colposcopy = primary method for evaluation of abnormal Pap tests. Involves viewing the cervix through a long-focal-length dissecting microscope at magnification. Acetic acid (4%) applied before viewing.</div>
+
+    <hr>
+
+    <!-- PROSTATE CANCER SCREENING -->
+    <div class="sub-head">🔵 TABLE 2.4 — Prostate Cancer Screening Recommendations</div>
+    <div class="note blue" style="margin-bottom:8px;"><strong>PSA</strong> = a glycoprotein produced by prostatic epithelial cells; the ONLY tumor marker currently used in prostate cancer screening. Limited sensitivity and specificity. PSA levels affected by age, BPH, inflammation, urethral/prostatic trauma, ejaculation within 48 hours, and medications.</div>
+    <table>
+      <tr><th>Organization</th><th>Population</th><th>Test &amp; Schedule</th></tr>
+      <tr>
+        <td rowspan="3"><strong>ACS, 2016</strong></td>
+        <td>Men with <strong>average risk</strong></td>
+        <td>Discussion about PSA screening at <strong>age 50</strong></td>
+      </tr>
+      <tr>
+        <td><strong>High risk</strong>: African American men OR men with FDR diagnosed with prostate cancer before age 65</td>
+        <td>Discussion at <strong>age 45</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Even higher risk</strong>: &gt;1 FDR with prostate cancer at early age</td>
+        <td>Discussion at <strong>age 40</strong></td>
+      </tr>
+      <tr>
+        <td rowspan="2"><strong>NCCN, 2017</strong></td>
+        <td>Age <strong>45–75</strong></td>
+        <td>Begin risk–benefit discussion about DRE and PSA. PSA &lt;1.0 ng/mL → repeat every 2–4 yr | PSA 1–3 ng/mL → repeat every 1–2 yr | PSA &gt;3 ng/mL or suspicious DRE → repeat PSA, consider biopsy</td>
+      </tr>
+      <tr>
+        <td>Age <strong>&gt;75</strong></td>
+        <td>Testing with caution — only in very healthy men with little or no comorbidity</td>
+      </tr>
+      <tr>
+        <td><strong>USPSTF, 2012</strong></td>
+        <td>All men</td>
+        <td><strong>Recommends NO routine screening</strong> for prostate cancer</td>
+      </tr>
+    </table>
+    <div class="note red">⚠️ DRE should NOT be used as a stand-alone test — used with PSA. PSA screening has NOT correlated with decreases in PC mortality and has instead prompted aggressive therapies with significant side effects.</div>
+
+    <hr>
+
+    <!-- LUNG CANCER SCREENING -->
+    <div class="sub-head">🫁 TABLE 2.5 — Lung Cancer Screening Guidelines</div>
+    <div class="note blue" style="margin-bottom:8px;"><strong>LDCT (Low-Dose Computed Tomography)</strong> = most sensitive test available for lung cancer screening. 20% reduction in lung cancer mortality demonstrated by National Lung Screening Trial (LDCT vs plain CXR in 53,454 high-risk participants). Chest X-ray (CXR) and sputum cytology = NO RCT evidence of benefit.</div>
+    <table>
+      <tr><th>Organization</th><th>Population</th><th>Test &amp; Schedule</th></tr>
+      <tr>
+        <td><strong>ACS, 2013</strong></td>
+        <td>Age <strong>55–74</strong> at high risk: ≥30 pack-year smoking history, currently smoking OR quit within 15 years</td>
+        <td>Low-dose LDCT — after informed shared decision making regarding limitations and benefits. <strong>Smoking cessation counseling remains a priority.</strong></td>
+      </tr>
+      <tr>
+        <td rowspan="3"><strong>NCCN, 2018</strong></td>
+        <td><strong>High-risk</strong>: Age 55–74 + ≥30 pack-year history + quit within 15 yr; OR Age ≥50 + ≥20 pack-year + ≥1 additional risk factor increasing lung cancer risk to ≥1.3%</td>
+        <td>LDCT screening recommended</td>
+      </tr>
+      <tr>
+        <td><strong>Moderate-risk</strong>: Age ≥50 + ≥20 pack-year history or secondhand exposure</td>
+        <td>Lung cancer screening is <strong>NOT recommended</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Low-risk</strong>: Age &lt;50 OR &lt;20 pack-year history</td>
+        <td>Lung cancer screening is <strong>NOT recommended</strong></td>
+      </tr>
+      <tr>
+        <td><strong>USPSTF, 2013</strong></td>
+        <td>Age <strong>55–80</strong> with ≥30 pack-year history, currently smoking OR quit within 15 years</td>
+        <td>Annual LDCT in persons who can undergo surgical resection if tumor is discovered</td>
+      </tr>
+    </table>
+    <div class="note orange">Screening not recommended for <strong>general population</strong>. Consider screening for ages 55–80 with ≥30 pack-year smoking history who either continue to smoke or have quit less than 15 years ago. ~95% false-positive results occurred in lung cancer screening trials.</div>
+
+    <hr>
+
+    <!-- QUICK COMPARISON TABLE -->
+    <div class="sub-head">⚡ Quick Summary — Screening Start Ages</div>
+    <table>
+      <tr><th>Cancer</th><th>Average Risk — Start Age</th><th>High Risk — Start Age</th><th>Key Test</th></tr>
+      <tr><td>🎗️ Breast</td><td>40–45 (mammogram)</td><td>30 (mammogram + MRI)</td><td>Mammogram ± MRI</td></tr>
+      <tr><td>🫁 Colorectal</td><td>50 (colonoscopy q10yr)</td><td>40 or 10 yr before youngest case</td><td>Colonoscopy (preferred)</td></tr>
+      <tr><td>🔴 Cervical</td><td>21 (Pap q3yr)</td><td>Same — start at 21</td><td>Pap ± HPV</td></tr>
+      <tr><td>🔵 Prostate</td><td>50 (PSA discussion)</td><td>40–45 (African American / FDR)</td><td>PSA + DRE</td></tr>
+      <tr><td>🫁 Lung</td><td>Not screened</td><td>55–74/80 (≥30 pack-yr)</td><td>LDCT annually</td></tr>
+    </table>
+
+  </div>
+</div>
+
+<div class="footer">
+  📚 Sources: Cancer Nursing 8th Ed. Ch. 6 (Yarbro, Wujcik &amp; Gobel) · Ch. 10 (Julie Eggert)<br>
+  Complete Unified Notes · Ch. 6 + Ch. 10 + Ch. 2 (Screening &amp; Early Detection)
+
+  <div class="sec-notes-wrap">
+    <div class="sec-notes-label"><span>📝</span> ملاحظاتك</div>
+    <div class="sec-notes-box" contenteditable="true" data-id="s24" data-placeholder="اكتب ملاحظاتك هنا..."></div>
+    <div class="sec-notes-saved">✓ تم الحفظ</div>
+  </div>
+</div>
+
+
+<script>
+const GSTORE='gen_notes_v1';
+let gstore={};
+try{gstore=JSON.parse(localStorage.getItem(GSTORE)||'{}');}catch(e){}
+function gsave(){try{localStorage.setItem(GSTORE,JSON.stringify(gstore));}catch(e){}}
+
+document.querySelectorAll('.sec-notes-box').forEach(box=>{
+  const bid=box.dataset.id;
+  if(gstore['note_'+bid])box.textContent=gstore['note_'+bid];
+  box.addEventListener('input',()=>{
+    gstore['note_'+bid]=box.textContent;gsave();
+    const s=box.nextElementSibling;
+    if(s){s.style.display='block';clearTimeout(s._t);s._t=setTimeout(()=>s.style.display='none',1800);}
+  });
+});
+
+let gHlOn=false,gHlColor='yellow',gHlEl=null,gHlN=gstore._hlN||0;
+const gHlBar=document.getElementById('hl-mode-bar');
+const gHlTog=document.getElementById('hl-mode-toggle');
+const gHlHint=document.getElementById('hl-hint');
+const gNoteP=document.getElementById('note-popup');
+
+gHlTog.addEventListener('click',()=>{
+  gHlOn=!gHlOn;gHlBar.classList.toggle('visible',gHlOn);
+  gHlTog.classList.toggle('active',gHlOn);
+  gHlTog.innerHTML=gHlOn?'✓ إيقاف':'🖊️ هايلايت';
+  if(gHlOn){gHlHint.style.display='block';setTimeout(()=>gHlHint.style.display='none',2500);}
+});
+document.querySelectorAll('.hl-color-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.hl-color-btn').forEach(x=>x.classList.remove('selected'));
+    b.classList.add('selected');gHlColor=b.dataset.color;
+  });
+});
+document.addEventListener('selectionchange',()=>{
+  if(!gHlOn)return;
+  setTimeout(()=>{
+    const sel=window.getSelection();
+    if(!sel||sel.isCollapsed||!sel.toString().trim())return;
+    const range=sel.getRangeAt(0);
+    if(gHlColor==='erase'){sel.removeAllRanges();return;}
+    const hid='hl'+(++gHlN); gstore._hlN=gHlN;
+    const sp=document.createElement('span');
+    sp.className='hl-'+gHlColor;sp.dataset.hlId=hid;sp.dataset.hlColor=gHlColor;
+    try{range.surroundContents(sp);}catch(e){const f=range.extractContents();sp.appendChild(f);range.insertNode(sp);}
+    gstore['hl_'+hid]={color:gHlColor,text:sp.textContent,note:''};gsave();
+    sp.addEventListener('click',e=>{
+      if(!gHlOn)return;e.stopPropagation();gHlEl=sp;
+      const d=gstore['hl_'+sp.dataset.hlId]||{};
+      gNoteP.querySelector('textarea').value=d.note||'';
+      gNoteP.style.display='block';gNoteP.querySelector('textarea').focus();
+    });
+    sel.removeAllRanges();
+  },100);
+});
+gNoteP.querySelector('.np-save').addEventListener('click',()=>{
+  if(!gHlEl)return;
+  const hid=gHlEl.dataset.hlId,txt=gNoteP.querySelector('textarea').value.trim();
+  if(!gstore['hl_'+hid])gstore['hl_'+hid]={};
+  gstore['hl_'+hid].note=txt;gsave();
+  gHlEl.classList.toggle('hl-has-note',!!txt);gNoteP.style.display='none';
+});
+gNoteP.querySelector('.np-cancel').addEventListener('click',()=>gNoteP.style.display='none');
+gNoteP.querySelector('.np-delete').addEventListener('click',()=>{
+  if(!gHlEl)return;
+  delete gstore['hl_'+gHlEl.dataset.hlId];gsave();
+  const p=gHlEl.parentNode;
+  while(gHlEl.firstChild)p.insertBefore(gHlEl.firstChild,gHlEl);
+  p.removeChild(gHlEl);p.normalize();gNoteP.style.display='none';
+});
+document.addEventListener('click',e=>{if(!gNoteP.contains(e.target))gNoteP.style.display='none';});
+
+const gCanvas=document.getElementById('draw-canvas');
+const gCtx=gCanvas.getContext('2d');
+const gDTog=document.getElementById('draw-toggle');
+const gDTbar=document.getElementById('draw-toolbar');
+const gDHint=document.getElementById('draw-hint');
+let gDrawOn=false,gDrawing=false,gErase=false,gPenColor='#ef4444',gPenSize=3;
+let gStrokes=[],gCurStroke=[];
+
+function gResize(){
+  const dpr=window.devicePixelRatio||1,W=window.innerWidth,H=window.innerHeight;
+  gCanvas.width=W*dpr;gCanvas.height=H*dpr;
+  gCanvas.style.width=W+'px';gCanvas.style.height=H+'px';
+  gCtx.scale(dpr,dpr);gRedraw();
+}
+function gRedraw(){
+  const dpr=window.devicePixelRatio||1;
+  gCtx.clearRect(0,0,gCanvas.width/dpr,gCanvas.height/dpr);
+  gStrokes.forEach(st=>{
+    if(st.points.length<2)return;
+    gCtx.save();gCtx.globalCompositeOperation=st.eraser?'destination-out':'source-over';
+    gCtx.strokeStyle=st.color;gCtx.lineWidth=st.size;gCtx.lineCap='round';gCtx.lineJoin='round';
+    gCtx.beginPath();gCtx.moveTo(st.points[0].x,st.points[0].y);
+    st.points.forEach(p=>gCtx.lineTo(p.x,p.y));gCtx.stroke();gCtx.restore();
+  });
+}
+gCanvas.addEventListener('pointerdown',e=>{
+  if(!gDrawOn)return;e.preventDefault();gDrawing=true;
+  const r=gCanvas.getBoundingClientRect();
+  gCurStroke=[{x:e.clientX-r.left,y:e.clientY-r.top}];
+  gCanvas.setPointerCapture(e.pointerId);
+});
+gCanvas.addEventListener('pointermove',e=>{
+  if(!gDrawing||!gDrawOn)return;e.preventDefault();
+  const r=gCanvas.getBoundingClientRect(),pos={x:e.clientX-r.left,y:e.clientY-r.top};
+  gCurStroke.push(pos);
+  gCtx.save();gCtx.globalCompositeOperation=gErase?'destination-out':'source-over';
+  gCtx.strokeStyle=gPenColor;gCtx.lineWidth=gPenSize*(e.pressure?0.5+e.pressure:1);
+  gCtx.lineCap='round';gCtx.lineJoin='round';
+  if(gCurStroke.length>=2){
+    gCtx.beginPath();const p1=gCurStroke[gCurStroke.length-2],p2=gCurStroke[gCurStroke.length-1];
+    gCtx.moveTo(p1.x,p1.y);gCtx.lineTo(p2.x,p2.y);gCtx.stroke();
+  }
+  gCtx.restore();
+});
+gCanvas.addEventListener('pointerup',()=>{
+  if(!gDrawing)return;gDrawing=false;
+  gStrokes.push({points:gCurStroke,color:gPenColor,size:gPenSize,eraser:gErase});gCurStroke=[];
+  try{localStorage.setItem('gen_drawing_v1',JSON.stringify(gStrokes));}catch(e){}
+});
+gCanvas.addEventListener('pointercancel',()=>{gDrawing=false;});
+window.addEventListener('resize',gResize);
+gDTog.addEventListener('click',()=>{
+  gDrawOn=!gDrawOn;gCanvas.classList.toggle('active',gDrawOn);
+  gDTog.classList.toggle('active',gDrawOn);
+  gDTog.innerHTML=gDrawOn?'✋ إيقاف':'✏️ رسم';
+  gDTbar.classList.toggle('visible',gDrawOn);
+  gDHint.style.display=gDrawOn?'block':'none';
+  if(gDrawOn)setTimeout(()=>gDHint.style.display='none',2500);
+  document.body.style.overflow=gDrawOn?'hidden':'';
+});
+document.querySelectorAll('.dt-color').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.dt-color').forEach(x=>x.classList.remove('selected'));
+    b.classList.add('selected');gPenColor=b.dataset.color;gErase=false;
+    document.getElementById('dt-eraser').style.background='rgba(255,255,255,.12)';
+  });
+});
+document.querySelectorAll('.dt-size').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.dt-size').forEach(x=>x.classList.remove('selected'));
+    b.classList.add('selected');gPenSize=parseInt(b.dataset.size);
+  });
+});
+document.getElementById('dt-eraser').addEventListener('click',function(){
+  gErase=!gErase;this.style.background=gErase?'#be185d':'rgba(255,255,255,.12)';
+});
+document.getElementById('dt-undo').addEventListener('click',()=>{
+  gStrokes.pop();gRedraw();
+  try{localStorage.setItem('gen_drawing_v1',JSON.stringify(gStrokes));}catch(e){}
+});
+document.getElementById('dt-clear').addEventListener('click',()=>{
+  if(confirm('تمسح كل الرسومات؟')){gStrokes=[];gRedraw();try{localStorage.removeItem('gen_drawing_v1');}catch(e){}}
+});
+try{const sv=localStorage.getItem('gen_drawing_v1');if(sv)gStrokes=JSON.parse(sv);}catch(e){}
+gResize();
+</script>
+
+</body>
+</html>
