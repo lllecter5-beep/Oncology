@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Genetic Risk Factors MCQ — Scenario Based</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#7c3aed;--purple-dim:#ede9fe;--purple-dark:#4c1d95;--navy:#1e3a8a;--green:#16a34a;--red:#dc2626;--gold:#d97706;--blue:#2563eb;--bg:#f5f7fa;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.header{background:linear-gradient(135deg,#2e1065,#4c1d95 40%,#7c3aed 70%,#6d28d9);padding:28px 20px 24px;text-align:center;color:#fff}
+.header h1{font-family:'Playfair Display',serif;font-size:1.6em;margin-bottom:6px}
+.header p{font-size:.82em;color:#ddd6fe;opacity:.95}
+.badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.badge{display:inline-block;padding:3px 12px;border-radius:20px;font-size:.72em;font-weight:700}
+.badge-green{background:rgba(22,163,74,.3);border:1px solid rgba(134,239,172,.4);color:#bbf7d0}
+.badge-blue{background:rgba(30,58,138,.4);border:1px solid rgba(147,197,253,.4);color:#bfdbfe}
+.badge-purple{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff}
+.controls{background:#fff;border-bottom:1px solid var(--border);padding:10px 16px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.ctrl-btn{padding:7px 14px;border-radius:20px;border:1.5px solid var(--border);background:#fff;color:var(--muted);font-size:.78em;font-weight:600;cursor:pointer;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.ctrl-btn.active{background:var(--purple);color:#fff;border-color:var(--purple)}
+#score-bar{background:var(--purple-dim);border-radius:20px;padding:6px 14px;font-size:.78em;font-weight:700;color:var(--purple-dark)}
+.filter-bar{padding:10px 16px;background:#fff;border-bottom:1px solid var(--border);display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.filter-btn{padding:5px 12px;border-radius:20px;border:1.5px solid var(--border);background:#fff;color:var(--muted);font-size:.73em;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.filter-btn.active{border-color:var(--purple);background:var(--purple-dim);color:var(--purple)}
+.progress-wrap{padding:12px 16px 0}
+.progress-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--blue));border-radius:3px;transition:width .4s}
+.progress-text{font-size:.73em;color:var(--muted);margin-top:4px;text-align:right}
+.q-container{padding:12px 16px 80px;max-width:820px;margin:0 auto}
+.q-card{background:#fff;border:1px solid var(--border);border-radius:14px;margin-bottom:14px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.q-card.core-q{border-left:4px solid var(--green)}
+.q-card.blue-q{border-left:4px solid var(--blue)}
+.q-header{display:flex;align-items:flex-start;gap:10px;padding:14px 16px 10px;border-bottom:1px solid var(--border)}
+.q-num{background:var(--purple);color:#fff;border-radius:8px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:.73em;font-weight:700;flex-shrink:0;margin-top:1px}
+.q-card.core-q .q-num{background:#15803d}
+.q-card.blue-q .q-num{background:var(--navy)}
+.q-topic{font-size:.67em;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--purple);margin-bottom:4px}
+.q-card.core-q .q-topic{color:#15803d}
+.q-card.blue-q .q-topic{color:var(--navy)}
+.q-text{font-size:.9em;line-height:1.6;font-weight:600;color:var(--text)}
+.q-body{padding:12px 16px}
+.src-badge{display:inline-block;border-radius:8px;padding:2px 8px;font-size:.68em;font-weight:700;margin-bottom:8px}
+.src-badge.core{background:#dcfce7;color:#15803d}
+.src-badge.blue{background:#eff6ff;color:#1d4ed8}
+.src-badge.extra{background:var(--purple-dim);color:var(--purple-dark)}
+.options{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;transition:all .15s;-webkit-tap-highlight-color:transparent;font-size:.87em;line-height:1.5}
+.opt:hover{border-color:var(--purple);background:var(--purple-dim)}
+.opt-letter{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.7em;font-weight:700;flex-shrink:0;color:var(--muted)}
+.opt.correct{background:#dcfce7;border-color:var(--green)}
+.opt.correct .opt-letter{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.selected-wrong{background:#fee2e2;border-color:var(--red)}
+.opt.selected-wrong .opt-letter{background:var(--red);color:#fff;border-color:var(--red)}
+.opt.disabled{cursor:default;pointer-events:none}
+.explanation{margin-top:12px;padding:12px 14px;border-radius:10px;background:#faf5ff;border-left:3px solid var(--purple);font-size:.83em;line-height:1.6;color:#4c1d95;display:none}
+.explanation.show{display:block}
+.explanation strong{display:block;margin-bottom:4px}
+.q-status{display:none;font-size:.7em;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:auto;flex-shrink:0}
+.q-status.correct{background:#dcfce7;color:var(--green);display:block}
+.q-status.wrong{background:#fee2e2;color:var(--red);display:block}
+#results-modal{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px}
+#results-modal.show{display:flex}
+.results-box{background:#fff;border-radius:20px;padding:32px 24px;max-width:420px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.results-score{font-size:3.5em;font-weight:700;color:var(--purple);font-family:'Playfair Display',serif;line-height:1}
+.results-pct{font-size:1.1em;color:var(--muted);margin-top:4px}
+.results-grade{font-size:1.3em;font-weight:700;margin:12px 0;padding:8px 20px;border-radius:12px;display:inline-block}
+.results-msg{font-size:.88em;color:var(--text);margin:12px 0;line-height:1.6}
+.results-btn{background:var(--purple);color:#fff;border:none;border-radius:12px;padding:12px 28px;font-size:.9em;font-weight:700;cursor:pointer;margin-top:12px;width:100%}
+#submit-all{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--purple);color:#fff;border:none;border-radius:30px;padding:14px 32px;font-size:.9em;font-weight:700;cursor:pointer;box-shadow:0 4px 20px rgba(124,58,237,.4);z-index:500;display:none}
+#submit-all.show{display:block}
+.q-card.hidden{display:none}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>Genetic Risk Factors MCQ</h1>
+  <p>Clinical Scenario-Based Questions — SCFHS Oncology Nursing</p>
+  <div class="badges">
+    <span class="badge badge-green">📗 Core Curriculum 6th Ed · 20 Qs</span>
+    <span class="badge badge-blue">📘 Blue Book (CNPP 8th) · 10 Qs</span>
+    <span class="badge badge-purple">🧬 Additional · 20 Qs</span>
+    <span class="badge badge-purple">📊 Total · 50 Questions</span>
+  </div>
+</div>
+<div class="controls">
+  <div id="score-bar">Score: <span id="score-val">0</span>/<span id="total-answered">0</span></div>
+  <button class="ctrl-btn" onclick="shuffleQuestions()">🔀 Shuffle</button>
+  <button class="ctrl-btn" id="btn-show-all" onclick="toggleShowAnswers()">👁 Show Answers</button>
+  <button class="ctrl-btn" id="btn-reset" onclick="resetQuiz()">↺ Reset</button>
+</div>
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterBy('all',this)">All (50)</button>
+  <button class="filter-btn" onclick="filterBy('core',this)">📗 Core Curriculum (20)</button>
+  <button class="filter-btn" onclick="filterBy('blue',this)">📘 Blue Book (10)</button>
+  <button class="filter-btn" onclick="filterBy('central-dogma',this)">Central Dogma</button>
+  <button class="filter-btn" onclick="filterBy('mutations',this)">Mutations</button>
+  <button class="filter-btn" onclick="filterBy('hereditary',this)">Hereditary Syndromes</button>
+  <button class="filter-btn" onclick="filterBy('testing',this)">Genetic Testing</button>
+  <button class="filter-btn" onclick="filterBy('counseling',this)">Counseling</button>
+  <button class="filter-btn" onclick="filterBy('risk-reduction',this)">Risk Reduction</button>
+  <button class="filter-btn" onclick="filterBy('screening',this)">Screening</button>
+</div>
+<div class="progress-wrap">
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  <div class="progress-text"><span id="answered-count">0</span>/<span id="total-count">50</span> answered</div>
+</div>
+<div class="q-container" id="q-container"></div>
+<button id="submit-all" onclick="submitQuiz()">Submit Quiz ✓</button>
+<div id="results-modal">
+  <div class="results-box">
+    <div class="results-score" id="final-score">0</div>
+    <div class="results-pct" id="final-pct">out of 50</div>
+    <div class="results-grade" id="final-grade"></div>
+    <div class="results-msg" id="final-msg"></div>
+    <button class="results-btn" onclick="closeResults()">Review Answers</button>
+    <button class="results-btn" style="background:#4c1d95;margin-top:8px" onclick="resetQuiz()">Try Again</button>
+  </div>
+</div>
+<script>
+const questions = [
+
+// ── CORE CURRICULUM 6th Ed — Chapter 10: Genetic Risk Factors (20 Qs) ──
+{id:1,topic:'central-dogma',src:'core',
+q:"During an oncology nursing orientation, the instructor explains why the Central Dogma of molecular biology is important to oncology nursing practice. Which statement BEST explains its importance?",
+opts:["Canines have the same DNA nucleotides as humans","It explains the production of protein for all body functions","DNA and RNA contain identical nucleic acids for genetic information important in genetic testing in hereditary risk","RNA to DNA to protein explains the chain of events for protein production"],
+ans:1,
+exp:"Answer B. 'DNA makes RNA and RNA makes protein' explains the production of protein for all body functions. This knowledge aids in the education of patients and families about their inherited genetic testing results. C is false as RNA contains Uracil instead of Thymine contained in DNA. Core Curriculum 6th Ed, Ch.10."},
+
+{id:2,topic:'mutations',src:'core',
+q:"Mrs. Reem Al-Shammari, a 50-year-old woman with a history of environmental carcinogen exposure, asks the nurse about epigenetics. The nurse responds with the understanding that:",
+opts:["Epigenetics causes pieces of the DNA sequence to be 'chopped out'","Only epigenetic changes associated with aging, drug use, and addiction cause cancer","Most cancers are the result of inherited DNA and RNA mutations in single cells over the lifetime of an individual","Changing the histone structure of DNA by allowing transcription and preventing transcription can alter the protein product outcome"],
+ans:3,
+exp:"Answer D. Epigenetics is defined as switching genes on and off with a variety of 'chemical tails' attached to the DNA structure, without changing the DNA sequence. DNA transcription is controlled by opening or closing the tightly wound histone structure. B and C are FALSE statements. Core Curriculum 6th Ed, Ch.10."},
+
+{id:3,topic:'hereditary',src:'core',
+q:"Mrs. Nadia Al-Qahtani, a 29-year-old woman, is newly diagnosed with bilateral breast cancer. The oncology nurse is considering which finding would raise suspicion for hereditary breast and ovarian cancer (HBOC) syndrome. Which finding MOST raises suspicion?",
+opts:["Maternal aunt and paternal uncle with a history of brain cancer at unknown ages","Mother was diagnosed with ovarian cancer at age 33 years","Brother was diagnosed with testicular cancer at age 25 years after he served in the military during Vietnam","4-year-old nephew diagnosed with leukemia"],
+ans:1,
+exp:"Answer B. HBOC is associated with ovarian cancer especially when it occurs before age 50, and early onset breast cancer (before age 50), especially when there are multiple family members. A is incorrect because these are from both maternal and paternal lineages. C is incorrect because testicular cancer is usually diagnosed in younger men but is not associated with HBOC. D is incorrect because childhood leukemia is not associated with HBOC. Core Curriculum 6th Ed, Ch.10."},
+
+{id:4,topic:'mutations',src:'core',
+q:"A new oncology nurse asks how to determine if a cell mutation is somatic or germline. The senior nurse explains that:",
+opts:["Germline cells will have single nucleotide polymorphisms (SNPs) associated with a mutation","A somatic cell acquires mutations during the monthly reproductive cycle of the body","Germline mutations occur in reproductive cells of a person with an inherited cancer predisposition","Somatic cells accumulate mutations prior to conception while in utero"],
+ans:2,
+exp:"Answer C. Germline mutations occur in the reproductive cells of a person with an inherited cancer predisposition. A is incorrect because SNPs occur in both germline or somatic cells. B is incorrect as both males and females develop mutations in their somatic cells over a lifetime. D is incorrect as somatic mutations occur in body cells (except the gametes) after conception and are acquired over a lifetime. Core Curriculum 6th Ed, Ch.10."},
+
+{id:5,topic:'mutations',src:'core',
+q:"During a genetics grand rounds, the oncology team discusses which statement explains the derivation of a cancerous tumor. Which statement is MOST accurate?",
+opts:["Genetic mutations in genes that control cell growth and proliferation are commonly associated with the development of cancer","Proto-oncogenes are frequently associated with the proliferation and development of malignancies","Passenger mutations are essential to cancers caused by driver mutations","Mutations in a DNA repair gene are not associated with environmental carcinogens or inheritance"],
+ans:0,
+exp:"Answer A. A malignant tumor is derived from genetic instability and genetic mutations in genes that control cell growth and proliferation. B is incorrect as proto-oncogenes are normal genes essential for normal cell growth. C is incorrect because driver mutations offer a selective growth advantage while passenger mutations do not. D is incorrect as mutations in DNA repair genes may be inherited from a parent or acquired from environmental carcinogens. Core Curriculum 6th Ed, Ch.10."},
+
+{id:6,topic:'hereditary',src:'core',
+q:"Mrs. Asmaa Al-Harbi, a 35-year-old woman, is being seen in the high-risk cancer clinic because there are features suggestive of a risk for hereditary cancer in her family. Which feature COULD indicate hereditary cancer risk?",
+opts:["Passage of a trait to future generations on only one allele of a chromosome","No known germline deleterious mutation in a cancer susceptibility gene","Autosomal dominant designation of a cancer","A unique variety of cancer types in multiple generations"],
+ans:3,
+exp:"Answer D. Features suggestive of hereditary cancer risk include: a unique variety of cancer types in multiple generations, usually from one side of the family, with a risk for hereditary cancer. Core Curriculum 6th Ed, Ch.10."},
+
+{id:7,topic:'counseling',src:'core',
+q:"Mrs. Basma Al-Ghamdi has a family history of cancer and asks the nurse about pedigree construction. A pedigree that identifies a family at HIGH risk for inherited cancer should include:",
+opts:["At least four generations of cancer information for both lineages","The use of squares to designate females and circles to designate males","Race, ethnicity, and age of individuals, but only if there is cancer in the generation","History of treatments that may have reduced risk of cancer"],
+ans:3,
+exp:"Answer D. Any individual with a diagnosis of cancer should provide information about treatments, age at onset, and other pertinent medical history that might explain the diagnosis of cancer such as risk factor exposures. A is incorrect as only three generations of cancer information for both lineages is required. B is incorrect as females are designated as circles while males are designated as squares. C is incorrect as race, ethnicity, and age of individuals should be included for ALL of the individuals. Core Curriculum 6th Ed, Ch.10."},
+
+{id:8,topic:'testing',src:'core',
+q:"Mr. Ahmad Al-Zahrani has a known family BRCA2 mutation but his genetic test came back 'negative.' The nurse explains that a negative genetic testing result with 'known family genetic mutation' should include the following caveat:",
+opts:["The technique used has limited sensitivity","The family may be affected by a mutation in another gene","Family history from the other parent influences the risk of developing cancer","The cancer in the family may not be caused by a germline genetic mutation"],
+ans:2,
+exp:"Answer C. When an individual is tested for a known family mutation, they did not inherit the risk associated with the mutation from the side of the family with the known mutation. The history from the other side can also influence risk. A is incorrect as identification of a germline mutation in a cancer susceptibility gene also may not be possible because of the limited sensitivity of the techniques used. B and D are incorrect as this can occur with both a known family mutation and when there is no known family mutation. Core Curriculum 6th Ed, Ch.10."},
+
+{id:9,topic:'testing',src:'core',
+q:"Mrs. Lujain Al-Dosari is told her genetic test shows a 'variant of unknown significance (VUS).' She asks the nurse what this means. A VUS has which of the following characteristics?",
+opts:["It is identified when a cancer risk has been established","A VUS identifies a genetic change in which the association with cancer risk cannot be established","Once identified, a VUS maintains that label forever","A VUS is an uncommon genetic finding"],
+ans:1,
+exp:"Answer B. A VUS is a change in the genetic material for which there is not enough data to determine if it is harmful or harmless. A is incorrect as a VUS is identified when a cancer risk has NOT been established. C is also incorrect as a VUS label can change to pathogenic or benign based on information identified in new types of genetic testing. D is incorrect as a VUS can be a fairly common finding. Core Curriculum 6th Ed, Ch.10."},
+
+{id:10,topic:'testing',src:'core',
+q:"Mrs. Waad Al-Qahtani has a family history of breast cancer and reports her '23 and Me' direct-to-consumer genetic test was 'negative.' Which information should be discussed with her?",
+opts:["This tests for BRCA1/2 genetic testing only and includes three mutations","Breast cancer predisposition testing from this test is not United States Food and Drug Administration approved","Direct-to-consumer testing is approved for use in diagnosis and treatment of breast cancer","All direct-to-consumer testing is the same"],
+ans:0,
+exp:"Answer A. The 23 and Me test includes only the three BRCA1/2 (selected variants) mutations most common in persons of Ashkenazi descent. These are the most common out of thousands of mutations which are NOT included in the direct-to-consumer test. B is incorrect as it IS FDA approved. C is incorrect as it is not FDA approved for diagnosis or clinical decision making in breast cancer. D is incorrect as Only 23 and ME is FDA approved but there are other types of direct-to-consumer genetic testing. Core Curriculum 6th Ed, Ch.10."},
+
+{id:11,topic:'testing',src:'core',
+q:"Mrs. Wejdan Al-Shehri asks the nurse which mutation-identifying technique determines the NUMBER of mutations in chromosomes. The correct technique is:",
+opts:["Cytogenetics","Sanger sequencing","Genome-wide association studies (GWAS)","Microarray"],
+ans:0,
+exp:"Answer A. Cytogenetic reports include modal number of chromosomes, sex chromosome designation, abnormality abbreviation — first chromosome separated with a semicolon from the second chromosome, then the arm and band number. B is incorrect as this detects sequence changes in regions being analyzed. Sanger sequencing is a form of gene sequencing. The GWAS sequencing reviews for changes with specific disease (cancer type) versus people without the cancer. D is incorrect as microarrays are used for mutation detection and gene expression. Core Curriculum 6th Ed, Ch.10."},
+
+{id:12,topic:'mutations',src:'core',
+q:"Mrs. Hessa Al-Mutairi asks the nurse about de novo mutations. A germline mutation occurs in the gametes and:",
+opts:["Is present only in first generation","Is present in non-reproductive cells","Can include a de novo mutation","Includes every cell in the body"],
+ans:2,
+exp:"Answer C. A de novo mutation is change in a gene and is present for the first time in one family member due to mutation in a germ cell (egg or sperm) of one of the parents or in the fertilized egg. A is incorrect as a germline mutation is passed from generation to generation. B is incorrect as germline mutations are present in the reproductive cells (the eggs and sperm). D is incorrect as it only occurs in the gametes: eggs and sperm. Core Curriculum 6th Ed, Ch.10."},
+
+{id:13,topic:'counseling',src:'core',
+q:"Mrs. Rima Al-Rashidi receives genetic testing results showing substantially increased risk for developing cancer or another primary lesion. The nurse recognizes which psychological consequence may occur?",
+opts:["Depression yet a sense of relief","Transmitter guilt","Heightened anxiety","Survivor guilt"],
+ans:2,
+exp:"Answer C. Heightened anxiety may result when patients learn that they are at a substantially increased risk for developing cancer or another primary lesion. A is incorrect as, although there can be depression, a sense of relief has not been reported. B is incorrect as this relates to family members versus the patient. D is incorrect as you see this type of guilt in persons who have not inherited the genetic mutation present in other close family members. Core Curriculum 6th Ed, Ch.10."},
+
+{id:14,topic:'testing',src:'core',
+q:"Mrs. Dana Al-Ghamdi asks whether her genetic information could be used against her by employers or insurers. The nurse explains that which of the following groups are NOT included in the Genetic Non-Discrimination Act (GINA)?",
+opts:["Native Americans","African Americans","Jewish Americans","Southern Baptist Association"],
+ans:0,
+exp:"Answer A. The Genetic Information Nondiscrimination Act (GINA), federal legislation enacted in 2008, applies to health insurance and employment discrimination based on genetic information. GINA does NOT apply to active duty military personnel, Veterans Administration, or Native American Health Service because the laws amended for GINA do not apply to these groups. Core Curriculum 6th Ed, Ch.10."},
+
+{id:15,topic:'counseling',src:'core',
+q:"Mrs. Ranya Al-Dosari is about to undergo genetic testing and asks about informed consent. Which provision of informed consent for genetic testing is NOT included when consented for testing?",
+opts:["Purpose of the test","Motivation for testing","Impact of test result on healthcare decision making","Longevity of life after testing"],
+ans:3,
+exp:"Answer D. Genetic testing cannot determine longevity of life so it is not part of the informed consent process. Elements of informed consent include discussion of the purpose of the test, motivation for testing, risks and benefits of testing, potential limitations of testing, risk of misidentified paternity, inheritance pattern of the gene and likelihood of a mutation being detected, accuracy of the test, potential outcomes of testing, how confidentiality will be maintained, possibility of discrimination, alternatives to testing, how testing will influence health care decision making, costs of testing and considerations for testing in children. Core Curriculum 6th Ed, Ch.10."},
+
+{id:16,topic:'hereditary',src:'core',
+q:"During a genetics case conference, the team is asked which of the following diseases does NOT increase the risk for a primary brain tumor. The correct answer is:",
+opts:["Huntington disease","Neurofibromatosis type I","Li-Fraumeni syndrome","Von Hippel-Lindau disease"],
+ans:0,
+exp:"Answer A. All the listed are genetic diseases, but the only one NOT associated with risk of developing brain cancer is Huntington's disease. Neurofibromatosis type I is associated with malignant peripheral nerve sheath tumors, optic gliomas, meningiomas, hamartomatous intestinal polyps, other gliomas, and leukemias. Li-Fraumeni syndrome is associated with soft tissue sarcoma, osteosarcoma, pre-menopausal breast cancer, brain tumors, adrenocortical carcinoma (ACC), and leukemias. Von Hippel Lindau disease is associated with renal cancers, pancreatic neuroendocrine tumors, hemangioblastomas, and pheochromocytomas. Core Curriculum 6th Ed, Ch.10."},
+
+{id:17,topic:'testing',src:'core',
+q:"During a cytogenetics lecture, the nurse educator asks: 'The small arm of the chromosome is labeled as which letter?'",
+opts:["o","p","q","s"],
+ans:1,
+exp:"Answer B. The small arm is known as the petite arm and is labeled as 'p'. The long arm is labeled as 'q' because 'q' comes after 'p' in the alphabet. There is no 'o' or 's' arm. Core Curriculum 6th Ed, Ch.10."},
+
+{id:18,topic:'central-dogma',src:'core',
+q:"A nursing student asks: 'What is the protein coding section of a gene referred to as?' The correct answer is:",
+opts:["Exon","Codon","Intron","Autosome"],
+ans:0,
+exp:"Answer A. Exons are protein-coding segments of a gene. Introns are non-protein-coding segments, the sequence-interrupting piece of a gene. A codon is a sequence of three mRNA nucleotides (e.g., ACG) yielding one (threonine) of the 20 amino acids. An autosome is any chromosome that is not a sex chromosome. Core Curriculum 6th Ed, Ch.10."},
+
+{id:19,topic:'hereditary',src:'core',
+q:"Mrs. Aisha Al-Mutairi is diagnosed with MUTYH-associated polyposis. The genetic counselor explains that this hereditary cancer syndrome is inherited in an autosomal RECESSIVE fashion. Which of the following hereditary cancer syndromes is also inherited in an autosomal RECESSIVE fashion?",
+opts:["Hereditary retinoblastoma","MUTYH associated polyposis","Hereditary diffuse gastric cancer","Multiple endocrine neoplasia type 1"],
+ans:1,
+exp:"Answer B. MUTYH-associated polyposis (MAP) is an autosomal recessive hereditary cancer syndrome. Hereditary retinoblastoma, hereditary diffuse gastric cancer, and multiple endocrine neoplasia type 1 are all inherited in an autosomal DOMINANT fashion. Core Curriculum 6th Ed, Ch.10."},
+
+{id:20,topic:'hereditary',src:'core',
+q:"Mrs. Tahany Al-Harbi is diagnosed with Lynch syndrome. The genetic counselor explains that mutations in the MSH2 gene are associated with cancers of the:",
+opts:["Lung","Ovary","Sarcoma","Thyroid"],
+ans:1,
+exp:"Answer B. Lynch syndrome, which was previously known as hereditary nonpolyposis colorectal cancer (HNPCC), is associated with mutations in the following genes: MLH1, MSH2 (including methylation due to EPCAM deletion), MSH6 and PMS2. Lynch syndrome is characterized by microsatellite instability (MSI) due to defective mismatch repair. Cancers associated with Lynch syndrome include cancers of the colon, rectum, stomach, small intestine, esophagus, biliary tract, brain, endometrium, and OVARY. Lynch syndrome is NOT typically associated with cancers of the lung, thyroid, or sarcomas. Core Curriculum 6th Ed, Ch.10."},
+
+// ── BLUE BOOK / CNPP 8th Ed GENETICS QUESTIONS (10 Qs) ──
+{id:21,topic:'counseling',src:'blue',
+q:"Mrs. Fatima Al-Zahrani has ovarian cancer and a BRCA1 gene mutation. She asks whether her 35-year-old daughter should have risk-reduction surgery to prevent ovarian cancer. Your BEST advice is:",
+opts:["For your daughter to fully understand her risk, she should go through a formal risk assessment and see a genetic health professional before she makes any decision","She is at risk for ovarian cancer, and it would be worthwhile for her to consider a prophylactic oophorectomy","Your daughter should be followed closely and may want to talk to her physician about oral contraceptives to suppress ovulation","Since she is asymptomatic, she should have a yearly physical examination that includes a bimanual rectovaginal examination"],
+ans:0,
+exp:"Answer A. She should have a thorough cancer risk assessment and genetic counseling, so she will have the necessary facts about her risk, the alternatives for dealing with her risk, and consideration of the options available to her. Women at high risk may elect to take medicine to suppress ovulation or consider prophylactic oophorectomy at the completion of childbearing. CNPP, Pages 146-149, 1799."},
+
+{id:22,topic:'risk-reduction',src:'blue',
+q:"Mrs. Zainab Al-Qahtani is a BRCA1 mutation carrier asking about surgical risk reduction. Which statement is the BEST reason to recommend risk-reduction bilateral mastectomy for a woman with high genetic risk of breast cancer?",
+opts:["Removal of the breasts before cancer detection lowers risk by 90%","Removal of the breasts before cancer detection lowers risk by 80%","Removal of the breasts will decrease the risk of ovarian cancer","Removal of the breasts will decrease the risk of both ovarian and breast cancer"],
+ans:0,
+exp:"Answer A. For women at high-risk of hereditary breast and ovarian cancer (HBOC), risk-reducing bilateral mastectomy (RRBM) — the removal of both breasts before a breast cancer is detected — lowers breast cancer risk by 90%. CNPP, Page 152."},
+
+{id:23,topic:'hereditary',src:'blue',
+q:"Mrs. Lama Al-Ghamdi has Lynch syndrome (HNPCC). Her gastroenterologist recommends surveillance colonoscopy. What are the correct colorectal surveillance recommendations for Lynch syndrome carriers?",
+opts:["Colonoscopy beginning at age 40; repeat every 2 years","Upper gastrointestinal (GI) endoscopy at age 50 every 3-5 years","Colonoscopy beginning at ages 20-25; repeat every 1-2 years","Screening for gastric, duodenal, and small bowel cancer"],
+ans:2,
+exp:"Answer C. Colonoscopy with removal of polyps is recommended beginning at ages 20-25, repeating every 1-2 years. Evidence does not support screening for gastric, duodenal, and small bowel cancer in Lynch syndrome. Selected individuals may be advised to have upper GI endoscopy between 30-35 years of age every 3-5 years. CNPP, Pages 123, 1433."},
+
+{id:24,topic:'testing',src:'blue',
+q:"Mrs. Haya Al-Shehri asks which risk model should be used to calculate a patient's risk of having a cancer susceptibility mutation for COLORECTAL cancer. The correct model is:",
+opts:["Gail","Tyrer-Cuzick","PREMM","Claus"],
+ans:2,
+exp:"Answer C. The PREMM model predicts risk of hereditary colorectal cancer mutation. The Gail, Tyrer-Cuzick, and Claus models predict risk of developing breast cancer. CNPP, Page 117."},
+
+{id:25,topic:'screening',src:'blue',
+q:"Mrs. Suha Al-Mutairi asks the nurse about the most important factor in whether an individual actually gets a cancer screening test. Research shows the single MOST important factor is:",
+opts:["Recommendation by a nurse","Recommendation by a family member","Recommendation by a friend who has cancer","Recommendation by their insurance provider"],
+ans:0,
+exp:"Answer A. There is a far greater chance that the individual will actually go have appropriate screening when a nurse recommends screening to an individual. This highlights the critical role of oncology nurses in cancer prevention and early detection. CNPP, Page 129."},
+
+{id:26,topic:'screening',src:'blue',
+q:"The oncology nurse explains to a community group the most important risk-reduction behavior for the prevention of cervical cancer. The answer is:",
+opts:["Limit the number of lifetime sexual partners","Regular Pap smear testing","Take oral contraceptives","Annual human papillomavirus (HPV) testing"],
+ans:0,
+exp:"Answer A. Modifying sexual behavior, thereby limiting a woman's exposure to oncogenic human papillomavirus, will prevent cervical cancer. This includes barrier contraceptives and limiting sexual partners. Oral contraceptives, annual Pap smear, or HPV testing are not risk-reducing behaviors for prevention of cervical cancer. CNPP, Page 1401."},
+
+{id:27,topic:'testing',src:'blue',
+q:"Mrs. Noof Al-Rashidi, a genetics nurse, explains the accuracy of screening tests to nursing students. Which statement is CORRECT about screening test specificity?",
+opts:["The sensitivity of a screening test is its ability to detect those individuals without cancer","The specificity of a screening test is its ability to identify those individuals without cancer","A true-positive test is a normal test for cancer in an individual who does not have cancer","A false-negative test is a normal test in an individual who does not have cancer"],
+ans:1,
+exp:"Answer B. The specificity of a test is its ability to identify those individuals who do NOT have cancer. The sensitivity of a screening test is its ability to detect cancer. A true-positive and a false-negative are normal tests for cancer in a patient who HAS cancer. CNPP, Pages 100, 121-122."},
+
+{id:28,topic:'screening',src:'blue',
+q:"Mrs. Yasmine Al-Dosari, a 55-year-old asymptomatic woman, asks the nurse which colorectal cancer screening test is recommended by the American Cancer Society for asymptomatic individuals ages 50 and above. The answer is:",
+opts:["Flexible sigmoidoscopy every 2 years","Digital rectal examination","Colonoscopy every 10 years","Double-contrast barium enema every 10 years"],
+ans:2,
+exp:"Answer C. Colonoscopy is recommended every 10 years; flexible sigmoidoscopy every 5 years (not 2 years); double-contrast barium enema every 5 years (not 10 years). CNPP, Page 123."},
+
+{id:29,topic:'counseling',src:'blue',
+q:"During a cancer risk assessment, Mrs. Randa Al-Harbi asks about her absolute risk vs relative risk. The nurse explains that providing patients with their absolute and relative risk is important because:",
+opts:["The predictive value of their chance for developing cancer","Their absolute and relative risk of developing cancer","A model that predicts their risk of developing cancer","Their genetic risk is what is most important"],
+ans:1,
+exp:"Answer B. Absolute risk is helpful when patients need to understand the chances for all persons in a population of developing a particular disease. Relative risk refers to a comparison of the incidence or deaths among those with a particular risk factor and those without the risk factor. Thus, individuals can better understand their personal chance of developing a specific cancer. CNPP, Pages 115-116."},
+
+{id:30,topic:'screening',src:'blue',
+q:"Mrs. Maha Al-Zahrani, a 55-year-old ex-smoker with 30 pack-years, asks about lung cancer screening. The recommended screening modality is:",
+opts:["Chest x-ray","Low-dose computed tomography (LDCT)","Sputum cytology","MRI of the chest"],
+ans:1,
+exp:"Answer B. Low-dose computed tomography (LDCT) has been recommended for former smokers ages 55-74 in good health who have 30-pack years or more of smoking, who currently smoke or have quit in the last 15 years. LDCT has demonstrated a 20% reduction in mortality. Chest x-ray or sputum cytology have failed to demonstrate a benefit. CNPP, Pages 103, 124, 1687."},
+
+// ── ADDITIONAL QUESTIONS FROM GENETICS NOTES ──
+{id:31,topic:'hereditary',src:'extra',
+q:"Mrs. Shadha Al-Qahtani, a 38-year-old woman, is diagnosed with BRCA1-associated breast cancer. The genetic counselor explains that BRCA1 mutations are specifically associated with which breast cancer subtype with the WORST prognosis?",
+opts:["Luminal A (ER+/PR+, HER2-)","Luminal B (ER+, HER2+)","Triple-negative breast cancer (ER-, PR-, HER2-)","HER2-enriched (ER-, HER2+)"],
+ans:2,
+exp:"BRCA1 mutations are specifically associated with triple-negative breast cancer (ER-, PR-, HER2-). This subtype lacks hormone receptor targets, making it unresponsive to hormonal therapy, and tends to be more aggressive. BRCA2 mutations are more commonly associated with ER-positive, Luminal-type breast cancers."},
+
+{id:32,topic:'hereditary',src:'extra',
+q:"Mrs. Widad Al-Mutairi is found to carry a PALB2 mutation. Her genetic counselor explains the associated cancer risk. PALB2 mutations are associated with approximately what LIFETIME risk of breast cancer?",
+opts:["5-10%","14-35%","50-60%","80-90%"],
+ans:1,
+exp:"PALB2 (Partner and Localizer of BRCA2) mutations are moderate-penetrance mutations associated with approximately 14-35% lifetime risk of breast cancer. PALB2 works with BRCA2 in DNA repair. It is increasingly recognized as clinically significant, and PALB2 carriers should receive enhanced surveillance (annual mammography + MRI)."},
+
+{id:33,topic:'hereditary',src:'extra',
+q:"Mrs. Faten Al-Ghamdi has Cowden syndrome. The genetic counselor explains that PTEN mutations are associated with which hereditary syndrome and associated cancer risks. PTEN mutations are associated with:",
+opts:["Li-Fraumeni syndrome — breast, sarcoma, brain, adrenocortical cancer","Cowden syndrome — breast, thyroid, endometrial, and colorectal cancer","Lynch syndrome — colorectal, endometrial, ovarian cancer","Hereditary diffuse gastric cancer — gastric and lobular breast cancer"],
+ans:1,
+exp:"PTEN mutations cause Cowden syndrome. PTEN is a tumor suppressor gene associated with breast cancer, thyroid cancer (especially follicular), endometrial cancer, and colorectal cancer, as well as glioma type 2, prostate, and head/neck cancers. It helps regulate cell-cycle division by issuing a 'stop' order and triggering apoptosis, and antagonizes PI3K signaling."},
+
+{id:34,topic:'testing',src:'extra',
+q:"Mrs. Thuraya Al-Rashidi undergoes multigene panel testing instead of single-gene sequential testing. The advantage of multigene panel testing over single-gene sequential testing is:",
+opts:["It is faster and cheaper to analyze one gene at a time","It simultaneously analyzes multiple high-, moderate-, and low-penetrance genes (BRCA1, BRCA2, PALB2, ATM, CHEK2, TP53, CDH1, PTEN, etc.) for hereditary breast cancer risk","It eliminates the need for genetic counseling","It can only be ordered after family member testing"],
+ans:1,
+exp:"Multigene panel testing simultaneously analyzes multiple genes (BRCA1, BRCA2, PALB2, ATM, CHEK2, TP53, CDH1, PTEN, and others) for hereditary breast and other cancer risks. This is more comprehensive than single-gene sequential testing and has become the standard approach in hereditary cancer risk assessment due to declining costs and broader clinical utility."},
+
+{id:35,topic:'hereditary',src:'extra',
+q:"Mrs. Abeer Al-Shehri is told she has a TP53 germline mutation (Li-Fraumeni syndrome). The genetic counselor explains that TP53 is involved in approximately what percentage of sporadic human cancers and what it is known as?",
+opts:["10% of cancers — 'The DNA Architect'","25% of cancers — 'The Cell Cycle Regulator'","50% of cancers — 'The Guardian of the Genome'","75% of cancers — 'The Apoptosis Master'"],
+ans:2,
+exp:"TP53 is involved in approximately 50% of sporadic human cancers and is known as the 'Guardian of the Genome.' Located on 17p13, it conserves genomic stability, triggers apoptosis, inhibits angiogenesis, and activates DNA repair proteins. When inherited as a germline mutation → autosomal dominant → Li-Fraumeni syndrome (soft tissue sarcoma, osteosarcoma, pre-menopausal breast cancer, brain tumors, ACC, leukemias)."},
+
+{id:36,topic:'mutations',src:'extra',
+q:"During a genetics seminar, the oncology nurse is asked about Loss of Heterozygosity (LOH). Which statement BEST describes LOH in cancer?",
+opts:["LOH occurs when both alleles of an oncogene are activated simultaneously","LOH occurs when one allele has an inherited mutation of a tumor suppressor gene, and when the remaining allele is also mutated — causing loss of normal gene function","LOH is a protective mechanism that prevents cancer development","LOH only occurs in germline mutations, not somatic mutations"],
+ans:1,
+exp:"Loss of Heterozygosity (LOH): when one allele has an inherited mutation of a tumor suppressor gene (heterozygous state), and the remaining functioning allele is also mutated → both alleles lose normal function → gene and protein lose normal functioning. This 'two-hit hypothesis' is fundamental to tumor suppressor gene function (Knudson). Includes: loss of entire chromosome, translocation, reduplication of chromosome piece with abnormal gene, or development of point mutation in second functioning allele."},
+
+{id:37,topic:'testing',src:'extra',
+q:"Mrs. Yara Al-Dosari has a positive genetic test for a BRCA1 mutation. She asks about surveillance recommendations for BRCA1 carriers. The recommended approach includes:",
+opts:["Annual mammography starting at age 40, same as average-risk women","Annual mammography AND breast MRI starting at age 25-30, plus clinical breast exam every 6 months","No surveillance until age 40 due to dense breast tissue in young women","CT scan every 6 months and annual gynecologic examination"],
+ans:1,
+exp:"For BRCA1/2 mutation carriers: annual mammography + annual contrast-enhanced breast MRI starting at age 25-30 (or 10 years before youngest affected family member), plus clinical breast exam every 6 months. MRI detects cancers missed by mammography in dense breasts. Also consider risk-reducing salpingo-oophorectomy (RRSO) at 35-40 for BRCA1. NCCN Guidelines for Hereditary Breast and Ovarian Cancer."},
+
+{id:38,topic:'hereditary',src:'extra',
+q:"Mrs. Nada Al-Harbi is diagnosed with hereditary diffuse gastric cancer syndrome (HDGC) due to a CDH1 gene mutation. CDH1 mutation is also significantly associated with which breast cancer type?",
+opts:["Inflammatory breast cancer","Invasive ductal carcinoma (IDC)","Lobular breast cancer (~45% lifetime risk)","Triple-negative breast cancer"],
+ans:2,
+exp:"CDH1 mutations (which code for E-cadherin, a glycoprotein mediating cell-cell interactions) are associated with hereditary diffuse gastric cancer AND lobular breast cancer (~45% lifetime risk). This is the hallmark of Hereditary Diffuse Gastric Cancer (HDGC) syndrome. CDH1 carriers should consider total gastrectomy and enhanced breast cancer screening with annual MRI."},
+
+{id:39,topic:'counseling',src:'extra',
+q:"Mrs. Ruba Al-Zahrani, a 30-year-old woman, just received results showing she carries a BRCA2 mutation. She is distressed and asks whether her 8-year-old daughter should be tested now. The nurse's BEST response is:",
+opts:["Yes, test the daughter immediately so she can start surveillance","Testing of minors for adult-onset cancer susceptibility genes is generally deferred until the child can participate in decision-making (age 18), unless immediate medical benefit exists","Test the daughter if the mother is very anxious about it","Wait until age 25 since BRCA2 cancers don't occur before then"],
+ans:1,
+exp:"Testing of minors for adult-onset hereditary cancer susceptibility genes is generally deferred until the child can participate meaningfully in the decision-making process (usually age 18), unless there is an immediate medical benefit to testing before adulthood. This is based on respect for the child's autonomy, avoiding unnecessary anxiety, and the fact that surveillance for BRCA2-related cancers typically starts at age 25-30. This is a standard genetic counseling principle."},
+
+{id:40,topic:'hereditary',src:'extra',
+q:"Mrs. Alaa Al-Mutairi is diagnosed with Multiple Endocrine Neoplasia type 1 (MEN1). The MEN1 gene is found on which chromosome and is associated with which tumors?",
+opts:["Chromosome 17 — breast, ovarian, and colon tumors","MEN1 gene — parathyroid cancer, carcinoid tumors, pancreatic cancer, and pituitary tumor","Chromosome 13 — retinoblastoma and lung, breast, bone cancers","Chromosome 22 — mesothelioma and schwannoma"],
+ans:1,
+exp:"MEN1 (Multiple Endocrine Neoplasia type 1) tumor suppressor gene has a role in repression of telomerase expression and chromatin regulation. It is associated with: parathyroid cancer, carcinoid tumors, pancreatic cancer, and pituitary tumor. It is found on chromosome 11. Mutations in MEN1 are associated with multiple endocrine neoplasia type 1 syndrome."},
+
+{id:41,topic:'mutations',src:'extra',
+q:"A genetics nurse educator explains the difference between driver and passenger mutations. Which statement correctly distinguishes between the two types?",
+opts:["Driver mutations are benign; passenger mutations are malignant","Driver mutations are directly associated with oncogenesis and provide clonal advantage; passenger mutations coexist but do NOT contribute to cancer development","Driver mutations are inherited germline mutations; passenger mutations are somatic","Driver mutations prevent cancer; passenger mutations cause cancer"],
+ans:1,
+exp:"Driver mutations are directly associated with oncogenesis (e.g., TP53, KRAS). They are selected in the microenvironment for clonal advantage and allow thousands of additional mutations to occur. Passenger mutations are found in the same tumors but do NOT contribute to cancer development — they are 'along for the ride.' Different cancers may have a variable mix of driver and passenger mutations yet demonstrate similar phenotypes."},
+
+{id:42,topic:'hereditary',src:'extra',
+q:"Mrs. Raneem Al-Ghamdi has neurofibromatosis type 2 (NF2). The nurse explains that NF2 is different from NF1. NF2 is associated with which of the following?",
+opts:["Optic gliomas, hamartomatous intestinal polyps, and leukemias","Bilateral vestibular schwannomas (acoustic neuromas), meningiomas, and ependymomas","Soft tissue sarcoma, osteosarcoma, and adrenocortical carcinoma","Renal cancers, hemangioblastomas, and pheochromocytomas"],
+ans:1,
+exp:"Neurofibromatosis type 2 (NF2) is characterized by bilateral vestibular schwannomas (acoustic neuromas), meningiomas, and ependymomas. NF1 is associated with malignant peripheral nerve sheath tumors, optic gliomas, meningiomas, hamartomatous intestinal polyps, other gliomas, and leukemias. These are distinct tumor suppressor gene conditions."},
+
+{id:43,topic:'testing',src:'extra',
+q:"Mrs. Shurooq Al-Dosari is about to undergo genetic testing for BRCA mutations. The genetic counselor discusses the concept of pre-test counseling. Which element is MOST important to address BEFORE genetic testing?",
+opts:["Ordering the test immediately to reduce patient anxiety","The purpose of the test, potential outcomes, implications for family members, and psychological impact of results","Informing only the patient's physician without the patient's involvement","Testing all family members simultaneously to save time"],
+ans:1,
+exp:"Pre-test genetic counseling must address: purpose of the test, motivation for testing, risks and benefits, potential limitations, risk of misidentified paternity, inheritance pattern, likelihood of mutation detection, accuracy of the test, potential outcomes of testing, confidentiality, possibility of discrimination, alternatives to testing, impact on healthcare decision making, costs of testing, and considerations for testing in children. This is the foundation of ethical genetic counseling practice."},
+
+{id:44,topic:'hereditary',src:'extra',
+q:"Mrs. Reema Al-Harbi has familial adenomatous polyposis (FAP) due to an APC gene mutation. The APC gene is a tumor suppressor associated with which cancer syndrome and mechanism?",
+opts:["BRCA1 — inhibits DNA repair in breast cells","APC — acts as a tumor suppressor helping control cell division, attachment to other cells, and whether a cell moves within or away from tissue; associated with colon cancer and FAP syndrome","TP53 — conserves genomic stability in all cells","RB — inhibits cell division in retinal cells"],
+ans:1,
+exp:"APC acts as a tumor suppressor gene that helps control cell division, attachment to other cells in tissue, and whether a cell moves within or away from tissue. It is associated with colon cancer and familial adenomatous polyposis (FAP) syndrome. APC mutations lead to constitutively active Wnt/beta-catenin signaling, promoting uncontrolled cell growth. FAP is characterized by hundreds to thousands of polyps in the colon."},
+
+{id:45,topic:'counseling',src:'extra',
+q:"Mrs. Faizah Al-Mutairi, a 45-year-old woman with a BRCA2 mutation, has completed her cancer treatment and is concerned about her children's risk. The nurse explains that BRCA2 mutations are autosomal dominant. This means each child has:",
+opts:["A 25% chance of inheriting the mutation","A 50% chance of inheriting the mutation","A 75% chance of inheriting the mutation","A 100% chance of inheriting the mutation"],
+ans:1,
+exp:"Autosomal dominant inheritance means that only ONE copy of the mutated gene (from either parent) is sufficient to cause increased cancer susceptibility. Each child has a 50% (1 in 2) chance of inheriting the mutation. Both sons and daughters are equally at risk. This is why genetic testing and counseling for first-degree relatives is important when a pathogenic BRCA mutation is identified."},
+
+{id:46,topic:'testing',src:'extra',
+q:"Mrs. Budoor Al-Qahtani, a 40-year-old woman, receives a BRCA2 pathogenic variant report and asks what this means for cancer risk. The nurse explains that germline BRCA2 mutations significantly increase risk for which cancers?",
+opts:["Lung, colorectal, and thyroid cancers","Breast cancer (female and MALE), ovarian cancer, pancreatic cancer, prostate cancer, and melanoma","Only breast and ovarian cancer in females","Cervical, endometrial, and vaginal cancers"],
+ans:1,
+exp:"BRCA2 germline mutations increase risk for: female breast cancer (45-69% lifetime risk), male breast cancer (6-8% lifetime risk), ovarian cancer (10-17% lifetime risk), pancreatic cancer, prostate cancer (especially aggressive forms), and melanoma. This distinguishes BRCA2 from BRCA1 (which has higher ovarian cancer risk ~44% and TNBC association). All these cancers should be screened in appropriate BRCA2 carriers."},
+
+{id:47,topic:'risk-reduction',src:'extra',
+q:"Mrs. Maryam Al-Shehri, a 40-year-old BRCA1 mutation carrier, asks about risk-reducing salpingo-oophorectomy (RRSO). The nurse counsels her that RRSO is recommended for BRCA1 carriers at what age and for what reason?",
+opts:["Age 25-30 to prevent breast cancer","Age 35-40 after completion of childbearing — reduces ovarian cancer risk by ~80-90% and also reduces breast cancer risk if pre-menopausal","Age 50 at the time of natural menopause","Age 30 regardless of childbearing status"],
+ans:1,
+exp:"Risk-reducing salpingo-oophorectomy (RRSO) is recommended for BRCA1 carriers between ages 35-40 (after completion of childbearing) because: (1) it reduces ovarian cancer risk by ~80-90%, and (2) it reduces breast cancer risk by ~50% if performed before menopause (by eliminating estrogen). For BRCA2 carriers, RRSO is generally recommended at age 40-45 due to later onset of ovarian cancer."},
+
+{id:48,topic:'counseling',src:'extra',
+q:"Mrs. Wajd Al-Dosari recently learned she does NOT carry the BRCA1 mutation that runs in her family. She feels guilty that her sister does carry it. The genetic counselor recognizes this as:",
+opts:["Transmitter guilt — feeling guilty for potentially passing the mutation to children","Survivor guilt — feeling guilty for not inheriting the genetic mutation present in other close family members","Heightened anxiety — fear about future cancer development","Anticipatory grief — mourning the loss of genetic normalcy"],
+ans:1,
+exp:"Survivor guilt occurs in persons who have NOT inherited the genetic mutation present in other close family members. They may feel guilty for being 'spared' while siblings or other relatives carry the mutation. Transmitter guilt relates to family members versus the patient — it occurs when someone HAS passed the mutation to their offspring. Genetic counseling should address both types of psychological responses."},
+
+{id:49,topic:'hereditary',src:'extra',
+q:"Mrs. Thoraya Al-Harbi has hereditary retinoblastoma. The genetic counselor explains that the RB (retinoblastoma) gene normally inhibits cell division. Children with hereditary retinoblastoma are at increased risk for which additional cancers?",
+opts:["Breast, ovarian, and pancreatic cancer","Osteosarcomas, sarcoma, and melanoma","Colorectal, endometrial, and ovarian cancer","Thyroid, parathyroid, and pituitary cancer"],
+ans:1,
+exp:"Individuals with hereditary retinoblastoma (RB1 gene mutation) also have an increased risk for osteosarcomas, sarcomas, and melanoma. The RB tumor suppressor gene has multiple actions: (1) tumor suppressor for cell growth, (2) inhibition of DNA replication, (3) interaction with proteins to promote apoptosis, (4) promotion of cellular differentiation. It is associated with: childhood retinoblastoma, lung, breast, bone cancers."},
+
+{id:50,topic:'testing',src:'extra',
+q:"Mrs. Rawdha Al-Zahrani is newly hired as a genetics nurse. She learns about the different genetic testing methods. Which statement about Sanger sequencing is CORRECT?",
+opts:["Sanger sequencing uses cytogenetics to count the number of chromosomes","Sanger sequencing is a form of gene sequencing that determines the sequence of a gene being tested and detects sequence changes in regions being analyzed — it may miss mutations outside the coding region or large genomic rearrangements","Sanger sequencing is the same as microarray analysis","Sanger sequencing tests all genes simultaneously using genome-wide scanning"],
+ans:1,
+exp:"Sanger sequencing is a form of gene sequencing that determines the sequence of a gene being tested and detects sequence changes in regions being analyzed. A limitation is that it may miss mutations outside the coding region or mutations that are large genomic rearrangements or large deletions. The GWAS sequencing reviews for changes with specific disease (cancer type) versus people without the cancer. Microarrays are used for mutation detection and gene expression, not sequencing."}
+
+];
+
+let answered={},showAnswers=false,currentFilter='all';
+
+function render(){
+  const container=document.getElementById('q-container');
+  container.innerHTML='';
+  const visible=getVisible();
+  document.getElementById('total-count').textContent=visible.length;
+  questions.forEach(q=>{
+    const isVis=visible.includes(q);
+    const div=document.createElement('div');
+    let cardCls='q-card';
+    if(q.src==='core') cardCls+=' core-q';
+    else if(q.src==='blue') cardCls+=' blue-q';
+    div.className=cardCls+(isVis?'':' hidden');
+    div.id='q'+q.id;
+    const isAns=answered[q.id]!==undefined;
+    const userAns=answered[q.id];
+    const correct=userAns===q.ans;
+    const srcLabel=q.src==='core'?'<span class="src-badge core">📗 Core Curriculum 6th Ed</span>':
+                   q.src==='blue'?'<span class="src-badge blue">📘 Blue Book (CNPP 8th Ed)</span>':
+                   '<span class="src-badge extra">🧬 Additional</span>';
+    div.innerHTML=`
+      <div class="q-header">
+        <div class="q-num">${q.id}</div>
+        <div style="flex:1">
+          <div class="q-topic">${q.topic.replace(/-/g,' ').toUpperCase()}</div>
+          <div class="q-text">${q.q}</div>
+        </div>
+        <div class="q-status ${isAns?(correct?'correct':'wrong'):''}">${isAns?(correct?'✓':'✗'):''}</div>
+      </div>
+      <div class="q-body">
+        ${srcLabel}
+        <div class="options" id="opts${q.id}">
+          ${q.opts.map((opt,i)=>{
+            let cls='opt';
+            if(isAns||showAnswers){cls+=' disabled';if(i===q.ans)cls+=' correct';else if(isAns&&i===userAns&&userAns!==q.ans)cls+=' selected-wrong';}
+            return `<div class="${cls}" onclick="selectAnswer(${q.id},${i})"><div class="opt-letter">${['A','B','C','D'][i]}</div><div>${opt}</div></div>`;
+          }).join('')}
+        </div>
+        <div class="explanation ${(isAns||showAnswers)?'show':''}" id="exp${q.id}"><strong>💡 Explanation:</strong>${q.exp}</div>
+      </div>`;
+    container.appendChild(div);
+  });
+  updateProgress();updateScore();checkSubmit();
+}
+
+function selectAnswer(qid,optIdx){
+  if(answered[qid]!==undefined||showAnswers)return;
+  answered[qid]=optIdx;
+  const q=questions.find(x=>x.id===qid);
+  document.querySelectorAll(`#opts${qid} .opt`).forEach((el,i)=>{
+    el.classList.add('disabled');
+    if(i===q.ans)el.classList.add('correct');
+    else if(i===optIdx&&optIdx!==q.ans)el.classList.add('selected-wrong');
+  });
+  document.getElementById('exp'+qid).classList.add('show');
+  const s=document.querySelector(`#q${qid} .q-status`);
+  s.className='q-status '+(optIdx===q.ans?'correct':'wrong');
+  s.textContent=optIdx===q.ans?'✓':'✗';
+  updateProgress();updateScore();checkSubmit();
+}
+
+function getVisible(){
+  if(currentFilter==='all')return questions;
+  if(currentFilter==='core')return questions.filter(q=>q.src==='core');
+  if(currentFilter==='blue')return questions.filter(q=>q.src==='blue');
+  return questions.filter(q=>q.topic===currentFilter);
+}
+
+function updateProgress(){
+  const vis=getVisible();
+  const cnt=vis.filter(q=>answered[q.id]!==undefined).length;
+  document.getElementById('progress-fill').style.width=(vis.length>0?cnt/vis.length*100:0)+'%';
+  document.getElementById('answered-count').textContent=cnt;
+}
+
+function updateScore(){
+  const vis=getVisible();
+  const ans=vis.filter(q=>answered[q.id]!==undefined);
+  const cor=ans.filter(q=>answered[q.id]===q.ans).length;
+  document.getElementById('score-val').textContent=cor;
+  document.getElementById('total-answered').textContent=ans.length;
+}
+
+function checkSubmit(){
+  const vis=getVisible();
+  document.getElementById('submit-all').classList.toggle('show',vis.length>0&&vis.every(q=>answered[q.id]!==undefined));
+}
+
+function filterBy(f,btn){
+  currentFilter=f;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function shuffleQuestions(){
+  for(let i=questions.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[questions[i],questions[j]]=[questions[j],questions[i]];}
+  render();
+}
+
+function toggleShowAnswers(){
+  showAnswers=!showAnswers;
+  document.getElementById('btn-show-all').classList.toggle('active',showAnswers);
+  document.getElementById('btn-show-all').textContent=showAnswers?'🙈 Hide':'👁 Show Answers';
+  render();
+}
+
+function resetQuiz(){
+  answered={};showAnswers=false;
+  document.getElementById('btn-show-all').classList.remove('active');
+  document.getElementById('btn-show-all').textContent='👁 Show Answers';
+  document.getElementById('results-modal').classList.remove('show');
+  render();
+}
+
+function submitQuiz(){
+  const vis=getVisible();
+  const cor=vis.filter(q=>answered[q.id]===q.ans).length;
+  const tot=vis.length;
+  const pct=Math.round(cor/tot*100);
+  document.getElementById('final-score').textContent=cor;
+  document.getElementById('final-pct').textContent='out of '+tot+' questions';
+  let grade,msg,color;
+  if(pct>=90){grade='Excellent 🏆';color='#16a34a';msg='Outstanding! You are ready for the SCFHS exam.';}
+  else if(pct>=80){grade='Very Good ⭐';color='#2563eb';msg='Great performance! Review the questions you missed.';}
+  else if(pct>=70){grade='Good 👍';color='#d97706';msg='Good effort. Focus on weak topics and retry.';}
+  else if(pct>=60){grade='Pass ✓';color='#ea580c';msg='You passed. More review needed.';}
+  else{grade='Needs Work 📚';color='#dc2626';msg='Keep studying! Review both textbooks and retry.';}
+  const g=document.getElementById('final-grade');
+  g.textContent=grade+' — '+pct+'%';g.style.background=color+'20';g.style.color=color;
+  document.getElementById('final-msg').textContent=msg;
+  document.getElementById('results-modal').classList.add('show');
+}
+
+function closeResults(){
+  document.getElementById('results-modal').classList.remove('show');
+  window.scrollTo(0,0);
+}
+
+render();
+</script>
+</body>
+</html>
