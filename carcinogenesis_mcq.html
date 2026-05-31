@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carcinogenesis MCQ — Scenario Based</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--red:#dc2626;--red-dim:#fee2e2;--red-dark:#7f1d1d;--navy:#1e3a8a;--green:#16a34a;--wrong:#dc2626;--gold:#d97706;--blue:#2563eb;--bg:#f5f7fa;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.header{background:linear-gradient(135deg,#3b0a0a,#7f1d1d 40%,#dc2626 70%,#b91c1c);padding:28px 20px 24px;text-align:center;color:#fff}
+.header h1{font-family:'Playfair Display',serif;font-size:1.6em;margin-bottom:6px}
+.header p{font-size:.82em;color:#fca5a5;opacity:.95}
+.badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.badge{display:inline-block;padding:3px 12px;border-radius:20px;font-size:.72em;font-weight:700}
+.badge-red{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff}
+.badge-blue{background:rgba(30,58,138,.4);border:1px solid rgba(147,197,253,.4);color:#bfdbfe}
+.badge-green{background:rgba(22,163,74,.3);border:1px solid rgba(134,239,172,.4);color:#bbf7d0}
+.controls{background:#fff;border-bottom:1px solid var(--border);padding:10px 16px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.ctrl-btn{padding:7px 14px;border-radius:20px;border:1.5px solid var(--border);background:#fff;color:var(--muted);font-size:.78em;font-weight:600;cursor:pointer;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.ctrl-btn.active{background:var(--red);color:#fff;border-color:var(--red)}
+#score-bar{background:var(--red-dim);border-radius:20px;padding:6px 14px;font-size:.78em;font-weight:700;color:var(--red-dark)}
+.filter-bar{padding:10px 16px;background:#fff;border-bottom:1px solid var(--border);display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.filter-btn{padding:5px 12px;border-radius:20px;border:1.5px solid var(--border);background:#fff;color:var(--muted);font-size:.73em;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.filter-btn.active{border-color:var(--red);background:var(--red-dim);color:var(--red)}
+.progress-wrap{padding:12px 16px 0}
+.progress-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--red),var(--gold));border-radius:3px;transition:width .4s}
+.progress-text{font-size:.73em;color:var(--muted);margin-top:4px;text-align:right}
+.q-container{padding:12px 16px 80px;max-width:820px;margin:0 auto}
+.q-card{background:#fff;border:1px solid var(--border);border-radius:14px;margin-bottom:14px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.q-card.core-q{border-left:4px solid var(--green)}
+.q-card.blue-q{border-left:4px solid var(--blue)}
+.q-header{display:flex;align-items:flex-start;gap:10px;padding:14px 16px 10px;border-bottom:1px solid var(--border)}
+.q-num{background:var(--red);color:#fff;border-radius:8px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:.73em;font-weight:700;flex-shrink:0;margin-top:1px}
+.q-card.core-q .q-num{background:#15803d}
+.q-card.blue-q .q-num{background:var(--navy)}
+.q-topic{font-size:.67em;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--red);margin-bottom:4px}
+.q-card.core-q .q-topic{color:#15803d}
+.q-card.blue-q .q-topic{color:var(--navy)}
+.q-text{font-size:.9em;line-height:1.6;font-weight:600;color:var(--text)}
+.q-body{padding:12px 16px}
+.q-source{font-size:.68em;color:var(--muted);margin-bottom:10px;font-style:italic}
+.src-badge{display:inline-block;border-radius:8px;padding:2px 8px;font-size:.68em;font-weight:700;margin-bottom:8px}
+.src-badge.core{background:#dcfce7;color:#15803d}
+.src-badge.blue{background:#eff6ff;color:#1d4ed8}
+.src-badge.extra{background:var(--red-dim);color:var(--red-dark)}
+.options{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;transition:all .15s;-webkit-tap-highlight-color:transparent;font-size:.87em;line-height:1.5}
+.opt:hover{border-color:var(--red);background:var(--red-dim)}
+.opt-letter{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.7em;font-weight:700;flex-shrink:0;color:var(--muted)}
+.opt.correct{background:#dcfce7;border-color:var(--green)}
+.opt.correct .opt-letter{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.selected-wrong{background:#fee2e2;border-color:var(--wrong)}
+.opt.selected-wrong .opt-letter{background:var(--wrong);color:#fff;border-color:var(--wrong)}
+.opt.disabled{cursor:default;pointer-events:none}
+.explanation{margin-top:12px;padding:12px 14px;border-radius:10px;background:#fef9f0;border-left:3px solid var(--gold);font-size:.83em;line-height:1.6;color:#78350f;display:none}
+.explanation.show{display:block}
+.explanation strong{display:block;margin-bottom:4px}
+.q-status{display:none;font-size:.7em;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:auto;flex-shrink:0}
+.q-status.correct{background:#dcfce7;color:var(--green);display:block}
+.q-status.wrong{background:#fee2e2;color:var(--wrong);display:block}
+#results-modal{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px}
+#results-modal.show{display:flex}
+.results-box{background:#fff;border-radius:20px;padding:32px 24px;max-width:420px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.results-score{font-size:3.5em;font-weight:700;color:var(--red);font-family:'Playfair Display',serif;line-height:1}
+.results-pct{font-size:1.1em;color:var(--muted);margin-top:4px}
+.results-grade{font-size:1.3em;font-weight:700;margin:12px 0;padding:8px 20px;border-radius:12px;display:inline-block}
+.results-msg{font-size:.88em;color:var(--text);margin:12px 0;line-height:1.6}
+.results-btn{background:var(--red);color:#fff;border:none;border-radius:12px;padding:12px 28px;font-size:.9em;font-weight:700;cursor:pointer;margin-top:12px;width:100%}
+#submit-all{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;border:none;border-radius:30px;padding:14px 32px;font-size:.9em;font-weight:700;cursor:pointer;box-shadow:0 4px 20px rgba(220,38,38,.4);z-index:500;display:none}
+#submit-all.show{display:block}
+.q-card.hidden{display:none}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>Carcinogenesis MCQ</h1>
+  <p>Clinical Scenario-Based Questions — SCFHS Oncology Nursing</p>
+  <div class="badges">
+    <span class="badge badge-green">📗 Core Curriculum 6th Ed · 9 Qs</span>
+    <span class="badge badge-blue">📘 Blue Book (CNPP 8th) · 9 Qs</span>
+    <span class="badge badge-red">🧬 Additional · 32 Qs</span>
+    <span class="badge badge-red">📊 Total · 50 Questions</span>
+  </div>
+</div>
+<div class="controls">
+  <div id="score-bar">Score: <span id="score-val">0</span>/<span id="total-answered">0</span></div>
+  <button class="ctrl-btn" onclick="shuffleQuestions()">🔀 Shuffle</button>
+  <button class="ctrl-btn" id="btn-show-all" onclick="toggleShowAnswers()">👁 Show Answers</button>
+  <button class="ctrl-btn" id="btn-reset" onclick="resetQuiz()">↺ Reset</button>
+</div>
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterBy('all',this)">All (50)</button>
+  <button class="filter-btn" onclick="filterBy('core',this)">📗 Core Curriculum (9)</button>
+  <button class="filter-btn" onclick="filterBy('blue',this)">📘 Blue Book (9)</button>
+  <button class="filter-btn" onclick="filterBy('models',this)">Cancer Models</button>
+  <button class="filter-btn" onclick="filterBy('mutations',this)">Mutations</button>
+  <button class="filter-btn" onclick="filterBy('genes',this)">Genes</button>
+  <button class="filter-btn" onclick="filterBy('hallmarks',this)">Hallmarks</button>
+  <button class="filter-btn" onclick="filterBy('metastasis',this)">Metastasis</button>
+  <button class="filter-btn" onclick="filterBy('epigenetics',this)">Epigenetics</button>
+  <button class="filter-btn" onclick="filterBy('treatment',this)">Targeted Tx</button>
+</div>
+<div class="progress-wrap">
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  <div class="progress-text"><span id="answered-count">0</span>/<span id="total-count">50</span> answered</div>
+</div>
+<div class="q-container" id="q-container"></div>
+<button id="submit-all" onclick="submitQuiz()">Submit Quiz ✓</button>
+<div id="results-modal">
+  <div class="results-box">
+    <div class="results-score" id="final-score">0</div>
+    <div class="results-pct" id="final-pct">out of 50</div>
+    <div class="results-grade" id="final-grade"></div>
+    <div class="results-msg" id="final-msg"></div>
+    <button class="results-btn" onclick="closeResults()">Review Answers</button>
+    <button class="results-btn" style="background:#7f1d1d;margin-top:8px" onclick="resetQuiz()">Try Again</button>
+  </div>
+</div>
+<script>
+const questions = [
+
+// ── CORE CURRICULUM 6th Ed (9 Qs) ──
+{id:1,topic:'models',src:'core',
+q:"Mrs. Layla Al-Qahtani, a 49-year-old woman with pancreatic cancer, asks the oncology nurse what caused her cancer. The nurse responds from the understanding that the gene mutation frequently affecting pancreatic cancer is caused by which one of the following?",
+opts:["A missense gene mutation","A chromosome translocation","A proto-oncogene mutation","An insertion mutation"],
+ans:2,
+exp:"Answer C. Proto-oncogene mutations are frequently found in pancreatic cancer (especially KRAS). Proto-oncogenes are normal genes that, when mutated, become cancer-causing oncogenes with ongoing uncontrolled cell proliferation. Core Curriculum 6th Ed, Ch.7."},
+
+{id:2,topic:'metastasis',src:'core',
+q:"Mr. Fahad Al-Dosari, a 55-year-old man with metastatic colon cancer, asks the nurse about the signaling pathway that may be playing a role in his liver and lung metastases. The nurse explains the likely pathway is:",
+opts:["Vascular endothelial growth factor","Epidermal growth factor receptor","Medial growth factor","Nerve growth factor"],
+ans:0,
+exp:"Answer A. VEGF (Vascular Endothelial Growth Factor) is a key angiogenic signaling pathway involved in metastasis. VEGF stimulates new blood vessel formation that enables tumors to grow and metastasize. Core Curriculum 6th Ed, Ch.7."},
+
+{id:3,topic:'models',src:'core',
+q:"A newly hired oncology nurse asks her preceptor to explain the process of carcinogenesis. The preceptor explains that the process of carcinogenesis is due to which one of the following?",
+opts:["Clonal evolution","Convergent evolution","Coevolution","Perseverance"],
+ans:0,
+exp:"Answer A. Carcinogenesis is due to clonal evolution — a process where a single cell acquires mutations that give it a survival advantage, leading to clonal expansion of cancer cells. Core Curriculum 6th Ed, Ch.7."},
+
+{id:4,topic:'metastasis',src:'core',
+q:"Mr. Riyad Al-Zahrani, a 70-year-old man, has lung cancer that has spread to multiple regions. He asks the nurse how his lung metastases spread. The nurse explains that the process that feeds the tumor with oxygen and nutrients to allow it to enlarge is called:",
+opts:["Carcinogenesis","Glycolysis","Pathogenesis","Angiogenesis"],
+ans:3,
+exp:"Answer D. Angiogenesis is the process of creating new blood vessels from existing ones to supply the tumor with oxygen and nutrients, enabling it to grow and spread. Without new vasculature, tumors cannot grow beyond 2–3 mm³. Core Curriculum 6th Ed, Ch.7."},
+
+{id:5,topic:'metastasis',src:'core',
+q:"An oncology nurse is caring for Mrs. Hessa Al-Mutairi, a newly diagnosed patient with osteosarcoma who has 'skip metastasis.' The nurse explains that skip metastasis occurs when:",
+opts:["Cells bypass one organ and metastasize in another","Cells bypass the first node and reach more distant sites","Cells spread into nearby capillary beds or pulmonary arteriovenous shunts","Tumor cells embed into distant arteries"],
+ans:1,
+exp:"Answer B. Skip metastasis occurs when cancer cells bypass the first lymph node and reach more distant nodal sites. This is important in staging as nodes may appear negative when more distant nodes are involved. Core Curriculum 6th Ed, Ch.7."},
+
+{id:6,topic:'metastasis',src:'core',
+q:"During oncology rounds, the team discusses which primary tumor most frequently metastasizes to the brain. The correct answer is:",
+opts:["Non-small cell lung cancer","Prostate cancer","Liver cancer","Colorectal cancer"],
+ans:0,
+exp:"Answer A. Non-small cell lung cancer (NSCLC) is the primary tumor that most frequently metastasizes to the brain, followed by breast cancer and melanoma. Brain metastases are a significant cause of morbidity in advanced lung cancer. Core Curriculum 6th Ed, Ch.7."},
+
+{id:7,topic:'mutations',src:'core',
+q:"Mrs. Nour Al-Rashidi, a 45-year-old woman, asks her nurse: 'What key association causes cancer?' The nurse explains which one of the following is a key association and cause of cancer?",
+opts:["Three servings of fresh fruits and vegetables weekly","White meat in daily diet","Too much fiber in daily diet","Sun exposure and indoor tanning parlors"],
+ans:3,
+exp:"Answer C. Sun exposure (UV radiation) and indoor tanning parlors are well-established causes of skin cancer (melanoma and non-melanoma). UV radiation causes DNA damage including pyrimidine dimers. Fruits, vegetables, and fiber are actually protective. Core Curriculum 6th Ed, Ch.7."},
+
+{id:8,topic:'models',src:'core',
+q:"A tumor is formed from a single precursor cell with genetic alterations that undergoes clonal expansion. Clonal evolution involves cells accumulating genetic changes over time. In this model, which is the THIRD phase in the process of cell mutation?",
+opts:["Acquisition of cancer hallmarks","Acquisition of genomic instability","Initiating mutation","Further genetic mutation"],
+ans:0,
+exp:"Answer A. In the clonal evolution model, the three phases are: (1) Initiating mutation, (2) Further genetic mutations (accumulation), and (3) Acquisition of cancer hallmarks — the capabilities that define malignant behavior. Core Curriculum 6th Ed, Ch.7."},
+
+{id:9,topic:'models',src:'core',
+q:"Mrs. Rima Al-Harbi, a 52-year-old woman, asks the nurse for a definition of carcinogenesis. Which one of the following best describes carcinogenesis?",
+opts:["The creation of new blood vessels from existing ones to provide nutrients and remove waste products","The transference of normal cells into cancer cells through a complex and dynamic process that starts with mutations in regulatory cells and is promoted by genomic instability, inflammation, and interactions within the tumor microenvironment","The process which causes epithelial cells to lose cell polarity and cell-cell adhesion and have invasive properties so that they can become mesenchymal cells","A mechanism that may change the activity of a gene without changing the sequence of DNA"],
+ans:1,
+exp:"Answer B. Carcinogenesis is the transference of normal cells into cancer cells through a complex and dynamic process that starts with mutations in regulatory cells and is promoted by genomic instability, inflammation, and interactions within the tumor microenvironment. Core Curriculum 6th Ed, Ch.7."},
+
+// ── BLUE BOOK / CNPP 8th Ed (9 Qs) ──
+{id:10,topic:'models',src:'blue',
+q:"During an oncology nursing lecture, the instructor asks which two models of cancer development are MOST commonly recognized. The correct answer is:",
+opts:["Cancer stem cell model and clonal model","Inflammation theory and plasticity model of cancer stem cells","Clonal model and inflammation theory","Cancer stem cell model and the genetic predisposition model"],
+ans:0,
+exp:"Answer A. The two most commonly recognized models of cancer development are the cancer stem cell model and the clonal model. Both suggest a path to metastatic disease. CNPP, Page 4."},
+
+{id:11,topic:'mutations',src:'blue',
+q:"Mrs. Sana Al-Ghamdi, a 44-year-old woman, asks the nurse about disease-causing mutations and where they occur. The nurse explains that mutations caused by disease occur in:",
+opts:["Germline and stem cells","Stem cells and RNA","Somatic and germline cells","Transfer RNA"],
+ans:2,
+exp:"Answer C. Disease-causing mutations can occur in the germline (inherited DNA originally from egg and sperm) or in somatic cells. DNA is found in every cell in the body except the sperm and the egg. CNPP, Page 6."},
+
+{id:12,topic:'genes',src:'blue',
+q:"Mrs. Abrar Al-Shehri, a 39-year-old woman, asks what happens when mutations occur in normal genes that direct cell growth. The nurse explains that these proto-oncogenes can be activated into:",
+opts:["Cancer-causing mutations","Genes such as ras that promote invasion of cancer cells","Cancer-causing genes called oncogenes","Tumor suppressor genes such as p53"],
+ans:2,
+exp:"Answer C. Mutations can occur in normal genes (proto-oncogenes) that direct cell growth. These can be activated into cancer-causing genes called oncogenes, which have the trait of ongoing cell proliferation. Tumor suppressor genes are anti-oncogenes that protect cells from turning malignant. CNPP, Page 6."},
+
+{id:13,topic:'hallmarks',src:'blue',
+q:"Mrs. Taghreed Al-Mutairi asks the nurse why cancer cells seem to live forever. The nurse explains that telomerase, an enzyme that prevents the destruction of telomeres, is associated with limitless replication. Telomeres are important because:",
+opts:["Telomeres protect chromosomes, enabling longer cellular life","Shortened telomeres are associated with more aggressive cancers","Telomeres allow apoptosis, the natural progression to cellular death","Shortened telomeres are a hallmark of cancer stem cells"],
+ans:0,
+exp:"Answer A. Cells with increased telomerase are associated with longer telomeres and greater longevity of cell life. Cancer stem cells have increased telomerase, with their extended life span enhanced by protective telomeres. Telomerase also protects cells from apoptosis, preventing death of malignant cells. CNPP, Page 11."},
+
+{id:14,topic:'models',src:'blue',
+q:"Mrs. Lujain Al-Zahrani's nurse explains clonal selection to her. In clonal selection:",
+opts:["Mutation in the genome of a cell may confer a survival advantage on that cell","A cell becomes weaker with each mutation","Oncogenes are destroyed","Telomeres develop, which are completely duplicated during cell division"],
+ans:0,
+exp:"Answer A. In clonal selection, mutation in the genome of a cell may confer a survival advantage on that cell. The cell grows STRONGER (not weaker) with each mutation. The cancer cell is immortal because it lacks 'biologic clocks' like telomeres, which grow progressively shorter in normal cells. CNPP, Page 4."},
+
+{id:15,topic:'mutations',src:'blue',
+q:"Mrs. Wafa Al-Rashidi asks her nurse what causes cancer. Because of her interest in 'types of causes,' the nurse explains that cancer is ordinarily classified as being caused by a combination of factors that include:",
+opts:["Biological, physical, or chemical","Viral, dietary, or familial","Genetic, dietary, and environmental","Genetic, familial, and environmental"],
+ans:2,
+exp:"Answer C. Carcinogenesis is influenced by genetic, dietary, and environmental factors, even though it likely involves a combination of factors. CNPP, Page 96."},
+
+{id:16,topic:'mutations',src:'blue',
+q:"Mr. Turki Al-Dosari asks about tumor-associated viruses and cancer. The encouraging aspect of research into tumor-associated viruses is the discovery of:",
+opts:["Their direct tumor causation","Their promise for prevention through development of vaccines from animal forms of the viruses","Their promise for prevention through attenuated (inactivated) viruses","Similar viruses in animals that have been eliminated by vaccines made from attenuated viruses"],
+ans:2,
+exp:"Answer C. The discovery of cancer-causing viruses shows promise for cancer prevention — similar viruses in animals have been eliminated by vaccines made from attenuated (inactivated) viruses. Tumor-associated viruses are necessary but not sufficient for tumor causation. CNPP, Page 50."},
+
+{id:17,topic:'mutations',src:'blue',
+q:"Mrs. Daliya Al-Harbi asks the nurse about dietary factors and colorectal cancer risk. Fat and fiber are two dietary factors correlated with colorectal cancer. It is thought they operate by affecting the:",
+opts:["Conversion of ionized bile salts into insoluble compounds","Rate of uptake of calcium by the gastrointestinal tract","Breakdown of carcinogenic compounds by digestive enzymes","Exposure of the gastrointestinal tract to promoters of carcinogenesis"],
+ans:3,
+exp:"Answer D. Dietary fats and fiber affect the exposure of the gastrointestinal tract to promoters of carcinogenesis. Fats increase production and change composition of bile salts (converted to potential carcinogens). Fiber limits colon exposure to cancer promoters by speeding intestinal transit time. CNPP, Pages 58, 1427-1428."},
+
+{id:18,topic:'mutations',src:'blue',
+q:"Mrs. Hind Al-Qahtani has hepatocellular carcinoma but never drank alcohol. She asks how she could develop liver cancer. The nurse explains that hepatocellular carcinoma is associated with which of the following?",
+opts:["Chronic viral infection","Obesity","Aging","Drug use"],
+ans:0,
+exp:"Answer A. Common risk factors for hepatocellular cancer are chronic viral hepatitis (B and C), underlying liver disease (cirrhosis), environmental and chemical toxins, hormones, alcohol, smoking, and nonalcoholic fatty liver disease. CNPP, Page 1653."},
+
+// ── ADDITIONAL QUESTIONS FROM NOTES CONTENT ──
+{id:19,topic:'models',src:'extra',
+q:"Mrs. Rawan Al-Shehri, a 45-year-old woman undergoing cancer treatment, asks her nurse why her cancer came back after a period of remission. The nurse explains this is related to cancer stem cells (CSCs). Which characteristic of CSCs best explains recurrence after apparent remission?",
+opts:["CSCs divide rapidly and are easily destroyed by chemotherapy","CSCs in G₀ (resting) phase are resistant to treatment and can re-enter active phases later","CSCs produce VEGF to stimulate angiogenesis","CSCs contain BCL2 mutations that prevent apoptosis"],
+ans:1,
+exp:"CSCs in the G₀ (resting) phase are most resistant to treatment. Non-CSCs in active cell cycle phases (G₁, S, G₂, M) can be destroyed, but resting CSCs can re-enter active phases later — causing continuous proliferation or re-emergence after remission. This is why cancers recur after apparent complete response."},
+
+{id:20,topic:'mutations',src:'extra',
+q:"During genetic counseling, Mrs. Noura Al-Mutairi is told her cancer resulted from a somatic mutation. She asks the nurse what this means. The nurse explains that somatic mutations are:",
+opts:["Inherited from parents and passed to offspring","Found in DNA of every cell except sperm and egg; caused by environmental carcinogens; not passed to offspring","Mutations only in germline cells that cause hereditary cancer syndromes","Mutations that change gene activity without altering DNA sequence"],
+ans:1,
+exp:"Somatic (noninherited) mutations are the most common type. They are found in the DNA of every cell except sperm and egg, caused by environmental carcinogens, and are NOT passed to offspring. They are also called acquired mutations. Germline mutations (BRCA1/2) are inherited and passed to offspring."},
+
+{id:21,topic:'mutations',src:'extra',
+q:"Mrs. Iman Al-Zahrani has Lynch syndrome and is concerned about her children's risk. Her nurse explains germline mutations. Currently, how many known germline variants contribute to cancer development?",
+opts:["About 100","About 500","853 known germline variants","Over 2,000"],
+ans:2,
+exp:"Currently, 853 known germline variants contribute to cancer development. BRCA1 and BRCA2 are well-known examples. Inheriting one variant makes a person more susceptible to certain types of cancer. Germline mutations are transmitted in an autosomal dominant fashion (e.g., TP53 germline = Li-Fraumeni syndrome)."},
+
+{id:22,topic:'mutations',src:'extra',
+q:"Mrs. Basmah Al-Rashidi, a 42-year-old woman, is found to have a BCR-ABL chromosomal translocation (Philadelphia chromosome) in her blood. Her oncologist explains this is associated with which cancer and which targeted therapy?",
+opts:["Burkitt's lymphoma — rituximab","Chronic myelogenous leukemia (CML) — imatinib (tyrosine kinase inhibitor)","Non-Hodgkin lymphoma — CHOP chemotherapy","Acute myeloid leukemia — cytarabine"],
+ans:1,
+exp:"The BCR-ABL translocation (chromosomes 9 + 22) creates the Philadelphia chromosome, which is diagnostic of CML. It leads to a constitutively active tyrosine kinase. Imatinib (Gleevec) was the FIRST targeted tyrosine kinase inhibitor — a landmark in oncology. Core Curriculum & CNPP."},
+
+{id:23,topic:'genes',src:'extra',
+q:"Mrs. Faten Al-Ghamdi has pancreatic cancer with KRAS mutation. Her oncologist explains that mutated KRAS leads to cancer through which mechanism?",
+opts:["KRAS mutation activates tumor suppressor genes","Mutated KRAS inactivates the negative feedback mechanism, causing cells to keep proliferating","KRAS mutation causes chromosomal translocation","Mutated KRAS promotes apoptosis in cancer cells"],
+ans:1,
+exp:"Mutated KRAS (RAS family oncogene) inactivates the negative feedback mechanism, causing cells to keep proliferating uncontrollably. Normally, K-Ras protein regulates cell division via intracellular RAS/MAPK signaling. A point mutation changes the proto-oncogene to an oncogene. Most prevalent mutation in human cancers — especially pancreatic and colorectal."},
+
+{id:24,topic:'genes',src:'extra',
+q:"Mrs. Wajd Al-Harbi has malignant melanoma. Her tumor biopsy shows a BRAF V600E mutation. The nurse explains that the BRAF gene normally produces protein for which pathway?",
+opts:["PI3K/AKT/mTOR pathway","RAS/MAPK pathway regulating proliferation, differentiation, migration, and apoptosis","JAK/STAT pathway for immune signaling","NF-κB pathway for inflammatory response"],
+ans:1,
+exp:"BRAF produces protein for the RAS/MAPK pathway, regulating proliferation, differentiation, migration, and apoptosis. The most commonly mutated BRAF protein is V600E. Somatic missense mutations are found in 66% of malignant melanomas. BRAF is also associated with colon, rectum, ovarian, and thyroid cancers."},
+
+{id:25,topic:'genes',src:'extra',
+q:"Mrs. Hadeel Al-Shehri is diagnosed with Li-Fraumeni syndrome. The genetic counselor explains which gene is involved. TP53, known as the 'Guardian of the Genome,' is involved in approximately what percentage of sporadic human cancers?",
+opts:["10%","25%","50%","75%"],
+ans:2,
+exp:"TP53 is involved in approximately 50% of sporadic human cancers. Located on 17p13, it conserves genomic stability and triggers apoptosis. It also inhibits angiogenesis and activates DNA repair proteins. When inherited as a germline mutation → autosomal dominant → Li-Fraumeni syndrome."},
+
+{id:26,topic:'genes',src:'extra',
+q:"Mrs. Yara Al-Dosari has Cowden syndrome due to a PTEN mutation. The nurse explains that PTEN tumor suppressor gene helps regulate cancer by which mechanism?",
+opts:["PTEN promotes cell division through cyclin activation","PTEN helps regulate cell-cycle division by issuing a 'stop' order and triggering apoptosis; antagonizes PI3K signaling","PTEN promotes angiogenesis through VEGF","PTEN causes chromosomal translocation in cancer cells"],
+ans:1,
+exp:"PTEN is a tumor suppressor that helps regulate cell-cycle division — it issues a 'stop' order to prevent progression through G₁ and triggers apoptosis. It participates in migration, adhesion, and angiogenesis, and antagonizes PI3K signaling while negatively regulating the MAPK pathway. Associated with Cowden syndrome, breast, thyroid, and endometrial cancers."},
+
+{id:27,topic:'genes',src:'extra',
+q:"During oncology grand rounds, a nurse is asked about the difference between driver mutations and passenger mutations in cancer. Which statement CORRECTLY distinguishes between the two?",
+opts:["Driver mutations are present in every cancer cell; passenger mutations are only in metastatic cells","Driver mutations are directly associated with oncogenesis and provide clonal advantage; passenger mutations coexist but do NOT contribute to cancer development","Driver mutations cause benign tumors; passenger mutations cause malignant transformation","Driver mutations are inherited; passenger mutations are somatic"],
+ans:1,
+exp:"Driver mutations are directly associated with oncogenesis (e.g., TP53). They are selected in the microenvironment for clonal advantage and allow thousands of additional mutations to occur. Passenger mutations are found in the same tumors but do NOT contribute to cancer development — they are 'along for the ride.' Different cancers may have variable mixes of both."},
+
+{id:28,topic:'epigenetics',src:'extra',
+q:"Mrs. Reem Al-Qahtani, a 50-year-old woman, is started on decitabine for myelodysplastic syndrome (MDS). The nurse explains the mechanism of decitabine. Decitabine works by:",
+opts:["Directly killing cancer cells through DNA strand breaks","Hypomethylating DNA — reversing abnormal methylation that silenced tumor suppressor genes","Blocking VEGF to prevent angiogenesis","Inhibiting PARP to prevent DNA repair in cancer cells"],
+ans:1,
+exp:"Decitabine is a hypomethylating agent used in MDS. It works by hypomethylating DNA, reversing the abnormal hypermethylation that silences tumor suppressor genes in cancer cells. Hypermethylation → silences tumor suppressor genes → loss of apoptosis control. Decitabine is also used in CML, GI stromal tumors, and breast cancer."},
+
+{id:29,topic:'epigenetics',src:'extra',
+q:"A patient asks the oncology nurse to explain epigenetics. The nurse explains that epigenetics describes a mechanism that may change the activity of a gene WITHOUT changing the sequence of DNA. In cancer, hypermethylation at CpG islands leads to:",
+opts:["Activation of oncogenes","Silencing of tumor suppressor genes and loss of apoptosis control","Increased expression of proto-oncogenes","Enhanced DNA repair mechanisms"],
+ans:1,
+exp:"Hypermethylation at CpG islands (adding methyl groups where guanine follows cytosine) silences tumor suppressor genes by preventing transcription → loss of apoptosis control. In contrast, hypomethylation leads to overexpression of oncogenes. These changes can be reversed and transmitted to daughter cells."},
+
+{id:30,topic:'epigenetics',src:'extra',
+q:"Mrs. Sawsan Al-Mutairi asks about miRNA in cancer. The oncology nurse explains that upregulated miRNAs (such as miR-21) act as oncogenes, while downregulated miRNAs act as tumor suppressors. Which miRNA is specifically upregulated in breast, lung, and colon cancers?",
+opts:["miR-15a","miR-16-1","miR-155","miR-20a"],
+ans:2,
+exp:"miR-155 is specifically upregulated in breast, lung, and colon cancers. miR-17 and miR-21 are upregulated in colon, lung, stomach, prostate, and pancreatic tumors. miR-15a and miR-16-1 are DOWNREGULATED in CLL and prostate tumors — acting as tumor suppressors when lost."},
+
+{id:31,topic:'hallmarks',src:'extra',
+q:"Mrs. Maha Al-Zahrani, a 48-year-old woman with breast cancer, asks why her cancer cells are harder to kill than normal cells. The nurse explains the hallmark of 'resisting cell death.' BCL2 overexpression in cancer cells leads to which cancer type by blocking apoptosis?",
+opts:["Pancreatic adenocarcinoma","Follicular lymphoma","Acute lymphoblastic leukemia","Osteosarcoma"],
+ans:1,
+exp:"BCL2 overexpression blocks apoptosis, leading to follicular lymphoma. BCL2 is a mitochondrial membrane protein that blocks apoptosis in lymphocytes. Continued proliferation due to BCL2 expression makes follicular lymphoma cells difficult to destroy. BCL2 is also associated with CLL, B-cell non-Hodgkin lymphoma, and breast cancer."},
+
+{id:32,topic:'hallmarks',src:'extra',
+q:"Mrs. Dalila Al-Rashidi, a 52-year-old woman, asks why her tumor needed radiation to shrink — her doctor mentioned it needed blood vessels. The nurse explains angiogenesis. A critical statement about tumor angiogenesis is:",
+opts:["Tumors can grow indefinitely without new blood vessels","Tumors cannot grow beyond 2–3 mm³ nor metastasize without new vasculature","Tumor blood vessels are well-organized and provide efficient drug delivery","Angiogenesis only occurs during embryogenesis"],
+ans:1,
+exp:"Tumors cannot grow beyond 2–3 mm³ nor metastasize without new vasculature. Cancer cells secrete VEGF, bFGF, and PDGF to stimulate angiogenesis. The resulting tumor vasculature is less organized than normal, creating hypoxia — the most important trigger of further angiogenesis — and acidosis that decreases therapeutic effectiveness."},
+
+{id:33,topic:'hallmarks',src:'extra',
+q:"Mr. Abdulrahman Al-Harbi has CML and is on imatinib. His oncologist explains that imatinib targets the hallmark of 'sustaining proliferative signaling.' What molecular target does imatinib address?",
+opts:["VEGF receptor","BCR-ABL tyrosine kinase (constitutively active after Philadelphia chromosome translocation)","PD-L1 checkpoint protein","PARP enzyme in DNA repair"],
+ans:1,
+exp:"Imatinib targets the BCR-ABL tyrosine kinase created by the Philadelphia chromosome translocation (Chr 9 + 22) in CML. This constitutively active tyrosine kinase keeps cells proliferating. Imatinib was the first targeted tyrosine kinase inhibitor. Tyrosine Kinase Receptors (TKRs) when stuck in 'on' position → unregulated cellular proliferation."},
+
+{id:34,topic:'hallmarks',src:'extra',
+q:"Mrs. Shuaa Al-Dosari, a 47-year-old woman with cancer, asks why her oncologist ordered a PD-L1 test before starting immunotherapy. The nurse explains this is related to which cancer hallmark?",
+opts:["Inducing angiogenesis","Evading immune destruction — cancer cells express PD-L1 to block T-cell recognition","Resisting cell death through BCL2 overexpression","Sustaining proliferative signaling through EGFR mutation"],
+ans:1,
+exp:"Cancer cells evade immune destruction by expressing PD-L1, which blocks T-cell recognition and killing. Checkpoint inhibitors (anti-PD-1/PD-L1) target this mechanism. More than 80% of malignancies have nonviral causes. MDSCs also exert immunosuppressive effects by paralyzing cytotoxic T lymphocytes (CTLs)."},
+
+{id:35,topic:'hallmarks',src:'extra',
+q:"During a tumor board meeting, a nurse asks about the Warburg effect in cancer metabolism. The Warburg effect describes cancer cells using aerobic glycolysis even in the presence of oxygen. What percentage of glucose consumed by tumors is changed to lactic acid?",
+opts:["10%","33%","66%","90%"],
+ans:2,
+exp:"In tumors, 66% of glucose consumed is changed to lactic acid (Warburg effect). In healthy cells, there is no net production of lactic acid. Cancer cells are 'addicted' to using both glycolysis and mitochondrial respiration for energy (ATP) to support rapid growth. This is driven by oncogenes AKT, RAS, and MYC."},
+
+{id:36,topic:'metastasis',src:'extra',
+q:"Mrs. Kholoud Al-Qahtani, a 44-year-old woman with breast cancer, asks how cancer cells travel from the breast to distant organs. The nurse explains the process of EMT (Epithelial-Mesenchymal Transition). Which statement about EMT is CORRECT?",
+opts:["EMT causes epithelial cells to become more adhesive and stationary","EMT causes epithelial cells to lose cell polarity and cell-cell adhesion, becoming mesenchymal cells with invasive properties","EMT is exclusively a cancer process with no role in normal development","EMT promotes angiogenesis by stimulating VEGF production"],
+ans:1,
+exp:"EMT (Epithelial-Mesenchymal Transition) is a normal developmental regulatory program where epithelial cells lose cell polarity and cell-cell adhesion, becoming mesenchymal cells with invasive properties. Cancer cells appear to hijack this mechanism during invasion and metastasis. Cadherins are downregulated in cancer, leading to loss of adhesion."},
+
+{id:37,topic:'metastasis',src:'extra',
+q:"Mrs. Raniya Al-Harbi has gastric cancer with a CDH1 gene mutation. Her genetic counselor explains the significance. CDH1 mutation (which codes for E-cadherin) is associated with which cancer types?",
+opts:["Lung cancer and melanoma","Gastric cancer and lobular breast cancer","Colorectal cancer and endometrial cancer","Pancreatic cancer and ovarian cancer"],
+ans:1,
+exp:"Mutated CDH1 (codes for E-cadherin, a glycoprotein mediating cell-cell interactions) is specifically associated with gastric cancer and lobular breast cancer. CDH1 mutations cause hereditary diffuse gastric cancer syndrome and significantly increase lobular breast cancer risk (~45% lifetime risk). This is also why CDH1 mutation screening is recommended in breast genetics."},
+
+{id:38,topic:'genes',src:'extra',
+q:"Mrs. Nora Al-Shehri has a BRAF-mutated melanoma. Her oncologist prescribes vemurafenib (BRAF inhibitor). The nurse explains this is targeting the hallmark of sustaining proliferative signaling. The BRAF V600E mutation is found in approximately what percentage of malignant melanomas?",
+opts:["10%","25%","66%","90%"],
+ans:2,
+exp:"Somatic missense BRAF mutations (especially V600E) are found in 66% of malignant melanomas. BRAF inhibitors (vemurafenib, dabrafenib) specifically target V600E-mutated BRAF. BRAF is especially active in giant congenital melanocytic nevus (GCMN). Also associated with colon, rectum, ovarian, and thyroid cancers."},
+
+{id:39,topic:'epigenetics',src:'extra',
+q:"Mrs. Arwa Al-Ghamdi asks her nurse what histones are and how they relate to cancer. The nurse explains that in the nucleosome, how many histone molecules wrap with DNA?",
+opts:["4 histone molecules with 1 loop of DNA","8 histone molecules with 2 loops of DNA wrapped around each group","6 histone molecules with 3 loops of DNA","2 histone molecules with 4 loops of DNA"],
+ans:1,
+exp:"The nucleosome consists of 8 histone molecules (histone octamer) with 2 loops of DNA wrapped around each group. Euchromatin is loosely packed → active genes (transcription). Heterochromatin is tightly packed → inactive genes. Both DNA and histone proteins may be modified with addition/removal of methyl, acetyl, phosphate, or ubiquitin groups."},
+
+{id:40,topic:'hallmarks',src:'extra',
+q:"Mrs. Buthaina Al-Rashidi, a 50-year-old woman with colorectal cancer, is found to have microsatellite instability (MSI) — indicating Lynch syndrome. MSI results from defects in which gene family?",
+opts:["BRCA1/2 (DNA repair genes)","MMR genes (MLH1, MSH2, MSH6, PMS2) — mismatch repair genes","TP53 tumor suppressor genes","RAS oncogenes"],
+ans:1,
+exp:"MSI (Microsatellite Instability) results from defects in MMR (Mismatch Repair) genes: MLH1, MSH2, MSH6, and PMS2. These are Caretaker/DNA Repair genes that maintain fidelity of DNA during replication. Defects → microsatellite instability → Lynch Syndrome / HNPCC → associated with colorectal, endometrial, and ovarian cancers."},
+
+{id:41,topic:'mutations',src:'extra',
+q:"Mrs. Thikra Al-Mutairi is starting treatment for cervical cancer caused by HPV infection. The nurse explains the relationship between infectious agents and cancer. Which virus is associated with hepatocellular carcinoma?",
+opts:["HPV-16 and HPV-18","Hepatitis B and Hepatitis C viruses","Epstein-Barr virus","HTLV-1"],
+ans:1,
+exp:"Hepatitis B and Hepatitis C viruses are specifically associated with hepatocellular carcinoma. HPV-16, -18, -31 → cervical and anogenital cancers. Epstein-Barr virus → B-cell NHL, Burkitt lymphoma, nasopharyngeal carcinoma. HTLV-1 → adult T-cell leukemia/lymphoma. HIV → non-Hodgkin lymphoma, Kaposi sarcoma."},
+
+{id:42,topic:'treatment',src:'extra',
+q:"Mrs. Laila Al-Zahrani, a 55-year-old woman with advanced ovarian cancer, is started on olaparib (a PARP inhibitor). The nurse explains that olaparib targets which specific cancer hallmarks?",
+opts:["Sustaining proliferative signaling and evading growth suppressors","Inducing angiogenesis and genomic instability","Resisting cell death and genomic instability","Enabling replicative immortality and altered energy metabolism"],
+ans:2,
+exp:"PARP inhibitors (olaparib, talazoparib) target the hallmarks of Resisting Cell Death AND Genomic Instability. They block single-strand DNA break repair, causing lethal double-strand breaks in BRCA-deficient cells (synthetic lethality). Used for BRCA1/2-mutated cancers (breast, ovarian). Also listed under 'Inducing Angiogenesis' targeted treatments in hallmarks table."},
+
+{id:43,topic:'treatment',src:'extra',
+q:"Mr. Khalid Al-Dosari has advanced colorectal cancer with VEGF overexpression. His oncologist explains that bevacizumab targets angiogenesis. Which hallmark does bevacizumab address?",
+opts:["Sustaining proliferative signaling","Inducing angiogenesis — targeting VEGF signaling to starve the tumor of blood supply","Evading immune destruction","Resisting cell death"],
+ans:1,
+exp:"Bevacizumab is an anti-VEGF monoclonal antibody that targets the hallmark of 'Inducing Angiogenesis.' By blocking VEGF signaling, it starves the tumor of new blood vessels. Tumors cannot grow beyond 2–3 mm³ or metastasize without new vasculature. PARP inhibitors are also listed as targeting this hallmark."},
+
+{id:44,topic:'hallmarks',src:'extra',
+q:"Mrs. Mashael Al-Harbi, a 46-year-old woman with advanced lung cancer, asks why her cancer keeps growing even with chemotherapy. The nurse explains the concept of senescence evasion. Senescence is important in cancer because:",
+opts:["Senescence promotes cancer cell division","Senescence is a stress response that normally blocks cell proliferation; cancer cells must overcome it to become malignant","Senescence enhances telomerase production in cancer cells","Senescence promotes angiogenesis in tumors"],
+ans:1,
+exp:"Senescence is a stress response that blocks cell proliferation and prevents tumor progression in normal cells. Premalignant senescence must be overcome if a cell is to evolve into a malignant state. Normal cells (Hayflick and Moorhead) have a finite number of cellular divisions before resting. Activation of oncogenes or loss of tumor suppressors (PTEN, RB1) can trigger or prevent senescence."},
+
+{id:45,topic:'hallmarks',src:'extra',
+q:"Mrs. Siham Al-Qahtani has cancer with tumor-associated macrophages (TAMs) in her tumor biopsy. The nurse explains that tumor-promoting inflammation contributes to cancer progression. Inflammatory cells release which mutagenic agents that encourage genetic evolution of cancer cells?",
+opts:["Prostaglandins and histamines","Reactive oxygen species (ROS) — oxygen ions, superoxides, and peroxide","Interleukins 4 and 13","Anti-inflammatory cytokines"],
+ans:1,
+exp:"Inflammatory cells release ROS (Reactive Oxygen Species) — oxygen ions, superoxides, and peroxide — which are mutagenic to cells in close proximity and accelerate malignant transformation. TNF (Tumor Necrosis Factor) released by WBCs in response to inflammation plays a role in carcinogenesis when p53 is mutated. Chronic inflammation is linked to earliest stages of neoplastic progression."},
+
+{id:46,topic:'genes',src:'extra',
+q:"During oncology orientation, a nursing student asks what the difference is between oncogenes and tumor suppressor genes. The best analogy is:",
+opts:["Oncogenes are the brake pedal; tumor suppressor genes are the gas pedal","Proto-oncogenes/oncogenes are like a gas pedal stuck open; tumor suppressor genes are like a brake pedal that stops working","Both function the same way in cancer","Oncogenes repair DNA; tumor suppressor genes promote apoptosis"],
+ans:1,
+exp:"The best analogy: Proto-oncogenes/Oncogenes = gas pedal stuck open (overexpression → uncontrolled growth). Tumor suppressor genes = brake pedal that stops working (loss of function → uncontrolled growth). Caretaker genes = mechanic who can't fix the car (DNA repair failure → accumulated mutations). This framework helps understand targeted therapies."},
+
+{id:47,topic:'metastasis',src:'extra',
+q:"Mrs. Fareeha Al-Shehri, a 53-year-old woman with breast cancer, is told her tumor is invading nearby tissue. Her nurse explains the tumor microenvironment. Cancer-associated fibroblasts (CAFs) in the tumor microenvironment contribute to cancer growth by:",
+opts:["Activating anti-tumor immune responses","Switching to aerobic glycolysis and secreting lactate and pyruvate as energy to fuel cancer cell proliferation","Producing anti-angiogenic factors that limit tumor growth","Promoting cancer cell apoptosis"],
+ans:1,
+exp:"Cancer-associated fibroblasts (CAFs) — Class 2 connective tissue cells supporting CSCs — switch to an unusual aerobic form of glycolysis and secrete lactate and pyruvate as energy to fuel cancer cell proliferation. Class 1 (endothelial cells, pericytes) organize CSCs into vascular niches. Class 3 (columnar cells) are important for water absorption."},
+
+{id:48,topic:'mutations',src:'extra',
+q:"Mrs. Jawaher Al-Ghamdi is diagnosed with colorectal cancer with microsatellite instability (MSI-H). Her oncologist explains MSI. Which statement about microsatellites is CORRECT?",
+opts:["Normal cells show variable length of microsatellites; cancer cells show consistent length","Normal cells have consistent length of tandem repeated nucleotides; cancer cells show variable length — indicating MMR deficiency","MSI is caused by BRCA mutations only","MSI is a hallmark of breast cancer, not colorectal cancer"],
+ans:1,
+exp:"Normal cells have CONSISTENT length of tandem repeated nucleotides (microsatellites). Cancer cells with MMR deficiency show VARIABLE length — this is microsatellite instability (MSI). MSI is identified in pathology. MSI-H (high) cancers (especially colorectal) respond well to checkpoint inhibitors (pembrolizumab). This is also the basis of Lynch syndrome (HNPCC)."},
+
+{id:49,topic:'treatment',src:'extra',
+q:"Mrs. Rana Al-Harbi, a 44-year-old woman with HER2+ breast cancer, asks her nurse about targeted therapies. HER2/neu is classified as which type of gene and is part of which receptor family?",
+opts:["Tumor suppressor gene — TGF-β receptor family","Oncogene — Epidermal growth factor receptor (tyrosine kinase receptor family)","Caretaker gene — insulin receptor family","Proto-oncogene — G-protein coupled receptor family"],
+ans:1,
+exp:"HER2/neu (ERBB2) is an oncogene and part of the Epidermal Growth Factor Receptor (EGFR) tyrosine kinase receptor family. When overexpressed or amplified → uncontrolled proliferative signaling. Targeted by trastuzumab (Herceptin), pertuzumab, T-DM1. Associated primarily with breast cancer but also gastric/gastroesophageal cancers."},
+
+{id:50,topic:'hallmarks',src:'extra',
+q:"Mrs. Waad Al-Dosari, a 48-year-old woman with NSCLC, is started on erlotinib (an EGFR inhibitor). The nurse explains that erlotinib targets which hallmark and which specific molecular mechanism?",
+opts:["Evading immune destruction — targeting PD-L1","Sustaining proliferative signaling — targeting EGFR tyrosine kinase, which when mutated is stuck in 'on' position causing unregulated cellular proliferation","Inducing angiogenesis — targeting VEGF receptor","Resisting cell death — targeting BCL2"],
+ans:1,
+exp:"Erlotinib is an EGFR inhibitor targeting the hallmark of 'Sustaining Proliferative Signaling.' EGFR (RTK / Proto-oncogene) when mutated → uncontrolled proliferation. TKRs when stuck in 'on' position → unregulated cellular proliferation → precursor for cellular transformation. EGFR inhibitors also include cetuximab. Primary target: NSCLC with EGFR mutations."}
+
+];
+
+let answered={},showAnswers=false,currentFilter='all';
+
+function render(){
+  const container=document.getElementById('q-container');
+  container.innerHTML='';
+  const visible=getVisible();
+  document.getElementById('total-count').textContent=visible.length;
+  questions.forEach(q=>{
+    const isVis=visible.includes(q);
+    const div=document.createElement('div');
+    let cardCls='q-card';
+    if(q.src==='core') cardCls+=' core-q';
+    else if(q.src==='blue') cardCls+=' blue-q';
+    div.className=cardCls+(isVis?'':' hidden');
+    div.id='q'+q.id;
+    const isAns=answered[q.id]!==undefined;
+    const userAns=answered[q.id];
+    const correct=userAns===q.ans;
+    const srcLabel=q.src==='core'?'<span class="src-badge core">📗 Core Curriculum 6th Ed</span>':
+                   q.src==='blue'?'<span class="src-badge blue">📘 Blue Book (CNPP 8th Ed)</span>':
+                   '<span class="src-badge extra">🧬 Additional</span>';
+    div.innerHTML=`
+      <div class="q-header">
+        <div class="q-num">${q.id}</div>
+        <div style="flex:1">
+          <div class="q-topic">${q.topic.toUpperCase()}</div>
+          <div class="q-text">${q.q}</div>
+        </div>
+        <div class="q-status ${isAns?(correct?'correct':'wrong'):''}">${isAns?(correct?'✓':'✗'):''}</div>
+      </div>
+      <div class="q-body">
+        ${srcLabel}
+        <div class="options" id="opts${q.id}">
+          ${q.opts.map((opt,i)=>{
+            let cls='opt';
+            if(isAns||showAnswers){cls+=' disabled';if(i===q.ans)cls+=' correct';else if(isAns&&i===userAns&&userAns!==q.ans)cls+=' selected-wrong';}
+            return `<div class="${cls}" onclick="selectAnswer(${q.id},${i})"><div class="opt-letter">${['A','B','C','D'][i]}</div><div>${opt}</div></div>`;
+          }).join('')}
+        </div>
+        <div class="explanation ${(isAns||showAnswers)?'show':''}" id="exp${q.id}"><strong>💡 Explanation:</strong>${q.exp}</div>
+      </div>`;
+    container.appendChild(div);
+  });
+  updateProgress();updateScore();checkSubmit();
+}
+
+function selectAnswer(qid,optIdx){
+  if(answered[qid]!==undefined||showAnswers)return;
+  answered[qid]=optIdx;
+  const q=questions.find(x=>x.id===qid);
+  document.querySelectorAll(`#opts${qid} .opt`).forEach((el,i)=>{
+    el.classList.add('disabled');
+    if(i===q.ans)el.classList.add('correct');
+    else if(i===optIdx&&optIdx!==q.ans)el.classList.add('selected-wrong');
+  });
+  document.getElementById('exp'+qid).classList.add('show');
+  const s=document.querySelector(`#q${qid} .q-status`);
+  s.className='q-status '+(optIdx===q.ans?'correct':'wrong');
+  s.textContent=optIdx===q.ans?'✓':'✗';
+  updateProgress();updateScore();checkSubmit();
+}
+
+function getVisible(){
+  if(currentFilter==='all')return questions;
+  if(currentFilter==='core')return questions.filter(q=>q.src==='core');
+  if(currentFilter==='blue')return questions.filter(q=>q.src==='blue');
+  return questions.filter(q=>q.topic===currentFilter);
+}
+
+function updateProgress(){
+  const vis=getVisible();
+  const cnt=vis.filter(q=>answered[q.id]!==undefined).length;
+  document.getElementById('progress-fill').style.width=(vis.length>0?cnt/vis.length*100:0)+'%';
+  document.getElementById('answered-count').textContent=cnt;
+}
+
+function updateScore(){
+  const vis=getVisible();
+  const ans=vis.filter(q=>answered[q.id]!==undefined);
+  const cor=ans.filter(q=>answered[q.id]===q.ans).length;
+  document.getElementById('score-val').textContent=cor;
+  document.getElementById('total-answered').textContent=ans.length;
+}
+
+function checkSubmit(){
+  const vis=getVisible();
+  document.getElementById('submit-all').classList.toggle('show',vis.length>0&&vis.every(q=>answered[q.id]!==undefined));
+}
+
+function filterBy(f,btn){
+  currentFilter=f;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function shuffleQuestions(){
+  for(let i=questions.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[questions[i],questions[j]]=[questions[j],questions[i]];}
+  render();
+}
+
+function toggleShowAnswers(){
+  showAnswers=!showAnswers;
+  document.getElementById('btn-show-all').classList.toggle('active',showAnswers);
+  document.getElementById('btn-show-all').textContent=showAnswers?'🙈 Hide':'👁 Show Answers';
+  render();
+}
+
+function resetQuiz(){
+  answered={};showAnswers=false;
+  document.getElementById('btn-show-all').classList.remove('active');
+  document.getElementById('btn-show-all').textContent='👁 Show Answers';
+  document.getElementById('results-modal').classList.remove('show');
+  render();
+}
+
+function submitQuiz(){
+  const vis=getVisible();
+  const cor=vis.filter(q=>answered[q.id]===q.ans).length;
+  const tot=vis.length;
+  const pct=Math.round(cor/tot*100);
+  document.getElementById('final-score').textContent=cor;
+  document.getElementById('final-pct').textContent='out of '+tot+' questions';
+  let grade,msg,color;
+  if(pct>=90){grade='Excellent 🏆';color='#16a34a';msg='Outstanding! You are ready for the SCFHS exam.';}
+  else if(pct>=80){grade='Very Good ⭐';color='#2563eb';msg='Great performance! Review the questions you missed.';}
+  else if(pct>=70){grade='Good 👍';color='#d97706';msg='Good effort. Focus on weak topics and retry.';}
+  else if(pct>=60){grade='Pass ✓';color='#ea580c';msg='You passed. More review needed.';}
+  else{grade='Needs Work 📚';color='#dc2626';msg='Keep studying! Review both textbooks and retry.';}
+  const g=document.getElementById('final-grade');
+  g.textContent=grade+' — '+pct+'%';g.style.background=color+'20';g.style.color=color;
+  document.getElementById('final-msg').textContent=msg;
+  document.getElementById('results-modal').classList.add('show');
+}
+
+function closeResults(){
+  document.getElementById('results-modal').classList.remove('show');
+  window.scrollTo(0,0);
+}
+
+render();
+</script>
+</body>
+</html>
