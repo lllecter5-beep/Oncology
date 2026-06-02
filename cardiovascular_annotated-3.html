@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cardiovascular Symptoms — Oncology Nursing Summary</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f6fa;
+    --surface: #ffffff;
+    --surface2: #f0f2f8;
+    --border: #d4d8e8;
+    --c1: #1a7fa0;
+    --c2: #b07d20;
+    --c3: #c0392b;
+    --c4: #27855c;
+    --c5: #7d3ca8;
+    --text: #1a1e2e;
+    --muted: #4a5068;
+    --dim: #8892aa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Source Sans 3', sans-serif; font-weight: 300; font-size: 15px; line-height: 1.75; }
+
+  /* HEADER */
+  .hdr { background: linear-gradient(135deg,#1a2540,#1e3058,#1a2540); padding: 44px 40px 32px; border-bottom: 1px solid var(--border); position:relative; overflow:hidden; }
+  .hdr::before { content:'♥'; position:absolute; right:36px; top:14px; font-size:130px; opacity:.04; color:var(--c3); }
+  .hdr .lbl { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:3px; color:var(--c1); text-transform:uppercase; margin-bottom:8px; }
+  .hdr h1 { font-family:'Playfair Display',serif; font-size:32px; color:#fff; font-weight:700; margin-bottom:6px; }
+  .hdr .sub { color:#8892aa; font-size:13px; } .hdr .sub span { color:#e8b86d; font-weight:600; }
+
+  /* TOC */
+  .toc { background:var(--surface); border:1px solid var(--border); border-radius:12px; margin:28px 40px; padding:22px 26px; }
+  .toc-ttl { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:3px; color:var(--c2); text-transform:uppercase; margin-bottom:14px; }
+  .toc-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:7px; }
+  .toc-a { display:flex; align-items:center; gap:10px; padding:7px 12px; border-radius:6px; text-decoration:none; color:var(--muted); font-size:13px; border:1px solid transparent; transition:all .2s; }
+  .toc-a:hover { background:var(--surface2); border-color:var(--border); color:var(--text); }
+  .toc-n { font-family:'JetBrains Mono',monospace; font-size:11px; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-weight:600; }
+
+  /* CONTENT */
+  .content { padding: 0 40px 60px; }
+
+  /* SECTION */
+  .sec { margin-bottom:44px; border:1px solid var(--border); border-radius:14px; overflow:hidden; }
+  .sec-hdr { padding:18px 26px; display:flex; align-items:center; gap:14px; border-bottom:1px solid var(--border); }
+  .sec-num { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; width:30px; height:30px; border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .sec-ttl { font-family:'Playfair Display',serif; font-size:21px; font-weight:600; color:var(--text); }
+  .sec-body { padding:22px 26px; background:var(--surface); }
+
+  /* SUBSECTION */
+  .sub { margin-bottom:22px; }
+  .sub:last-child { margin-bottom:0; }
+  .sub-ttl { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; padding:5px 11px; border-radius:5px; display:inline-block; margin-bottom:12px; font-weight:600; }
+
+  /* DEF BOX */
+  .def { background:var(--surface2); border-left:3px solid var(--c2); border-radius:0 8px 8px 0; padding:13px 17px; margin-bottom:14px; font-size:14px; line-height:1.6; }
+  .def strong { color:var(--c2); }
+
+  /* ALERT */
+  .alert { border-radius:8px; padding:11px 15px; margin-bottom:12px; font-size:13.5px; line-height:1.6; display:flex; gap:9px; align-items:flex-start; }
+  .alert .ic { flex-shrink:0; font-size:15px; margin-top:1px; }
+  .a-info  { background:rgba(26,127,160,.07); border:1px solid rgba(26,127,160,.22); color:#0e5a75; }
+  .a-warn  { background:rgba(176,125,32,.07); border:1px solid rgba(176,125,32,.22); color:#7a5510; }
+  .a-red   { background:rgba(192,57,43,.07);  border:1px solid rgba(192,57,43,.22);  color:#8b2015; }
+  .a-grn   { background:rgba(39,133,92,.07);  border:1px solid rgba(39,133,92,.22);  color:#185c38; }
+
+  /* LISTS */
+  ul.lst { list-style:none; padding:0; margin:0; }
+  ul.lst li { padding:4px 0 4px 20px; position:relative; font-size:14px; line-height:1.6; }
+  ul.lst li::before { content:'▸'; position:absolute; left:0; color:var(--dim); font-size:10px; top:7px; }
+  ul.lst li strong { color:var(--c2); font-weight:600; }
+  ul.lst.c1 li::before { color:var(--c1); }
+  ul.lst.c2 li::before { color:var(--c2); }
+  ul.lst.c3 li::before { color:var(--c3); }
+  ul.lst.c4 li::before { color:var(--c4); }
+  ul.lst.c5 li::before { color:var(--c5); }
+  ul.lst.chk li::before { content:'✓'; color:var(--c4); font-size:11px; top:6px; }
+  ul.lst.num { counter-reset:li; }
+  ul.lst.num li::before { counter-increment:li; content:counter(li)'.'; color:var(--muted); font-size:12px; font-family:'JetBrains Mono',monospace; top:6px; }
+  ul.lst.dash li::before { content:'–'; color:var(--dim); font-size:12px; top:5px; }
+  ul.lst.sub-li { margin-left:18px; margin-top:4px; }
+
+  /* TABLE */
+  .tw { overflow-x:auto; margin-bottom:14px; border-radius:10px; border:1px solid var(--border); }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  thead th { padding:11px 13px; text-align:left; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; font-weight:600; border-bottom:1px solid var(--border); background:var(--surface2); white-space:nowrap; }
+  tbody td { padding:9px 13px; border-bottom:1px solid rgba(212,216,232,.5); color:var(--text); vertical-align:top; line-height:1.55; }
+  tbody tr:last-child td { border-bottom:none; }
+  tbody tr:hover td { background:rgba(0,0,0,.015); }
+  td strong { color:var(--c2); font-weight:600; }
+
+  /* GRID */
+  .g2 { display:grid; grid-template-columns:1fr 1fr; gap:13px; margin-bottom:14px; }
+  .g3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:13px; margin-bottom:14px; }
+  @media(max-width:700px){.g2,.g3{grid-template-columns:1fr;}}
+  .card { background:var(--surface2); border:1px solid var(--border); border-radius:9px; padding:15px; }
+  .card-ttl { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; font-weight:600; margin-bottom:9px; }
+
+  /* PHASE */
+  .phase { border:1px solid var(--border); border-radius:9px; margin-bottom:13px; overflow:hidden; }
+  .phase-hdr { padding:9px 15px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:600; }
+  .phase-body { padding:13px 15px; background:var(--surface2); }
+
+  /* DRUG BADGE */
+  .dr { display:inline-block; background:rgba(125,60,168,.08); color:var(--c5); border:1px solid rgba(125,60,168,.2); border-radius:4px; padding:1px 7px; font-size:12px; font-family:'JetBrains Mono',monospace; margin:1px 2px; }
+
+  /* DIVIDER */
+  hr.dv { border:none; border-top:1px solid var(--border); margin:18px 0; }
+
+  /* SECTION COLOR THEMES */
+  .s1 .sec-hdr{background:linear-gradient(90deg,rgba(26,127,160,.07),transparent);} .s1 .sec-num{background:rgba(26,127,160,.12);color:var(--c1);} .s1 .sub-ttl{background:rgba(26,127,160,.09);color:var(--c1);}
+  .s2 .sec-hdr{background:linear-gradient(90deg,rgba(176,125,32,.07),transparent);} .s2 .sec-num{background:rgba(176,125,32,.12);color:var(--c2);} .s2 .sub-ttl{background:rgba(176,125,32,.09);color:var(--c2);}
+  .s3 .sec-hdr{background:linear-gradient(90deg,rgba(192,57,43,.07),transparent);} .s3 .sec-num{background:rgba(192,57,43,.12);color:var(--c3);} .s3 .sub-ttl{background:rgba(192,57,43,.09);color:var(--c3);}
+  .s4 .sec-hdr{background:linear-gradient(90deg,rgba(125,60,168,.07),transparent);} .s4 .sec-num{background:rgba(125,60,168,.12);color:var(--c5);} .s4 .sub-ttl{background:rgba(125,60,168,.09);color:var(--c5);}
+
+  .footer { padding:18px 40px 40px; text-align:center; color:var(--dim); font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:2px; }
+
+  /* STAR BOX */
+  .star-box { background: rgba(176,125,32,.06); border: 2px solid rgba(176,125,32,.35); border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; }
+  .star-box.star-red { background: rgba(192,57,43,.06); border-color: rgba(192,57,43,.35); }
+  .star-hdr { font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; letter-spacing:1px; color: var(--c2); margin-bottom: 12px; }
+  .star-box.star-red .star-hdr { color: var(--c3); }
+
+#toolbar{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:9999;display:flex;align-items:center;gap:4px;background:rgba(15,23,42,0.96);border:1px solid rgba(255,255,255,.15);border-radius:50px;padding:6px 10px;box-shadow:0 8px 32px rgba(0,0,0,.5);max-width:96vw;overflow-x:auto;scrollbar-width:none;}
+#toolbar::-webkit-scrollbar{display:none;}
+.tb-btn{min-width:34px;height:34px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;font-family:monospace;transition:all .2s;background:transparent;color:#94a3b8;-webkit-tap-highlight-color:transparent;touch-action:manipulation;flex-shrink:0;}
+.tb-btn:active{background:rgba(255,255,255,.15);}
+.tb-btn.on{box-shadow:0 0 0 2px #fff;color:#fff;background:rgba(255,255,255,.12);}
+.tb-sep{width:1px;height:20px;background:rgba(255,255,255,.15);margin:0 2px;flex-shrink:0;}
+span.HL{border-radius:2px;padding:0 1px;}
+span.HL.y{background:#fef08a;}
+span.HL.g{background:#bbf7d0;}
+span.HL.p{background:#fbcfe8;}
+span.HL.b{background:#bfdbfe;}
+.snote{position:fixed;background:#fef9c3;border:1px solid #fcd34d;border-radius:10px;padding:8px 10px 10px;min-width:160px;max-width:240px;box-shadow:0 6px 24px rgba(0,0,0,.2);z-index:8888;}
+.snote-hdr{font-size:11px;font-weight:700;color:#92400e;margin-bottom:5px;cursor:move;user-select:none;display:flex;justify-content:space-between;align-items:center;touch-action:none;}
+.snote-close{background:none;border:none;cursor:pointer;color:#b45309;font-size:18px;font-weight:900;line-height:1;padding:0 4px;touch-action:manipulation;}
+.snote textarea{border:none;background:transparent;width:100%;min-height:60px;resize:none;font-size:14px;color:#1e293b;outline:none;line-height:1.55;font-family:sans-serif;display:block;margin-top:4px;-webkit-user-select:text;user-select:text;}
+#cv{position:fixed;top:0;left:0;z-index:100;pointer-events:none;touch-action:none;}
+.cdot{width:18px;height:18px;border-radius:50%;border:2px solid transparent;display:inline-block;vertical-align:middle;cursor:pointer;touch-action:manipulation;flex-shrink:0;}
+.cdot.on{border-color:#fff;}
+#psz{width:46px;accent-color:#a78bfa;vertical-align:middle;flex-shrink:0;}
+.hl-box{width:22px;height:22px;border-radius:5px;border:2px solid transparent;cursor:pointer;touch-action:manipulation;flex-shrink:0;}
+.hl-box.on{border-color:#fff;}
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="lbl">Cancer Nursing · Symptom Management · Part IV</div>
+  <h1>Cardiovascular Symptoms</h1>
+  <div class="sub">Source: <span>Girls' Summary Notes</span> + <span>Yarbro — Cancer Nursing (Ch. 33)</span></div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <div class="toc-ttl">Contents</div>
+  <div class="toc-grid">
+    <a href="#s1" class="toc-a"><span class="toc-n" style="background:rgba(26,127,160,.12);color:#1a7fa0;">1</span>Lymphedema</a>
+    <a href="#s2" class="toc-a"><span class="toc-n" style="background:rgba(176,125,32,.12);color:#b07d20;">2</span>Edema</a>
+    <a href="#s3" class="toc-a"><span class="toc-n" style="background:rgba(192,57,43,.12);color:#c0392b;">3</span>Malignant Pericardial Effusion</a>
+    <a href="#s4" class="toc-a"><span class="toc-n" style="background:rgba(125,60,168,.12);color:#7d3ca8;">4</span>Cardiovascular Toxicity</a>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ══════════════════════════ SECTION 1 ══════════════════════════ -->
+<div class="sec s1" id="s1">
+  <div class="sec-hdr"><div class="sec-num">01</div><div class="sec-ttl">Lymphedema</div></div>
+  <div class="sec-body">
+
+    <div class="sub">
+      <div class="sub-ttl">Definition</div>
+      <div class="def">
+        It is an obstruction of lymphatic system which is lead to <strong>accumulation of lymph fluids in interstitial spaces</strong>.
+      </div>
+      <div class="g2">
+        <div class="card">
+          <div class="card-ttl" style="color:var(--c1);">Primary</div>
+          <ul class="lst c1"><li>Genetic or familial abnormalities present at birth</li></ul>
+        </div>
+        <div class="card">
+          <div class="card-ttl" style="color:var(--c1);">Secondary</div>
+          <ul class="lst c1"><li>Damage or destruction of the lymphatic system through life</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Incidents</div>
+      <ul class="lst c1">
+        <li>Increase the chance with lymph resection</li>
+        <li>Could be acute for days or permanent</li>
+      </ul>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Risk Factors</div>
+      <div class="tw">
+        <table>
+          <thead><tr>
+            <th style="color:var(--c1);">Noncancer Related</th>
+            <th style="color:var(--c1);">Cancer Diagnosis Related</th>
+            <th style="color:var(--c1);">Treatment Related</th>
+          </tr></thead>
+          <tbody><tr>
+            <td>
+              <ul class="lst" style="margin:0;">
+                <li>Poor nutrition</li>
+                <li>Genetics</li>
+                <li>Thrombophlebitis</li>
+                <li>Skin inflammation or chronic disorders of the skin</li>
+                <li>Obesity / elevated body mass index (BMI)</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="lst" style="margin:0;">
+                <li>Tumor invasion and/or advanced disease</li>
+                <li>Infection — affected extremity, concurrent illness</li>
+                <li>Air travel with suboptimal cabin pressure, long distance travel, prolonged immobilization</li>
+                <li>Traumatic injury to affected extremity</li>
+                <li>Excessive physical use of affected extremity; prolonged standing (lower extremity)</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="lst" style="margin:0;">
+                <li>Surgical lymph node dissection, number of lymph nodes removed, type of surgery, seroma formation after surgery, or delayed wound healing</li>
+                <li>Radiation therapy — location and formation of scars or fibrosis</li>
+              </ul>
+            </td>
+          </tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Physical Examination</div>
+      <ul class="lst chk">
+        <li>Tightness of clothing, shoes, wristwatch, jewelry</li>
+        <li>Visible puffiness</li>
+        <li>Pain, stiffness, weakness, numbness, paresthesia of affected extremity</li>
+        <li>Redness, warmth of affected extremity</li>
+        <li>Tends to occur distal to proximal</li>
+        <li>Thickening, pitting, and erythema of skin; peau d'orange</li>
+        <li>Increased pigmentation / superficial veins, stasis dermatitis</li>
+        <li>Induration with nonpitting edema</li>
+        <li>Secondary cellulitis</li>
+        <li>Decreased range of motion, feeling of heaviness of affected extremity</li>
+      </ul>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Assessment Tools</div>
+      <div class="g2">
+        <div class="card">
+          <div class="card-ttl" style="color:var(--c4);">A. Screening Tools</div>
+          <ul class="lst num">
+            <li><strong>Circumference measurements</strong>
+              <ul class="lst dash sub-li">
+                <li>Arm measured 5 and 10 cm above and below the olecranon process (Elbow) and compared with the other extremity</li>
+                <li>Leg measured at the level of the calf</li>
+              </ul>
+            </li>
+            <li><strong>Water displacement method</strong> to measure limb volume
+              <ul class="lst dash sub-li">
+                <li>Limitations due to difficulty using in clinic setting and does not indicate lymphedema location</li>
+              </ul>
+            </li>
+            <li><strong>Perometer</strong> — using infrared light to measure fluid volume of the limb</li>
+            <li><strong>Bioelectrical impedance</strong> — uses electrical currents through the regions to determine volume</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-ttl" style="color:var(--c4);">B. Imaging & Laboratory Tests</div>
+          <ul class="lst num">
+            <li><strong>Lymphoscintigraphy</strong> — radioactive mapping of lymphatic vessels</li>
+            <li><strong>Ultrasound</strong> — for evaluation of tissue and fluid</li>
+            <li><strong>CT / MRI / PET scan</strong> — not approved for evaluation of lymphedema but can be used to evaluate soft tissue or a possible mass</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Clinical Staging / Grading</div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:12px;">Staging of lymphedema by examination evaluates the <em>progression</em> of the disease. Grading evaluates <em>severity</em> of signs and symptoms.</p>
+      <div class="g2">
+        <div>
+          <div class="card-ttl" style="color:var(--c1);margin-bottom:8px;">A. Staging of Lymphedema (Clinical Stages)</div>
+          <div class="tw">
+            <table>
+              <thead><tr><th style="color:var(--c1);">Stage</th><th style="color:var(--c1);">Description</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Stage 1</strong></td><td>Mild and spontaneously reversible.<br>• Slight heaviness of the extremity.<br>• Skin is smooth textured with pitting edema.<br>• May experience pain and erythema.</td></tr>
+                <tr><td><strong>Stage 2</strong></td><td>Moderate and irreversible.<br>• May develop tissue fibrosis.<br>• Skin appears stretched, shiny, and has non-pitting edema.</td></tr>
+                <tr><td><strong>Stage 3</strong></td><td>Severe, irreversible lymphostatic elephantiasis.<br>• Skin is discolored, stretched, and firm.<br>• Rare in breast cancer patients.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div>
+          <div class="card-ttl" style="color:var(--c1);margin-bottom:8px;">B. Grading of Lymphedema (Severity by Size/Function)</div>
+          <div class="tw">
+            <table>
+              <thead><tr><th style="color:var(--c1);">Grade</th><th style="color:var(--c1);">Description</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Grade 1</strong></td><td>• Swelling with pitting edema.<br>• 5%–10% difference in size or mass of limbs.</td></tr>
+                <tr><td><strong>Grade 2</strong></td><td>• Obvious obstruction.<br>• Taut skin.<br>• 10%–30% difference in size or mass.</td></tr>
+                <tr><td><strong>Grade 3</strong></td><td>• Limb appears disfigured.<br>• Interferes with Activities of Daily Living (ADLs).<br>• More than 30% difference in size or mass.</td></tr>
+                <tr><td><strong>Grade 4</strong></td><td>• Often associated with malignancy.<br>• Disabling condition; may require removal of affected limb.<br>• 5%–10% size/mass difference (similar to Grade 1).</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Management</div>
+      <ul class="lst num" style="margin-bottom:14px;">
+        <li>Treat suspected infections with early antibiotic treatment</li>
+        <li>Manage acute and chronic pain</li>
+        <li>Use interventions in conjunction with other modalities to reduce symptoms associated with lymphedema</li>
+      </ul>
+
+      <div class="alert a-info"><span class="ic">★</span><span><strong>A. Recommended for Practice — 1. Complete Decongestive Therapy (CDT)</strong> — Standard of Care</span></div>
+
+      <!-- ⭐ EXAM FAVORITE -->
+      <div class="star-box">
+        <div class="star-hdr">⭐ Exam Favorite — Lymphedema</div>
+        <ul class="lst" style="margin:0;">
+          <li><strong>CDT = Gold Standard treatment for lymphedema</strong></li>
+          <li>MCQ: "What is the standard treatment for lymphedema?" → <strong>Complete Decongestive Therapy</strong></li>
+          <li>4 components: <strong>MLD + Compression + Exercise + Skin Care</strong></li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-hdr" style="background:rgba(26,127,160,.07);color:var(--c1);">Phase I — Intensive Phase (2–6 weeks / 5 days a week)</div>
+        <div class="phase-body">
+          <div class="tw" style="margin-bottom:0;">
+            <table>
+              <thead><tr><th style="color:var(--c1);">Component</th><th style="color:var(--c1);">Description</th></tr></thead>
+              <tbody>
+                <tr><td><strong>1. Manual Lymphatic Drainage (MLD)</strong></td><td>• Gentle, hands-on massage technique.<br>• Stimulates lymph flow and re-routes fluid around blocked areas.</td></tr>
+                <tr><td><strong>2. Compression Therapy</strong></td><td>• Short-stretch bandaging applied after MLD.<br>• Reduces limb volume and prevents fluid reaccumulation.</td></tr>
+                <tr><td><strong>3. Skin Care</strong></td><td>• Prevents infections (e.g., cellulitis).<br>• Use of pH-balanced cleansers and moisturizers.</td></tr>
+                <tr><td><strong>4. Exercise</strong></td><td>• Light, controlled movement while wearing compression.<br>• Enhances lymphatic and venous return.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-hdr" style="background:rgba(39,133,92,.07);color:var(--c4);">Phase II — Maintenance Phase (start immediately after Phase I — count for life)</div>
+        <div class="phase-body">
+          <div class="tw" style="margin-bottom:0;">
+            <table>
+              <thead><tr><th style="color:var(--c4);">Component</th><th style="color:var(--c4);">Description</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Compression Garments</strong></td><td>• Custom-fitted elastic garments (e.g., sleeves, stockings).<br>• Worn daily to maintain volume reduction.</td></tr>
+                <tr><td><strong>Self-MLD (if trained)</strong></td><td>• Patients perform simplified MLD techniques on themselves.</td></tr>
+                <tr><td><strong>Skin Monitoring & Hygiene</strong></td><td>• Ongoing care to detect early infection or skin breakdown.</td></tr>
+                <tr><td><strong>Lifestyle Modifications</strong></td><td>• Avoid heat exposure, limb trauma, tight clothing.<br>• Elevate limb when possible.<br>• Maintain healthy weight.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:13px;">
+        <div class="card-ttl" style="color:var(--c1);">2. Likely to Be Effective for Practice in Lymphedema</div>
+        <ul class="lst c1">
+          <li><strong>Axillary reverse mapping (ARM)</strong> — Surgical technique to identify and spare lymphatic drainage of the arm during axillary lymph node dissection, reducing risk of lymphedema.</li>
+          <li><strong>Exercise</strong> — Progressive, supervised exercise programs (aerobic + resistance training) help maintain lymph flow, prevent stiffness, and reduce lymphedema risk.</li>
+          <li><strong>Prevention and early intervention protocols</strong>
+            <ul class="lst dash sub-li">
+              <li><strong>a) Early evaluation</strong>
+                <ul class="lst dash sub-li">
+                  <li>Regular screening and baseline limb measurements (e.g., perometer, bioimpedance)</li>
+                  <li>Detecting subclinical lymphedema early improves outcomes</li>
+                </ul>
+              </li>
+              <li><strong>b) Referrals</strong> to lymphedema specialist, advocacy groups, National Lymphedema Network</li>
+            </ul>
+          </li>
+          <li><strong>3. Weight management</strong> — Obesity is a known risk factor for chronic lymphedema.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-ttl" style="color:var(--c1);">B. Other Considerations</div>
+        <ul class="lst dash">
+          <li>Avoid prolonged standing.</li>
+          <li>Elevate affected extremity.</li>
+          <li>Avoid extreme heat — may worsen the swelling (e.g., hot tubs).</li>
+          <li>Skin care program with proper bathing, drying, lubrication.</li>
+          <li>Compression garments when flying.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Patient Education</div>
+      <ul class="lst num">
+        <li>Signs and symptoms to report (e.g., high risk for infection).</li>
+        <li>Need for lifelong follow-up.</li>
+        <li>A low-sodium, high-fiber, weight-control diet.</li>
+        <li>Importance of skin care to maintain skin integrity and prevent infections.</li>
+        <li>Education to eliminate safety hazards to prevent injury.</li>
+        <li>Maintain healthy weight.</li>
+        <li>Limit time in extreme temperatures.</li>
+        <li>Wear loose-fitting clothes.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════ SECTION 2 ══════════════════════════ -->
+<div class="sec s2" id="s2">
+  <div class="sec-hdr"><div class="sec-num">02</div><div class="sec-ttl">Edema</div></div>
+  <div class="sec-body">
+
+    <div class="sub">
+      <div class="sub-ttl">Definition</div>
+      <div class="def">
+        Fluid accumulation in interstitial spaces. It is the movement of fluid from the vascular space into the interstitial space by an alteration in one or more of the following:
+      </div>
+      <div class="tw">
+        <table>
+          <thead><tr>
+            <th style="color:var(--c2);">Mechanism</th>
+            <th style="color:var(--c2);">Explanation</th>
+            <th style="color:var(--c2);">Examples</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>↑ Capillary pressure</strong></td>
+              <td>Raised hydrostatic pressure — when volume of blood is expanded or with obstruction; extrinsic sodium and water retention by the kidneys caused by renal failure, reduction of cardiac output or systemic vascular resistance can cause edema. Stimulation of the renin–angiotensin system causes an increase in pressure in the vascular bed (forcing fluid into interstitial spaces)</td>
+              <td>Heart disease, renal disease, cirrhosis, deep venous thrombosis (DVT)</td>
+            </tr>
+            <tr>
+              <td><strong>↑ Capillary permeability</strong></td>
+              <td>From vascular injury</td>
+              <td>Burns, radiation, drug reactions, infection; treatment with interleukin-2 or vascular endothelial growth factors</td>
+            </tr>
+            <tr>
+              <td><strong>Obstruction of lymph system</strong></td>
+              <td>Lymphedema</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td><strong>↓ Plasma oncotic pressure</strong></td>
+              <td>Results in increased fluid in the tissues; albumin causes retention of fluid in the vascular bed. When albumin is decreased, fluid leaks into interstitial spaces</td>
+              <td>Proteinuria, hepatic failure, malabsorption, protein malnutrition</td>
+            </tr>
+            <tr>
+              <td><strong>Raised hydrostatic pressure</strong></td>
+              <td>Fluid driven from the capillaries into the interstitial spaces</td>
+              <td>Venous obstruction, fluid retention, prolonged standing</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">May Be Associated With the Following</div>
+      <ul class="lst num">
+        <li>Lymphatic obstruction by tumor or DVT.</li>
+        <li>Cancer — common with kidney, liver, ovarian.</li>
+        <li>Systemic conditions — heart failure, nephrotic syndrome, liver failure, thyroid disease, obstructive sleep apnea.</li>
+        <li>Medications may include hormones, nonsteroidal anti-inflammatory drugs (NSAIDs), calcium channel blockers, tricyclic antidepressants, steroids, interleukin-2 (IL-2) therapy, corticosteroids, beta blockers.</li>
+        <li>Chemotherapy (i.e., cisplatin, docetaxel, gemcitabine)</li>
+        <li>Monoclonal antibodies (i.e., bevacizumab)</li>
+        <li>Targeted therapies (i.e., imatinib mesylate)</li>
+        <li>Antiangiogenetic agents (i.e., thalidomide)</li>
+        <li>Allergic response or septic shock, which leads to histamine release</li>
+        <li>Poor nutrition, hypoproteinemia, hypoalbuminemia</li>
+        <li>Iatrogenic causes — plasma expanders, intravenous (IV) fluid overload, blood component therapy</li>
+        <li>Burns, trauma, sepsis</li>
+        <li>Allergic reactions</li>
+        <li>Malignant ascites</li>
+      </ul>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Risk Factors</div>
+      <ul class="lst chk">
+        <li>Preexisting cardiac, renal, liver disease, thyroid disease.</li>
+        <li>Cancer (i.e., kidney, liver or ovarian cancers).</li>
+        <li>Cancer treatments (i.e., cisplatin, docetaxel).</li>
+        <li>Decreased mobility.</li>
+        <li>Long-distance travel.</li>
+        <li>Prior history of edema.</li>
+        <li>Certain medications.</li>
+        <li>DVT.</li>
+        <li>Hypertension.</li>
+      </ul>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Management</div>
+      <ul class="lst num" style="margin-bottom:14px;">
+        <li>Treat the underlying cause (i.e., congestive heart failure [CHF], nephrotic syndrome, liver failure/cirrhosis, thrombophlebitis, lymphedema, DVT).
+          <ul class="lst dash sub-li">
+            <li>Diuretics.</li>
+            <li>Angiotensin-converting enzyme (ACE) inhibitors or, if not tolerated, angiotensin receptor blockers (ARBs).</li>
+            <li>Beta blockers.</li>
+            <li>Analgesics as needed.</li>
+          </ul>
+        </li>
+        <li>Elevate extremities above level of heart.</li>
+        <li>Compression stockings.</li>
+        <li>Maintain lubrication of skin.</li>
+        <li>Bed rest to promote diuresis; reposition every 2 hours.</li>
+        <li>Fluid restriction.</li>
+        <li>Treatment of underlying cause.</li>
+        <li>Monitor intake and output, electrolytes, serum albumin.</li>
+        <li>Protect extremity from injury.</li>
+        <li>Walk or other exercise.</li>
+        <li>Protect from extreme temperatures.</li>
+        <li>Provide patient education.
+          <ul class="lst dash sub-li">
+            <li>Low-sodium, well-balanced diet, protein in diet for those with hypoalbuminemia.</li>
+            <li>Employ appropriate skin care strategies.</li>
+            <li>Avoid prolonged standing or sitting with legs crossed.</li>
+            <li>Avoid hepatotoxic drugs and alcohol.</li>
+            <li>Fluid restriction may be warranted.</li>
+            <li>Walk or exercise to maintain muscle strength and joint range of motion.</li>
+            <li>Perform daily weights and report greater than a 3- to 4-pound gain.</li>
+            <li>Educate patient and family regarding risks for electrolyte disturbance and possible interventions if symptoms occur.</li>
+            <li>Wear support hose with instruction on how to apply them appropriate.</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <hr class="dv">
+    <div class="sub">
+      <div class="sub-ttl">Edema vs Lymphedema — Comparison</div>
+      <div class="tw">
+        <table>
+          <thead><tr>
+            <th style="color:var(--c2);">Feature</th>
+            <th style="color:var(--c1);">Edema</th>
+            <th style="color:var(--c1);">Lymphedema</th>
+          </tr></thead>
+          <tbody>
+            <tr><td><strong>Definition</strong></td><td>Accumulation of fluid in the interstitial space due to altered hydrostatic/osmotic pressure</td><td>Accumulation of protein-rich lymphatic fluid due to impaired lymphatic drainage</td></tr>
+            <tr><td><strong>Cause</strong></td><td>Systemic: heart failure, nephrotic syndrome, liver cirrhosis, venous insufficiency</td><td>Lymphatic system damage or obstruction (e.g., post-cancer surgery, radiation, infection, congenital)</td></tr>
+            <tr><td><strong>Common location</strong></td><td>Bilateral legs, ankles, face (depending on cause)</td><td>Often unilateral, especially arms (post-mastectomy) or legs</td></tr>
+            <tr><td><strong>Onset</strong></td><td>Acute or gradual depending on underlying disease</td><td>Usually gradual and progressive</td></tr>
+            <tr><td><strong>Pitting</strong></td><td>Present (especially in early stages)</td><td>Absent in late stages; skin becomes thickened and fibrotic</td></tr>
+            <tr><td><strong>Fluid content</strong></td><td>Low protein, transudative fluid</td><td>High protein, exudative lymphatic fluid</td></tr>
+            <tr><td><strong>Skin texture</strong></td><td>Soft, pits with pressure</td><td>Firm, thickened, may show peau d'orange appearance</td></tr>
+            <tr><td><strong>Diagnosis</strong></td><td>Blood tests, echocardiography, kidney/liver panels, doppler</td><td>Clinical exam + lymphoscintigraphy or ICG lymphography if needed</td></tr>
+            <tr><td><strong>Treatment</strong></td><td>Address underlying cause: diuretics, sodium restriction, manage heart/liver/kidney disease</td><td>Complete decongestive therapy: manual lymphatic drainage, compression garments, exercise, skin care, sometimes surgery</td></tr>
+            <tr><td><strong>Complications</strong></td><td>Skin breakdown, ulceration, infection</td><td>Recurrent cellulitis, lymphangitis, fibrosis, limb deformity</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════ SECTION 3 ══════════════════════════ -->
+<div class="sec s3" id="s3">
+  <div class="sec-hdr"><div class="sec-num">03</div><div class="sec-ttl">Malignant Pericardial Effusion</div></div>
+  <div class="sec-body">
+
+    <div class="sub">
+      <div class="sub-ttl">Definition</div>
+      <div class="def">
+        Accumulation of fluid in the pericardial sac that affects cardiac function, resulting in <strong>decreased cardiac output</strong>.
+      </div>
+      <div class="g3">
+        <div class="card">
+          <div class="card-ttl" style="color:var(--c3);">Metastatic Disease → Cardiac Space</div>
+          <ul class="lst c3">
+            <li>Through local advancement, spread by blood or lymph systems or obstruction from adenopathy</li>
+            <li><strong>Examples:</strong> Most common 1st lung or 2nd breast cancer; can occur in lymphoma</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-ttl" style="color:var(--c3);">Treatment Complications</div>
+          <ul class="lst c3">
+            <li>From radiation fibrosis causing damage to structure</li>
+            <li>Chemotherapy causing damage to endothelial cells or cardiomyocytes, or both</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-ttl" style="color:var(--c3);">Infection</div>
+          <ul class="lst c3">
+            <li>Infection in an immunocompromised patient</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Incidence</div>
+      <ul class="lst chk">
+        <li>Once diagnosed, prognosis is poor.</li>
+        <li>Varies by malignant process involved.</li>
+        <li>Pericardial effusions are present in approximately <strong>1% to 20%</strong> of patients with cancer.</li>
+        <li>Approximately <strong>50%</strong> of pericardial effusions in patients with cancer are malignant.</li>
+        <li>Patients generally surviving less than <strong>6 months</strong> after its occurrence regardless of treatment.</li>
+      </ul>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Physiology (from Yarbro Ch.33)</div>
+      <div class="def" style="border-left-color:var(--c3);">
+        The heart is surrounded by the pericardium — a thin, fibrous sac composed of two membranous layers: the <strong>visceral pericardium</strong> (inner membrane connected to the heart surface) and the <strong>parietal pericardium</strong> (outer fibrous membrane in direct contact with the chest wall). The pericardial sac between the two membranes normally contains <strong>15 to 50 mL</strong> of clear, serous, lubricating fluid that decreases friction during cardiac contraction.
+      </div>
+      <div class="g2">
+        <div class="card">
+          <div class="card-ttl" style="color:var(--c3);">Slowly Accumulating Effusion</div>
+          <ul class="lst c3">
+            <li>Pericardium can stretch and accommodate as much as <strong>4 L</strong> of fluid without symptoms</li>
+            <li>Gradual onset — body adapts progressively</li>
+            <li>Can accumulate large volumes with minimal symptoms</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-ttl" style="color:var(--c3);">Rapidly Accumulating Effusion</div>
+          <ul class="lst c3">
+            <li>Normal compensatory mechanisms unable to adapt with rapid fluid development of only <strong>100 to 200 mL</strong></li>
+            <li>Results in severe cardiac compromise and symptoms</li>
+            <li>Can lead to cardiac tamponade</li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size:13.5px;color:var(--muted);margin-top:8px;">Malignant pericardial effusions occur as a result of excess fluid accumulation from obstruction of the venous and lymphatic drainage by direct tumor invasion or from lymphatic or hematogenous spread. The majority of malignant pericardial effusions result from blockage of the lymphatic drainage of the heart. The effects of pericardial effusion accumulation depend on the rate of fluid accumulation, the physical compliance capacity of the pericardial cavity, ventricular function, myocardial size, and blood volume.</p>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Clinical Manifestations (from Yarbro Ch.33)</div>
+      <p style="font-size:13.5px;color:var(--muted);margin-bottom:10px;">Symptoms associated with pericardial effusion are related to the rate of effusion accumulation.</p>
+      <div class="g2">
+        <div class="card">
+          <div class="card-ttl" style="color:var(--c3);">Common Symptoms</div>
+          <ul class="lst c3">
+            <li>Cough, fever, dyspnea, <strong>orthopnea</strong></li>
+            <li>Chest pain</li>
+            <li>Edema</li>
+            <li>Weakness, dysphagia, <strong>syncope</strong>, palpitations</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-ttl" style="color:var(--c3);">Most Common Signs</div>
+          <ul class="lst c3">
+            <li>Rales, tachypnea, <strong>tachycardia</strong></li>
+            <li>Hypotension</li>
+            <li>Peripheral edema</li>
+            <li><strong>Paradoxical pulse</strong> (pulsus paradoxus)</li>
+            <li>Distant heart sounds</li>
+            <li>Pericardial rub</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert a-red" style="margin-top:10px;"><span class="ic">⚠</span><span>In most patients with cancer, malignant pericardial effusions may be <strong>asymptomatic and go undiagnosed until the late stages of the disease</strong>. The clinician should have a high index of suspicion for pericardial involvement whenever patients with cancer present with cardiovascular symptoms.</span></div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Risk Factors</div>
+      <div class="g2">
+        <div class="card">
+          <div class="card-ttl" style="color:var(--c3);">1. Pre-existing or Coexisting Conditions</div>
+          <ul class="lst c3">
+            <li>Cardiac disease</li>
+            <li>Systemic lupus erythematosus (SLE)</li>
+            <li>Bacterial endocarditis</li>
+          </ul>
+          <div class="card-ttl" style="color:var(--c3);margin-top:12px;">2. Radiation Therapy (RT)</div>
+          <ul class="lst c3">
+            <li>≥ 3000 cGy to more than 33% of the heart</li>
+            <li>Fraction size &gt; 300 cGy/day → ↑ risk of late cardiac toxicity</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-ttl" style="color:var(--c3);">3. Chemotherapy &amp; Biotherapy Agents</div>
+          <ul class="lst c3">
+            <li><strong>Chemotherapy:</strong>
+              <ul class="lst dash sub-li">
+                <li>Cytosine arabinoside</li>
+                <li>Cyclophosphamide</li>
+                <li>Busulfan</li>
+                <li>Doxorubicin (anthracycline) → well-known cardiotoxic</li>
+                <li>Gemcitabine</li>
+              </ul>
+            </li>
+            <li><strong>Biological Agents:</strong>
+              <ul class="lst dash sub-li">
+                <li>Interferon</li>
+                <li>Interleukin-2 (IL-2)</li>
+                <li>Interleukin-11 (IL-11)</li>
+                <li>Granulocyte-macrophage colony-stimulating factor (GM-CSF)</li>
+              </ul>
+            </li>
+            <li><strong>Targeted Agents:</strong>
+              <ul class="lst dash sub-li">
+                <li>Imatinib</li>
+                <li>Dasatinib</li>
+              </ul>
+            </li>
+            <li><strong>Other Drugs:</strong>
+              <ul class="lst dash sub-li">
+                <li>Arsenic trioxide</li>
+                <li>All-trans retinoic acid (ATRA)</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="g2" style="margin-top:13px;">
+        <div class="card">
+          <div class="card-ttl" style="color:var(--c3);">4. Rare Causes</div>
+          <ul class="lst c3">
+            <li>Hemorrhagic tamponade from:
+              <ul class="lst dash sub-li">
+                <li>Direct cardiac injury</li>
+                <li>Infectious causes</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-ttl" style="color:var(--c3);">5. Malignancies (Commonest Causes of Cardiac Metastases)</div>
+          <ul class="lst c3">
+            <li>Lung cancer → most common</li>
+            <li>Breast cancer → second most common</li>
+            <li>Melanoma → highest propensity</li>
+            <li>Lymphoma</li>
+            <li>Leukemia</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:13px;">
+        <div class="card-ttl" style="color:var(--c3);">6. Thoracic Lymphatic Obstruction</div>
+        <p style="font-size:13.5px;color:var(--muted);margin-bottom:8px;">Secondary to:</p>
+        <ul class="lst c3">
+          <li>Malignant lymphadenopathy</li>
+          <li>HIV-associated lymphadenopathy</li>
+          <li>Hematologic malignancies</li>
+          <li>Lymphangioleiomyomatosis</li>
+          <li>Extramedullary multiple myeloma</li>
+          <li>Thymic cancer</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Physical Examination</div>
+      <div class="tw">
+        <table>
+          <thead><tr>
+            <th style="color:var(--c3);">Feature</th>
+            <th style="color:var(--c3);">Slowly Developing Effusion</th>
+            <th style="color:var(--c3);">Rapidly Developing Effusion</th>
+            <th style="color:var(--c3);">General / Systemic Findings</th>
+          </tr></thead>
+          <tbody>
+            <tr><td><strong>Symptoms onset</strong></td><td>Gradual</td><td>Sudden</td><td>Fatigue, malaise, weakness</td></tr>
+            <tr><td><strong>Volume tolerance</strong></td><td>Can accumulate large volumes with minimal symptoms</td><td>Symptomatic at only 50–80 mL (normal = 15–50 mL)</td><td>Dyspnea at rest &amp; exertion, nonproductive cough</td></tr>
+            <tr><td><strong>Pedal edema</strong></td><td>2–3+ edema common</td><td>Often absent</td><td>Hepatomegaly / splenomegaly</td></tr>
+            <tr><td><strong>Chest pain</strong></td><td>May be mild or absent</td><td>Dull, non-positional</td><td>Anxiety, restlessness, nausea/vomiting</td></tr>
+            <tr><td><strong>Heart sounds</strong></td><td>Muffled (late)</td><td>Muffled (earlier due to pressure)</td><td>Pericardial friction rub (esp. with RT-induced / nonmalignant)</td></tr>
+            <tr><td><strong>Circulatory signs</strong></td><td>Moderately ↑ CVP (15–18 cm H₂O / 8–12 mmHg)</td><td>Hypotension, tachycardia, decreased peripheral pulses</td><td>Narrow pulse pressure, pulsus paradoxus &gt; 13 mmHg</td></tr>
+            <tr><td><strong>PMI</strong></td><td>Shifted left</td><td>Shifted left</td><td>Cool, clammy extremities</td></tr>
+            <tr><td><strong>Other</strong></td><td>Edema + tolerance</td><td>Shock-like picture, rapid deterioration</td><td>Systemic venous congestion</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="lst c3" style="margin-top:10px;">
+        <li>Slow effusion = silent, edema, gradual adaptation.</li>
+        <li>Rapid effusion = acute symptoms, intolerance to small volume, circulatory collapse.</li>
+        <li>Both share dyspnea, muffled heart sounds, JVD, hypotension.</li>
+      </ul>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Imaging &amp; Laboratory Tests</div>
+      <div class="tw">
+        <table>
+          <thead><tr><th style="color:var(--c3);">Category</th><th style="color:var(--c3);">Findings / Tests</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Imaging</strong></td><td>• CXR: cardiac enlargement, widened mediastinum, "water bottle" shape, pulmonary infiltrates<br>• CT chest: useful if large tumor burden</td></tr>
+            <tr><td><strong>Cardiac Tests</strong></td><td>• ECG: low-voltage QRS, tachycardia, nonspecific ST-T changes, rare electrical alternans<br>• <strong>Echocardiogram: gold standard</strong> for effusion &amp; cardiac function<br>• Cardiac catheterization: only if diagnosis uncertain</td></tr>
+            <tr><td><strong>Labs / Fluid Analysis</strong></td><td>• Pericardial fluid: LDH, protein, tumor markers<br>• Troponins: may be elevated<br>• WBC count: ↑ with infection<br>• CRP: ↑ with inflammation<br>• BNP: ↑ with fluid overload</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Management</div>
+      <div class="tw">
+        <table>
+          <thead><tr><th style="color:var(--c3);">Category</th><th style="color:var(--c3);">Interventions</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Medical</strong></td>
+              <td>
+                <ul class="lst c3" style="margin:0;">
+                  <li>Chemotherapy: if tumor responsive (lymphoma, leukemia, breast cancer)</li>
+                  <li>Sclerosing agents into pericardial space (<span class="dr">Talc</span> <span class="dr">Bleomycin</span>)</li>
+                  <li>Oxygen therapy</li>
+                  <li><strong>Diuretics: not usually beneficial</strong></li>
+                  <li>Pain management</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Procedural</strong></td>
+              <td>
+                <ul class="lst c3" style="margin:0;">
+                  <li>Pericardiocentesis (percutaneous drainage of pericardial fluid)</li>
+                  <li>Radiation therapy: rarely indicated, only if tumor-related</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Nursing Management</strong></td>
+              <td>
+                <ul class="lst c3" style="margin:0;">
+                  <li>Elevate HOB (relieve dyspnea)</li>
+                  <li>Minimize activities to conserve energy</li>
+                  <li>Pain control &amp; comfort measures</li>
+                  <li>Palliative care consult</li>
+                  <li>Observation / close follow-up if asymptomatic</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Non-pharmacologic (Patient Education)</strong></td>
+              <td>
+                <ul class="lst c3" style="margin:0;">
+                  <li>Preparation for pericardial drainage</li>
+                  <li>Energy conservation strategies</li>
+                  <li>Relaxation techniques</li>
+                  <li>Activity modification</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="alert a-info" style="margin-top:4px;"><span class="ic">📖</span><span><strong>Source: Girls' Notes</strong> — simplified overview above. Detailed treatment approaches from Yarbro Ch.33 below.</span></div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Assessment — Physical Exam (from Yarbro Ch.33)</div>
+      <p style="font-size:13.5px;color:var(--muted);margin-bottom:10px;">The physical assessment should include a thorough examination focusing on the cardiac system, taking note of the patient's color, pulse, blood pressure, respiratory rate, breath sounds, jugular venous distension, peripheral pulses, heart sounds, and abdominal girth.</p>
+      <div class="tw">
+        <table>
+          <thead><tr><th style="color:var(--c3);">Finding</th><th style="color:var(--c3);">Details</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Cyanosis</strong></td><td>Narrowing pulse pressure, pulsus paradoxus (pulse becomes weaker with inhalation and stronger with exhalation)</td></tr>
+            <tr><td><strong>JVD</strong></td><td>Jugular venous distension</td></tr>
+            <tr><td><strong>Heart sounds</strong></td><td>Weak distant heart sounds with arrhythmias and possible friction rub</td></tr>
+            <tr><td><strong>Peripheral pulses</strong></td><td>Weak peripheral pulses</td></tr>
+            <tr><td><strong>Abdominal distension</strong></td><td>Increased abdominal distension</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card" style="margin-top:12px;">
+        <div class="card-ttl" style="color:var(--c3);">Diagnostic Studies (from Ch.33)</div>
+        <ul class="lst c3">
+          <li><strong>Echocardiogram</strong> — most commonly used diagnostic tool; reliable, noninvasive test that can evaluate the effect of a pericardial effusion on ventricular function. <strong>Gold standard = two-dimensional echocardiography</strong>, which can identify location and amount of effusion and presence of pericardial or intracardiac masses</li>
+          <li><strong>ECG changes</strong> — tachycardia, atrial and ventricular arrhythmia, low QRS voltage, ST-segment elevations, T-wave inversion</li>
+          <li><strong>Chest radiograph</strong> — cardiomegaly, bilateral pleural effusions, mediastinal widening, hilar lymphadenopathy; heart may have "water-bottle" appearance (indicative of a large pericardial effusion)</li>
+          <li><strong>CT scan</strong> — can identify pericardial fluid in amounts as small as 50 mL, as well as pericardial thickening and masses; more time-consuming than echocardiography</li>
+          <li><strong>Pericardiocentesis (diagnostic)</strong> — invasive procedure; reserved for symptomatic individuals from a large effusion. Patient at 30–45° angle; local anesthetic administered; 18- or 19-gauge needle passed cephalad at ~45°. Fluid analyzed to determine if transudate or exudate; sent for bacterial, fungal, mycobacterial cultures and cytology. <strong>Positive cytologic examination confirmed in only 50% to 60%</strong> of pericardial effusions in patients with cancer. Malignant pericardial fluid is exudative or bloody in appearance. Complications: myocardial puncture, coronary artery or vein laceration, hemopericardium, laceration of internal mammary artery, pneumothorax, liver and aortic injury</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Therapeutic Approaches — Detailed (from Yarbro Ch.33)</div>
+      <div class="alert a-info"><span class="ic">🎯</span><span>Goals: relief of symptoms, identification of positive cytology, and prevention of fluid reaccumulation. Patient's diagnosis, stage of disease, and performance status should be considered in selecting the treatment approach.</span></div>
+
+      <!-- 🚨 CARDIAC TAMPONADE EMERGENCY BOX -->
+      <div class="star-box star-red">
+        <div class="star-hdr">🚨 Cardiac Tamponade — Oncologic Emergency</div>
+        <p style="font-size:13px;color:#8b2015;margin-bottom:10px;">Compression of the heart from pericardial fluid accumulation → impairs cardiac filling → ↓ cardiac output</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#c0392b;font-weight:600;margin-bottom:6px;">Beck's Triad</div>
+            <ul class="lst c3" style="margin:0;">
+              <li><strong>Hypotension</strong></li>
+              <li><strong>JVD</strong> (Jugular Venous Distension)</li>
+              <li><strong>Muffled heart sounds</strong></li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#c0392b;font-weight:600;margin-bottom:6px;">Additional Signs</div>
+            <ul class="lst c3" style="margin:0;">
+              <li><strong>Pulsus paradoxus &gt; 13 mmHg</strong></li>
+              <li>Tachycardia</li>
+              <li>Cool, clammy extremities</li>
+              <li>Narrow pulse pressure</li>
+            </ul>
+          </div>
+        </div>
+        <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#c0392b;font-weight:600;margin-bottom:6px;">Emergency Treatment</div>
+        <ul class="lst c3" style="margin:0;">
+          <li><strong>Pericardiocentesis</strong> — immediate percutaneous drainage</li>
+          <li>Oxygen therapy + hemodynamic monitoring</li>
+          <li>IV fluids to maintain preload</li>
+          <li>Avoid diuretics and vasodilators (worsen hypotension)</li>
+        </ul>
+      </div>
+
+      <div class="tw">
+        <table>
+          <thead><tr>
+            <th style="color:var(--c3);">Approach</th>
+            <th style="color:var(--c3);">Details</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Pericardiocentesis</strong><br><em>1st line</em></td>
+              <td>Most frequently performed in symptomatic patients as a therapeutic procedure. High success rate but fluid reaccumulation occurs in approximately <strong>50% of patients</strong>. Other definitive medical or surgical treatment is necessary to prevent recurrence. Nursing care: explanation of procedure; semi-Fowler's position; maintaining asepsis; having available defibrillator, oxygen, and emergency medications; continuous monitoring of patient and ECG during and after procedure to detect any cardiac or pulmonary abnormalities.</td>
+            </tr>
+            <tr>
+              <td><strong>Subxiphoid Pericardiostomy</strong><br>(Pericardial Window)<br><em>Most commonly undertaken — preferred surgical treatment</em></td>
+              <td>Performed under local anesthesia. Small, vertical skin incision in subxiphoid region → anterior pericardium incised → fluid drained → sample obtained for pathologic studies → pericardial tube placed in upper abdominal wall into pericardial space. <strong>Overall morbidity and mortality rate is low; recurrence rate ~3.5%.</strong> Nursing care same as for pericardiocentesis.</td>
+            </tr>
+            <tr>
+              <td><strong>Balloon Pericardiotomy</strong></td>
+              <td>Nonsurgical procedure to create a pericardial window. Guide wire threaded percutaneously into pericardium → balloon-dilating catheter inserted and inflated to create pericardial window for fluid drainage. <strong>Helpful in management of massive malignant pericardial effusions in patients with poor performance status.</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Pericardiocentesis with Sclerosing Agent Instillation</strong></td>
+              <td>Sclerosing agents instilled to obliterate pericardial space by inducing an inflammatory response → fibrosis and sclerosis of the pericardium. Agents used: <span class="dr">Tetracycline</span> <span class="dr">Doxycycline</span> <span class="dr">Bleomycin</span> <span class="dr">Cisplatin</span>. <strong>Tetracycline and doxycycline have been most extensively evaluated.</strong> Controls pericardial effusion for longer than 30 days in more than 90% of patients.</td>
+            </tr>
+            <tr>
+              <td><strong>Surgical Approaches</strong></td>
+              <td>Transthoracic pericardial window via thoracotomy and pericardiectomy — generally reserved for individuals who require repeated pericardiocentesis and are medically appropriate (general anesthesia and thoracotomy required). Risks: pneumonia, pleural effusion, cardiac arrhythmia, respiratory failure, deep vein thrombosis, pulmonary embolism. <strong>Preferred option: video-assisted thoracoscopy (less invasive than thoracotomy).</strong> Pleurectomy — stripping of parietal pleura — is 100% effective in controlling malignant pleural effusions and is primary therapeutic modality for some types of mesothelioma.</td>
+            </tr>
+            <tr>
+              <td><strong>Radiation Therapy</strong></td>
+              <td>Generally indicated for patients with <strong>leukemia/lymphoma or breast carcinoma.</strong> Requires several weeks of daily treatments or prolonged hospitalization. Usual dose: <strong>100 to 200 cGy daily for approximately 3 to 4 weeks.</strong> Can potentially cause acute pericarditis or myocarditis.</td>
+            </tr>
+            <tr>
+              <td><strong>Chemotherapy</strong></td>
+              <td>If tumor responsive (lymphoma, leukemia, breast cancer). May be combined with hormonal therapy for appropriate tumor types.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Pericardial Effusion Toxicity Grading — Management Algorithm (from Yarbro Ch.33)</div>
+      <div class="tw">
+        <table>
+          <thead><tr>
+            <th style="color:var(--c3);">Grade</th>
+            <th style="color:var(--c3);">Status</th>
+            <th style="color:var(--c3);">Management</th>
+          </tr></thead>
+          <tbody>
+            <tr><td><strong>Grade 1</strong></td><td>Asymptomatic</td><td>Observation; patient education; anxiety-reducing therapies</td></tr>
+            <tr><td><strong>Grade 2</strong></td><td>Symptomatic chest pain, dyspnea</td><td>Symptomatic: chest pain Rx; patient education; anxiety-reducing therapies</td></tr>
+            <tr><td><strong>Grade 3</strong></td><td>Symptomatic — severe pain</td><td>Pericardiocentesis; pericardial window; catheter; anxiety-reducing therapies; patient education</td></tr>
+            <tr><td><strong>Grade 4</strong></td><td>Symptomatic — Tamponade</td><td>Aggressive measures → if <strong>Yes</strong>: aggressive life support, pericardial window, catheter, patient education, anxiety-reducing therapies. If <strong>No</strong>: end-of-life care, patient education, patient and family support, hospice, anxiety-reducing therapies</td></tr>
+            <tr><td><strong>Grade 5</strong></td><td>Imminent death</td><td>Comfort measures including pain relief, oxygen, education, anxiety-reducing therapies</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════ SECTION 4 ══════════════════════════ -->
+<div class="sec s4" id="s4">
+  <div class="sec-hdr"><div class="sec-num">04</div><div class="sec-ttl">Cardiovascular Toxicity Related to Cancer Therapy</div></div>
+  <div class="sec-body">
+
+    <div class="sub">
+      <div class="sub-ttl">Definition</div>
+      <div class="def">
+        Damage to the cardiac muscle, conduction system, coronary arteries, valves, and/or pericardium related to cancer therapies that may cause alterations in cardiac function.
+      </div>
+      <div class="alert a-warn"><span class="ic">⚠</span><span><strong>Important (from Ch.33):</strong> HER2-targeted therapy (e.g., Trastuzumab) combined with anthracyclines = <strong>highest risk</strong> of cardiotoxicity. Trastuzumab alone causes reversible LV dysfunction, but when combined with anthracyclines the risk of HF increases significantly. These agents should not be given concurrently.</span></div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Drug Classes Associated with CVT (from highest to lowest)</div>
+
+      <!-- ⭐ EXAM FAVORITE -->
+      <div class="star-box">
+        <div class="star-hdr">⭐ Exam Favorites — Anthracycline Cardiotoxicity</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#b07d20;font-weight:600;margin-bottom:6px;">Dose Threshold</div>
+            <ul class="lst c2" style="margin:0;">
+              <li><strong>Doxorubicin &gt; 550 mg/m²</strong> = High risk cardiomyopathy</li>
+              <li>Dose-dependent and <strong>irreversible</strong></li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#b07d20;font-weight:600;margin-bottom:6px;">Early Warning Sign</div>
+            <ul class="lst c2" style="margin:0;">
+              <li><strong>Tachycardia = Early sign</strong> of anthracycline toxicity</li>
+              <li>Monitor ECG + LVEF baseline and throughout</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#b07d20;font-weight:600;margin-bottom:6px;">Cardioprotection</div>
+            <ul class="lst c2" style="margin:0;">
+              <li><strong>Dexrazoxane (Zinecard)</strong> = Cardioprotective agent</li>
+              <li>Give when doxorubicin &gt; 300 mg/m² in metastatic breast cancer</li>
+            </ul>
+          </div>
+        </div>
+        <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(176,125,32,.2);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#b07d20;font-weight:600;margin-bottom:6px;">High Yield Drug → Toxicity</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;font-size:13px;">
+            <div><span class="dr">Doxorubicin</span> → HF / Cardiomyopathy</div>
+            <div><span class="dr">Trastuzumab</span> → Reversible ↓EF</div>
+            <div><span class="dr">Bevacizumab</span> → HTN</div>
+            <div><span class="dr">Dasatinib</span> → Pleural/Pericardial effusion</div>
+            <div><span class="dr">5-FU</span> → Coronary vasospasm</div>
+            <div><span class="dr">Carfilzomib</span> → HF</div>
+          </div>
+        </div>
+      </div>
+      <div class="tw">
+        <table>
+          <thead><tr>
+            <th style="color:var(--c5);">Drug Class / Agent</th>
+            <th style="color:var(--c5);">Examples</th>
+            <th style="color:var(--c5);">Main Cardiotoxic Effects</th>
+          </tr></thead>
+          <tbody>
+            <tr><td><strong>Anthracyclines</strong></td><td><span class="dr">Doxorubicin</span> <span class="dr">Daunorubicin</span> <span class="dr">Epirubicin</span> <span class="dr">Idarubicin</span></td><td>Dose-dependent irreversible cardiomyopathy, heart failure (HF), LV dysfunction</td></tr>
+            <tr><td><strong>HER2-targeted therapy</strong></td><td><span class="dr">Trastuzumab</span> <span class="dr">Pertuzumab</span> <span class="dr">Ado-trastuzumab emtansine</span></td><td>Reversible LV dysfunction, HF (esp. when combined with anthracyclines)</td></tr>
+            <tr><td><strong>Tyrosine Kinase Inhibitors (TKIs)</strong></td><td><span class="dr">Ponatinib</span> <span class="dr">Nilotinib</span> <span class="dr">Dasatinib</span> <span class="dr">Sorafenib</span> <span class="dr">Sunitinib</span></td><td>Hypertension, arterial thrombosis, QT prolongation, HF, vascular events</td></tr>
+            <tr><td><strong>Immune Checkpoint Inhibitors (ICIs)</strong></td><td>Anti–PD-1/PD-L1, CTLA-4 inhibitors</td><td>Myocarditis, arrhythmias, pericarditis (rare but often fatal)</td></tr>
+            <tr><td><strong>VEGF Inhibitors</strong></td><td><span class="dr">Bevacizumab</span> <span class="dr">Axitinib</span> <span class="dr">Pazopanib</span></td><td>Hypertension, arterial/venous thromboembolism, ischemia, HF</td></tr>
+            <tr><td><strong>Radiation Therapy (RT) to chest</strong></td><td>Mediastinal RT (lymphoma, breast cancer)</td><td>Accelerated CAD, pericarditis, valvular disease, restrictive cardiomyopathy</td></tr>
+            <tr><td><strong>Alkylating agents</strong></td><td><span class="dr">Cyclophosphamide (high dose)</span> <span class="dr">Ifosfamide</span></td><td>Acute HF, hemorrhagic myocarditis</td></tr>
+            <tr><td><strong>Proteasome Inhibitors</strong></td><td><span class="dr">Carfilzomib</span> <span class="dr">Bortezomib</span></td><td>Carfilzomib → high risk of HF, arrhythmias, hypertension</td></tr>
+            <tr><td><strong>Antimetabolites</strong></td><td><span class="dr">5-FU</span> <span class="dr">Capecitabine</span></td><td>Coronary vasospasm → angina, MI</td></tr>
+            <tr><td><strong>Taxanes &amp; Other Agents</strong></td><td><span class="dr">Paclitaxel</span> <span class="dr">Docetaxel</span> <span class="dr">Thalidomide</span> <span class="dr">Lenalidomide</span></td><td>Brady arrhythmias, ischemia (rare, usually mild)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Incidence</div>
+      <div class="g3">
+        <div class="card">
+          <div class="card-ttl" style="color:var(--c5);">A. Acute Reactions</div>
+          <ul class="lst c5">
+            <li>Infrequent; reversible</li>
+            <li>Occur within 24 hours of drug administration</li>
+            <li>Usually self-limiting and cease when the drug is stopped</li>
+            <li>May not require discontinuation of the drug</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-ttl" style="color:var(--c5);">B. Early Onset (&lt;1 year)</div>
+          <ul class="lst c5">
+            <li>Infrequent</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-ttl" style="color:var(--c5);">C. Late Onset (&gt;1 year after therapy)</div>
+          <ul class="lst c5">
+            <li>Occurs with cumulative doses of drugs</li>
+            <li>Dilated cardiomyopathy can occur</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Risk Factors</div>
+      <div class="g2">
+        <div class="card">
+          <div class="card-ttl" style="color:var(--c5);">Patient Factors</div>
+          <ul class="lst c5">
+            <li>Preexisting heart disease, HTN, hyperlipidemia</li>
+            <li>History of smoking</li>
+            <li>Age younger than 15 years or advanced age &gt; 65</li>
+            <li>Certain cardiotoxic drugs</li>
+            <li>Exceeding recommended total doses of chemotherapy or high dose in short period</li>
+            <li>Radiation treatment field which includes the heart</li>
+            <li>Acute cardiac event during treatment</li>
+            <li>Combination chest radiation with anthracycline</li>
+            <li>Others: female, obesity, comorbid disease, and previous cancer treatment that had cardiotoxicity</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-ttl" style="color:var(--c5);">Doses That Place Patient at Risk</div>
+          <ul class="lst chk">
+            <li>Doxorubicin &gt; 550 mg/m²</li>
+            <li>Liposomal doxorubicin &gt; 900 mg/m²</li>
+            <li>Epirubicin &gt; 720 mg/m²</li>
+            <li>Mitoxantrone &gt; 120 mg/m²</li>
+            <li>Idarubicin &gt; 90 mg/m²</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Physical Examination</div>
+      <ul class="lst c5">
+        <li><strong>A.</strong> Orthostatic symptoms, arrhythmias, jugular vein distention, bilateral pedal edema, presence of S₃ or S₄, murmurs with valve abnormalities, and decreased cardiac EF. <strong>Tachycardia — early sign in anthracycline toxicity.</strong></li>
+        <li><strong>B.</strong> Shortness of breath, dyspnea, orthopnea, and nonproductive cough</li>
+        <li><strong>C.</strong> Exercise intolerance, fatigue</li>
+        <li><strong>D.</strong> Weight gain</li>
+        <li><strong>E.</strong> Syncope</li>
+      </ul>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Imaging &amp; Laboratory Tests</div>
+      <div class="card" style="margin-bottom:13px;">
+        <div class="card-ttl" style="color:var(--c5);">A. Electrocardiogram (ECG) Changes</div>
+        <ul class="lst num">
+          <li>Premature atrial contractions (PACs) and premature ventricular contractions (PVCs)</li>
+          <li>Nonspecific ST-T wave changes</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-bottom:13px;">
+        <div class="card-ttl" style="color:var(--c5);">B. Echocardiogram or Multigated Acquisition (MUGA) Scan</div>
+        <ul class="lst num">
+          <li>Left ventricular function monitoring — usually assessing ejection fraction (EF)
+            <ul class="lst dash sub-li">
+              <li>A decrease in EF to &lt;45% or a drop &gt;5% from baseline should prompt consideration to:
+                <ul class="lst chk sub-li">
+                  <li>Hold or discontinue the cardiotoxic drug</li>
+                  <li>Continue monitoring EF until improvement</li>
+                  <li>Resumption of the drug should be individualized</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Detection of pericardial effusion</li>
+          <li>Left ventricular hypertrophy (LVH)</li>
+        </ul>
+      </div>
+      <div class="g3">
+        <div class="card">
+          <div class="card-ttl" style="color:var(--c5);">C. Cardiac MRI</div>
+          <ul class="lst c5">
+            <li>Considered the <strong>gold standard</strong> for evaluating:
+              <ul class="lst dash sub-li">
+                <li>Left ventricular volume</li>
+                <li>Mass</li>
+                <li>Function</li>
+              </ul>
+            </li>
+            <li>However, it may be cost-prohibitive and not always accessible</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-ttl" style="color:var(--c5);">D. BMI and Waist Circumference</div>
+          <ul class="lst c5">
+            <li>Used to assess cardiovascular risk factors associated with obesity and metabolic syndrome</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-ttl" style="color:var(--c5);">E. Laboratory Tests Impacting Cardiac Function</div>
+          <ul class="lst num">
+            <li>Important parameters include:
+              <ul class="lst dash sub-li">
+                <li>Electrolytes: Potassium, Magnesium, Calcium</li>
+                <li>Renal function</li>
+                <li>Thyroid function</li>
+                <li>Lipid profile</li>
+              </ul>
+            </li>
+            <li>Electrolyte monitoring is critical, especially in patients receiving drugs that may prolong the QT interval</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Management of Cardiotoxicity</div>
+
+      <div class="phase">
+        <div class="phase-hdr" style="background:rgba(125,60,168,.07);color:var(--c5);">I. Pharmacologic Management</div>
+        <div class="phase-body">
+          <ul class="lst num">
+            <li>Treatment is tailored to the underlying cardiac event (e.g., heart failure, arrhythmia, hypertension).</li>
+            <li>Use of lipid-lowering agents (e.g., statins) if hyperlipidemia is present.</li>
+            <li>Beta-blockers and ACE inhibitors:
+              <ul class="lst chk sub-li"><li>Used to manage left ventricular dysfunction (LVD).</li></ul>
+            </li>
+            <li>Angiotensin receptor blockers (ARBs):
+              <ul class="lst chk sub-li"><li>When used concurrently with anthracyclines, may prevent cardiac damage.</li></ul>
+            </li>
+            <li>ACE inhibitors and calcium channel blockers:
+              <ul class="lst chk sub-li"><li>For the treatment of hypertension (HTN).</li></ul>
+            </li>
+            <li>Minimize the risk of QT interval prolongation:
+              <ul class="lst chk sub-li">
+                <li>Avoid drug–drug interactions that affect QT.</li>
+                <li>Correct and monitor electrolyte imbalances, especially potassium, magnesium, and calcium.</li>
+              </ul>
+            </li>
+            <li>Cardioprotective strategies for anthracycline use:
+              <ul class="lst chk sub-li">
+                <li><strong>Dexrazoxane (Zinecard)</strong> — administer in metastatic breast cancer patients who require &gt;300 mg/m² of doxorubicin. It is an intracellular chelating agent that interferes with iron-mediated free radical generation thought to be responsible for anthracycline-induced cardiomyopathy. <em>Note: not recommended for use in adjuvant treatment of breast cancer or at initiation of anthracycline therapy.</em></li>
+                <li><strong>Liposomal doxorubicin</strong> — use to reduce cardiotoxicity risk; encapsulation reduces peak plasma levels and myocardial exposure</li>
+              </ul>
+            </li>
+            <li>Anticoagulation for patients at risk of venous thromboembolism (VTE).</li>
+            <li>Valve surgery may be required in patients with radiation-induced valvular disease.</li>
+            <li>Comprehensive disease management:
+              <ul class="lst chk sub-li"><li>Includes both oncologic and cardiac conditions simultaneously.</li></ul>
+            </li>
+            <li>Radiation therapy (RT) techniques:
+              <ul class="lst chk sub-li"><li>Use cardiac-sparing approaches to minimize cardiac exposure.</li></ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-hdr" style="background:rgba(125,60,168,.07);color:var(--c5);">II. Nonpharmacologic Management</div>
+        <div class="phase-body">
+          <ul class="lst c5">
+            <li><strong>A.</strong> Conduct a baseline cardiovascular risk assessment before initiating cancer treatment.</li>
+            <li><strong>B.</strong> Schedule cardiac function screening at appropriate intervals during and after treatment.</li>
+            <li><strong>C.</strong> Prevention of cardiotoxicity:
+              <ul class="lst num sub-li">
+                <li>Track cumulative anthracycline doses and discontinue treatment when maximum dose is reached:
+                  <ul class="lst dash sub-li">
+                    <li>Doxorubicin: 550 mg/m²</li>
+                    <li>Daunorubicin (Cerubidine, DaunoXome): 600 mg/m²</li>
+                    <li>Mitoxantrone (Novantrone): 160 mg/m²</li>
+                    <li>High-dose cyclophosphamide: 144 mg/kg over 4 days</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><strong>D.</strong> Monitor baseline and follow-up ECG or MUGA scans to assess cardiac function.</li>
+            <li><strong>E.</strong> Monitor vital signs and body weight regularly.</li>
+            <li><strong>F.</strong> Track radiation field and dose to minimize cardiac toxicity, especially in thoracic cancers.</li>
+            <li><strong>G.</strong> Patient education:
+              <ul class="lst num sub-li">
+                <li>Teach patients which signs and symptoms (e.g., dyspnea, edema, palpitations) to report immediately.</li>
+                <li>Promote a heart-healthy diet, adjusting for any treatment-related dietary restrictions.</li>
+                <li>Encourage participation in a medically supervised exercise program to maintain cardiovascular health and overall well-being.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-ttl">Nursing Interventions</div>
+      <div class="tw">
+        <table>
+          <thead><tr><th style="color:var(--c5);">Condition</th><th style="color:var(--c5);">Nursing Interventions</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Cardiovascular Toxicity (from cancer therapy)</strong></td>
+              <td>
+                <ul class="lst c5" style="margin:0;">
+                  <li>Baseline &amp; ongoing monitoring: ECG, ECHO (LVEF), BP, cardiac biomarkers (troponin, BNP).</li>
+                  <li>Monitor for dyspnea, chest pain, palpitations, edema.</li>
+                  <li>Educate patient on reporting new symptoms (fatigue, SOB, swelling).</li>
+                  <li>Administer cardioprotective drugs as prescribed (e.g., dexrazoxane with anthracyclines).</li>
+                  <li>Manage comorbidities (HTN, diabetes, CAD).</li>
+                  <li>Support adherence to dose limits and schedule follow-up with cardio-oncology.</li>
+                  <li>Energy conservation and psychological support.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Malignant Pericardial Effusion</strong></td>
+              <td>
+                <ul class="lst c3" style="margin:0;">
+                  <li>Monitor vital signs &amp; hemodynamic status (tachycardia, hypotension, JVD, muffled heart sounds).</li>
+                  <li>Position: Elevate HOB to relieve dyspnea.</li>
+                  <li>Administer oxygen as indicated.</li>
+                  <li>Prepare &amp; assist with pericardiocentesis / pericardial drain.</li>
+                  <li>Pain management &amp; anxiety reduction.</li>
+                  <li>Educate patient about symptoms of tamponade (SOB, chest pain, lightheadedness).</li>
+                  <li>Encourage activity modification to conserve energy.</li>
+                  <li>Collaborate with palliative care if advanced disease.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Generalized Edema (e.g., due to HF, hypoalbuminemia, or therapy side effects)</strong></td>
+              <td>
+                <ul class="lst c2" style="margin:0;">
+                  <li>Monitor daily weight, I&amp;O, and limb girth.</li>
+                  <li>Elevate extremities to reduce swelling.</li>
+                  <li>Restrict sodium &amp; fluids as prescribed.</li>
+                  <li>Administer diuretics and monitor electrolytes.</li>
+                  <li>Skin care: prevent breakdown from fluid overload.</li>
+                  <li>Encourage mobility &amp; gentle exercises.</li>
+                  <li>Emotional support (edema may affect body image).</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Lymphedema (secondary to cancer therapy / surgery)</strong></td>
+              <td>
+                <ul class="lst c1" style="margin:0;">
+                  <li>Early identification and referral to lymphedema specialist.</li>
+                  <li>Decongestive therapy: manual lymph drainage, compression bandaging, skin care, exercise.</li>
+                  <li>Teach patient about avoiding trauma/injury to affected limb (no BP cuff, no injections).</li>
+                  <li>Elevate limb when resting.</li>
+                  <li>Educate about weight management &amp; exercise.</li>
+                  <li>Support hose / compression garments as prescribed.</li>
+                  <li>Psychological support (coping with chronic condition).</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- /content -->
+<div class="footer">CARDIOVASCULAR SYMPTOMS · ONCOLOGY NURSING · GIRLS' NOTES + YARBRO CH.33</div>
+
+<canvas id="cv"></canvas>
+<div id="toolbar">
+  <div class="hl-box" id="by" style="background:#fef08a;" title="Yellow"></div>
+  <div class="hl-box" id="bg" style="background:#bbf7d0;" title="Green"></div>
+  <div class="hl-box" id="bp" style="background:#fbcfe8;" title="Pink"></div>
+  <div class="hl-box" id="bb" style="background:#bfdbfe;" title="Blue"></div>
+  <div class="tb-sep"></div>
+  <button class="tb-btn" id="btn-note" style="font-size:18px;" title="Note">&#128221;</button>
+  <div class="tb-sep"></div>
+  <div class="cdot" style="background:#a78bfa;border-color:#fff;" data-c="#a78bfa" id="c1"></div>
+  <div class="cdot" style="background:#f87171" data-c="#f87171" id="c2"></div>
+  <div class="cdot" style="background:#4ade80" data-c="#4ade80" id="c3"></div>
+  <div class="cdot" style="background:#60a5fa" data-c="#60a5fa" id="c4"></div>
+  <div class="cdot" style="background:#1e293b" data-c="#1e293b" id="c5"></div>
+  <input type="range" id="psz" min="1" max="14" value="3">
+  <button class="tb-btn" id="btn-pen" title="Pen" style="color:#a78bfa;font-size:18px;">&#9998;</button>
+  <button class="tb-btn" id="btn-clr" title="Clear" style="font-size:15px;color:#94a3b8;">&#10006;</button>
+  <div class="tb-sep"></div>
+  <button class="tb-btn" id="btn-hl-clr" title="Clear highlights" style="font-size:11px;color:#94a3b8;">CLR</button>
+</div>
+
+<script>
+(function() {
+  var hlColor = null;
+  var penOn   = false;
+  var pc      = '#a78bfa';
+  var ps      = 3;
+  var drawing = false;
+  var lx = 0, ly = 0;
+  var notes   = 0;
+  var cv  = document.getElementById('cv');
+  var ctx = cv.getContext('2d');
+
+  function fitCV() { cv.width = window.innerWidth; cv.height = window.innerHeight; }
+  fitCV();
+  window.addEventListener('resize', fitCV);
+
+  function getXY(e) {
+    var r = cv.getBoundingClientRect();
+    if (e.touches && e.touches.length > 0)
+      return { x: e.touches[0].clientX - r.left, y: e.touches[0].clientY - r.top };
+    return { x: e.clientX - r.left, y: e.clientY - r.top };
+  }
+
+  // ── HIGHLIGHT ─────────────────────────────
+  function makeHL(col, id) {
+    document.getElementById(id).addEventListener('click', function() {
+      if (penOn) disablePen();
+      // If already active color — toggle off
+      if (hlColor === col) {
+        hlColor = null;
+        this.classList.remove('on');
+        document.body.style.cursor = '';
+        savedRange = null;
+        return;
+      }
+      ['by','bg','bp','bb'].forEach(function(i) { document.getElementById(i).classList.remove('on'); });
+      // If there's a saved range from touch selection — apply immediately
+      if (savedRange) {
+        var span = document.createElement('span');
+        span.className = 'HL ' + col;
+        span.setAttribute('data-hl','1');
+        try { savedRange.surroundContents(span); } catch(e) {}
+        savedRange = null;
+        window.getSelection().removeAllRanges();
+        return;
+      }
+      // Otherwise set active color for next selection
+      hlColor = col;
+      this.classList.add('on');
+      document.body.style.cursor = 'text';
+    });
+  }
+  makeHL('y','by'); makeHL('g','bg'); makeHL('p','bp'); makeHL('b','bb');
+
+  // Store saved range for touch devices
+  var savedRange = null;
+
+  function applyHL(target) {
+    if (!hlColor) return;
+    var tb = document.getElementById('toolbar');
+    if (target && tb.contains(target)) return;
+    var sel = window.getSelection();
+    if (!sel || sel.isCollapsed || !sel.rangeCount) return;
+    var range = sel.getRangeAt(0);
+    if (!range || range.collapsed) return;
+    var span = document.createElement('span');
+    span.className = 'HL ' + hlColor;
+    span.setAttribute('data-hl','1');
+    try { range.surroundContents(span); } catch(e) { return; }
+    sel.removeAllRanges();
+    savedRange = null;
+  }
+
+  function applyFromSaved() {
+    if (!hlColor || !savedRange) return;
+    var span = document.createElement('span');
+    span.className = 'HL ' + hlColor;
+    span.setAttribute('data-hl','1');
+    try { savedRange.surroundContents(span); } catch(e) {}
+    savedRange = null;
+    window.getSelection().removeAllRanges();
+  }
+
+  // Save selection on touchend before it disappears
+  document.addEventListener('touchend', function(e) {
+    if (!hlColor || penOn) return;
+    var sel = window.getSelection();
+    if (sel && !sel.isCollapsed && sel.rangeCount) {
+      savedRange = sel.getRangeAt(0).cloneRange();
+    }
+  });
+
+  document.addEventListener('mouseup', function(e) { applyHL(e.target); });
+
+  document.getElementById('btn-hl-clr').addEventListener('click', function() {
+    var els = document.querySelectorAll('[data-hl]');
+    for (var i = els.length - 1; i >= 0; i--) {
+      var el = els[i];
+      while (el.firstChild) el.parentNode.insertBefore(el.firstChild, el);
+      el.parentNode.removeChild(el);
+    }
+  });
+
+  // ── NOTES ─────────────────────────────────
+  document.getElementById('btn-note').addEventListener('click', function() {
+    if (penOn) disablePen();
+    notes++;
+    var n = document.createElement('div');
+    n.className = 'snote';
+    n.style.top  = (110 + notes * 28) + 'px';
+    n.style.left = (50 + notes * 20) + 'px';
+    var hdr = document.createElement('div');
+    hdr.className = 'snote-hdr';
+    var title = document.createElement('span');
+    title.textContent = 'Note ' + notes;
+    var closeB = document.createElement('button');
+    closeB.className = 'snote-close';
+    closeB.innerHTML = '&times;';
+    closeB.addEventListener('click', function(e) { e.stopPropagation(); if (n.parentNode) n.parentNode.removeChild(n); });
+    hdr.appendChild(title); hdr.appendChild(closeB);
+    var ta = document.createElement('textarea');
+    ta.placeholder = 'Write here...';
+    n.appendChild(hdr); n.appendChild(ta);
+    document.body.appendChild(n);
+    var mx = 0, my = 0;
+    function dragMove(e) {
+      var cx = e.touches ? e.touches[0].clientX : e.clientX;
+      var cy = e.touches ? e.touches[0].clientY : e.clientY;
+      n.style.left = (n.offsetLeft - (mx - cx)) + 'px';
+      n.style.top  = (n.offsetTop  - (my - cy)) + 'px';
+      mx = cx; my = cy;
+    }
+    function dragEnd() {
+      document.removeEventListener('mousemove', dragMove);
+      document.removeEventListener('mouseup', dragEnd);
+      document.removeEventListener('touchmove', dragMove);
+      document.removeEventListener('touchend', dragEnd);
+    }
+    function dragStart(e) {
+      if (e.target === closeB || e.target === ta) return;
+      mx = e.touches ? e.touches[0].clientX : e.clientX;
+      my = e.touches ? e.touches[0].clientY : e.clientY;
+      document.addEventListener('mousemove', dragMove);
+      document.addEventListener('mouseup', dragEnd);
+      document.addEventListener('touchmove', dragMove, { passive: false });
+      document.addEventListener('touchend', dragEnd);
+    }
+    hdr.addEventListener('mousedown', dragStart);
+    hdr.addEventListener('touchstart', dragStart, { passive: true });
+    setTimeout(function() { ta.focus(); }, 50);
+  });
+
+  // ── PEN ───────────────────────────────────
+  function disablePen() {
+    penOn = false;
+    cv.style.pointerEvents = 'none';
+    document.getElementById('btn-pen').classList.remove('on');
+    document.body.style.cursor = '';
+  }
+
+  document.getElementById('btn-pen').addEventListener('click', function() {
+    hlColor = null;
+    ['by','bg','bp','bb'].forEach(function(i) { document.getElementById(i).classList.remove('on'); });
+    penOn = !penOn;
+    if (penOn) {
+      cv.style.pointerEvents = 'all';
+      this.classList.add('on');
+      document.body.style.cursor = 'crosshair';
+    } else { disablePen(); }
+  });
+
+  ['c1','c2','c3','c4','c5'].forEach(function(id) {
+    document.getElementById(id).addEventListener('click', function() {
+      pc = this.getAttribute('data-c');
+      ['c1','c2','c3','c4','c5'].forEach(function(d) { document.getElementById(d).classList.remove('on'); });
+      this.classList.add('on');
+    });
+  });
+
+  document.getElementById('psz').addEventListener('input', function() { ps = parseInt(this.value, 10); });
+
+  function startDraw(e) {
+    if (!penOn) return;
+    e.preventDefault();
+    drawing = true;
+    var p = getXY(e); lx = p.x; ly = p.y;
+  }
+  function moveDraw(e) {
+    if (!drawing || !penOn) return;
+    e.preventDefault();
+    var p = getXY(e);
+    ctx.beginPath(); ctx.moveTo(lx, ly); ctx.lineTo(p.x, p.y);
+    ctx.strokeStyle = pc; ctx.lineWidth = ps; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.stroke();
+    lx = p.x; ly = p.y;
+  }
+  function stopDraw() { drawing = false; }
+
+  cv.addEventListener('mousedown', startDraw);
+  cv.addEventListener('mousemove', moveDraw);
+  cv.addEventListener('mouseup', stopDraw);
+  cv.addEventListener('mouseleave', stopDraw);
+  cv.addEventListener('touchstart', startDraw, { passive: false });
+  cv.addEventListener('touchmove',  moveDraw,  { passive: false });
+  cv.addEventListener('touchend',   stopDraw);
+
+  document.getElementById('btn-clr').addEventListener('click', function() {
+    ctx.clearRect(0, 0, cv.width, cv.height);
+  });
+
+})();
+</script>
+
+</body>
+</html>
