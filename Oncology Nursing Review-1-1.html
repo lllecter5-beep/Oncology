@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oncology Nursing Review</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#7c3aed;--purple-dim:#ede9fe;--purple-dark:#4c1d95;--navy:#1e3a8a;--green:#16a34a;--red:#dc2626;--gold:#d97706;--blue:#2563eb;--bg:#f5f7fa;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.header{background:linear-gradient(135deg,#0c1445,#1e3a8a 40%,#2563eb 70%,#1d4ed8);padding:28px 20px 24px;text-align:center;color:#fff}
+.header h1{font-family:'Playfair Display',serif;font-size:1.6em;margin-bottom:6px}
+.header p{font-size:.82em;color:#bfdbfe;opacity:.95}
+.badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.badge{display:inline-block;padding:3px 12px;border-radius:20px;font-size:.72em;font-weight:700}
+.badge-green{background:rgba(22,163,74,.3);border:1px solid rgba(134,239,172,.4);color:#bbf7d0}
+.badge-blue{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff}
+.badge-gold{background:rgba(217,119,6,.3);border:1px solid rgba(253,230,138,.4);color:#fde68a}
+.controls{background:#fff;border-bottom:1px solid var(--border);padding:10px 16px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.ctrl-btn{padding:7px 14px;border-radius:20px;border:1.5px solid var(--border);background:#fff;color:var(--muted);font-size:.78em;font-weight:600;cursor:pointer;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.ctrl-btn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+#score-bar{background:#eff6ff;border-radius:20px;padding:6px 14px;font-size:.78em;font-weight:700;color:var(--navy)}
+.filter-bar{padding:10px 16px;background:#fff;border-bottom:1px solid var(--border);display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.filter-btn{padding:5px 12px;border-radius:20px;border:1.5px solid var(--border);background:#fff;color:var(--muted);font-size:.73em;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.filter-btn.active{border-color:var(--blue);background:#eff6ff;color:var(--blue)}
+.progress-wrap{padding:12px 16px 0}
+.progress-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--navy));border-radius:3px;transition:width .4s}
+.progress-text{font-size:.73em;color:var(--muted);margin-top:4px;text-align:right}
+.q-container{padding:12px 16px 80px;max-width:820px;margin:0 auto}
+.q-card{background:#fff;border:1px solid var(--border);border-radius:14px;margin-bottom:14px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.q-card.sec1-q{border-left:4px solid var(--green)}
+.q-card.sec2-q{border-left:4px solid var(--blue)}
+.q-card.sec3-q{border-left:4px solid var(--gold)}
+.q-header{display:flex;align-items:flex-start;gap:10px;padding:14px 16px 10px;border-bottom:1px solid var(--border)}
+.q-num{background:var(--navy);color:#fff;border-radius:8px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:.73em;font-weight:700;flex-shrink:0;margin-top:1px}
+.q-card.sec1-q .q-num{background:#15803d}
+.q-card.sec2-q .q-num{background:var(--navy)}
+.q-card.sec3-q .q-num{background:#92400e}
+.q-topic{font-size:.67em;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);margin-bottom:4px}
+.q-card.sec1-q .q-topic{color:#15803d}
+.q-card.sec2-q .q-topic{color:var(--navy)}
+.q-card.sec3-q .q-topic{color:#92400e}
+.q-text{font-size:.9em;line-height:1.6;font-weight:600;color:var(--text)}
+.q-body{padding:12px 16px}
+.src-badge{display:inline-block;border-radius:8px;padding:2px 8px;font-size:.68em;font-weight:700;margin-bottom:8px}
+.src-badge.sec1{background:#dcfce7;color:#15803d}
+.src-badge.sec2{background:#eff6ff;color:#1d4ed8}
+.src-badge.sec3{background:#fef3c7;color:#92400e}
+.options{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;transition:all .15s;-webkit-tap-highlight-color:transparent;font-size:.87em;line-height:1.5}
+.opt:hover{border-color:var(--blue);background:#eff6ff}
+.opt-letter{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.7em;font-weight:700;flex-shrink:0;color:var(--muted)}
+.opt.correct{background:#dcfce7;border-color:var(--green)}
+.opt.correct .opt-letter{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.selected-wrong{background:#fee2e2;border-color:var(--red)}
+.opt.selected-wrong .opt-letter{background:var(--red);color:#fff;border-color:var(--red)}
+.opt.disabled{cursor:default;pointer-events:none}
+.explanation{margin-top:12px;padding:12px 14px;border-radius:10px;background:#eff6ff;border-left:3px solid var(--blue);font-size:.83em;line-height:1.6;color:#1e3a8a;display:none}
+.explanation.show{display:block}
+.explanation strong{display:block;margin-bottom:4px}
+.q-status{display:none;font-size:.7em;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:auto;flex-shrink:0}
+.q-status.correct{background:#dcfce7;color:var(--green);display:block}
+.q-status.wrong{background:#fee2e2;color:var(--red);display:block}
+#results-modal{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px}
+#results-modal.show{display:flex}
+.results-box{background:#fff;border-radius:20px;padding:32px 24px;max-width:420px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.results-score{font-size:3.5em;font-weight:700;color:var(--navy);font-family:'Playfair Display',serif;line-height:1}
+.results-pct{font-size:1.1em;color:var(--muted);margin-top:4px}
+.results-grade{font-size:1.3em;font-weight:700;margin:12px 0;padding:8px 20px;border-radius:12px;display:inline-block}
+.results-msg{font-size:.88em;color:var(--text);margin:12px 0;line-height:1.6}
+.results-btn{background:var(--navy);color:#fff;border:none;border-radius:12px;padding:12px 28px;font-size:.9em;font-weight:700;cursor:pointer;margin-top:12px;width:100%}
+#submit-all{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;border:none;border-radius:30px;padding:14px 32px;font-size:.9em;font-weight:700;cursor:pointer;box-shadow:0 4px 20px rgba(30,58,138,.4);z-index:500;display:none}
+#submit-all.show{display:block}
+.q-card.hidden{display:none}
+#lock-screen{position:fixed;inset:0;background:linear-gradient(135deg,#0c1445,#1e3a8a 50%,#2563eb);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px}
+.lock-box{background:#fff;border-radius:20px;padding:36px 28px;max-width:360px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.lock-icon{font-size:2.8em;margin-bottom:12px}
+.lock-box h2{font-family:'Playfair Display',serif;font-size:1.4em;color:#1e3a8a;margin-bottom:6px}
+.lock-box p{font-size:.82em;color:#64748b;margin-bottom:20px}
+.lock-input{width:100%;padding:12px 16px;border:2px solid #e2e8f0;border-radius:12px;font-size:1.1em;font-family:'IBM Plex Sans',sans-serif;letter-spacing:.2em;text-align:center;outline:none;transition:border .2s}
+.lock-input:focus{border-color:#2563eb}
+.lock-btn{margin-top:14px;width:100%;padding:13px;background:#1e3a8a;color:#fff;border:none;border-radius:12px;font-size:.95em;font-weight:700;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;transition:background .2s}
+.lock-btn:hover{background:#2563eb}
+.lock-error{margin-top:10px;color:#dc2626;font-size:.82em;font-weight:600;display:none}
+</style>
+</head>
+<body>
+<div id="lock-screen">
+  <div class="lock-box">
+    <div class="lock-icon">🔒</div>
+    <h2>Oncology Nursing Review</h2>
+    <p>Enter access code to continue</p>
+    <input class="lock-input" id="pass-input" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')checkPass()">
+    <button class="lock-btn" onclick="checkPass()">Unlock</button>
+    <div class="lock-error" id="lock-error">Incorrect code. Try again.</div>
+  </div>
+</div>
+<script>
+function checkPass(){
+  if(document.getElementById('pass-input').value==='1997M26'){
+    document.getElementById('lock-screen').style.display='none';
+  } else {
+    document.getElementById('lock-error').style.display='block';
+    document.getElementById('pass-input').value='';
+    document.getElementById('pass-input').focus();
+  }
+}
+</script>
+<div class="header">
+  <h1>Oncology Nursing Review</h1>
+  <p>Scenario-Based Questions — SCFHS Higher Diploma in Oncology Nursing</p>
+  <div class="badges">
+    <span class="badge badge-green">🌿 Section I — Health Promotion · 40 Qs</span>
+    <span class="badge badge-blue">💊 Section II — Treatment Modalities · 60 Qs</span>
+    <span class="badge badge-gold">📊 Total · 100 Questions</span>
+  </div>
+</div>
+<div class="controls">
+  <div id="score-bar">Score: <span id="score-val">0</span>/<span id="total-answered">0</span></div>
+  <button class="ctrl-btn" onclick="shuffleQuestions()">🔀 Shuffle</button>
+  <button class="ctrl-btn" id="btn-show-all" onclick="toggleShowAnswers()">👁 Show Answers</button>
+  <button class="ctrl-btn" id="btn-reset" onclick="resetQuiz()">↺ Reset</button>
+</div>
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterBy('all',this)">All (100)</button>
+  <button class="filter-btn" onclick="filterBy('sec1',this)">🌿 Health Promotion (40)</button>
+  <button class="filter-btn" onclick="filterBy('sec2',this)">💊 Treatment Modalities (60)</button>
+  <button class="filter-btn" onclick="filterBy('epidemiology',this)">Epidemiology</button>
+  <button class="filter-btn" onclick="filterBy('prevention',this)">Prevention</button>
+  <button class="filter-btn" onclick="filterBy('screening',this)">Screening & Diagnosis</button>
+  <button class="filter-btn" onclick="filterBy('surgery',this)">Surgery</button>
+  <button class="filter-btn" onclick="filterBy('chemotherapy',this)">Chemotherapy</button>
+  <button class="filter-btn" onclick="filterBy('biotherapy',this)">Biotherapy & Targeted</button>
+  <button class="filter-btn" onclick="filterBy('hsct',this)">HSCT</button>
+  <button class="filter-btn" onclick="filterBy('radiation',this)">Radiation</button>
+</div>
+<div class="progress-wrap">
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  <div class="progress-text"><span id="answered-count">0</span>/<span id="total-count">100</span> answered</div>
+</div>
+<div class="q-container" id="q-container"></div>
+<button id="submit-all" onclick="submitQuiz()">Submit Quiz ✓</button>
+<div id="results-modal">
+  <div class="results-box">
+    <div class="results-score" id="final-score">0</div>
+    <div class="results-pct" id="final-pct">out of 100</div>
+    <div class="results-grade" id="final-grade"></div>
+    <div class="results-msg" id="final-msg"></div>
+    <button class="results-btn" onclick="closeResults()">Review Answers</button>
+    <button class="results-btn" style="background:#1e3a8a;margin-top:8px" onclick="resetQuiz()">Try Again</button>
+  </div>
+</div>
+<script>
+const questions = [
+
+// ── SECTION I: HEALTH PROMOTION (40 Qs) ──
+
+{id:1,topic:'epidemiology',src:'sec1',
+q:"When an oncology nurse reviews national data describing newly diagnosed lung cancer cases during a single calendar year, which epidemiologic measure is being evaluated?",
+opts:["The total number of existing cases in the population","The rate of new cases within a defined time period","The proportion of cancer-related deaths","The likelihood of survival following diagnosis"],
+ans:1,
+exp:"Incidence refers specifically to the number of NEW cases diagnosed within a defined time period. It is distinct from prevalence (total existing cases), mortality (deaths), and survival rates. Reviewing newly diagnosed cases over one calendar year is a classic incidence measurement."},
+
+{id:2,topic:'epidemiology',src:'sec1',
+q:"When comparing cancer statistics between two countries, which factor most directly explains observed differences in reported incidence rates?",
+opts:["Variations in tumor biology across populations","Differences in standard treatment approaches","Differences in screening availability and reporting systems","Variations in nursing workforce education levels"],
+ans:2,
+exp:"Incidence rates reflect how many new cases are detected and recorded. Countries with more widespread screening programs detect more early-stage cancers, and countries with robust registry systems capture more cases. Neither tumor biology nor treatment approaches directly affect how many new cases are counted and reported."},
+
+{id:3,topic:'epidemiology',src:'sec1',
+q:"If cancer prevalence increases while incidence remains stable, what is the most likely explanation for this trend?",
+opts:["Improved survival resulting in longer life after diagnosis","Reduced population participation in screening programs","Increased exposure to environmental carcinogens","Delays in confirming cancer diagnoses"],
+ans:0,
+exp:"Prevalence = incidence × duration of disease. When incidence stays the same but people live longer after diagnosis (due to better treatments), more people are alive with the disease at any given time — increasing prevalence. Reduced screening or more carcinogens would change incidence, not just prevalence."},
+
+{id:4,topic:'epidemiology',src:'sec1',
+q:"Which term describes the total number of people living with cancer in a population at a given time?",
+opts:["Cancer incidence","Cancer prevalence","Cancer mortality","Cancer survival"],
+ans:1,
+exp:"Prevalence is a snapshot measure — it counts ALL existing cases (both newly diagnosed and those living with disease) at a specific point in time. Incidence = new cases only. Mortality = deaths. Survival = proportion alive after diagnosis."},
+
+{id:5,topic:'epidemiology',src:'sec1',
+q:"Why is the staging at which cancer is diagnosed considered the most important factor in predicting patient survival?",
+opts:["It shows how much the cancer has grown and spread in the body","It identifies the tumor's molecular subtype","It indicates how well the patient will tolerate treatment","It determines the level of healthcare resources available"],
+ans:0,
+exp:"Stage directly reflects the anatomic extent of disease — local, regional, or distant spread. Earlier stage (localized) consistently correlates with higher survival across all cancer types. Molecular subtype and performance status also influence prognosis but are secondary to staging in overall survival prediction."},
+
+{id:6,topic:'epidemiology',src:'sec1',
+q:"When developing a women's health promotion program in Saudi Arabia, which cancer should the oncology nurse prioritize based on national incidence data?",
+opts:["Cervical cancer","Breast cancer","Ovarian cancer","Endometrial cancer"],
+ans:1,
+exp:"According to the Saudi Cancer Registry, breast cancer is the most common cancer among women in Saudi Arabia, accounting for approximately 30% of all female cancers. It is the highest priority for any women's health promotion initiative in the Kingdom."},
+
+{id:7,topic:'epidemiology',src:'sec1',
+q:"Based on national cancer statistics in Saudi Arabia, which trend has been increasingly observed in recent years?",
+opts:["A decrease in all cancer incidence rates","An increase in cancers associated with lifestyle changes","Elimination of gender differences in cancer incidence","A reduction in cancer diagnoses due to limited screening"],
+ans:1,
+exp:"Saudi Arabia has experienced a significant epidemiologic transition with rising rates of lifestyle-related cancers (colorectal, breast, thyroid) linked to urbanization, dietary changes (westernized diet), physical inactivity, and rising obesity rates. Overall cancer incidence has increased, not decreased."},
+
+{id:8,topic:'epidemiology',src:'sec1',
+q:"How are data from the Saudi Cancer Registry most appropriately used at the national level?",
+opts:["To guide individualized clinical treatment decisions","To evaluate the effectiveness of specific chemotherapy regimens","To determine hospital reimbursement structures","To support cancer prevention and control strategies"],
+ans:3,
+exp:"Cancer registries are population-level surveillance tools. Their primary purpose is to describe the burden of cancer across the population, monitor trends over time, identify high-risk groups, and inform national prevention and control policies — not individual clinical care decisions."},
+
+{id:9,topic:'epidemiology',src:'sec1',
+q:"Recent epidemiologic reports in Saudi Arabia have documented a steady increase in colorectal cancer incidence among adult men. Which population-level lifestyle pattern most likely contributes to this trend?",
+opts:["Increased prevalence of hereditary colorectal cancer syndromes","Increased occupational exposure to ionizing radiation","Westernized dietary patterns combined with reduced levels of physical activity","Higher prevalence of chronic infectious diseases"],
+ans:2,
+exp:"The rising incidence of colorectal cancer in Saudi Arabia mirrors global patterns linked to the Western lifestyle: high intake of red/processed meat, low dietary fiber, sedentary behavior, obesity, and alcohol. Hereditary syndromes account for only ~5–10% of CRC cases and would not explain a population-wide trend."},
+
+{id:10,topic:'epidemiology',src:'sec1',
+q:"National cancer registry data show a rising incidence of thyroid cancer without a corresponding increase in mortality rates. Which epidemiologic factor most likely explains this observation?",
+opts:["Increased population exposure to environmental ionizing radiation","Increased prevalence of tobacco use","Expanded use of high-resolution diagnostic imaging","Greater exposure to industrial and environmental toxins"],
+ans:2,
+exp:"This is a well-documented phenomenon called 'overdiagnosis' driven by incidental detection. Widespread use of neck ultrasound and CT imaging detects small papillary thyroid microcarcinomas that would previously have gone unnoticed. Because most are indolent, mortality remains unchanged despite rising incidence."},
+
+{id:11,topic:'epidemiology',src:'sec1',
+q:"From a biological risk accumulation perspective, which mechanism best explains the increased cancer incidence observed with advancing age, even among individuals who maintain healthy lifestyle behaviors?",
+opts:["Direct induction of malignant transformation by aging","Progressive accumulation of genetic mutations and cellular damage over time","Complete loss of immune surveillance in older adults","Reduced access to preventive healthcare services"],
+ans:1,
+exp:"Cancer is fundamentally a disease of accumulated genomic damage. Each cell division carries a small risk of replication error; over decades, DNA damage accumulates from replication errors, oxidative stress, and imperfect repair. Even without unhealthy behaviors, the sheer passage of time increases mutation burden — explaining the age-cancer relationship."},
+
+{id:12,topic:'prevention',src:'sec1',
+q:"Epidemiologic studies consistently link obesity to increased risk for several cancer types. Which underlying biologic mechanism most strongly explains this association?",
+opts:["Reduced exposure to environmental carcinogens","Chronic inflammation and altered hormonal signaling pathways","Increased genetic inheritance of cancer-predisposing mutations","Decreased effectiveness of cancer screening programs"],
+ans:1,
+exp:"Adipose tissue is metabolically active. Excess adiposity drives chronic low-grade inflammation (elevated IL-6, TNF-α, CRP), hyperinsulinemia, elevated IGF-1, and increased estrogen synthesis (in postmenopausal women). These pathways promote cell proliferation, inhibit apoptosis, and create a pro-tumorigenic environment. Obesity-related cancers include endometrial, postmenopausal breast, colorectal, kidney, and esophageal."},
+
+{id:13,topic:'prevention',src:'sec1',
+q:"A construction worker with a long history of occupational exposure presents with progressive dyspnea, chest pain, and pleural thickening on imaging. Which occupational exposure is most strongly associated with the development of malignant pleural disease?",
+opts:["Asbestos fibers","Ultraviolet radiation","Radon gas","Benzene compounds"],
+ans:0,
+exp:"Malignant pleural mesothelioma is almost exclusively caused by asbestos exposure. Asbestos fibers (particularly amphibole type) are inhaled, lodge in the pleura, and trigger chronic inflammation, DNA damage, and malignant transformation over a long latency (20–50 years). Radon causes lung adenocarcinoma; UV causes skin cancers; benzene causes leukemia/lymphoma."},
+
+{id:14,topic:'prevention',src:'sec1',
+q:"What is the main goal of primary cancer prevention strategies at the population level?",
+opts:["To detect cancer before clinical symptoms appear","To minimize or eliminate exposure to established carcinogenic factors","To enhance the effectiveness of cancer treatment","To reduce the likelihood of cancer recurrence"],
+ans:1,
+exp:"Primary prevention acts BEFORE cancer develops by targeting modifiable risk factors: eliminating tobacco use, promoting healthy diet/weight, reducing carcinogen exposure (UV, occupational), and vaccination (HPV, HBV). Secondary prevention = early detection/screening. Tertiary prevention = reducing recurrence and improving outcomes in those already diagnosed."},
+
+{id:15,topic:'prevention',src:'sec1',
+q:"When evaluating environmental risk factors for cancer, which exposure has the strongest and most consistently established association with increased cancer risk?",
+opts:["Chronic exposure to ultraviolet (UV) radiation","Intermittent exposure to household cleaning products","Short-term exposure to indoor air pollutants","Occasional exposure to non-ionizing radiation"],
+ans:0,
+exp:"Chronic UV radiation exposure (primarily UVB) is a Class 1 IARC carcinogen with overwhelming evidence linking it to basal cell carcinoma, squamous cell carcinoma, and melanoma. UV directly causes characteristic C→T transitions in the TP53 gene. Of the options listed, it has the strongest and most consistent epidemiologic and molecular evidence."},
+
+{id:16,topic:'prevention',src:'sec1',
+q:"Based on current evidence related to nutrition and cancer prevention, which dietary pattern is most strongly associated with reduced cancer risk?",
+opts:["Increased intake of saturated fat sources","Higher intake of dietary fiber sources","Increased total daily caloric intake","Elevated intake of animal protein sources"],
+ans:1,
+exp:"Dietary fiber is consistently associated with reduced colorectal cancer risk. Mechanisms include: dilution of carcinogens in the colon, reduced transit time, fermentation to protective short-chain fatty acids (butyrate), and favorable effects on the gut microbiome. High saturated fat, excess calories, and red/processed meat are associated with INCREASED cancer risk."},
+
+{id:17,topic:'prevention',src:'sec1',
+q:"When counseling adults about cancer prevention, which recommendation related to body weight has the strongest evidence for reducing overall cancer risk?",
+opts:["Achieving and maintaining a healthy body mass index","Using dietary supplements to promote weight loss","Limiting physical activity to prevent fatigue","Focusing on weight reduction only after cancer diagnosis"],
+ans:0,
+exp:"Maintaining a healthy BMI (18.5–24.9 kg/m²) is one of the most important modifiable cancer risk reduction strategies. Obesity is linked to ≥13 cancer types. Evidence from the World Cancer Research Fund (WCRF) and AICR consistently identifies healthy body weight as the #1 dietary/lifestyle recommendation for cancer prevention after tobacco cessation."},
+
+{id:18,topic:'screening',src:'sec1',
+q:"Cancer prevention strategies are often categorized based on their timing and intent. Which intervention most accurately represents secondary cancer prevention?",
+opts:["Removing known carcinogenic exposures","Limiting the spread of established malignancy","Identifying cancer at an early, asymptomatic stage","Minimizing adverse effects of cancer treatment"],
+ans:2,
+exp:"Secondary prevention = early detection of disease in asymptomatic individuals (screening). Examples: mammography, colonoscopy, Pap smear, low-dose CT for lung cancer. Primary prevention = exposure reduction. Tertiary prevention = minimizing disability/recurrence in those already diagnosed. Limiting metastatic spread is treatment, not prevention."},
+
+{id:19,topic:'prevention',src:'sec1',
+q:"A patient with a 30 pack-year smoking history asks about lung cancer prevention. Which nursing response reflects evidence-based primary prevention?",
+opts:["Begin annual chest radiographs","Initiate low-dose CT immediately","Enroll in structured smoking cessation program","Monitor tumor markers routinely"],
+ans:2,
+exp:"Primary prevention aims to eliminate the cause. For a current smoker, the most evidence-based primary prevention is smoking cessation — the single most effective action to reduce lung cancer risk. Low-dose CT screening is secondary prevention (early detection) and is indicated for high-risk individuals 50–80 years old with ≥20 pack-year history who currently smoke or quit within 15 years, but cessation remains the priority."},
+
+{id:20,topic:'screening',src:'sec1',
+q:"Which outcome represents a potential unintended effect of false positive cancer screening results?",
+opts:["Decreased cancer-related mortality","Earlier initiation of definitive therapy","Improved accuracy of diagnostic testing","Psychological distress and unnecessary procedures"],
+ans:3,
+exp:"A false positive result (test suggests cancer when none is present) causes significant psychological harm (anxiety, fear, distress) and leads to unnecessary follow-up diagnostic procedures (biopsies, repeat imaging) with associated risks, costs, and potential physical harm. This is a recognized limitation of all screening programs and supports the need for shared decision making."},
+
+{id:21,topic:'screening',src:'sec1',
+q:"Which characteristic is essential for a cancer to be considered appropriate for inclusion in a population-based screening program?",
+opts:["The cancer has a low incidence rate","The cancer is always symptomatic at diagnosis","The cancer has an identifiable preclinical phase","The cancer is resistant to available treatments"],
+ans:2,
+exp:"For screening to be beneficial, the cancer must have a detectable preclinical phase — a period during which it can be found by a test before symptoms develop AND before it becomes incurable. Other Wilson-Jungner criteria include: significant health burden, acceptable test, effective treatment available, and cost-effective program."},
+
+{id:22,topic:'screening',src:'sec1',
+q:"Which characteristic is most critical when evaluating the effectiveness of a cancer screening test?",
+opts:["High sensitivity for detecting early disease","High cost and technological complexity","Ability to establish a definitive diagnosis","Direct impact on treatment selection"],
+ans:0,
+exp:"Sensitivity is the test's ability to correctly identify individuals who HAVE the disease (true positive rate). In screening, high sensitivity is paramount to minimize false negatives (missed cancers). A screening test is not meant to diagnose — that requires follow-up biopsy. Cost and complexity are practical considerations but not measures of effectiveness."},
+
+{id:23,topic:'screening',src:'sec1',
+q:"During a population screening program, an individual who has an undiagnosed cancer receives a negative screening test result. How is this screening outcome classified?",
+opts:["False negative result","False positive result","Overdiagnosis","Diagnostic error"],
+ans:0,
+exp:"A false negative = the test result is NEGATIVE but the person ACTUALLY HAS the disease. This is particularly dangerous as it provides false reassurance. False positive = positive result but no disease. Overdiagnosis = detecting a cancer that would never have caused symptoms or death. The sensitivity of a test determines the false negative rate."},
+
+{id:24,topic:'screening',src:'sec1',
+q:"Which diagnostic procedure definitively establishes the presence of cancer?",
+opts:["Screening examination","Radiographic imaging","Tissue biopsy","Tumor marker testing"],
+ans:2,
+exp:"Tissue biopsy with histopathologic analysis is the gold standard for definitive cancer diagnosis. It allows the pathologist to examine cellular morphology, confirm malignancy, determine histologic type and grade. Imaging, tumor markers, and screening tests can suggest or raise suspicion for cancer but cannot definitively diagnose it."},
+
+{id:25,topic:'screening',src:'sec1',
+q:"Prostate specific antigen (PSA) screening involves potential benefits as well as limitations. Which consideration most strongly supports the use of shared decision making when offering PSA screening?",
+opts:["Screening prevents the development of prostate cancer","Screening may detect indolent disease unlikely to cause harm","Screening has no associated risks or adverse effects","Screening replaces the need for diagnostic confirmation"],
+ans:1,
+exp:"PSA screening can detect prostate cancers that may be indolent (slow-growing, unlikely to ever cause symptoms or death). Treating these cancers exposes men to potential harms of treatment (incontinence, erectile dysfunction) without benefit. This overdiagnosis/overtreatment risk is the main reason major guidelines (USPSTF, ACS) recommend shared decision making, weighing individual values and preferences."},
+
+{id:26,topic:'screening',src:'sec1',
+q:"In clinical oncology practice, for which purpose are tumor markers most appropriately utilized?",
+opts:["As tools for population-based cancer screening","To determine eligibility for surgical intervention","To establish a definitive initial cancer diagnosis","To assess treatment response and monitor disease progression"],
+ans:3,
+exp:"Tumor markers (e.g., CA-125, CEA, PSA, AFP, CA 19-9) lack sufficient sensitivity and specificity for population screening or definitive diagnosis. Their established clinical utility is in: monitoring response to treatment, detecting recurrence after therapy, and following disease progression. They are used in conjunction with other diagnostic tools, never in isolation."},
+
+{id:27,topic:'screening',src:'sec1',
+q:"Which imaging technique is most frequently employed to evaluate tumor stage and the anatomic extent of cancer?",
+opts:["Ultrasonography","Fluoroscopic imaging","Mammographic imaging","Computed tomography"],
+ans:3,
+exp:"CT (computed tomography) is the workhorse of oncologic staging. It provides cross-sectional imaging of the chest, abdomen, and pelvis to assess primary tumor size, lymph node involvement, and distant metastases. PET-CT is increasingly used for some cancers. Ultrasound has limited tissue penetration; mammography is breast-specific; fluoroscopy is rarely used for staging."},
+
+{id:28,topic:'screening',src:'sec1',
+q:"Which characteristic of a screening test reflects its ability to correctly identify individuals who truly have the disease?",
+opts:["Specificity","Predictive value","Sensitivity","Diagnostic accuracy"],
+ans:2,
+exp:"Sensitivity = true positive rate = ability to correctly identify those who HAVE the disease (TP / TP + FN). Specificity = true negative rate = ability to correctly identify those who do NOT have the disease. Positive predictive value depends on both sensitivity AND disease prevalence in the tested population."},
+
+{id:29,topic:'screening',src:'sec1',
+q:"Which nursing intervention best supports informed patient participation in cancer screening decisions?",
+opts:["Recommending screening without discussion","Limiting discussion to screening benefits","Encouraging compliance regardless of preference","Explaining potential benefits and risks clearly"],
+ans:3,
+exp:"Informed consent and shared decision making require that patients understand BOTH the potential benefits (early detection, reduced mortality) AND the potential harms (false positives, overdiagnosis, anxiety, unnecessary procedures) of any screening test. This respects patient autonomy and enables genuinely informed choices — a core oncology nursing competency."},
+
+{id:30,topic:'screening',src:'sec1',
+q:"When evaluating the effectiveness of a cancer screening program, which outcome measure most directly reflects its impact on population health?",
+opts:["Reduction in cancer-specific mortality","Increased number of cancers detected","Higher rate of positive screening tests","Improved patient satisfaction scores"],
+ans:0,
+exp:"The ultimate goal of any cancer screening program is to reduce deaths from that cancer. Reduction in cancer-specific mortality is the most rigorous outcome measure — it demonstrates that screening leads to earlier treatment and ultimately saves lives. Detecting more cancers is not inherently beneficial (may reflect overdiagnosis); a higher positive rate may reflect poor specificity."},
+
+{id:31,topic:'epidemiology',src:'sec1',
+q:"Two countries report similar cancer mortality rates, but one reports a higher cancer incidence. What most likely explains this difference?",
+opts:["More aggressive tumors","More effective cancer treatments","Earlier and more frequent cancer detection","Greater environmental carcinogen exposure"],
+ans:2,
+exp:"Similar mortality with higher incidence is the epidemiologic signature of lead-time bias from screening. The country with higher incidence is detecting more cancers earlier (through screening), but since survival rates are similar and mortality is the same, this likely reflects early detection rather than truly more disease. More aggressive treatment would reduce mortality; more carcinogens would increase both incidence AND mortality."},
+
+{id:32,topic:'epidemiology',src:'sec1',
+q:"When comparing cancer outcomes across populations, which measure provides the most accurate assessment of the true burden of cancer?",
+opts:["Cancer-specific mortality rate","Cancer prevalence","Cancer incidence rate","Five-year survival rate"],
+ans:0,
+exp:"Cancer-specific mortality rate (deaths per 100,000 population) is the least biased measure of cancer burden because it is not affected by lead-time bias (from screening), overdiagnosis, or improvements in diagnosis that inflate incidence. Survival rates are confounded by lead-time bias; incidence is affected by screening intensity."},
+
+{id:33,topic:'screening',src:'sec1',
+q:"When assessing the performance of a colorectal cancer screening test, which metric best reflects the test's ability to correctly identify individuals without the disease?",
+opts:["Sensitivity","Specificity","Positive predictive value","Detection rate"],
+ans:1,
+exp:"Specificity = true negative rate = ability to correctly identify individuals who do NOT have the disease (TN / TN + FP). High specificity reduces false positives, minimizing unnecessary follow-up colonoscopies. For CRC screening (e.g., fecal immunochemical test), both sensitivity for advanced adenomas and specificity are key performance metrics."},
+
+{id:34,topic:'prevention',src:'sec1',
+q:"A middle-aged patient with no family history of cancer asks why lifestyle changes are still recommended. Which explanation best supports cancer risk reduction counseling?",
+opts:["Lifestyle changes reverse inherited genetic mutations","Lifestyle modification replaces the need for screening","Lifestyle changes prevent all forms of cancer","Lifestyle factors influence cumulative cellular damage over time"],
+ans:3,
+exp:"Even without hereditary risk, modifiable lifestyle factors (diet, physical activity, tobacco, alcohol, UV) contribute to the accumulation of DNA damage and epigenetic changes over a lifetime. Reducing these exposures decreases the cumulative carcinogenic burden. Lifestyle changes cannot reverse germline mutations, nor do they eliminate the need for age-appropriate screening."},
+
+{id:35,topic:'epidemiology',src:'sec1',
+q:"A nurse reviewing national cancer trends notes changes in screening programs and diagnostic practices over time. When comparing cancer statistics across different years, which measure is least influenced by increased screening and early detection?",
+opts:["Cancer incidence","Stage at diagnosis","Cancer mortality","Five-year survival rate"],
+ans:2,
+exp:"Cancer mortality reflects actual deaths and is least susceptible to lead-time bias introduced by screening. Incidence increases when more cancers are detected early (even indolent ones). Stage at diagnosis shifts earlier with screening. Five-year survival improves artifactually with lead-time bias even if no lives are saved. Mortality is the most robust comparison across time periods."},
+
+{id:36,topic:'epidemiology',src:'sec1',
+q:"Cancer epidemiology focuses on understanding patterns of cancer occurrence. Which measure best reflects the risk of developing cancer in a population?",
+opts:["Cancer incidence","Cancer prevalence","Cancer mortality","Cancer survival"],
+ans:0,
+exp:"Incidence rate (new cases per 100,000 per year) directly measures the RISK of developing cancer in a defined population over a defined time period. It is the standard measure used to compare cancer risk across populations, geographic regions, and time periods. Prevalence reflects both risk and survival; mortality reflects risk and treatment outcomes."},
+
+{id:37,topic:'epidemiology',src:'sec1',
+q:"National cancer registry reports in Saudi Arabia show differences in cancer incidence between men and women. Which factor most commonly contributes to these observed differences?",
+opts:["Genetic uniformity within the population","Equal distribution of all cancer types","Differences in reporting accuracy only","Variations in lifestyle and exposure patterns"],
+ans:3,
+exp:"Sex differences in cancer incidence reflect differences in hormone-related biology (breast, prostate, gynecologic cancers) AND differences in lifestyle/behavioral exposures (tobacco use, occupational exposures, alcohol, UV exposure). In Saudi Arabia, men have higher rates of tobacco-related cancers; women have higher rates of breast cancer. Reporting accuracy may vary but is not the primary explanation."},
+
+{id:38,topic:'prevention',src:'sec1',
+q:"An oncology nurse is teaching about modifiable cancer risk factors. Which behavior change is most effective in reducing overall cancer risk?",
+opts:["Increasing vitamin supplementation","Avoiding all environmental exposures","Eliminating tobacco use","Undergoing frequent diagnostic imaging"],
+ans:2,
+exp:"Tobacco use is the single largest preventable cause of cancer worldwide, responsible for approximately 30% of all cancer deaths and causally linked to at least 15 cancer types. No other single behavior change has greater impact on cancer risk reduction. Vitamin supplementation has no proven benefit for cancer prevention in the general population."},
+
+{id:39,topic:'screening',src:'sec1',
+q:"A nurse explains that some screening tests may detect cancers that would never become clinically significant. Which screening outcome does this describe?",
+opts:["Overdiagnosis","Lead time bias","False negative result","Reduced sensitivity"],
+ans:0,
+exp:"Overdiagnosis occurs when screening detects cancers that are so indolent that the patient would never have experienced symptoms or died from that cancer during their lifetime. These are 'pseudo-diseases' — real cancers histologically but clinically inconsequential. This is a major concern with PSA screening for prostate cancer and CT screening for lung nodules. Overdiagnosis leads to overtreatment."},
+
+{id:40,topic:'screening',src:'sec1',
+q:"A nurse educator explains that no screening test is perfect. Which factor most commonly limits the effectiveness of cancer screening programs?",
+opts:["Limited availability of diagnostic treatments","Absence of established diagnostic criteria","Incomplete participation by the target population","Lack of effective cancer therapies"],
+ans:2,
+exp:"Even the best-designed screening program has limited population impact if the target population does not participate. Low uptake due to barriers (lack of awareness, cultural factors, cost, access, fear) significantly reduces the program's effectiveness at the population level. This is why health promotion and outreach are integral components of cancer screening initiatives."},
+
+// ── SECTION II: CANCER TREATMENT MODALITIES (60 Qs) ──
+
+{id:41,topic:'surgery',src:'sec2',
+q:"What is the primary therapeutic intent of curative cancer surgery?",
+opts:["To reduce symptom burden","To remove localized malignant tissue","To control systemic disease","To enhance immune-mediated tumor response"],
+ans:1,
+exp:"Curative (radical) surgery aims to completely excise the primary tumor with adequate margins, potentially including regional lymph nodes, with the intent of cure. It is appropriate for localized disease. Palliative surgery addresses symptoms. Systemic disease (metastatic) is not curable by surgery alone. Immunotherapy enhances immune response."},
+
+{id:42,topic:'surgery',src:'sec2',
+q:"Which consideration highlights the importance of preoperative nutritional assessment in patients undergoing cancer surgery?",
+opts:["Tumor stage determination","Adjuvant therapy eligibility","Long-term cancer recurrence","Surgical recovery and wound healing"],
+ans:3,
+exp:"Malnutrition is prevalent in cancer patients (up to 80% in some populations) and directly impairs wound healing, increases infection risk, prolongs recovery, and increases postoperative complications. Preoperative nutritional optimization (including enteral/parenteral nutrition if needed) is a key nursing and multidisciplinary priority before surgery."},
+
+{id:43,topic:'surgery',src:'sec2',
+q:"Which postoperative complication requires the highest priority nursing surveillance following cancer surgery?",
+opts:["Fatigue","Emotional distress","Hemorrhage and infection","Altered appetite"],
+ans:2,
+exp:"Hemorrhage (acute bleeding) and infection (sepsis) are life-threatening, time-sensitive postoperative complications that require immediate intervention. Both can progress to hemodynamic instability and death if not rapidly identified and treated. Fatigue, emotional distress, and appetite changes are important but not immediately life-threatening."},
+
+{id:44,topic:'surgery',src:'sec2',
+q:"A nurse assesses a patient on postoperative day one after lung resection. Which finding requires the most immediate intervention?",
+opts:["Mild incisional discomfort","Diminished breath sounds with dyspnea","Low-grade temperature elevation","Decreased appetite at breakfast"],
+ans:1,
+exp:"Diminished breath sounds with dyspnea after lung resection suggests a serious complication: pneumothorax, hemothorax, or atelectasis — all requiring immediate assessment and intervention. A low-grade fever on POD 1 is common (atelectasis-related). Mild pain and decreased appetite are expected and require management but not immediate emergency response."},
+
+{id:45,topic:'surgery',src:'sec2',
+q:"A patient with advanced cancer is not a candidate for curative treatment and is experiencing significant symptoms. In this situation, palliative surgical intervention is most appropriately considered when the primary goal is:",
+opts:["Improving symptom control and quality of life","Achieving disease cure","Avoiding the use of systemic therapies","Anticipating future disease recurrence"],
+ans:0,
+exp:"Palliative surgery addresses specific symptoms and improves quality of life without curative intent. Examples: bowel diversion for obstruction, stent placement for biliary obstruction, vertebral stabilization for spinal metastases, debulking for pain/pressure. The key principle is that the benefit (symptom relief) must outweigh the risk of the procedure for a patient with limited prognosis."},
+
+{id:46,topic:'surgery',src:'sec2',
+q:"A patient with cancer is at high risk for postoperative venous thromboembolism. Which nursing intervention best reduces this risk?",
+opts:["Restrict oral fluid intake","Encourage early ambulation","Limit lower limb movement","Maintain prolonged bed rest"],
+ans:1,
+exp:"Cancer patients have a 4–7× increased VTE risk (Virchow's triad: stasis, hypercoagulability, endothelial injury). Early ambulation is the cornerstone non-pharmacologic VTE prevention — it activates the calf muscle pump, reduces venous stasis, and improves circulation. Combined with compression stockings, pneumatic compression devices, and pharmacologic prophylaxis (LMWH) as prescribed."},
+
+{id:47,topic:'surgery',src:'sec2',
+q:"A patient undergoes thoracic surgery for lung cancer. On postoperative day one, the patient refuses to use the incentive spirometer due to incisional pain. Which nursing intervention is most appropriate?",
+opts:["Withhold spirometry until pain subsides","Administer analgesia before pulmonary exercises","Limit activity to prevent fatigue","Encourage shallow breathing to reduce discomfort"],
+ans:1,
+exp:"Pain is the primary barrier to effective pulmonary hygiene post-thoracotomy. The appropriate intervention is to premedicate with analgesics (30 minutes before), then encourage deep breathing and spirometry. Withholding spirometry risks atelectasis and pneumonia. Shallow breathing worsens atelectasis. Adequate pain control enables effective pulmonary hygiene."},
+
+{id:48,topic:'surgery',src:'sec2',
+q:"A patient undergoing bowel resection for colorectal cancer develops abdominal distention and absent bowel sounds. Which complication should the nurse suspect?",
+opts:["Anastomotic leak","Paralytic ileus","Surgical site hematoma","Urinary retention"],
+ans:1,
+exp:"Paralytic ileus (postoperative ileus) is characterized by abdominal distention, absent or hypoactive bowel sounds, and inability to pass flatus or stool. It is common after abdominal/pelvic surgery due to bowel handling and anesthesia. Anastomotic leak typically presents with fever, peritoneal signs, and elevated inflammatory markers — a more serious complication requiring urgent surgical evaluation."},
+
+{id:49,topic:'surgery',src:'sec2',
+q:"A patient with a new colostomy expresses anxiety about self-care. What is the most appropriate nursing intervention?",
+opts:["Postpone teaching until discharge","Provide step-by-step ostomy education","Limit discussion of body image concerns","Encourage complete independence immediately"],
+ans:1,
+exp:"Structured, step-by-step ostomy education beginning preoperatively and continuing postoperatively is essential for patient competence and confidence. Wound, Ostomy and Continence Nursing (WOCN) guidelines recommend early education, return demonstration, and addressing body image concerns. Postponing teaching until discharge does not allow adequate learning time."},
+
+{id:50,topic:'surgery',src:'sec2',
+q:"A 52-year-old patient undergoes an above-knee amputation due to advanced osteosarcoma. On postoperative day three, the patient avoids looking at the surgical site and states, 'I don't know how I will face my family like this. I feel like I've lost part of who I am.' Which nursing response is most therapeutic?",
+opts:["Minimize discussion of physical appearance to reduce distress","Provide realistic emotional support and encourage expression of feelings","Emphasize that the surgery successfully removed the cancer","Postpone psychosocial discussion until physical recovery improves"],
+ans:1,
+exp:"This patient is exhibiting early signs of disturbed body image and grief over loss of a body part. The therapeutic response is to provide empathetic, active listening and encourage expression of feelings — acknowledging the emotional significance of the loss. Dismissing or minimizing concerns, or focusing only on the surgical success, invalidates the patient's experience and hinders psychosocial recovery."},
+
+{id:51,topic:'chemotherapy',src:'sec2',
+q:"Which phase of the cell cycle is characterized by the replication of cellular DNA in preparation for division?",
+opts:["Gap 1 (G1)","Synthesis (S)","Gap 2 (G2)","Mitosis (M)"],
+ans:1,
+exp:"The S (Synthesis) phase is when DNA replication occurs — the cell duplicates its entire genome (from 2N to 4N DNA content) in preparation for division. G1 = cell growth and preparation for DNA synthesis. G2 = post-DNA synthesis gap, cell prepares for mitosis. M phase = actual cell division (mitosis/cytokinesis). This knowledge is fundamental to understanding cell cycle–specific vs. non-specific chemotherapy agents."},
+
+{id:52,topic:'chemotherapy',src:'sec2',
+q:"A patient is receiving 'neoadjuvant' chemotherapy. What is the primary goal of this timing?",
+opts:["To eliminate micro-metastases after a primary tumor has been surgically removed","To treat recurrent disease after the patient has failed first-line therapy","To shrink a tumor before surgery to allow for optimal surgical removal or cosmesis","To sensitize tumor cells to concurrent radiation therapy"],
+ans:2,
+exp:"Neoadjuvant chemotherapy is given BEFORE the primary treatment (usually surgery) to shrink the tumor, allowing less extensive surgery (e.g., breast conservation instead of mastectomy), to assess tumor chemosensitivity in vivo, and to eradicate occult micrometastases. Adjuvant chemotherapy is given AFTER surgery to eliminate residual microscopic disease."},
+
+{id:53,topic:'chemotherapy',src:'sec2',
+q:"Which of the following is a criterion for selecting antineoplastic agents for combination chemotherapy?",
+opts:["The agents must have overlapping toxicities to ensure maximum potency","The agents must target the same phase of the cell cycle","The agents should have different, nonoverlapping toxicities","The agents must be administered only via the oral route"],
+ans:2,
+exp:"The rationale for combination chemotherapy includes: (1) agents with different mechanisms of action (to overcome resistance), (2) non-overlapping toxicities (to allow full dosing of each agent without compounding organ toxicity), and (3) each agent individually effective against that tumor. Overlapping toxicities would force dose reductions and increase harm."},
+
+{id:54,topic:'chemotherapy',src:'sec2',
+q:"'Dose-dense' chemotherapy refers to a regimen where:",
+opts:["Higher-than-standard doses are given with an antidote to diminish toxicity","Doses are administered at more frequent intervals, often supported by colony-stimulating factors","Chemotherapy is delivered directly into a regional site like the peritoneal cavity","Only a single agent is used until disease progression occurs"],
+ans:1,
+exp:"Dose-dense chemotherapy maintains the same total dose but shortens the interval between cycles (e.g., every 2 weeks instead of every 3 weeks). This is possible because G-CSF (filgrastim, pegfilgrastim) supports faster bone marrow recovery. This approach is used in breast cancer (AC-T dose-dense) and has shown improved disease-free survival by not allowing tumor regrowth between cycles."},
+
+{id:55,topic:'chemotherapy',src:'sec2',
+q:"Which chemotherapy agent is commonly used as a radiosensitizer in concurrent treatment for esophageal or head and neck cancers?",
+opts:["Vincristine","Paclitaxel","5-Fluorouracil","Doxorubicin"],
+ans:2,
+exp:"5-Fluorouracil (5-FU) is a pyrimidine antimetabolite that incorporates into RNA and DNA, inhibiting thymidylate synthase. It is a potent radiosensitizer used in definitive chemoradiation for head and neck, esophageal, anal, and rectal cancers (e.g., with cisplatin or mitomycin). Paclitaxel is also used as radiosensitizer but 5-FU has the longest established history in these tumor types."},
+
+{id:56,topic:'chemotherapy',src:'sec2',
+q:"Which intervention is a 'rescue' strategy used during high-dose chemotherapy to diminish toxicity?",
+opts:["Administering Mesna with Ifosfamide","Administering capecitabine with Methotrexate","Administering 5-Fluorouracil with Cetuximab","Administering Doxorubicin with Melphalan"],
+ans:0,
+exp:"Mesna (sodium 2-mercaptoethane sulfonate) is a uroprotective agent given with ifosfamide (and high-dose cyclophosphamide). Ifosfamide is metabolized to acrolein, which causes hemorrhagic cystitis. Mesna binds acrolein in the urine, neutralizing its urotoxic effects. Leucovorin rescue is used after high-dose methotrexate to protect normal cells. These are classic rescue strategies."},
+
+{id:57,topic:'chemotherapy',src:'sec2',
+q:"In the management of chemotherapy-induced thrombocytopenia, at what platelet count should a nurse avoid the use of a blood pressure cuff to prevent trauma?",
+opts:["Less than 100,000/mm³","Less than 50,000/mm³","Less than 20,000/mm³","Less than 10,000/mm³"],
+ans:2,
+exp:"At platelet counts <20,000/mm³, the risk of spontaneous bleeding increases significantly. BP cuffs create pressure that can cause petechiae, ecchymosis, or hematoma formation. Standard precautions at this level include: avoiding BP cuffs, no IM injections, gentle oral care, no rectal temperatures. At <10,000/mm³, prophylactic platelet transfusion is typically indicated."},
+
+{id:58,topic:'chemotherapy',src:'sec2',
+q:"Which specific nursing consideration should be taken into account when coordinating massage therapy for patients undergoing high-dose Methotrexate or Cytarabine treatment?",
+opts:["Massage is strictly contraindicated due to the risk of tumor seeding","Therapists must wear gloves because these agents are eliminated through the skin","Massage should only be performed on the lower extremities","Massage must be performed using deep tissue techniques to improve drug distribution"],
+ans:1,
+exp:"High-dose methotrexate and cytarabine are eliminated through body fluids including sweat. During peak excretion periods, these cytotoxic agents can be present in perspiration, posing a dermal exposure risk to massage therapists. Gloves are required for safe handling. This is consistent with safe handling of hazardous drugs guidelines (NIOSH/ONS)."},
+
+{id:59,topic:'chemotherapy',src:'sec2',
+q:"A patient experiencing hand-foot syndrome (acral erythema) while on chemotherapy should avoid which of the following?",
+opts:["Foot massage and increased peripheral circulation","Use of moisturizers and lotions","Elevation of the affected limbs","Wearing loose-fitting socks"],
+ans:0,
+exp:"Hand-foot syndrome (palmar-plantar erythrodysesthesia) is caused by capecitabine, 5-FU, sorafenib, and others. Increased circulation to hands and feet worsens drug accumulation in these tissues. Patients should AVOID heat, friction, pressure, and activities that increase circulation to extremities. Management INCLUDES moisturizers, elevation, and loose-fitting footwear."},
+
+{id:60,topic:'chemotherapy',src:'sec2',
+q:"Which medication is often used as a pharmacological intervention for cisplatin-induced nephrotoxicity?",
+opts:["Amifostine","Loperamide","Diphenhydramine","Dexamethasone"],
+ans:0,
+exp:"Amifostine is an organic thiophosphate cytoprotective agent approved to reduce cisplatin-induced nephrotoxicity (and reduce dry mouth from radiation). It is selectively dephosphorylated in normal tissues to the active free thiol, which binds and detoxifies platinum metabolites. Aggressive IV hydration and sodium thiosulfate are also nephroprotective strategies for cisplatin."},
+
+{id:61,topic:'chemotherapy',src:'sec2',
+q:"Which of the following is a patient-related factor that influences the response to chemotherapy?",
+opts:["Tumor growth fraction","Performance status (e.g., ECOG score)","Drug resistance (inherent or acquired)","Tumor location"],
+ans:1,
+exp:"Factors affecting chemotherapy response are divided into: (1) patient-related factors (performance status, organ function, comorbidities, pharmacogenomics) and (2) tumor-related factors (growth fraction, tumor burden, cell cycle kinetics, drug resistance, tumor microenvironment). ECOG performance status reflects the patient's functional capacity and is the key patient-related predictive factor."},
+
+{id:62,topic:'chemotherapy',src:'sec2',
+q:"A nurse is administering an intravenous push of Doxorubicin. The patient suddenly reports a 'stinging and burning' sensation at the injection site. After immediately stopping the infusion, which nursing intervention is specifically indicated for an anthracycline extravasation according to current guidelines?",
+opts:["Apply a warm compress to the site for 20 minutes four times a day","Apply a cold compress and prepare to administer dexrazoxane within 6 hours","Flush the line with 50 mL of Normal Saline to dilute the medication in the tissue","Inject sodium thiosulfate subcutaneously around the exit site"],
+ans:1,
+exp:"Anthracycline (doxorubicin, epirubicin) extravasation is a vesicant emergency. Current EONS/ONS guidelines: STOP infusion immediately, aspirate residual drug, apply DRY COLD compress (cold localizes the drug), and administer dexrazoxane (SAVENE/Totect) IV within 6 hours of extravasation on 3 consecutive days. Warm compresses are used for vinca alkaloid extravasation. Sodium thiosulfate is for mechlorethamine."},
+
+{id:63,topic:'chemotherapy',src:'sec2',
+q:"A patient is scheduled to receive a high dose of Cisplatin. To prevent the common side effect of nephrotoxicity, the nurse should ensure which of the following nursing management strategies are implemented?",
+opts:["Limit fluid intake to 1,000 mL per day to prevent fluid overload","Administer Amifostine or sodium thiosulfate as prescribed","Maintain a slightly acidic urine pH through diet","Discontinue all intravenous hydration once the infusion is complete"],
+ans:1,
+exp:"Cisplatin nephrotoxicity (acute tubular necrosis, hypomagnesemia) prevention requires: aggressive IV hydration (1–2L NS before and after), mannitol-induced diuresis, and cytoprotective agents like amifostine or sodium thiosulfate (for high-dose protocols). Restricting fluids would worsen nephrotoxicity by reducing renal clearance of platinum."},
+
+{id:64,topic:'biotherapy',src:'sec2',
+q:"A patient is receiving their first infusion of Rituximab. Within 15 minutes, they develop chills, rigors, and a mild cough. What is the priority nursing immediate intervention?",
+opts:["Administer high-flow oxygen via non-rebreather mask","Stop the infusion and notify the provider while maintaining IV access with saline","Administer prescribed meperidine (Demerol) and continue the infusion at a slower rate","Perform endotracheal suctioning immediately"],
+ans:1,
+exp:"Rituximab (anti-CD20 monoclonal antibody) infusion-related reactions are common, especially with the first infusion, due to cytokine release from rapid B-cell lysis. The priority is to STOP the infusion immediately (to stop the causative agent), maintain IV access with saline, notify the provider, and monitor vitals. Pre-medications (acetaminophen, diphenhydramine) are given before subsequent infusions. After symptoms resolve, the infusion may be restarted at a slower rate per protocol."},
+
+{id:65,topic:'biotherapy',src:'sec2',
+q:"A patient on Pembrolizumab reports frequent loose stools (Grade 2 diarrhea) and abdominal cramping. Which nursing intervention is most appropriate to include in the care plan?",
+opts:["Advise the patient to take over-the-counter loperamide and continue therapy as scheduled","Instruct the patient to follow a high-fiber diet to bulk up the stool","Moderate or grade 2 AEs will generally require dose interruption or delay until symptoms resolve and maybe corticosteroid administration as prescribed","Administer a fleet enema to ensure the bowel is clear of irritants"],
+ans:2,
+exp:"Pembrolizumab (anti-PD-1) can cause immune-related adverse events (irAEs) including colitis. Grade 2 immune-mediated diarrhea/colitis requires: withhold the immunotherapy (dose interruption), consider low-dose corticosteroids (prednisone 1 mg/kg/day), and resume when symptoms improve to Grade ≤1. Loperamide alone is insufficient for immune-mediated colitis as it does not address the underlying inflammation."},
+
+{id:66,topic:'biotherapy',src:'sec2',
+q:"A nurse is caring for a patient receiving Trastuzumab (Herceptin). Which assessment is critical to include in the plan of care to monitor for potential organ-specific toxicity?",
+opts:["Weekly serum creatinine and blood urea nitrogen (BUN) levels","Baseline and periodic echocardiograms or MUGA scans to assess Left Ventricular Ejection Fraction (LVEF)","Daily monitoring of liver enzymes (ALT/AST)","Monthly pulmonary function tests (PFTs)"],
+ans:1,
+exp:"Trastuzumab targets HER2, which is expressed in cardiac tissue. It causes cardiotoxicity (cardiomyopathy, decreased LVEF, heart failure) distinct from anthracycline cardiotoxicity — it is NOT dose-dependent and is largely reversible upon discontinuation. Cardiac monitoring with echocardiogram or MUGA scan at baseline, every 3 months during therapy, and after completion is the standard of care."},
+
+{id:67,topic:'biotherapy',src:'sec2',
+q:"A patient is prescribed Lapatinib for HER2-positive metastatic breast cancer. What is a key nursing education point regarding the administration of this oral agent?",
+opts:["Take the medication with a high-fat meal to increase absorption","Take the medication at least 1 hour before or 1 hour after a meal","Crush the tablet if the patient has difficulty swallowing","Take the dose with a glass of grapefruit juice to enhance potency"],
+ans:1,
+exp:"Lapatinib (oral HER2/EGFR tyrosine kinase inhibitor) bioavailability is significantly affected by food — a high-fat meal increases absorption 3–4× in an unpredictable, variable manner. To ensure consistent dosing, it must be taken on an empty stomach (≥1 hour before or after food). Grapefruit inhibits CYP3A4 and would increase drug levels unpredictably. Tablets should not be crushed."},
+
+{id:68,topic:'biotherapy',src:'sec2',
+q:"Which nursing diagnosis is most relevant for a patient receiving high-dose Interleukin-2 (IL-2) who presents with rapid weight gain, peripheral edema, and decreased urine output?",
+opts:["Deficient Fluid Volume related to decreased oral intake","Excess Fluid Volume related to capillary leak syndrome","Impaired Urinary Elimination related to bladder irritation","Risk for Infection related to bone marrow suppression"],
+ans:1,
+exp:"High-dose IL-2 (aldesleukin) causes capillary leak syndrome (CLS) — systemic vascular permeability increases, causing fluid to shift from the intravascular to the interstitial compartment. Clinical features: weight gain (fluid accumulation), peripheral edema, pulmonary edema, hypotension, decreased urine output, and oliguria. This is Excess Fluid Volume despite intravascular depletion — a classic IL-2 toxicity."},
+
+{id:69,topic:'biotherapy',src:'sec2',
+q:"A patient receiving Ipilimumab develops a widespread maculopapular rash and pruritus. What is the priority nursing intervention for this immune-related adverse event (irAE)?",
+opts:["Apply hot compresses to the affected areas to soothe the skin","Recommend vigorous scrubbing with antibacterial soap to prevent infection","Assess for other irAEs and administer topical or systemic corticosteroids as prescribed","Advise the patient that the rash is a sign the drug is working and no treatment is needed"],
+ans:2,
+exp:"Ipilimumab (anti-CTLA-4) irAEs affect multiple organ systems simultaneously. When skin irAE is detected, the priority is: (1) assess for concurrent irAEs (colitis, hepatitis, endocrinopathies, pneumonitis), (2) grade the severity per CTCAE, and (3) manage with topical corticosteroids for Grade 1-2, systemic corticosteroids for Grade 3-4. All irAEs require prompt reporting and appropriate immunosuppression — they are not benign."},
+
+{id:70,topic:'biotherapy',src:'sec2',
+q:"A patient is undergoing Chimeric Antigen Receptor (CAR) T-cell therapy. The nurse notes the patient has developed a high fever, hypotension, and hypoxia. This clinical picture most likely represents:",
+opts:["Acute Hemolytic Transfusion Reaction","Septic Shock from an indwelling catheter","Cytokine Release Syndrome (CRS)","Tumor Lysis Syndrome"],
+ans:2,
+exp:"CRS is the most common serious toxicity of CAR T-cell therapy, occurring in 77–93% of patients. It results from massive cytokine release (IL-6, IFN-γ, TNF-α) as activated CAR T-cells kill tumor cells. Classic features: high fever, hypotension, hypoxia (Grade 1–4, Lee criteria). Management: supportive care, tocilizumab (IL-6 receptor antagonist) for Grade ≥2, corticosteroids for refractory cases."},
+
+{id:71,topic:'biotherapy',src:'sec2',
+q:"When planning the care for a patient receiving Bevacizumab (Avastin), which assessment finding would require the nurse to hold the dose and notify the physician?",
+opts:["A blood pressure reading of 170/100 mmHg","A mild headache relieved by acetaminophen","Trace protein in the urine during a dipstick test","A platelet count of 145,000/mm³"],
+ans:0,
+exp:"Bevacizumab (anti-VEGF monoclonal antibody) commonly causes hypertension by reducing nitric oxide production and increasing peripheral vascular resistance. Severe hypertension (≥160/100 mmHg or Grade 3) requires dose interruption/withholding and antihypertensive therapy. Bevacizumab should be permanently discontinued for hypertensive crisis or hypertensive encephalopathy. Trace proteinuria and mild headache are common but Grade 1 findings."},
+
+{id:72,topic:'biotherapy',src:'sec2',
+q:"A patient is prescribed the EGFR inhibitor Cetuximab. The nurse should educate the patient to expect and manage which common integumentary side effect?",
+opts:["Hand-foot syndrome, redness and peeling of palms/soles","Acneiform, papulopustular rash on the face and upper torso","Total body alopecia","Hyperpigmentation of the fingernails"],
+ans:1,
+exp:"EGFR inhibitors (cetuximab, erlotinib, gefitinib, panitumumab) cause a characteristic acneiform/papulopustular rash on the face, scalp, neck, and upper trunk — unlike true acne, it is not caused by follicular plugging. This rash is a class effect and paradoxically correlates with treatment efficacy. Management: gentle skin care, topical antibiotics, sunscreen. Hand-foot syndrome is associated with multi-kinase inhibitors (sorafenib, sunitinib)."},
+
+{id:73,topic:'biotherapy',src:'sec2',
+q:"What is the primary rationale for using 'pre-medications' such as acetaminophen and diphenhydramine before administering monoclonal antibodies?",
+opts:["To prevent the development of secondary malignancies","To reduce the severity of infusion-related reactions, such as fever, chills, and hives","To enhance the binding of the antibody to the tumor cell","To prevent nausea and vomiting"],
+ans:1,
+exp:"Pre-medications (acetaminophen for fever/chills, diphenhydramine for urticaria/pruritus, corticosteroids for higher-risk agents) are standard prophylaxis before monoclonal antibody infusions to reduce the incidence and severity of infusion-related reactions (IRRs). IRRs result from immune complex formation, complement activation, and cytokine release. They do not affect efficacy or anti-tumor binding."},
+
+{id:74,topic:'biotherapy',src:'sec2',
+q:"A nurse is educating a patient about the multi-kinase inhibitor Sorafenib. Which instruction should be included to prevent the complication of Hand-Foot Skin Reaction (HFSR)?",
+opts:["Wear tight-fitting shoes to provide support","Use urea-based creams and avoid pressure/friction on the hands and feet","Soaking hands in hot water twice daily","Increasing high-impact exercise like running"],
+ans:1,
+exp:"HFSR with sorafenib (and other multi-kinase inhibitors: regorafenib, sunitinib) differs from capecitabine hand-foot syndrome. It is characterized by focal hyperkeratotic lesions at pressure/friction points. Prevention: urea-based or salicylic acid emollients, well-fitting cushioned footwear, avoid friction/pressure, no prolonged heat exposure. Tight shoes, heat, and high-impact exercise would worsen HFSR."},
+
+{id:75,topic:'biotherapy',src:'sec2',
+q:"A patient on Nivolumab presents with new-onset shortness of breath and a dry cough. After ruling out infection, the nurse suspects immune-mediated pneumonitis. What is the next nursing action?",
+opts:["Encourage the patient to perform deep-breathing exercises and return in a week","Prepare the patient for a STAT chest X-ray and possible high-dose steroid therapy","Administer a dose of Albuterol and continue the immunotherapy","Increase the patient's fluid intake to thin respiratory secretions"],
+ans:1,
+exp:"Immune-mediated pneumonitis is a potentially life-threatening irAE of anti-PD-1/PD-L1 agents (nivolumab, pembrolizumab). New dyspnea/cough requires: STAT chest X-ray/CT imaging, hold immunotherapy immediately, pulmonary/oncology consultation, and initiation of high-dose corticosteroids (prednisone 1–2 mg/kg/day or IV methylprednisolone for Grade 3–4). Delayed treatment risks respiratory failure."},
+
+{id:76,topic:'biotherapy',src:'sec2',
+q:"What is the recommended intervention for a patient experiencing Grade 3 or 4 immune-related diarrhea from immunotherapy?",
+opts:["Switch to a liquid-only diet for 48 hours","Administer prophylactic antibiotics","Permanent discontinuation of the immunotherapy and initiation of IV steroids","Reducing the dose of the immunotherapy by 50% for the next cycle"],
+ans:2,
+exp:"Grade 3–4 immune-mediated colitis (≥7 stools/day above baseline, hospitalization required, life-threatening) requires: PERMANENT discontinuation of the immunotherapy agent, IV corticosteroids (methylprednisolone 1–2 mg/kg/day), and if refractory to steroids within 3–5 days, infliximab (anti-TNF) or vedolizumab. Diet alone is insufficient; dose reduction is not an appropriate management strategy for severe irAEs."},
+
+{id:77,topic:'biotherapy',src:'sec2',
+q:"A patient is receiving Bortezomib for multiple myeloma. The nurse should assess for which common dose-limiting toxicity in the lower extremities?",
+opts:["Deep vein thrombosis","Peripheral neuropathy — numbness, tingling, or burning","Osteonecrosis of the jaw","Severe lymphedema"],
+ans:1,
+exp:"Bortezomib (proteasome inhibitor) causes peripheral neuropathy (PN) in 30–60% of patients, which is the primary dose-limiting toxicity. It presents as sensory neuropathy (numbness, burning, tingling) in a stocking-glove distribution, often affecting the feet first. Subcutaneous administration reduces PN incidence vs. IV. Dose reduction or discontinuation is required for Grade 2+ PN."},
+
+{id:78,topic:'biotherapy',src:'sec2',
+q:"A patient is receiving biotherapy as 'adjuvant' therapy. The nurse understands the goal of this treatment plan is to:",
+opts:["Shrink the tumor prior to surgical resection","Provide palliative symptom relief in terminal disease","Eliminate microscopic residual disease after the primary treatment, such as surgery","Serve as the sole treatment modality for advanced cancer"],
+ans:2,
+exp:"Adjuvant therapy is administered AFTER primary treatment (surgery or radiation) when no measurable disease remains, with the goal of eradicating microscopic residual disease and reducing relapse risk. Examples: adjuvant trastuzumab for HER2+ breast cancer, adjuvant pembrolizumab for high-risk melanoma. Neoadjuvant = before surgery; palliative = symptom control in advanced disease."},
+
+{id:79,topic:'hsct',src:'sec2',
+q:"A 45-year-old patient with AML is preparing for an allogeneic HSCT from a matched sibling donor. The nurse explains that the 'Graft-Versus-Tumor' (GVT) effect is a primary goal. How should the nurse define GVT?",
+opts:["The use of high-dose chemotherapy to eliminate the patient's existing immune system","The donor T lymphocytes recognizing and destroying residual malignant cells in the recipient","The patient's own immune system reacting against the infused donor stem cells","A side effect of the conditioning regimen that causes systemic inflammation"],
+ans:1,
+exp:"The graft-versus-tumor (GVT) effect — also called graft-versus-leukemia (GVL) — is the principal mechanism by which allogeneic HSCT cures leukemia. Donor-derived T lymphocytes (and NK cells) recognize and kill host malignant cells that express minor histocompatibility antigens. This is why intentional withdrawal of immunosuppression or donor lymphocyte infusions (DLI) can treat post-transplant relapse."},
+
+{id:80,topic:'hsct',src:'sec2',
+q:"During the conditioning phase of an autologous HSCT for multiple myeloma, the patient receives high-dose Melphalan. Which nursing intervention is a priority during the infusion to prevent oral mucositis?",
+opts:["Administering prophylactic intravenous antibiotics","Providing oral cryotherapy (ice chips) before and during the Melphalan infusion","Encouraging the patient to use a hard toothbrush after meals","Restricting oral fluids during chemotherapy"],
+ans:1,
+exp:"Oral cryotherapy (ice chips/cold water) during high-dose melphalan infusion is a Grade A evidence-based intervention to reduce oral mucositis. Vasoconstriction from cold reduces mucosal blood flow and drug exposure to oral epithelium during peak drug levels. The American Society for Blood and Marrow Transplantation (ASBMT) and ONS strongly recommend this practice. It is particularly effective for high-dose melphalan."},
+
+{id:81,topic:'hsct',src:'sec2',
+q:"A patient is on Day +10 post-allogeneic HSCT and is in the pre-engraftment phase. The nurse notes a temperature of 101.4°F (38.5°C). What is the priority nursing action?",
+opts:["Administer acetaminophen and reassess in 4 hours","Obtain blood cultures from all lumens of the central venous access device and peripherally, then start empiric antibiotics as prescribed","Wait for the absolute neutrophil count (ANC) to rise before initiating treatment","Apply cooling blankets to the patient immediately"],
+ans:1,
+exp:"Febrile neutropenia in the pre-engraftment HSCT phase is a medical emergency with mortality risk from bacteremia/sepsis. The standard of care (IDSA/ASCO) mandates: immediate blood cultures from ALL CVC lumens AND a peripheral site, then START broad-spectrum empiric antibiotics within 60 minutes of fever onset (ideally within 30 minutes). Do not wait for culture results before initiating antibiotics."},
+
+{id:82,topic:'hsct',src:'sec2',
+q:"A patient post-allogeneic HSCT develops a maculopapular rash on the palms and soles, elevated bilirubin, and watery diarrhea. The nurse recognizes these as classic signs of which complication?",
+opts:["Sinusoidal Obstruction Syndrome (SOS)","Acute Graft-Versus-Host Disease (GVHD)","Engraftment Syndrome","Sepsis"],
+ans:1,
+exp:"Acute GVHD (typically Day +20 to +100) classically involves three target organs: (1) SKIN — maculopapular rash starting on palms/soles spreading centripetally, (2) LIVER — hyperbilirubinemia (jaundice), elevated ALP, and (3) GUT — profuse watery (or bloody) diarrhea, nausea, vomiting. Graded I–IV based on organ involvement and severity. First-line treatment is systemic corticosteroids."},
+
+{id:83,topic:'hsct',src:'sec2',
+q:"In a patient experiencing Acute GVHD, Grade II, which nursing diagnosis is most appropriate for the care plan regarding the GI symptoms?",
+opts:["Deficient Knowledge related to the transplant process","Risk for Impaired Skin Integrity related to chemotherapy","Imbalanced Nutrition: Less Than Body Requirements related to malabsorption and diarrhea","Acute Pain related to bone marrow aspiration"],
+ans:2,
+exp:"Grade II acute GVHD involves significant GI involvement (diarrhea >500–1000 mL/day). Profuse diarrhea causes: malabsorption of nutrients, electrolyte wasting, dehydration, and significant caloric deficit. The most relevant nursing diagnosis is Imbalanced Nutrition: Less Than Body Requirements. Patients often require TPN/enteral nutrition, fluid/electrolyte replacement, and careful nutritional monitoring."},
+
+{id:84,topic:'hsct',src:'sec2',
+q:"A patient is undergoing stem cell mobilization with Filgrastim (G-CSF) prior to an autologous collection. The patient reports deep bone pain. What should the nurse explain to the patient?",
+opts:["This indicates the cancer has spread to the bones","Bone pain is a common side effect of stem cell mobilization as the bone marrow expands","The pain is likely due to a blood clot in the lower extremities","The patient is experiencing an allergic reaction to the Filgrastim"],
+ans:1,
+exp:"G-CSF (filgrastim, pegfilgrastim) stimulates rapid bone marrow proliferation and expansion of hematopoietic cells, causing the marrow cavity to expand and activating bone marrow stromal cells. This produces medullary bone pain, typically in the long bones, sternum, and pelvis. This is expected, not dangerous, and usually managed with analgesics (acetaminophen; avoid NSAIDs to not suppress platelet function)."},
+
+{id:85,topic:'hsct',src:'sec2',
+q:"A patient is 14 days post-transplant and the nurse is monitoring for 'engraftment.' Which laboratory trend indicates that engraftment is occurring?",
+opts:["A steady decline in the serum creatinine level","An Absolute Neutrophil Count (ANC) of >500/mm³ for three consecutive days","A decrease in the total bilirubin level","A platelet count that remains below 10,000/mm³"],
+ans:1,
+exp:"Engraftment is defined as the first of three consecutive days when ANC ≥500/mm³ — the donor stem cells have successfully homed, proliferated, and differentiated in the recipient's marrow. Typical timing: autologous HSCT Day +9–14; allogeneic Day +14–21. Platelet engraftment (>20,000 or >50,000 independently) is typically defined separately and occurs later than neutrophil engraftment."},
+
+{id:86,topic:'hsct',src:'sec2',
+q:"A patient is diagnosed with Sinusoidal Obstruction Syndrome (SOS/VOD) post-HSCT. Which clinical triad should the nurse look for during assessment?",
+opts:["Fever, hypotension, and rash","Jaundice, painful hepatomegaly, and fluid retention/weight gain","Diarrhea, vomiting, and skin peeling","Shortness of breath, cough, and chest pain"],
+ans:1,
+exp:"SOS (formerly called Veno-Occlusive Disease/VOD) occurs in ~10–15% of HSCT patients, typically Day +21. The classic triad (Seattle/Baltimore criteria): (1) Jaundice (hyperbilirubinemia >2 mg/dL), (2) Painful hepatomegaly (right upper quadrant pain), (3) Weight gain (>2–5% baseline) from ascites/fluid retention due to sinusoidal occlusion. First-line treatment: defibrotide. Can progress to multi-organ failure (severe SOS mortality >80%)."},
+
+{id:87,topic:'hsct',src:'sec2',
+q:"A nurse is caring for a patient post-HSCT who has been on long-term corticosteroid therapy for Chronic GVHD. Which nursing diagnosis should be prioritized in the long-term care plan?",
+opts:["Risk for Infection related to immunosuppression","Acute Confusion related to metabolic changes","Excess Fluid Volume related to cardiac failure","Disturbed Body Image related to alopecia"],
+ans:0,
+exp:"Chronic GVHD treatment involves prolonged immunosuppression (corticosteroids, calcineurin inhibitors, rituximab, ibrutinib). Long-term corticosteroids cause: T-cell suppression, impaired neutrophil function, and reduced antibody production. This creates a profound state of immunosuppression with risk for opportunistic infections (PCP, CMV, invasive fungal, encapsulated bacteria). Prophylactic antimicrobials (TMP-SMX, antifungals, antivirals) are essential."},
+
+{id:88,topic:'hsct',src:'sec2',
+q:"During the infusion of hematopoietic stem cells (Day 0), the patient reports a 'garlic-like' taste in their mouth and becomes slightly hypertensive. What is the nurse's best response?",
+opts:["Immediately stop the infusion; the patient is having an anaphylactic reaction","Slow the infusion and reassure the patient that this is a common reaction to the preservative DMSO","Administer a bolus of IV fluids to dilute the taste","Call a 'Code Blue' as this indicates an air embolism"],
+ans:1,
+exp:"DMSO (dimethyl sulfoxide) is the cryoprotectant used to preserve stem cells. During infusion, DMSO is metabolized and exhaled, producing a characteristic garlic/oyster/creamed corn odor on the patient's breath. DMSO commonly causes transient hypertension, bradycardia, nausea, and flushing. The appropriate response is to slow the infusion rate and reassure the patient — this is expected and not dangerous."},
+
+{id:89,topic:'hsct',src:'sec2',
+q:"A patient 1-year post-allogeneic HSCT presents with dry eyes, mouth sores, and skin thickening. These symptoms are most indicative of:",
+opts:["Acute GVHD","Chronic GVHD","Late effects of radiation","Secondary malignancy"],
+ans:1,
+exp:"Chronic GVHD (cGVHD) typically presents >100 days post-transplant and can be diagnosed at any time in the first 1–2 years. It mimics autoimmune/connective tissue disorders: sicca syndrome (dry eyes — keratoconjunctivitis sicca, dry mouth — xerostomia), scleroderma-like skin changes (thickening, fibrosis), lichen planus-like lesions, bronchiolitis obliterans, esophageal strictures. NIH consensus criteria define it by organ involvement."},
+
+{id:90,topic:'hsct',src:'sec2',
+q:"A patient is receiving an 'Umbilical Cord Blood' (UCB) transplant. What is a known disadvantage of this stem cell source that the nurse should monitor for?",
+opts:["Increased risk of severe GVHD","Delayed engraftment and prolonged period of cytopenia","High risk of donor-transmitted infections","Requirement for a perfect 10/10 HLA match"],
+ans:1,
+exp:"UCB transplants have several advantages (lower GVHD risk, less strict HLA matching requirement, ready availability) but the major disadvantage is the limited cell dose available in a single cord blood unit. This results in delayed engraftment (median Day +26 for neutrophils vs. Day +14–18 for other sources) and prolonged profound cytopenia, increasing infection and bleeding risk during the extended aplastic phase. Double cord blood transplants are used in adults to address this."},
+
+{id:91,topic:'radiation',src:'sec2',
+q:"A patient with lung cancer is undergoing thoracic radiation therapy. On Day +14, they report a dry, hacking cough and low-grade fever. Upon assessment, the nurse suspects radiation pneumonitis. What is the priority nursing intervention?",
+opts:["Administer a prescribed cough suppressant and continue treatment","Encourage high-intensity aerobic exercise to improve lung capacity","Report symptoms to the oncology provider for evaluation of subacute inflammatory response","Apply a cold compress to the chest to reduce inflammation"],
+ans:2,
+exp:"Radiation pneumonitis typically occurs 1–3 months after thoracic radiation (subacute phase). Symptoms: dry cough, low-grade fever, dyspnea, and radiographic infiltrates in the irradiated field. The priority is immediate reporting to the radiation/oncology team for evaluation, CT chest, and initiation of corticosteroids (the mainstay of treatment). If untreated, it can progress to radiation fibrosis (irreversible, 6–12 months post-RT)."},
+
+{id:92,topic:'radiation',src:'sec2',
+q:"A nurse is educating a patient about skin care during a course of external beam radiation (teletherapy). Which instruction should be included in the nursing care plan to maintain skin integrity?",
+opts:["Use a heating pad on the treatment site to increase blood flow","Cleanse the treatment area gently with lukewarm water and mild soap","Vigorously scrub the area to remove the radiation 'tattoos' or markings","Apply alcohol-based lotions to the site to prevent infection"],
+ans:1,
+exp:"Radiation dermatitis management: cleanse gently with lukewarm water and mild (fragrance-free) soap, pat dry, apply recommended moisturizer (calendula, aloe vera, or prescribed cream), avoid sun exposure, avoid heat and friction, do not remove simulation markings/tattoos (needed for daily treatment alignment), and use loose-fitting clothing. Alcohol-based products are drying and irritating."},
+
+{id:93,topic:'radiation',src:'sec2',
+q:"During radiation treatment planning, a patient asks why their total dose is divided into small, daily 'fractions' rather than given all at once. The nurse's response is based on the 'Five Rs' of radiobiology, specifically:",
+opts:["Repopulation: To allow tumor cells to grow faster between doses","Repair: To allow normal tissues time to recover from sublethal damage","Radiosensitizing: To ensure the patient becomes immune to radiation effects","Reoxygenation: To remove oxygen from the tumor to make it more resistant"],
+ans:1,
+exp:"Fractionation exploits the Five Rs of radiobiology: Repair (normal cells repair sublethal damage between fractions; tumor cells are less able to repair), Redistribution (cells cycle into more radiosensitive phases), Repopulation (normal tissue repopulation), Reoxygenation (hypoxic tumor cells reoxygenate between fractions, becoming more radiosensitive), and Radiosensitivity (intrinsic cellular sensitivity). The primary rationale for daily fractions is to allow normal tissue REPAIR while maintaining tumor cell kill."},
+
+{id:94,topic:'radiation',src:'sec2',
+q:"A nurse is caring for a patient with an implanted radioactive source for cervical cancer (Brachytherapy). If the radioactive source becomes dislodged and is found in the bed linens, what is the first action the nurse should take?",
+opts:["Pick up the source with gloved hands and take it to the radiation safety officer","Leave the room immediately and call the physician","Use long-handled forceps to place the source in a lead-lined container and keep it in the room","Flush the source down the toilet"],
+ans:2,
+exp:"If a brachytherapy source is dislodged, NEVER touch it with bare hands or even gloved hands. The correct action: use long-handled forceps (available at bedside for every brachytherapy patient), place the source in the lead-lined container (also kept in the room), then immediately notify the radiation safety officer and physician. The source stays in the room in the shielded container — it does not go with the nurse."},
+
+{id:95,topic:'radiation',src:'sec2',
+q:"A patient undergoing head and neck radiation therapy reports significant dry mouth (xerostomia) and difficulty swallowing. Which nursing diagnosis should the nurse prioritize?",
+opts:["Risk for Falls related to radiation-induced dizziness","Impaired Oral Mucous Membrane related to hyposalivation","Fluid Volume Excess related to radiation-induced edema","Knowledge Deficit related to the history of radiation physics"],
+ans:1,
+exp:"Xerostomia (dry mouth from salivary gland damage) is the most common and persistent late effect of head and neck radiation. It causes: impaired taste, difficulty chewing/swallowing (dysphagia), dental caries, mucositis, and impaired QoL. The priority nursing diagnosis is Impaired Oral Mucous Membrane. Management: saliva substitutes, frequent sips of water, pilocarpine (if residual gland function), meticulous oral hygiene, fluoride trays."},
+
+{id:96,topic:'radiation',src:'sec2',
+q:"A patient is scheduled for Brachytherapy (internal radiation). What is a critical safety intervention the nurse must implement for visitors and staff?",
+opts:["Encourage visitors to stay as long as they like to provide support","Maintain a distance of at least 6 feet and limit time in the room","Require all visitors to wear lead-lined suits","Keep the door to the patient's room open at all times for observation"],
+ans:1,
+exp:"Radiation safety for sealed-source brachytherapy (permanent implants or temporary LDR) is based on three principles: TIME (limit time near patient), DISTANCE (maintain ≥6 feet; radiation intensity decreases with the square of the distance), and SHIELDING (lead aprons/shields when providing care). Pregnant women and children <18 should not visit. HDR brachytherapy is delivered in a shielded room and the source is removed after treatment — no ongoing radiation precautions needed."},
+
+{id:97,topic:'radiation',src:'sec2',
+q:"A patient who received thoracic radiation several months ago presents with distant, muffled heart sounds and jugular vein distention. The nurse recognizes these as late findings of which radiation-induced complication?",
+opts:["Radiation-induced pneumonitis","Radiation-induced pericardial effusion","Acute skin desquamation","Secondary leukemia"],
+ans:1,
+exp:"Radiation-induced pericarditis and pericardial effusion can occur months to years after thoracic radiation (breast, lung, esophageal, lymphoma). Classic signs of pericardial effusion/cardiac tamponade: Beck's triad — muffled (distant) heart sounds, jugular venous distension (JVD), and hypotension. This is a potentially life-threatening complication requiring pericardiocentesis. Radiation-induced cardiac toxicity is a recognized late effect of mediastinal irradiation."},
+
+{id:98,topic:'radiation',src:'sec2',
+q:"Which member of the radiation oncology multidisciplinary team (MDT) is primarily responsible for creating the specific plan that determines the size and direction of the radiation beam?",
+opts:["The Radiation Oncology Nurse","The Social Worker","The Medical Physicist and Dosimetrist","The Mold and Cast Technician"],
+ans:2,
+exp:"Radiation treatment planning is the responsibility of the Medical Physicist (ensures dose accuracy, machine calibration, quality assurance) and the Dosimetrist (designs the treatment plan — beam angles, field sizes, dose distribution, isodose curves). The Radiation Oncologist prescribes the dose and approves the plan. The Radiation Therapist delivers treatments. The Radiation Oncology Nurse provides patient education and symptom management."},
+
+{id:99,topic:'radiation',src:'sec2',
+q:"A patient is being assessed for late effects of radiation therapy. They report new-onset numbness in their feet and balance problems. The nurse knows that late effects of radiation therapy can include:",
+opts:["Only acute inflammatory responses that resolve within a week","Ataxia, dysarthria, and radicular pain related to neurologic toxicity","Immediate and permanent weight gain","Improved cognitive functioning and memory"],
+ans:1,
+exp:"Late radiation effects (occurring months to years post-treatment) are often progressive and irreversible, resulting from vascular damage and fibrosis. Neurologic late effects include: radiation myelopathy (motor/sensory deficits, ataxia), peripheral neuropathy (numbness, radicular pain — especially from spinal cord/peripheral nerve irradiation), radiation necrosis, and cognitive impairment (after cranial irradiation). These are distinct from acute effects (mucositis, erythema) which are reversible."},
+
+{id:100,topic:'radiation',src:'sec2',
+q:"A nurse is planning care for a patient undergoing 'Image-Guided Radiation Therapy' (IGRT). What is the primary benefit of this modality that the nurse should explain to the patient?",
+opts:["It eliminates the need for any physical assessment during treatment","It uses daily imaging to account for variations in organ motion and ensure precision","It allows the patient to choose their own radiation dose each day","It is only used for superficial skin cancers"],
+ans:1,
+exp:"IGRT uses daily imaging (kV X-rays, cone-beam CT, ultrasound, or MRI) immediately before each treatment fraction to visualize the tumor and adjacent structures in real-time. This accounts for inter-fraction variations: organ motion (bladder filling, bowel gas), patient positioning, and tumor shrinkage — allowing precise beam targeting with smaller safety margins, thereby sparing more normal tissue. IGRT is used with IMRT, SBRT, and SABR for improved precision."}
+
+];
+
+let answered={},showAnswers=false,currentFilter='all';
+
+function render(){
+  const container=document.getElementById('q-container');
+  container.innerHTML='';
+  const visible=getVisible();
+  document.getElementById('total-count').textContent=visible.length;
+  questions.forEach(q=>{
+    const isVis=visible.includes(q);
+    const div=document.createElement('div');
+    let cardCls='q-card';
+    if(q.src==='sec1') cardCls+=' sec1-q';
+    else if(q.src==='sec2') cardCls+=' sec2-q';
+    div.className=cardCls+(isVis?'':' hidden');
+    div.id='q'+q.id;
+    const isAns=answered[q.id]!==undefined;
+    const userAns=answered[q.id];
+    const correct=userAns===q.ans;
+    const srcLabel=q.src==='sec1'?'<span class="src-badge sec1">🌿 Section I — Health Promotion</span>':
+                   '<span class="src-badge sec2">💊 Section II — Treatment Modalities</span>';
+    div.innerHTML=`
+      <div class="q-header">
+        <div class="q-num">${q.id}</div>
+        <div style="flex:1">
+          <div class="q-topic">${q.topic.replace(/-/g,' ').toUpperCase()}</div>
+          <div class="q-text">${q.q}</div>
+        </div>
+        <div class="q-status ${isAns?(correct?'correct':'wrong'):''}">${isAns?(correct?'✓':'✗'):''}</div>
+      </div>
+      <div class="q-body">
+        ${srcLabel}
+        <div class="options" id="opts${q.id}">
+          ${q.opts.map((opt,i)=>{
+            let cls='opt';
+            if(isAns||showAnswers){cls+=' disabled';if(i===q.ans)cls+=' correct';else if(isAns&&i===userAns&&userAns!==q.ans)cls+=' selected-wrong';}
+            return `<div class="${cls}" onclick="selectAnswer(${q.id},${i})"><div class="opt-letter">${['A','B','C','D'][i]}</div><div>${opt}</div></div>`;
+          }).join('')}
+        </div>
+        <div class="explanation ${(isAns||showAnswers)?'show':''}" id="exp${q.id}"><strong>💡 Rationale:</strong> ${q.exp}</div>
+      </div>`;
+    container.appendChild(div);
+  });
+  updateProgress();updateScore();checkSubmit();
+}
+
+function selectAnswer(qid,optIdx){
+  if(answered[qid]!==undefined||showAnswers)return;
+  answered[qid]=optIdx;
+  const q=questions.find(x=>x.id===qid);
+  document.querySelectorAll(`#opts${qid} .opt`).forEach((el,i)=>{
+    el.classList.add('disabled');
+    if(i===q.ans)el.classList.add('correct');
+    else if(i===optIdx&&optIdx!==q.ans)el.classList.add('selected-wrong');
+  });
+  document.getElementById('exp'+qid).classList.add('show');
+  const s=document.querySelector(`#q${qid} .q-status`);
+  s.className='q-status '+(optIdx===q.ans?'correct':'wrong');
+  s.textContent=optIdx===q.ans?'✓':'✗';
+  updateProgress();updateScore();checkSubmit();
+}
+
+function getVisible(){
+  if(currentFilter==='all')return questions;
+  if(currentFilter==='sec1')return questions.filter(q=>q.src==='sec1');
+  if(currentFilter==='sec2')return questions.filter(q=>q.src==='sec2');
+  return questions.filter(q=>q.topic===currentFilter);
+}
+
+function updateProgress(){
+  const vis=getVisible();
+  const cnt=vis.filter(q=>answered[q.id]!==undefined).length;
+  document.getElementById('progress-fill').style.width=(vis.length>0?cnt/vis.length*100:0)+'%';
+  document.getElementById('answered-count').textContent=cnt;
+}
+
+function updateScore(){
+  const vis=getVisible();
+  const ans=vis.filter(q=>answered[q.id]!==undefined);
+  const cor=ans.filter(q=>answered[q.id]===q.ans).length;
+  document.getElementById('score-val').textContent=cor;
+  document.getElementById('total-answered').textContent=ans.length;
+}
+
+function checkSubmit(){
+  const vis=getVisible();
+  document.getElementById('submit-all').classList.toggle('show',vis.length>0&&vis.every(q=>answered[q.id]!==undefined));
+}
+
+function filterBy(f,btn){
+  currentFilter=f;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function shuffleQuestions(){
+  for(let i=questions.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[questions[i],questions[j]]=[questions[j],questions[i]];}
+  render();
+}
+
+function toggleShowAnswers(){
+  showAnswers=!showAnswers;
+  document.getElementById('btn-show-all').classList.toggle('active',showAnswers);
+  document.getElementById('btn-show-all').textContent=showAnswers?'🙈 Hide':'👁 Show Answers';
+  render();
+}
+
+function resetQuiz(){
+  answered={};showAnswers=false;
+  document.getElementById('btn-show-all').classList.remove('active');
+  document.getElementById('btn-show-all').textContent='👁 Show Answers';
+  document.getElementById('results-modal').classList.remove('show');
+  render();
+}
+
+function submitQuiz(){
+  const vis=getVisible();
+  const cor=vis.filter(q=>answered[q.id]===q.ans).length;
+  const tot=vis.length;
+  const pct=Math.round(cor/tot*100);
+  document.getElementById('final-score').textContent=cor;
+  document.getElementById('final-pct').textContent='out of '+tot+' questions';
+  let grade,msg,color;
+  if(pct>=90){grade='Excellent 🏆';color='#16a34a';msg='Outstanding! You are ready for the SCFHS exam.';}
+  else if(pct>=80){grade='Very Good ⭐';color='#2563eb';msg='Great performance! Review the questions you missed.';}
+  else if(pct>=70){grade='Good 👍';color='#d97706';msg='Good effort. Focus on weak topics and retry.';}
+  else if(pct>=60){grade='Pass ✓';color='#ea580c';msg='You passed. More review needed.';}
+  else{grade='Needs Work 📚';color='#dc2626';msg='Keep studying! Review both textbooks and retry.';}
+  const g=document.getElementById('final-grade');
+  g.textContent=grade+' — '+pct+'%';g.style.background=color+'20';g.style.color=color;
+  document.getElementById('final-msg').textContent=msg;
+  document.getElementById('results-modal').classList.add('show');
+}
+
+function closeResults(){
+  document.getElementById('results-modal').classList.remove('show');
+  window.scrollTo(0,0);
+}
+
+render();
+</script>
+</body>
+</html>
